@@ -4,6 +4,7 @@ boto3==1.9.124
 celery
 discord.py
 Django==2.2.10
+django-admin-autoregister
 django-autocomplete-light
 django-background-tasks
 django-celery-beat

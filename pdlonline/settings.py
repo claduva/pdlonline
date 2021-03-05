@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #local apps
+    'draft_planner.apps.DraftPlannerConfig',
     'league_configuration.apps.LeagueConfigurationConfig',
     'main.apps.MainConfig',
+    'matches.apps.MatchesConfig',
     'pokemon.apps.PokemonConfig',
     'users.apps.UsersConfig',
 
@@ -59,6 +61,9 @@ INSTALLED_APPS = [
     'template_timings_panel',
     'storages',
     'widget_tweaks',
+
+    #autoregister
+    'admin_autoregister',
 ]
 
 MIDDLEWARE = [
