@@ -1,5 +1,9 @@
 from django.shortcuts import render,redirect
+from .models import pokemon
 
 # Create your views here.
 def pokedex(request):
-    return  render(request,"pokedex.html")
+    context = {
+        'all_pokemon': pokemon.objects.all(),
+    }
+    return  render(request,'pokedex.html',context)
