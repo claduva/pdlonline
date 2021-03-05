@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6q#j)vpz6m^4*3tie4d^06t^w4+^l+lfomfn10i!lwyxa2$cz1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pokemondraftleagueonline.herokuapp.com']
 
 
 # Application definition
