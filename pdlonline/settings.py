@@ -11,22 +11,29 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
+import socket
+
+if (socket.gethostname().find("local")>-1):
+    DEBUG = True
+    from .configuration import *
+    SECRET_KEY = SECRET_KEY
+    NAME=NAME
+    USER=USER
+    PASSWORD=PASSWORD
+    HOST=HOST
+else:
+    DEBUG = False
+    SECRET_KEY = os.environ.get('SECRET_KEY','developmentkey')
+    NAME=os.environ.get('NAME')
+    USER=os.environ.get('USER')
+    PASSWORD=os.environ.get('PASSWORD')
+    HOST=os.environ.get('HOST')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6q#j)vpz6m^4*3tie4d^06t^w4+^l+lfomfn10i!lwyxa2$cz1'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['pokemondraftleagueonline.herokuapp.com']
-
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','localhost','pokemondraftleagueonline.herokuapp.com']
 
 # Application definition
 
@@ -37,6 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #local apps
+    'league_configuration.apps.LeagueConfigurationConfig',
+    'main.apps.MainConfig',
+    'pokemon.apps.PokemonConfig',
+    'users.apps.UsersConfig',
 
     #third party apps
     'background_task',
@@ -66,7 +79,7 @@ ROOT_URLCONF = 'pdlonline.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,11 +100,17 @@ WSGI_APPLICATION = 'pdlonline.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': NAME,                      
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,
+        'PORT': '5432',
+        'TEST': {
+          'NAME': 'testdb',
+        }
+    },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
