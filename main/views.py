@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-if settings.DEBUG == True:
-    from pdlonline.configuration import *
+#if settings.DEBUG == True:
+#    from pdlonline.configuration import *
 import psycopg2
 
 from pokemon.models import pokemon

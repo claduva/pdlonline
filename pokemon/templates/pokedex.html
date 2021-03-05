@@ -4,5 +4,7 @@
 {% block title %}Pokedex{% endblock %}
 
 {% block body %}
-<div>Under Construction</div>
+{% for item in all_pokemon %}
+<div>{{ item.name }}</div>
+{% endfor %}
 {% endblock %}
