@@ -4,14 +4,14 @@ from django.conf import settings
 #    from pdlonline.configuration import *
 import psycopg2
 
-from pokemon.models import pokemon
+from pokemon.models import pokemon, pokemon_basestats
 
 # Create your views here.
 def home(request):
     return  render(request,"index.html")
 
 def runscript(request):
-    pokemon.objects.all().delete()
+    """
     conn = psycopg2.connect(
         host=OTHERHOST,
         database=OTHERNAME,
@@ -22,18 +22,17 @@ def runscript(request):
     cur.execute("select * from pokemondatabase_all_pokemon")
     records = cur.fetchall()
     for item in records:
-        pokemon.objects.create(
-            name = item[1],
-        )
-    """
-                hp = item[2],
-            attack = item[3],
-            defense = item[4],
-            special_attack = item[5],
-            special_defense = item[6],
-            speed = item[1],
-            bst = item[1]
-            """
+        print(item[1])
+        bsoi = pokemon_basestats.objects.get(pokemon__name = item[1])
+        bsoi.hp = int(item[2])
+        bsoi.attack = int(item[3])
+        bsoi.defense = int(item[4])
+        bsoi.special_attack = int(item[5])
+        bsoi.special_defense = int(item[6])
+        bsoi.speed = int(item[7])
+        bsoi.bst = int(item[2])+int(item[3])+int(item[4])+int(item[5])+int(item[6])+int(item[7])
+        bsoi.save()
     cur.close()
     conn.close()
-    return  redirect('home')
+    """
+    return redirect('home')

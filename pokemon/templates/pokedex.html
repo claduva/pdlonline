@@ -4,7 +4,10 @@
 {% block title %}Pokedex{% endblock %}
 
 {% block body %}
-{% for item in all_pokemon %}
-<div>{{ item.name }}</div>
-{% endfor %}
+<input type="text" list="all_pokemon" />
+<datalist id="all_pokemon">
+    {% for item in all_pokemon %}
+    <option>{{ item.name }}</option>
+    {% endfor %}
+</datalist>
 {% endblock %}
