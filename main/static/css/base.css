@@ -1,0 +1,17 @@
+body{
+    background-color: rgb(247, 244, 244);
+}
+
+.bg-darkgray{
+    background-color: rgb(52, 57, 61);
+}
+
+.mediumimage{
+    max-width:75px;
+    max-height:75px;
+}
+
+.smallimage{
+    max-width:25px;
+    max-height:25px;
+}

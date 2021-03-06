@@ -4,5 +4,22 @@
 {% block title %}Replay Analyzer{% endblock %}
 
 {% block body %}
-<div>Under Construction</div>
+<div class="row align-items-center bg-darkgray text-light rounded mt-2">
+    <div class="col-md-4 d-flex justify-content-start"><img src="{% static 'images/pdllogo.png' %}"
+            class="mediumimage m-2"></div>
+    <div class="col-md-4">
+        <h3 class="d-flex justify-content-center">Replay Analyzer</h2>
+    </div>
+    <div class="col-md-4 d-flex justify-content-end"><img src="{% static 'images/pdllogo.png' %}"
+            class="mediumimage m-2"></div>
+</div>
+<div class="row align-items-center bg-darkgray text-light rounded mt-2">
+    <div class="col-12">
+    <form class="row my-2 mx-1" method="POST">
+        {% csrf_token %}
+        <input placeholder="Replay URL" name="replayURL" id="ReplayURL" class="col-11 form-control">
+        <input type="submit" class="col-1 btn btn-primary">
+    </form>
+    </div>
+</div>
 {% endblock %}

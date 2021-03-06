@@ -1,0 +1,289 @@
+{% extends "template.html" %}
+{% load static %}
+{% load extratags %}
+
+{% block title %}Replay Analyzer Results{% endblock %}
+{% block body %}
+<div class="row align-items-center bg-darkgray text-light rounded mt-2">
+    <div class="col-md-4 d-flex justify-content-start"><img src="{% static 'images/pdllogo.png' %}"
+            class="mediumimage m-2"></div>
+    <div class="col-md-4">
+        <h3 class="d-flex justify-content-center">Replay Analyzer</h2>
+    </div>
+    <div class="col-md-4 d-flex justify-content-end"><img src="{% static 'images/pdllogo.png' %}"
+            class="mediumimage m-2"></div>
+</div>
+<div class="row align-items-center bg-darkgray text-light rounded mt-2 pt-2">
+    <div class="col-12">
+        {% if results.replay %}
+        <iframe src="{{ results.replay }}" height="500vh" width="100%"></iframe>
+        {% endif %}
+    </div>
+    <div class="col-12">
+        {% for message in results.errormessage %}
+        <div class="d-flex justify-content-center text-danger bg-warning rounded align-items-center">
+            <h4>{{message}}</h4>
+        </div>
+        {% endfor %}
+        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+            <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
+                <tr class="bg-dark text-light">
+                    <th><h5 class="m-0 p-0">Match Summary</h5></th>
+                </tr>
+                <tr>
+                    <td>
+                        {% if results.team1.wins is 1 %}
+                        Winning Coach: {{ results.team1.coach }}
+                        {% elif results.team2.wins is 1 %}
+                        Winning Coach: {{ results.team2.coach }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if results.team1.wins is 0 %}
+                        Losing Coach: {{ results.team1.coach }}
+                        {% elif results.team2.wins is 0 %}
+                        Losing Coach: {{ results.team2.coach }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Score:
+                        {% if results.team1.wins is 1 %}
+                        {{ results.team1.score }}-{{ results.team2.score }}
+                        {% elif results.team2.wins is 1 %}
+                        {{ results.team2.score }}-{{ results.team1.score }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr><td>Number of Turns: {{results.numberofturns}}</td></tr>
+                <tr><td><a class="text-dark" href="{{ results.replay }}">Replay</a></td></tr>
+            </table>
+        </div>
+    </div>
+    <div class=col-md-6>
+        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+            <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
+            <tr class="bg-dark text-light">
+                <th colspan="8">
+                    <div class="d-flex justify-content-center">
+                        Coach: {{results.team1.coach}}
+                    </div>
+                </th>
+            </tr>
+            <tr class="bg-dark text-light">
+                <th>Pokemon (HP Remaining)</th>
+                <th><span title="Kills">K</span></th>
+                <th><span title="Deaths">D</span></th>
+                <th><span title="Differential">+/-</span></th>
+                <th><span title="Luck">L</span></th>
+                <th><span title="Damage Dealt">DD</span></th>
+                <th><span title="HP Healed">HPH</span></th>
+                <th><span title="Support Provided">SP</span></th>
+            </tr>
+            {% for item in results.team1.roster %}
+            <tr>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <img class="smallimage"
+                        src="{% static 'images/pdllogo.png' %}">
+                        <div>{{item.pokemon}} ({{item.remaininghealth}}/100)</div>
+                    </div>
+                </td>
+                <td>{{item.kills}}</td>
+                <td>{{item.deaths}}</td>
+                <td>{{item.kills|subtract:item.deaths}}</td>
+                <td>{{item.luck|floatformat:2}}</td>
+                <td>{{item.damagedone}}</td>
+                <td>{{item.hphealed}}</td>
+                <td>{{item.support}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>Total ({{results.team1.remaininghealth}}/{{results.team1.totalhealth}})</th>
+                <td>{{results.team1.kills}}</td>
+                <td>{{results.team1.deaths}}</td>
+                <td>{{results.team1.kills|subtract:results.team1.deaths}}</td>
+                <td>{{results.team1.luck|floatformat:2}}</td>
+                <td>{{results.team1.damagedone}}</td>
+                <td>{{results.team1.hphealed}}</td>
+                <td>{{results.team1.support}}</td>
+            </tr>
+            <tr>
+                <th>Self-Inflicted Deaths</th>
+                <td>{{results.team1.selfdeaths}}</td>
+            </tr>
+            <tr>
+                <th>Times Switched</th>
+                <td>{{results.team1.timesswitched}}</td>
+            </tr>
+        </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+            <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
+            <tr class="bg-dark text-light">
+                <th colspan="8">
+                    <div class="d-flex justify-content-center">
+                        Coach: {{results.team2.coach}}
+                    </div>
+                </th>
+            </tr>
+            <tr class="bg-dark text-light">
+                <th>Pokemon (HP Remaining)</th>
+                <th><span title="Kills">K</span></th>
+                <th><span title="Deaths">D</span></th>
+                <th><span title="Differential">+/-</span></th>
+                <th><span title="Luck">L</span></th>
+                <th><span title="Damage Dealt">DD</span></th>
+                <th><span title="HP Healed">HPH</span></th>
+                <th><span title="Support Provided">SP</span></th>
+            </tr>
+            {% for item in results.team2.roster %}
+            <tr>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <img class="smallimage"
+                            src="{% static 'images/pdllogo.png' %}">
+                        <div>{{item.pokemon}} ({{item.remaininghealth}}/100)</div>
+                    </div>
+                </td>
+                <td>{{item.kills}}</td>
+                <td>{{item.deaths}}</td>
+                <td>{{item.kills|subtract:item.deaths}}</td>
+                <td>{{item.luck|floatformat:2}}</td>
+                <td>{{item.damagedone}}</td>
+                <td>{{item.hphealed}}</td>
+                <td>{{item.support}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>Total ({{results.team2.remaininghealth}}/{{results.team2.totalhealth}})</th>
+                <td>{{results.team2.kills}}</td>
+                <td>{{results.team2.deaths}}</td>
+                <td>{{results.team2.kills|subtract:results.team2.deaths}}</td>
+                <td>{{results.team2.luck|floatformat:2}}</td>
+                <td>{{results.team2.damagedone}}</td>
+                <td>{{results.team2.hphealed}}</td>
+                <td>{{results.team2.support}}</td>
+            </tr>
+            <tr>
+                <th>Self-Inflicted Deaths</th>
+                <td>{{results.team2.selfdeaths}}</td>
+            </tr>
+            <tr>
+                <th>Times Switched</th>
+                <td>{{results.team2.timesswitched}}</td>
+            </tr>
+        </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+            <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
+            <tr class="bg-dark text-light">
+                <th colspan="6">Moves Used</th>
+            </tr>
+            {% for mon in results.team1.roster %}
+            {% if mon.moves %}
+            <tr class="bg-dark text-light"><th colspan="6">
+                <div class="d-flex justify-content-center">
+                    <img class="smallimage"
+                        src="{% static 'images/pdllogo.png' %}">
+                    <div>{{mon.pokemon}}</div>
+                </div>
+            </th></tr>
+            <tr class="bg-dark text-light">
+                <th>Move</th><th>U</th><th>H</th><th>C</th><th>SE/SEP</th>
+            </tr>
+            {% endif %}
+            {% for item,values in mon.moves.items %}
+            <tr>
+                <th>{{ item }}</th>
+                <th>{{values.uses}}</th><th>{{values.hits}}</th><th>{{values.crits}}</th><th>{{values.secondaryeffects}}/{{values.posssecondaryeffects}}</th>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+            </table>
+        </div>
+    </div> 
+    <div class="col-md-6">
+        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+            <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
+            <tr class="bg-dark text-light">
+                <th colspan="6">Moves Used</th>
+            </tr>
+            {% for mon in results.team2.roster %}
+            {% if mon.moves %}
+            <tr class="bg-dark text-light"><th colspan="6">
+                <div class="d-flex justify-content-center">
+                    <img class="smallimage"
+                        src="{% static 'images/pdllogo.png' %}">
+                    <div>{{mon.pokemon}}</div>
+                </div>
+            </th></tr>
+            <tr class="bg-dark text-light">
+                <th>Move</th><th>U</th><th>H</th><th>C</th><th>SE/SEP</th>
+            </tr>
+            {% endif %}
+            {% for item,values in mon.moves.items %}
+            <tr>
+                <th>{{ item }}</th>
+                <th>{{values.uses}}</th><th>{{values.hits}}</th><th>{{values.crits}}</th><th>{{values.secondaryeffects}}/{{values.posssecondaryeffects}}</th>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+            </table>
+        </div>
+    </div>   
+    <div class="col-md-12">
+        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+            <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
+                <tr class="bg-dark text-light">
+                    <th colspan="2">Significant Events</th>
+                </tr>
+                <tr class="bg-dark text-light">
+                    <th>Turn</th>
+                    <th>Event</th>
+                </tr>
+                {% for turn,event in results.significantevents %}
+                <tr>
+                    <td>{{turn}}</td>
+                    <td>{{event}}</td>
+                </tr>
+                {% endfor%}
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+            <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
+                <tr class="bg-dark text-light">
+                    <th colspan="100%">Luck Catalog</th>
+                </tr>
+                <tr class="bg-dark text-light">
+                    <th>Turn</th>
+                    <th>Pokemon</th>
+                    <th>Event</th>
+                    <th>Starting Luck</th>
+                    <th>Luck Change</th>
+                    <th>Total Current Luck</th>
+                </tr>
+                {% for turn,pokemon,event,startluck,luckchange,totalluck in results.luckcatalog %}
+                <tr>
+                    <td>{{turn}}</td>
+                    <td>{{pokemon}}</td>
+                    <td>{{event}}</td>
+                    <td>{{startluck|floatformat:2}}</td>
+                    <td>{{luckchange|floatformat:2}}</td>
+                    <td>{{totalluck|floatformat:2}}</td>
+                </tr>
+                {% endfor%}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
