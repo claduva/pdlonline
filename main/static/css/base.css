@@ -6,6 +6,10 @@ body{
     background-color: rgb(52, 57, 61);
 }
 
+.bg-lightgray{
+    background-color: rgb(247, 244, 244);
+}
+
 .mediumimage{
     max-width:75px;
     max-height:75px;

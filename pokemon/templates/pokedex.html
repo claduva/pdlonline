@@ -4,10 +4,34 @@
 {% block title %}Pokedex{% endblock %}
 
 {% block body %}
-<input type="text" list="all_pokemon" />
-<datalist id="all_pokemon">
-    {% for item in all_pokemon %}
-    <option>{{ item.name }}</option>
-    {% endfor %}
-</datalist>
+<div class="row align-items-center bg-darkgray text-light rounded mt-2">
+    <div class="col-12">
+    <form class="row my-2 mx-1" method="POST">
+        {% csrf_token %}
+        <input placeholder="Name" name="pokemonSearch" id="pokemonSearch" class="col-12 form-control">
+    </form>
+    </div>
+</div>
+<div class="row align-items-center bg-darkgray text-light rounded mt-2">
+    <div class="col-12">
+        <table class="table bg-lightgray mt-2">
+            <tr>
+                <th>#</th><th>Name</th><th>Total</th><th>HP</th><th>Attack</th><th>Defense</th><th>Sp. Attack</th><th>Sp. Defense</th><th>Speed</th>
+            </tr>
+            {% for item in all_pokemon %}
+            <tr>
+                <td>{{ item.pokedex_number }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.data.basestats.bst }}</td>
+                <td>{{ item.data.basestats.hp }}</td>
+                <td>{{ item.data.basestats.attack }}</td>
+                <td>{{ item.data.basestats.defense }}</td>
+                <td>{{ item.data.basestats.special_attack }}</td>
+                <td>{{ item.data.basestats.special_defense }}</td>
+                <td>{{ item.data.basestats.speed }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock %}
