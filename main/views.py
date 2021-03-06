@@ -41,7 +41,6 @@ def update_all_pokemon(request):
         data['basestats']['speed']=item.basestats.speed
         data['basestats']['bst']=item.basestats.bst
         print(data)
-        #data=json.dumps(data)
         item.data=data
         item.save()
     return redirect('home')

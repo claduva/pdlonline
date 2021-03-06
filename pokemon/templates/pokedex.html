@@ -20,7 +20,10 @@
             </tr>
             {% for item in all_pokemon %}
             <tr>
-                <td>{{ item.pokedex_number }}</td>
+                <td>
+                    <img src="{% static 'images/pdllogo.png' %}"class="smallimage">
+                    {{ item.pokedex_number }}
+                </td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.data.basestats.bst }}</td>
                 <td>{{ item.data.basestats.hp }}</td>
