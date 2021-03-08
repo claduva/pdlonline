@@ -3,6 +3,7 @@ from django.conf import settings
 #if settings.DEBUG == True:
 #    from pdlonline.configuration import *
 import json
+import math
 import psycopg2
 import requests
 
@@ -41,6 +42,14 @@ def update_all_pokemon(request):
         data['basestats']['special_defense']=item.basestats.special_defense
         data['basestats']['speed']=item.basestats.speed
         data['basestats']['bst']=item.basestats.bst
+        data['relativebasestats']={}
+        data['relativebasestats']['hp']=math.floor(item.basestats.hp/255*100)
+        data['relativebasestats']['attack']=math.floor(item.basestats.attack/255*100)
+        data['relativebasestats']['defense']=math.floor(item.basestats.defense/255*100)
+        data['relativebasestats']['special_attack']=math.floor(item.basestats.special_attack/255*100)
+        data['relativebasestats']['special_defense']=math.floor(item.basestats.special_defense/255*100)
+        data['relativebasestats']['speed']=math.floor(item.basestats.speed/255*100)
+        data['relativebasestats']['bst']=math.floor(item.basestats.bst/1530*100)
         data['abilities']=[]
         print(data)
         item.data=data
