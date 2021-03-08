@@ -25,16 +25,20 @@
                             <td colspan="2"><img src="{{ pokemon.sprite }}" class="mediumimage"></td>
                         </tr>
                         <tr>
-                            <td class="text-right">National Dex #</td>
+                            <td class="text-right text-nowrap">National Dex #</td>
                             <td class="text-left">{{ pokemon.pokedex_number }}</td>
                         </tr>
                         <tr>
                             <td class="text-right">Type</td>
-                            <td class="text-left"></td>
+                            <td class="text-left text-nowrap">
+                                {% for type in pokemon.data.types %}
+                                <img src="https://play.pokemonshowdown.com/sprites/types/{{type}}.png">
+                                {% endfor %}
+                            </td>
                         </tr>
                         <tr>
                             <td class="text-right">Abilities</td>
-                            <td class="text-left"></td>
+                            <td class="text-left">{{ pokemon.data.abilities|join:", " }}</td>
                         </tr>
                     </tbody>
                 </table>

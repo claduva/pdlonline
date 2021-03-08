@@ -31,6 +31,7 @@ def runscript(request):
 
 def update_all_pokemon(request):
     for item in pokemon.objects.all():
+        print(item.name)
         data={}
         data['pokemon']=item.name
         data['id']=item.pokedex_number
@@ -56,7 +57,6 @@ def update_all_pokemon(request):
         data['abilities']=[]
         for ability in item.abilities.all():
             data['abilities'].append(ability.ability)
-        print(data)
         item.data=data
         item.save()
     return redirect('home')
