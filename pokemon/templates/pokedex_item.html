@@ -32,7 +32,9 @@
                             <td class="text-right">Type</td>
                             <td class="text-left text-nowrap">
                                 {% for type in pokemon.data.types %}
-                                <img src="https://play.pokemonshowdown.com/sprites/types/{{type}}.png">
+                                {% with "images/type_images/"|add:type|add:".png" as source %}
+                                <img src="{% static source %}">
+                                {% endwith %}
                                 {% endfor %}
                             </td>
                         </tr>
