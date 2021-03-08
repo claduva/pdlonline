@@ -14,10 +14,6 @@ def home(request):
     return  render(request,"index.html")
 
 def runscript(request):
-    for poke in pokemon.objects.all():
-        spr=poke.name.lower().replace("%","").replace(":","").replace(" ","").replace("o-o","oo")
-        poke.sprite=f"https://claduva.github.io/pdl_images/sprites/dex/ani/standard/{spr}.gif"
-        poke.save()
     """
     for item in pokemon.objects.all().filter(pokedex_number=0):
         poi=item.name.lower().replace("-sky","").replace("-mega","").replace("-x","").replace("-x","").replace("-ultra","").replace("-dawn-wings","").replace("-dusk-mane","").replace("-y","").replace("-midnight","").replace("-dusk","").replace("-unbound","").replace("-alola","").replace("-primal","").replace("-ash","").replace("-eternal","").replace("-therian","").replace("-attack","").replace("-defense","").replace("-speed","").replace("-white","").replace("-black","").replace("-origin","").replace("-gmax","").replace("-galar","").replace("-ice","").replace("-shadow","").replace("aegislash","aegislash-shield").replace("basculin","basculin-red-striped").replace("darmanitan","darmanitan-standard").replace("deoxys","deoxys-normal").replace("eiscue","eiscue-ice").replace("giratina","giratina-altered").replace("gourgeist","gourgeist-average").replace("indeedee","indeedee-male").replace("keldeo","keldeo-ordinary").replace("landorus","landorus-incarnate").replace("thundurus","thundurus-incarnate").replace("tornadus","tornadus-incarnate").replace("lycanroc","lycanroc-midday").replace("meloetta","meloetta-aria").replace("meowstic","meowstic-male").replace(" jr.","-jr").replace("mimikyu","mimikyu-disguised")
