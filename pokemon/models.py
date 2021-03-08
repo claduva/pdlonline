@@ -5,6 +5,7 @@ from django.contrib.postgres.fields import JSONField
 class pokemon(models.Model):
     name = models.CharField(max_length=30,unique=True)
     pokedex_number = models.IntegerField(default=0)
+    sprite = models.URLField(default="https://claduva.github.io/pdl_images/sprites/default.png")
     data=JSONField(null=True,blank=True)
 
     def __str__(self):

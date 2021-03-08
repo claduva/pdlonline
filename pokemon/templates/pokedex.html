@@ -25,7 +25,7 @@
                 {% for item in all_pokemon %}
                 <tr>
                     <td>
-                        <img src="{% static 'images/pdllogo.png' %}"class="smallimage">
+                        <img src="{{ item.sprite }}"class="smallimage">
                         {{ item.pokedex_number }}
                     </td>
                     <td><a href="{% url 'pokedex_entry' pokemon_item=item.name|replace_spaces %}">{{ item.name }}</a></td>
