@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-#if settings.DEBUG == True:
-#    from pdlonline.configuration import *
+
 import json
 import math
 import psycopg2
 import requests
 
-from pokemon.models import pokemon, pokemon_basestats
+from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_ability
 
 # Create your views here.
 def home(request):
@@ -36,6 +35,8 @@ def update_all_pokemon(request):
         data['pokemon']=item.name
         data['id']=item.pokedex_number
         data['types']=[]
+        for type_ in item.types.all():
+            data['types'].append(type_.type)
         data['basestats']={}
         data['basestats']['hp']=item.basestats.hp
         data['basestats']['attack']=item.basestats.attack
@@ -53,11 +54,15 @@ def update_all_pokemon(request):
         data['relativebasestats']['speed']=math.floor(item.basestats.speed/255*100)
         data['relativebasestats']['bst']=math.floor(item.basestats.bst/1530*100)
         data['abilities']=[]
+        for ability in item.abilities.all():
+            data['abilities'].append(ability.ability)
         print(data)
         item.data=data
         item.save()
     return redirect('home')
 
+#if settings.DEBUG == True:
+#    from pdlonline.configuration import *
 def update_from_old_database(request):
     """
     conn = psycopg2.connect(
@@ -67,19 +72,20 @@ def update_from_old_database(request):
         password=OTHERPASSWORD
     )
     cur = conn.cursor()
-    cur.execute("select * from pokemondatabase_all_pokemon")
+    cur.execute("select * from pokemondatabase_pokemon_ability")
     records = cur.fetchall()
     for item in records:
-        print(item[1])
-        bsoi = pokemon_basestats.objects.get(pokemon__name = item[1])
-        bsoi.hp = int(item[2])
-        bsoi.attack = int(item[3])
-        bsoi.defense = int(item[4])
-        bsoi.special_attack = int(item[5])
-        bsoi.special_defense = int(item[6])
-        bsoi.speed = int(item[7])
-        bsoi.bst = int(item[2])+int(item[3])+int(item[4])+int(item[5])+int(item[6])+int(item[7])
-        bsoi.save()
+        id_=item[2]
+        curr = conn.cursor()
+        curr.execute(f"select * from pokemondatabase_all_pokemon where id = {id_}")
+        mon = curr.fetchone()
+        poi=pokemon.objects.get(name=mon[1])
+        pokemon_ability.objects.create(
+            pokemon=poi,
+            ability=item[1]
+        )
+        curr.close()
+        print(id_,item)
     cur.close()
     conn.close()
     """
