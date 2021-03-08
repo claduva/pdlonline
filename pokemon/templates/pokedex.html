@@ -38,3 +38,11 @@
     </div>
 </div>
 {% endblock %}
+{% block script %}
+<script>
+    $("#pokemonSearch").keyup(function() {
+        lookup = $("#pokemonSearch").val()
+        alert(lookup)
+    })
+</script>
+{% endblock %}

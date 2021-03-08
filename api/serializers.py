@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-""" class TeamSerializer(serializers.ModelSerializer):
+from pokemon.models import pokemon
+
+class PokemonSerializer(serializers.ModelSerializer):
     class Meta:
-        model = coachdata
+        model = pokemon
         fields = [
-                'teamname'
-            ] """
+                'name','data'
+            ]

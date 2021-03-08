@@ -32,6 +32,7 @@ def update_all_pokemon(request):
         data={}
         data['pokemon']=item.name
         data['id']=item.pokedex_number
+        data['types']=[]
         data['basestats']={}
         data['basestats']['hp']=item.basestats.hp
         data['basestats']['attack']=item.basestats.attack
@@ -40,6 +41,7 @@ def update_all_pokemon(request):
         data['basestats']['special_defense']=item.basestats.special_defense
         data['basestats']['speed']=item.basestats.speed
         data['basestats']['bst']=item.basestats.bst
+        data['abilities']=[]
         print(data)
         item.data=data
         item.save()
