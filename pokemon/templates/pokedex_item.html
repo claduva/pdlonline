@@ -32,7 +32,6 @@
                             <td class="text-right">Type</td>
                             <td class="text-left text-nowrap">
                                 {% for type in pokemon.data.types %}
-                                <span>{{type}}</span>
                                 {% with "images/type_images/"|add:type|add:".png" as source %}
                                 <img src="{% static source %}">
                                 {% endwith %}
