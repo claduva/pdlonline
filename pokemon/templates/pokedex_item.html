@@ -13,7 +13,7 @@
 <div class="row align-items-center bg-darkgray text-light rounded mt-2">
     <div class="col-12">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <table class="table table-sm bg-lightgray mt-2 text-center">
                     <thead>
                         <tr>
@@ -26,12 +26,13 @@
                         </tr>
                         <tr>
                             <td class="text-right text-nowrap">National Dex #</td>
-                            <td class="text-left">{{ pokemon.pokedex_number }}</td>
+                            <td class="text-left">{{ pokemon.pokedex_number|pokedexnumber }}</td>
                         </tr>
                         <tr>
                             <td class="text-right">Type</td>
                             <td class="text-left text-nowrap">
                                 {% for type in pokemon.data.types %}
+                                <span>{{type}}</span>
                                 {% with "images/type_images/"|add:type|add:".png" as source %}
                                 <img src="{% static source %}">
                                 {% endwith %}

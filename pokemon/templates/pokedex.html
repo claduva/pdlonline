@@ -8,34 +8,46 @@
 <div class="row align-items-center bg-darkgray text-light rounded mt-2">
     <div class="col-12">
     <form class="row my-2 mx-1" method="POST">
-        {% csrf_token %}
-        <input placeholder="Name" name="pokemonSearch" id="pokemonSearch" class="col-12 form-control">
+        <input placeholder="Name" name="pokemonSearch" id="pokemonSearch" class="col-10 form-control">
+        <select name="typeSelector" id="typeSelector" class="col-2 form-control">
+            {% for type in types %}
+            <option value="{{ type }}">{{ type }}</option>
+            {% endfor %}
+        </select>
     </form>
     </div>
 </div>
 <div class="row align-items-center bg-darkgray text-light rounded mt-2">
     <div class="col-12">
-        <table class="table bg-lightgray mt-2" id="pokedexTable">
+        <table class="table table-sm bg-lightgray mt-2" id="pokedexTable">
             <thead>
                 <tr>
-                    <th>#</th><th>Name</th><th>Total</th><th>HP</th><th>Attack</th><th>Defense</th><th>Sp. Attack</th><th>Sp. Defense</th><th>Speed</th>
+                    <th>#</th><th>Name</th><th>Type</th><th>Total</th><th>HP</th><th>Attack</th><th>Defense</th><th>Sp. Attack</th><th>Sp. Defense</th><th>Speed</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in all_pokemon %}
                 <tr>
-                    <td>
+                    <td class="align-middle">
                         <img src="{{ item.sprite }}"class="smallimage">
-                        {{ item.pokedex_number }}
+                        {{ item.pokedex_number|pokedexnumber }}
                     </td>
-                    <td><a href="{% url 'pokedex_entry' pokemon_item=item.name|replace_spaces %}">{{ item.name }}</a></td>
-                    <td>{{ item.data.basestats.bst }}</td>
-                    <td>{{ item.data.basestats.hp }}</td>
-                    <td>{{ item.data.basestats.attack }}</td>
-                    <td>{{ item.data.basestats.defense }}</td>
-                    <td>{{ item.data.basestats.special_attack }}</td>
-                    <td>{{ item.data.basestats.special_defense }}</td>
-                    <td>{{ item.data.basestats.speed }}</td>
+                    <td class="align-middle"><a href="{% url 'pokedex_entry' pokemon_item=item.name|replace_spaces %}">{{ item.name }}</a></td>
+                    <td class="align-middle">
+                        {% for type in item.data.types %}
+                            {% with "images/type_images/"|add:type|add:".png" as source %}
+                                <div><img src="{% static source %}"></div>
+                                <span class="type d-none">{{ type }}</span>
+                            {% endwith %}
+                        {% endfor %}
+                    </td>
+                    <td class="align-middle">{{ item.data.basestats.bst }}</td>
+                    <td class="align-middle">{{ item.data.basestats.hp }}</td>
+                    <td class="align-middle">{{ item.data.basestats.attack }}</td>
+                    <td class="align-middle">{{ item.data.basestats.defense }}</td>
+                    <td class="align-middle">{{ item.data.basestats.special_attack }}</td>
+                    <td class="align-middle">{{ item.data.basestats.special_defense }}</td>
+                    <td class="align-middle">{{ item.data.basestats.speed }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -49,6 +61,12 @@
         lookup = $("#pokemonSearch").val().toLowerCase()
         $("#pokedexTable tbody tr").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(lookup) > -1)
+        })
+    })
+    $("#typeSelector").change(function() {
+        type = $("#typeSelector").val().replace("-Type-", "")
+        $("#pokedexTable tbody tr").filter(function() {
+            $(this).toggle($(this).find("span.type").text().indexOf(type) > -1)
         })
     })
 </script>
