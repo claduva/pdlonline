@@ -4,7 +4,7 @@
 
 {% block title %}Replay Analyzer Results{% endblock %}
 {% block body %}
-<div class="row align-items-center bg-darkgray text-light rounded mt-2">
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
     <div class="col-md-4 d-flex justify-content-start"><img src="{% static 'images/pdllogo.png' %}"
             class="mediumimage m-2"></div>
     <div class="col-md-4">
@@ -13,7 +13,7 @@
     <div class="col-md-4 d-flex justify-content-end"><img src="{% static 'images/pdllogo.png' %}"
             class="mediumimage m-2"></div>
 </div>
-<div class="row align-items-center bg-darkgray text-light rounded mt-2 pt-2">
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2 pt-2">
     <div class="col-12">
         {% if results.replay %}
         <iframe src="{{ results.replay }}" height="500vh" width="100%"></iframe>
@@ -25,7 +25,7 @@
             <h4>{{message}}</h4>
         </div>
         {% endfor %}
-        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto mb-3">
             <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
                 <tr class="bg-dark text-light">
                     <th><h5 class="m-0 p-0">Match Summary</h5></th>
@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class=col-md-6>
-        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto mb-3">
             <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
             <tr class="bg-dark text-light">
                 <th colspan="8">
@@ -123,7 +123,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto mb-3">
             <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
             <tr class="bg-dark text-light">
                 <th colspan="8">
@@ -182,7 +182,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto mb-3">
             <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
             <tr class="bg-dark text-light">
                 <th colspan="6">Moves Used</th>
@@ -211,7 +211,7 @@
         </div>
     </div> 
     <div class="col-md-6">
-        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto mb-3">
             <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
             <tr class="bg-dark text-light">
                 <th colspan="6">Moves Used</th>
@@ -240,7 +240,7 @@
         </div>
     </div>   
     <div class="col-md-12">
-        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto mb-3">
             <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
                 <tr class="bg-dark text-light">
                     <th colspan="2">Significant Events</th>
@@ -259,7 +259,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div class="card table-responsive bg-lightgrey text-dark text-center text-nowrap overflow-auto mb-3">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto mb-3">
             <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
                 <tr class="bg-dark text-light">
                     <th colspan="100%">Luck Catalog</th>

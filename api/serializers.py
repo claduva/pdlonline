@@ -7,5 +7,5 @@ class PokemonSerializer(serializers.ModelSerializer):
     class Meta:
         model = pokemon
         fields = [
-                'name','data'
+                'name','sprite','data'
             ]

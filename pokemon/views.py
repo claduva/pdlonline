@@ -4,7 +4,6 @@ from .models import pokemon, pokemon_basestats, pokemon_type
 # Create your views here.
 def pokedex(request):
     types=['-Type-']+list(pokemon_type.objects.all().order_by('type').distinct('type').values_list('type',flat=True))
-    print(types)
     context = {
         'all_pokemon': pokemon.objects.all().order_by("pokedex_number","name"),
         'types': types,

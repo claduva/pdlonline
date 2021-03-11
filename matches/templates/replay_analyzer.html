@@ -4,7 +4,7 @@
 {% block title %}Replay Analyzer{% endblock %}
 
 {% block body %}
-<div class="row align-items-center bg-darkgray text-light rounded mt-2">
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
     <div class="col-md-4 d-flex justify-content-start"><img src="{% static 'images/pdllogo.png' %}"
             class="mediumimage m-2"></div>
     <div class="col-md-4">
@@ -13,13 +13,30 @@
     <div class="col-md-4 d-flex justify-content-end"><img src="{% static 'images/pdllogo.png' %}"
             class="mediumimage m-2"></div>
 </div>
-<div class="row align-items-center bg-darkgray text-light rounded mt-2">
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
     <div class="col-12">
     <form class="row my-2 mx-1" method="POST">
         {% csrf_token %}
         <input placeholder="Replay URL" name="replayURL" id="ReplayURL" class="col-11 form-control">
         <input type="submit" class="col-1 btn btn-primary">
     </form>
+    </div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+    <div class="col-12">
+        <div class="bg-lightcolor text-dark my-2 p-2 rounded text-center">
+        <h4>Replay Analyzer Statistics</h4>
+        <div>Kills (K): Total Pokemon knocked out directly or indirectly</div>
+        <div>Deaths (D): Total Pokemon that fainted</div>
+        <div>Differential (+/-): Difference between Kills and Deaths</div>
+        <div>Luck (L): Total incidents of "hax" (e.g. critical hit, miss, secondary effect) compared to expected incidence of hax</div>
+        <div>Damage Done(DD): Total % Damage Inflicted directly or indirectly</div>
+        <div>HP Healed (HPH): Total % heath healed</div>
+        <div>HP Remaining (HPR): Total health (%) remaining at end of battle</div>
+        <div>Support Provided (SP): Total support moves (e.g. Heal Bell, Wish, Defog) used</div>
+        <div>Secondary Effects (SE): Total secondary effects occured</div>
+        <div>Secondary Effects Possible (SEP): Totall secondary effects that were possible</div>
+        </div>
     </div>
 </div>
 {% endblock %}

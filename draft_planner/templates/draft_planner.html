@@ -4,5 +4,448 @@
 {% block title %}Draft Planner{% endblock %}
 
 {% block body %}
-<div>Under Construction</div>
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+    <div class="col-md-4 d-flex justify-content-start"><img src="{% static 'images/pdllogo.png' %}"
+            class="mediumimage m-2"></div>
+    <div class="col-md-4">
+        <h3 class="d-flex justify-content-center">Draft Planner</h2>
+    </div>
+    <div class="col-md-4 d-flex justify-content-end">
+        <a class="nav-link dropdown-toggle text-light" href="" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            <i class="bi-gear-fill" style="font-size: 2rem;"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right text-center bg-lightcolor w-100">
+            <div class="font-weight-bold">Current Draft Name</div>
+            <div><input class="form text-center" id="draftname" type="text" value="{{defaultname}}"></div>
+            <div class="dropdown-divider"></div>
+            <div class="font-weight-bold">Generation</div>
+            <div>
+                <select id="generation">
+                    <option selected value="gen8">Gen 8</option>
+                    <option value="gen7">Gen 7</option>
+                    <option value="gen6">Gen 6</option>
+                    <option value="gen5">Gen 5</option>
+                    <option value="gen4">Gen 4</option>
+                    <option value="gen3">Gen 3</option>
+                    <option value="gen2">Gen 2</option>
+                    <option value="gen1">Gen 1</option>
+                </select>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="font-weight-bold">Associated League</div>
+            <div>
+                <select id="associatedleague">
+                    <option value="None">None Selected</option>
+                </select>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="font-weight-bold">Load Existing Draft</div>
+            <div>
+                <select id="draftselect">
+                    <option value="None">None Selected</option>
+                </select>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div id="deletebutton" class="btn btn-danger">Delete Current Draft</div>
+        </div>
+    </div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+    <div class="col-12">
+        <div id="teamlist" class="row m-2 justify-content-center">
+            <div class='col-md-1 bg-lightcolor activemon border text-center rounded'>
+                <img class="mediumimage" src='{% static "images/defaultsprite.png" %}'>
+            </div>
+            <div id="addmon" class='col-md-1 border text-center bg-lightcolor text-dark rounded'>
+                <i class="bi-plus-circle-fill" style="font-size: 2rem;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+    <div class="col-md-3 p-1">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto">
+            <table class="table table-sm p-0 m-0 text-center">
+                <tr class="bg-darkcolor text-light">
+                    <th class="text-left"><i class="bi-trash-fill" style="font-size: 1rem;"></i></th>
+                    <th><img class="smallimage mx-2" src='{% static "images/defaultsprite.png" %}'></th>
+                </tr>
+                <tr>
+                    <td>Pokemon</td>
+                    <td><input class="form-control form-control-sm" id="moninput" type="text"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-1 p-1">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto">
+            <table class="table table-sm table-bordered p-0 m-0 text-center">
+                <tr class="bg-darkcolor text-light">
+                    <th colspan="1">Typing</th>
+                </tr>
+                <tr>
+                    <td id="typingbox">-</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3 p-1">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto">
+            <table class="table table-sm table-bordered p-0 m-0 text-center">
+                <tr class="bg-darkcolor text-light">
+                    <th colspan="1">Abilities</th>
+                </tr>
+                <tr>
+                    <td id="abilitybox">-</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3 p-1">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto">
+            <table class="table table-sm table-bordered p-0 m-0 text-center">
+                <tr class="bg-darkcolor text-light">
+                    <td>HP</td>
+                    <td>Atk</td>
+                    <td>Def</td>
+                    <td>SpA</td>
+                    <td>SpD</td>
+                    <td>Spe</td>
+                    <td>BST</td>
+                </tr>
+                <tr id="statbox">
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-2 p-1">
+        <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto">
+            <table class="table table-sm table-bordered p-0 m-0 text-center">
+                <tr class="bg-darkcolor text-light">
+                    <th colspan="1">Useful Moves</th>
+                </tr>
+                <tr>
+                    <td id="movesbox">-</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="filters" class="col-12 border px-1 pb-2 d-flex d-none">
+        <div>Filters: </div>
+    </div>
+    <div class="col-12 border px-1 pb-2 d-none" id="searchlist"></div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2 d-none">
+    <div class="col-12">
+        <div class="bg-lightcolor text-center text-dark rounded my-2">
+            <h2>Draft Score: <span id="draftscore">0</span>/100</h2>
+            <div><button id="showcriteria" class="btn btn-sm btn-primary">Show Criteria</button></div>
+            <div id="criteriatable" class="d-none">
+                <table class="table table-sm table-bordered table-striped p-0 m-0 text-center">
+                    <tr class="bg-darkcolor text-light">
+                        <th colspan="2">Draft Scoring Criteria</th>
+                    </tr>
+                    <tr class="bg-darkcolor text-light">
+                        <th>Criteria</th>
+                        <th>Points</th>
+                    </tr>
+                    <tr class="bg-darkcolor text-light">
+                        <th colspan="2">Type Cores</th>
+                    </tr>
+                    <tr>
+                        <td>Fire-Grass-Water Core</td>
+                        <td>2 points per type+2 points for complete core</td>
+                    </tr>
+                    <tr>
+                        <td>Dark-Fighting-Psychic Core</td>
+                        <td>2 points per type+2 points for complete core</td>
+                    </tr>
+                    <tr>
+                        <td>Dragon-Fairy-Steel Core</td>
+                        <td>2 points per type+2 points for complete core</td>
+                    </tr>
+                    <tr>
+                        <td>Electric-Ground-Poison Core</td>
+                        <td>2 points per type+1 point for complete core</td>
+                    </tr>
+                    <tr>
+                        <td>Ghost Type</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="bg-darkcolor text-light">
+                        <th colspan="2">Speed Tiers</th>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Base Speed &lt;=30</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Base Speed 31-50</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Base Speed 51-70</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Base Speed 71-90</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Base Speed 91-110</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Base Speed >110</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Largest Speed Gap &lt;=20</td>
+                        <td>3</td>
+                    </tr>
+                    <tr class="bg-darkcolor text-light">
+                        <th colspan="2">Important Moves</th>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Stealth Rocks</td>
+                        <td>2 per Pokemon (4 points max) </td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Spikes or Toxic Spikes or Sticky Web</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Hazard Control</td>
+                        <td>2 per Pokemon (4 points max) </td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Heal Bell or Aromatherapy</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>>=1 Pokemon w/ Wish</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>>=3 Pokemon w/ Priority</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="bg-darkcolor text-light">
+                        <th colspan="2">Resistances</th>
+                    </tr>
+                    <tr>
+                        <td>>=2 Pokemon w/ Resistance to Attacking Type</td>
+                        <td>1 point per type</td>
+                    </tr>
+                    <tr class="bg-darkcolor text-light">
+                        <th colspan="2">Resistances-Weaknesses</th>
+                    </tr>
+                    <tr>
+                        <td>(# of Pokemon w/ Resistance)-(# of Pokemon w/ Weakness) to Attacking Type>=0</td>
+                        <td>1 point per type</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+    <div class="col-4">
+        <table class="table table-sm table-striped table-bordered bg-lightcolor mt-2 text-center">
+            <thead>
+                <tr>
+                    <th colspan="2">Important Moves</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Stealth Rock</td>
+                    <td id="StealthRock"></td>
+                </tr>
+                <tr>
+                    <td>Spikes</td>
+                    <td id="Spikes"></td>
+                </tr>
+                <tr>
+                    <td>Toxic Spikes</td>
+                    <td id="ToxicSpikes"></td>
+                </tr>
+                <tr>
+                    <td>Sticky Web</td>
+                    <td id="StickyWeb"></td>
+                </tr>
+                <tr>
+                    <td>Hazard Control</td>
+                    <td id="HazardControl"></td>
+                </tr>
+                <tr>
+                    <td>Heal Bell/Aromatherapy</td>
+                    <td id="Cleric"></td>
+                </tr>
+                <tr>
+                    <td>Wish</td>
+                    <td id="Wish"></td>
+                </tr>
+                <tr>
+                    <td>Priority</td>
+                    <td id="Priority"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <table class="table table-sm table-striped table-bordered bg-lightcolor mt-2 text-center">
+            <thead>
+                <tr>
+                    <th colspan="3">Cores</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="{% static 'images/type_images/Grass.png' %}"></td>
+                    <td><img src="{% static 'images/type_images/Fire.png' %}"></td>
+                    <td><img src="{% static 'images/type_images/Water.png' %}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'images/type_images/Dark.png' %}"></td>
+                    <td><img src="{% static 'images/type_images/Fighting.png' %}"></td>
+                    <td><img src="{% static 'images/type_images/Psychic.png' %}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'images/type_images/Dragon.png' %}"></td>
+                    <td><img src="{% static 'images/type_images/Fairy.png' %}"></td>
+                    <td><img src="{% static 'images/type_images/Steel.png' %}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'images/type_images/Electric.png' %}"></td>
+                    <td><img src="{% static 'images/type_images/Ground.png' %}"></td>
+                    <td><img src="{% static 'images/type_images/Poison.png' %}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><img src="{% static 'images/type_images/Ghost.png' %}"></td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <table class="table table-sm table-striped table-bordered bg-lightcolor mt-2 text-center">
+            <thead>
+                <tr>
+                    <th colspan="2">Speed Tiers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&lt;=30</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>31-50</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>51-70</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>71-90</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>91-110</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>>110</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Largest Speed Gap</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+    <div class="col-12">
+        <table class="table table-sm table-striped table-bordered bg-lightcolor mt-2 text-center">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th colspan="3">Resistances</th>
+                    <th colspan="2">Weaknesses</th>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <th>x0</th>
+                    <th>x0.25</th>
+                    <th>x0.5</th>
+                    <th>x2</th>
+                    <th>x4</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for type in types %}
+                <tr>
+                    <td>
+                        {% with "images/type_images/"|add:type|add:".png" as source %}
+                        <img src="{% static source %}">
+                        {% endwith %}
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row d-none">
+    <div class='col-md-1 bg-lightcolor border text-center rounded addedmon_template'>
+        <img class="mediumimage" src='{% static "images/defaultsprite.png" %}'>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$('.dropdown-menu option, .dropdown-menu select').click(function(e) {
+    e.stopPropagation();
+});
+</script>
+<script src="{% static 'scripts/draftplanner.js' %}"></script>
 {% endblock %}
