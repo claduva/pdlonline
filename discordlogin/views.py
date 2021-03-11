@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login
 import requests
 import os
 import socket
@@ -8,13 +9,11 @@ import urllib.parse
 
 # Getting env vars
 if (socket.gethostname().find("local")>-1 or socket.gethostname().find("Harshith")>-1):
-    DEBUG = True
     from .configuration import *
     CLIENT_ID = CLIENT_ID
     CLIENT_SECRET = CLIENT_SECRET
     REDIRECT_URI = "http://localhost:8000/oauth2-redirect"
 else:
-    DEBUG = False
     CLIENT_ID = os.environ.get("CLIENT_ID")
     CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
     REDIRECT_URI = "https://pokemondraftleagueonline.herokuapp.com"
@@ -26,6 +25,7 @@ def login(request: HttpRequest):
 def oauth2_redirect(request: HttpRequest):
     code = request.GET.get("code")
     user = exchange_code(code)
+    authenticate(request, user=user)
     return JsonResponse(user)
 
 def exchange_code(code: str):

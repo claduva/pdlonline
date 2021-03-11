@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'matches.apps.MatchesConfig',
     'pokemon.apps.PokemonConfig',
     'users.apps.UsersConfig',
+    'discordlogin.apps.DiscordloginConfig'
 
     #third party apps
     'background_task',
@@ -161,3 +162,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #LOGIN_REDIRECT_URL = 'home'
 #LOGIN_URL = 'login'
 #LOGOUT_REDIRECT_URL = 'home'
+
+AUTHENTICATION_BACKENDS = [
+    'discordlogin.auth.DiscordAuthenticationBackend'
+]
