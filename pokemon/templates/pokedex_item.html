@@ -1,0 +1,109 @@
+{% extends "template.html" %}
+{% load static %}
+{% load extratags %}
+
+{% block title %}Pokedex: {{ pokemon.name }}{% endblock %}
+
+{% block body %}
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 text-center">
+        <h3>{{ pokemon.name }}</h3>
+    </div>
+</div>
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-md-4">
+        <table class="table table-sm bg-lightcolor mt-2 text-center">
+            <thead>
+                <tr>
+                    <th colspan="2">Pokedex Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2"><img src="{{ pokemon.sprite }}" class="mediumimage"></td>
+                </tr>
+                <tr>
+                    <td class="text-right text-nowrap">National Dex #</td>
+                    <td class="text-left">{{ pokemon.pokedex_number|pokedexnumber }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Type</td>
+                    <td class="text-left text-nowrap">
+                        {% for type in pokemon.data.types %}
+                        {% with "images/type_images/"|add:type|add:".png" as source %}
+                        <img src="{% static source %}">
+                        {% endwith %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">Abilities</td>
+                    <td class="text-left">{{ pokemon.data.abilities|join:", " }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <table class="table table-sm bg-lightcolor mt-2">
+            <thead>
+                <tr>
+                    <th colspan="3">Base Stats</th>
+                </tr>
+            </thead>
+            <tbody class="text-nowrap">
+                <tr>
+                    <td>HP</td>
+                    <td>{{ pokemon.data.basestats.hp }}</td>
+                    <td class="cell-barchart">
+                        <div class="bg-danger barchart-{{pokemon.data.relativebasestats.hp}}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Attack</td>
+                    <td>{{ pokemon.data.basestats.attack }}</td>
+                    <td class="cell-barchart">
+                        <div class="bg-orange barchart-{{pokemon.data.relativebasestats.attack}}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Defense</td>
+                    <td>{{ pokemon.data.basestats.defense }}</td>
+                    <td class="cell-barchart">
+                        <div class="bg-warning barchart-{{pokemon.data.relativebasestats.defense}}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sp. Attack</td>
+                    <td>{{ pokemon.data.basestats.special_attack }}</td>
+                    <td class="cell-barchart">
+                        <div class="bg-primary barchart-{{pokemon.data.relativebasestats.special_attack}}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sp. Defense</td>
+                    <td>{{ pokemon.data.basestats.special_defense }}</td>
+                    <td class="cell-barchart">
+                        <div class="bg-success barchart-{{pokemon.data.relativebasestats.special_defense}}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Speed</td>
+                    <td>{{ pokemon.data.basestats.speed }}</td>
+                    <td class="cell-barchart">
+                        <div class="bg-pink barchart-{{pokemon.data.relativebasestats.speed}}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BST</td>
+                    <td>{{ pokemon.data.basestats.bst }}</td>
+                    <td class="cell-barchart">
+                        <div class="bg-purple barchart-{{pokemon.data.relativebasestats.bst}}"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

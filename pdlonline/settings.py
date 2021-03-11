@@ -29,7 +29,11 @@ else:
     USER=os.environ.get('USER')
     PASSWORD=os.environ.get('PASSWORD')
     HOST=os.environ.get('HOST')
-
+    REST_FRAMEWORK = {
+        'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework.renderers.JSONRenderer',
+        )
+    }
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -46,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #local apps
+    'api.apps.ApiConfig',
     'draft_planner.apps.DraftPlannerConfig',
     'league_configuration.apps.LeagueConfigurationConfig',
     'main.apps.MainConfig',
