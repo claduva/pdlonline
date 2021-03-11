@@ -6,9 +6,6 @@ import math
 import psycopg2
 import requests
 
-from selenium import webdriver
-from bs4 import BeautifulSoup
-
 from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_ability, move
 
 # Create your views here.
