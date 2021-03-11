@@ -19,11 +19,13 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include('django.contrib.auth.urls')),
     path('', include('api.urls')),
     path('',include("draft_planner.urls")),
     path('',include("main.urls")),
     path('',include("matches.urls")),
     path('',include("pokemon.urls")),
+    path('', include("discordlogin.urls"))
 
     #unused
     #path('', include('django.contrib.auth.urls')),

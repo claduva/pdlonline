@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import JSONField
 
+
 # Create your models here.
 class pokemon(models.Model):
     name = models.CharField(max_length=30,unique=True)

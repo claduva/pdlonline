@@ -14,7 +14,7 @@ import os
 import sys
 import socket
 
-if (socket.gethostname().find("local")>-1):
+if (socket.gethostname().find("local")>-1 or socket.gethostname().find("Harshith")>-1):
     DEBUG = True
     from .configuration import *
     SECRET_KEY = SECRET_KEY
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'matches.apps.MatchesConfig',
     'pokemon.apps.PokemonConfig',
     'users.apps.UsersConfig',
+    'discordlogin.apps.DiscordloginConfig'
 
     #third party apps
     'background_task',
@@ -166,3 +167,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #LOGIN_REDIRECT_URL = 'home'
 #LOGIN_URL = 'login'
 #LOGOUT_REDIRECT_URL = 'home'
+
+AUTHENTICATION_BACKENDS = [
+    'discordlogin.auth.DiscordAuthenticationBackend'
+]
