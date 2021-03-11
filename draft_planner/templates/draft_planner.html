@@ -5,8 +5,7 @@
 
 {% block body %}
 <div class="row align-items-center bg-darkcolor text-light rounded mt-2">
-    <div class="col-md-4 d-flex justify-content-start"><img src="{% static 'images/pdllogo.png' %}"
-            class="mediumimage m-2"></div>
+    <div class="col-md-4 d-flex justify-content-start"></div>
     <div class="col-md-4">
         <h3 class="d-flex justify-content-center">Draft Planner</h2>
     </div>
@@ -138,8 +137,9 @@
             </table>
         </div>
     </div>
-    <div id="filters" class="col-12 border px-1 pb-2 d-flex d-none">
-        <div>Filters: </div>
+    <div class="col-1 px-1 pb-2 d-none" id="filterlabel">Filters:</div>
+    <div class="col-11 px-1 pb-2 d-none">
+        <div id="filters" class="d-flex"></div>
     </div>
     <div class="col-12 border px-1 pb-2 d-none" id="searchlist"></div>
 </div>

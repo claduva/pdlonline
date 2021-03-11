@@ -39,9 +39,10 @@ def update_all_pokemon(request):
             item.save()
     return redirect('home')
 
-if settings.DEBUG == True:
-    from pdlonline.configuration import *
+#if settings.DEBUG == True:
+#    from pdlonline.configuration import *
 def update_from_old_database(request):
+    """
     conn = psycopg2.connect(
         host=OTHERHOST,
         database=OTHERNAME,
@@ -52,7 +53,6 @@ def update_from_old_database(request):
     cur.execute("select * from pokemondatabase_moveinfo")
     records = cur.fetchall()
     for item in records:
-        """
         curr = conn.cursor()
         curr.execute(f"select * from pokemondatabase_all_pokemon where id = {id_}")
         mon = curr.fetchone()
@@ -62,7 +62,6 @@ def update_from_old_database(request):
             ability=item[1]
         )
         curr.close()
-        """
         print(item[1],item)
         move.objects.create(
             name = item[1],
@@ -77,4 +76,5 @@ def update_from_old_database(request):
         )
     cur.close()
     conn.close()
+    """
     return redirect('home')
