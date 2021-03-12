@@ -4,5 +4,9 @@
 {% block title %}Pokemon Draft League Online{% endblock %}
 
 {% block body %}
-<div><a href="">Create League</a></div>
+{% if user.is_authenticated %}
+Logged in as {{user.username}}, ID: {{user.discordid}}
+{% else %}
+Not Authenticated
+{% endif %}
 {% endblock %}

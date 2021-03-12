@@ -1,7 +1,9 @@
 from django.shortcuts import render
+
+# Create your views here.
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 import requests
 import os
 import socket
@@ -19,14 +21,17 @@ else:
     REDIRECT_URI = "https://pokemondraftleagueonline.herokuapp.com/oauth2-redirect"
 
 oauth2_url = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri={urllib.parse.quote(REDIRECT_URI)}&response_type=code&scope=identify%20email"
-def login(request: HttpRequest):
+def login_page(request):
     return redirect(oauth2_url)
 
-def oauth2_redirect(request: HttpRequest):
+def oauth2_redirect(request):
     code = request.GET.get("code")
     user = exchange_code(code)
-    authenticate(request, user=user)
-    return JsonResponse(user)
+    authenticated_user = authenticate(request, user=user)
+    if user is not None:
+        logout(request)
+        login(request, authenticated_user)
+    return  redirect('home')
 
 def exchange_code(code: str):
     #Getting access token using authorization code

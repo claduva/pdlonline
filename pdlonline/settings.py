@@ -50,15 +50,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #local apps
+    'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
-    
     'draft_planner.apps.DraftPlannerConfig',
-    'discordlogin.apps.DiscordloginConfig',
     'league_configuration.apps.LeagueConfigurationConfig',
     'main.apps.MainConfig',
     'matches.apps.MatchesConfig',
     'pokemon.apps.PokemonConfig',
-    'users.apps.UsersConfig',
     
     #third party apps
     'background_task',
@@ -169,7 +167,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #LOGIN_URL = 'login'
 #LOGOUT_REDIRECT_URL = 'home'
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 AUTHENTICATION_BACKENDS = [
-    'discordlogin.auth.DiscordAuthenticationBackend',
+    'accounts.auth.DiscordAuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
