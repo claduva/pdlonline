@@ -1,5 +1,5 @@
 from django.apps.config import AppConfig
 
 
-class DiscordloginConfigbackground_task(AppConfig):
+class DiscordloginConfig(AppConfig):
     name = 'discordlogin'

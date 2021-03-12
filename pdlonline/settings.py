@@ -51,14 +51,15 @@ INSTALLED_APPS = [
 
     #local apps
     'api.apps.ApiConfig',
-    'discordlogin.apps.DiscordloginConfig',
+    
     'draft_planner.apps.DraftPlannerConfig',
+    'discordlogin.apps.DiscordloginConfig',
     'league_configuration.apps.LeagueConfigurationConfig',
     'main.apps.MainConfig',
     'matches.apps.MatchesConfig',
     'pokemon.apps.PokemonConfig',
     'users.apps.UsersConfig',
-
+    
     #third party apps
     'background_task',
     'crispy_forms',
