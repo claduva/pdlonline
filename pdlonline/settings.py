@@ -51,13 +51,13 @@ INSTALLED_APPS = [
 
     #local apps
     'api.apps.ApiConfig',
+    'discordlogin.apps.DiscordloginConfig',
     'draft_planner.apps.DraftPlannerConfig',
     'league_configuration.apps.LeagueConfigurationConfig',
     'main.apps.MainConfig',
     'matches.apps.MatchesConfig',
     'pokemon.apps.PokemonConfig',
     'users.apps.UsersConfig',
-    'discordlogin.apps.DiscordloginConfig'
 
     #third party apps
     'background_task',
@@ -169,5 +169,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #LOGOUT_REDIRECT_URL = 'home'
 
 AUTHENTICATION_BACKENDS = [
-    'discordlogin.auth.DiscordAuthenticationBackend'
+    'discordlogin.auth.DiscordAuthenticationBackend',
 ]

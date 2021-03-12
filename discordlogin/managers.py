@@ -2,6 +2,7 @@ from django.contrib.auth import models
 
 class DiscordUserManager(models.UserManager):
     def create_new_discord_user(self, user):
+        print(user)
         new_user = self.create_user(
             id=user["id"], 
             avatar=user["avatar"], 

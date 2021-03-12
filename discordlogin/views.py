@@ -9,7 +9,7 @@ import urllib.parse
 
 # Getting env vars
 if (socket.gethostname().find("local")>-1 or socket.gethostname().find("Harshith")>-1):
-    from .configuration import *
+    from pdlonline.configuration import *
     CLIENT_ID = CLIENT_ID
     CLIENT_SECRET = CLIENT_SECRET
     REDIRECT_URI = "http://localhost:8000/oauth2-redirect"
