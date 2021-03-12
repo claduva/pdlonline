@@ -171,4 +171,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTHENTICATION_BACKENDS = [
     'discordlogin.auth.DiscordAuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
