@@ -16,7 +16,7 @@ if (socket.gethostname().find("local")>-1 or socket.gethostname().find("Harshith
 else:
     CLIENT_ID = os.environ.get("CLIENT_ID")
     CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
-    REDIRECT_URI = "https://pokemondraftleagueonline.herokuapp.com"
+    REDIRECT_URI = "https://pokemondraftleagueonline.herokuapp.com/oauth2-redirect"
 
 oauth2_url = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri={urllib.parse.quote(REDIRECT_URI)}&response_type=code&scope=identify%20email"
 def login(request: HttpRequest):

@@ -4,9 +4,14 @@ from django.contrib.auth.models import User
 
 class DiscordAuthenticationBackend(BaseBackend):
     def authenticate(self, request, user) -> DiscordUser:
-        find_user = DiscordUser.objects.filter(id=user["id"])
-        if len(find_user) == 0:
+        try:
+            found_user = DiscordUser.objects.get(id=user["id"])
+            found_user = DiscordUser.objects.update_discord_user(found_user,user)
+            print("User found.")
+            return found_user
+        except:
             print("User not found.")
             new_user = DiscordUser.objects.create_new_discord_user(user)
             return new_user
-        return find_user
+
+        
