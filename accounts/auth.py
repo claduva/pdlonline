@@ -1,14 +1,15 @@
 from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
-
+import random
+import string
 UserModel = get_user_model()
 
 class DiscordAuthenticationBackend(BaseBackend):
     def authenticate(self, request, user):
         try:
             found_user = UserModel.objects.get(email=user["email"])
-            found_user = UserModel.objects.update_discord_user(found_user,user)
+            found_user = update_discord_user(found_user,user)
             return found_user
         except:
             new_user = UserModel.objects.create_new_discord_user(user)
@@ -124,3 +125,14 @@ class DiscordAuthenticationBackend(BaseBackend):
         except UserModel.DoesNotExist:
             return None
         return user if self.user_can_authenticate(user) else None
+
+def update_discord_user(found_user,user):
+    found_user.discordid=user["id"]
+    found_user.avatar=user["avatar"]
+    found_user.public_flags=user["public_flags"]
+    found_user.flags=user["flags"]
+    found_user.locale=user["locale"]
+    found_user.mfa_enabled=user["mfa_enabled"]
+    found_user.discord_tag=f'{user["username"]}#{user["discriminator"]}'
+    found_user.save()
+    return found_user

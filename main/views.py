@@ -39,17 +39,17 @@ def update_all_pokemon(request):
 #if settings.DEBUG == True:
 #    from pdlonline.configuration import *
 def update_from_old_database(request):
-    """
     conn = psycopg2.connect(
-        host=OTHERHOST,
-        database=OTHERNAME,
-        user=OTHERUSER,
-        password=OTHERPASSWORD
+        host="ec2-35-171-57-132.compute-1.amazonaws.com",
+        database="d3i3am199v2mtr",
+        user="iskfnjntsltslk",
+        password="0554ca4403a5dad873db425cdbd0adc8e0b69c6f25007f0aa68879375e5840ac"
     )
     cur = conn.cursor()
-    cur.execute("select * from pokemondatabase_moveinfo")
+    cur.execute("select * from pokemon_pokemon")
     records = cur.fetchall()
     for item in records:
+        """
         curr = conn.cursor()
         curr.execute(f"select * from pokemondatabase_all_pokemon where id = {id_}")
         mon = curr.fetchone()
@@ -59,19 +59,13 @@ def update_from_old_database(request):
             ability=item[1]
         )
         curr.close()
-        print(item[1],item)
-        move.objects.create(
+        """
+        pokemon.objects.create(
             name = item[1],
-            move_typing = item[2],
-            move_category = item[3],
-            move_power =item[4],
-            move_accuracy = item[5],
-            move_priority = item[6],
-            move_crit_rate = item[15],
-            secondary_effect_chance = item[7],
-            secondary_effect = item[8]
+            pokedex_number = item[2],
+            sprite = item[4],
+            data = item[3],
         )
     cur.close()
     conn.close()
-    """
     return redirect('home')
