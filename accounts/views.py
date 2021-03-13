@@ -24,6 +24,10 @@ oauth2_url = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&re
 def login_page(request):
     return redirect(oauth2_url)
 
+def logout_user(request):
+    logout(request)
+    return redirect('home')
+
 def oauth2_redirect(request):
     code = request.GET.get("code")
     user = exchange_code(code)

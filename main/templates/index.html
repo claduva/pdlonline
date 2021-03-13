@@ -7,6 +7,15 @@
 {% if user.is_authenticated %}
 Logged in as {{user.username}}, ID: {{user.discordid}} Avatar: {{user.avatar}}
 {% else %}
-Not Authenticated
+<div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
+    <div class="col-md-6 p-2">
+        <img src="{% static 'images/pdllogo.png' %}" alt="">
+    </div>
+    <div class="col-md-6">
+        <h4>Welcome to Pokemon Draft League Online!</h4>
+        <div>This is a website designed to assist in running and participating in Pokemon Draft Leagues.</div>
+        <a class="btn bg-discord text-white" href="{% url 'discordlogin' %}"><img src="{% static 'images/discord_logo.jpg' %}" class="smallimage" alt="">Login With Discord</a>
+    </div>
+</div>
 {% endif %}
 {% endblock %}

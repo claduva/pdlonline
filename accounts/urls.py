@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [ 
     path("discordlogin/", views.login_page, name="discordlogin"),
-    path("oauth2-redirect", views.oauth2_redirect, name="discordredirect")
+    path("logout", views.logout_user, name="logout"),
+    path("oauth2-redirect", views.oauth2_redirect, name="discordredirect"),
 ]
