@@ -1,5 +1,6 @@
 from django import template
 register = template.Library()
+from accounts.models import CustomUser
 
 @register.filter(name='pokedexnumber')
 def pokedexnumber(int):
@@ -20,3 +21,7 @@ def subtract(num, arg):
         return num-arg
     except:
         return 0
+
+@register.filter(name='getpfp')
+def getpfp(user):
+    return f"https://cdn.discordapp.com/avatars/{user.discordid}/{user.avatar}"

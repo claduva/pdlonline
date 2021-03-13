@@ -5,7 +5,7 @@
 
 {% block body %}
 {% if user.is_authenticated %}
-Logged in as {{user.username}}, ID: {{user.discordid}}
+Logged in as {{user.username}}, ID: {{user.discordid}} Avatar: {{user.avatar}}
 {% else %}
 Not Authenticated
 {% endif %}
