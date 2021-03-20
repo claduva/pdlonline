@@ -12,6 +12,9 @@ from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_abi
 def home(request):
     return  render(request,"index.html")
 
+def settings(request):
+    return  render(request,"settings.html")
+
 def runscript(request):
     return redirect('home')
 

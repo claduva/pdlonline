@@ -1,0 +1,44 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+    {% breadcrumb subleague.name "subleague_configuration" league.id subleague.id %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    <div class="col-md-3">
+        <table class="table table-sm bg-lightcolor text-center"> 
+            <tr><th>Manage A Subleague</th></tr>
+            <tr><th>Coach Management</th></tr>
+            <tr><td><a href="">Manage Coaches</a></td></tr>
+            <tr><td><a href="">Manage Applications</a></td></tr>
+            <tr><td><a id="deletebutton" href="{% url 'delete_subleague' league_id=league.id subleague_id=subleague.id %}" class="btn btn-danger form-control">Delete</a></td></tr>
+        </table>
+    </div>
+    <div class="col-md-9">
+        <form method= 'post'>
+            {% crispy form %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function() {
+    $('#deletebutton').click(function() {
+    var c = confirm("Are you sure you want to do this? This subleagues data will be lost. Data including drafts, rosters, and matches will be archived.");
+    return c;
+    })
+})
+</script>
+{% endblock %}

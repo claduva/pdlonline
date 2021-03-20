@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+{% load static %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light text-center rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    <div class="col-12">
+        <table class="table table-sm bg-lightcolor mb-3">
+            {% for league in leagues_moderating %}
+            <tr>
+                <td><a href="{% url 'league_settings' league_id=league.id %}">{{ league.name }} ({{ league.abbreviation }})</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

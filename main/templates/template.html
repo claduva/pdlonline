@@ -17,6 +17,14 @@
     <body>
         {% include 'navbar.html' %}
         <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} mt-2">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% block breadcrumbs %}{% endblock %}
         {% block body %}{% endblock %}
         </div>
         <!-- Bootstrap JS-->

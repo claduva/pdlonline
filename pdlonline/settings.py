@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     #third party apps
     'background_task',
     'crispy_forms',
+    'django_bootstrap_breadcrumbs',
     'rest_framework',
     'multiselectfield',
     'template_timings_panel',
@@ -173,3 +174,6 @@ AUTHENTICATION_BACKENDS = [
     'accounts.auth.DiscordAuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+BREADCRUMBS_TEMPLATE = "django_bootstrap_breadcrumbs/bootstrap4.html"

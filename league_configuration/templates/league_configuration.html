@@ -1,0 +1,50 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    {% if showmenu %}
+    <div class="col-md-3">
+        <table class="table table-sm bg-lightcolor text-center"> 
+            <tr><th>Manage A Subleague</th></tr>
+            {% for subleague in league.subleagues.all %}
+            <tr><td><a href="{% url 'subleague_configuration' league_id=league.id subleague_id=subleague.id %}">{{ subleague.name }}</a></td></tr>
+            {% endfor %}
+            <tr><th>Coach Management</th></tr>
+            <tr><td><a href="">Manage Coaches</a></td></tr>
+            {% if league.configuration.teambased %}
+            <tr><td><a href="">Manage Teams of Coachs</a></td></tr>
+            {% endif %}
+            <tr><td><a href="">Manage Applications</a></td></tr>
+        </table>
+    </div>
+    <form method= 'post' class="col-md-9">
+    {% else %}
+    <form method= 'post' class="col-12">
+    {% endif %}
+        {% crispy form %}
+    </form>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $('form').submit(function() {
+        var c = confirm("Warning: Data could be lost if you reduce the number of subleagues. You are encouraged to edit the individual subleagues. If you do not, the appropriate number of subleagues with be automatically deleted.");
+        return c;
+        })
+    })
+    </script>
+{% endblock %}
