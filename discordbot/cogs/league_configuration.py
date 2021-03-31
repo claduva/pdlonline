@@ -1,7 +1,8 @@
 import discord, requests
 from discord.ext import commands
 from discord.utils import get
-baseurl="http://localhost:8000/api/"
+#baseurl="http://localhost:8000/api/"
+baseurl="https://pokemondraftleagueonline.herokuapp.com/api/"
 
 class LeagueConfiguration(commands.Cog):
     def __init__(self,bot):
