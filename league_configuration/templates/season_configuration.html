@@ -11,22 +11,24 @@
     {% breadcrumb league.name "league_settings" league.id %}
     {% breadcrumb "League Configuration" "league_configuration" league.id %}
     {% breadcrumb subleague.name "subleague_configuration" league.id subleague.id %}
+    {% breadcrumb "Season" "season_configuration" league.id subleague.id %}
 {% endblock %}
 
 {% block body %}
 <div class="row bg-darkcolor text-light rounded mt-2">
     <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    {% if showmenu %}
     <div class="col-md-3">
         <table class="table table-sm bg-lightcolor text-center"> 
-            <tr><th>Subleague Activities</th></tr>
-            <tr><td><a href="{% url 'season_configuration' league_id=league.id subleague_id=subleague.id %}">Season Management</a></td></tr>
-            <tr><td><a href="{% url 'manage_tiers' league_id=league.id subleague_id=subleague.id %}">Tiers</a></td></tr>
-            <tr><td><a href="{% url 'conferences_and_divisions' league_id=league.id subleague_id=subleague.id %}">Conferences and Divisions</a></td></tr>
-            <tr><td><a href="{% url 'subleague_rules' league_id=league.id subleague_id=subleague.id %}">Rules</a></td></tr>
-            <tr><td><a id="deletebutton" href="{% url 'delete_subleague' league_id=league.id subleague_id=subleague.id %}" class="btn btn-danger form-control">Delete</a></td></tr>
+            <tr><th>Season Activities</th></tr>
+            <tr><td><a href="">Draft Order</a></td></tr>
+            <tr><td><a href="">Matches</a></td></tr>
         </table>
     </div>
     <div class="col-md-9">
+    {% else %}
+    <div class="col-12">
+    {% endif %}
         <form method= 'post'>
             {% crispy form %}
         </form>

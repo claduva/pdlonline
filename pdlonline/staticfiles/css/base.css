@@ -1,7 +1,4 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
-@import url("//db.onlinewebfonts.com/c/4f6fb2fa3c231278167b36e966718cbb?family=Uni+Sans+Heavy");
-@import url("//db.onlinewebfonts.com/c/e3805dcdb7b09e2e3a60cb837d9ce9af?family=UniSansThin");
-@import url("//db.onlinewebfonts.com/c/63984ad88beb718f38c1d880532ae1db?family=UniSansRegular");
 
 body{
     background-color: rgb(247, 244, 244);
@@ -32,9 +29,21 @@ body{
     background-color:rgb(219, 135, 67);
 }
 
+.bg-lightgreen{
+    background-color:rgb(207, 247, 213);
+}
+
 .bg-discord{
     background-color:rgb(116, 136, 222);
-    font-family: "UniSansRegular";
+    font-family: "Arial";
+}
+
+.text-small{
+    font-size: 10px;
+}
+
+.text-medium{
+    font-size: 14px;
 }
 
 .largeimage{

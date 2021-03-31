@@ -29,10 +29,6 @@ body{
     background-color:rgb(219, 135, 67);
 }
 
-.bg-lightgreen{
-    background-color:rgb(207, 247, 213);
-}
-
 .bg-discord{
     background-color:rgb(116, 136, 222);
     font-family: "Arial";
@@ -40,10 +36,6 @@ body{
 
 .text-small{
     font-size: 10px;
-}
-
-.text-medium{
-    font-size: 14px;
 }
 
 .largeimage{

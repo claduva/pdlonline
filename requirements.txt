@@ -17,6 +17,7 @@ django-widget-tweaks==1.4.8
 djangorestframework
 gunicorn
 imgurpython==1.1.7
+pandas==1.2.3
 pinax-messages
 psycopg2-binary
 pytz==2018.9

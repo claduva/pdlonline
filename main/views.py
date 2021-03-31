@@ -7,6 +7,7 @@ import psycopg2
 import requests
 
 from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_ability, move
+from league_configuration.models import subleague, discord_settings
 
 # Create your views here.
 def home(request):

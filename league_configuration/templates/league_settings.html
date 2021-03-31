@@ -14,7 +14,13 @@
 {% block body %}
 <div class="row bg-darkcolor text-light rounded mt-2">
     <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
-    <form method= 'post' class="col-12">
+    <div class="col-md-3">
+        <table class="table table-sm bg-lightcolor text-center"> 
+            <tr><th>League Configuration</th></tr>
+            <tr><td><a href="{% url 'league_configuration' league_id=league.id %}">Setup</a></td></tr>
+        </table>
+    </div>
+    <form method= 'post' class="col-md-9">
         {% crispy form %}
     </form>
 </div>

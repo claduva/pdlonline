@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+    {% breadcrumb subleague.name "subleague_configuration" league.id subleague.id %}
+    {% breadcrumb "Rules" "subleague_rules" league.id subleague.id %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    <div class="col-12">
+        <form method= 'post' class="bg-lightcolor text-dark px-2 py-1 mb-2">
+            {% crispy form %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="{% static 'scripts/nicEdit.js' %}" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+{% endblock %}

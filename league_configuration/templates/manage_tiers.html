@@ -1,0 +1,186 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+    {% breadcrumb subleague.name "subleague_configuration" league.id subleague.id %}
+    {% breadcrumb "Manage Tiers" "manage_tiers" league.id subleague.id %}
+    {% if tiers_csv %}
+    {% breadcrumb "CSV Upload" "upload_tiers_csv" league.id subleague.id %}
+    {% elif tiers_site_template %}
+    {% breadcrumb "Site Template" "tiers_site_template" league.id subleague.id %}
+    {% elif tiers_other_league %}
+    {% breadcrumb "Other League" "tiers_other_league" league.id subleague.id %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    <div class="col-md-3">
+        <table class="table table-sm bg-lightcolor text-center"> 
+            <tr><td><a id="scratch" href="{% url 'tiers_from_scratch' league_id=league.id subleague_id=subleague.id %}">Start From Scratch</a></td></tr>
+            <tr><td><a href="{% url 'upload_tiers_csv' league_id=league.id subleague_id=subleague.id %}">Upload Tiers from CSV</a></td></tr>
+            <tr><td><a href="{% url 'tiers_site_template' league_id=league.id subleague_id=subleague.id %}">Use Site Template</a></td></tr>
+            <tr><td><a href="{% url 'tiers_other_league' league_id=league.id subleague_id=subleague.id %}">Use Other League's Tiers</a></td></tr>
+        </table>
+        {% if existing_tiers and not tiers_csv and not tiers_site_template and not tiers_other_league %}
+        <table class="table table-sm bg-lightcolor text-center"> 
+            {% if tier %}
+            <tr><th>Edit Tier</th></tr>
+            {% else %}
+            <tr><th>Add Tier</th></tr>
+            {% endif %}
+            <tr>
+                <td>
+                    <form method='post'>  
+                        {% crispy tier_form %}
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-sm bg-lightcolor text-center"> 
+            <tr><th>Existing Tiers</th></tr>
+            {% for tier in tier_options %}
+            <tr class="text-medium">
+                <td class="d-flex justify-content-between align-items-center">
+                    {{ tier.tier }} ({{tier.points}} pts)
+                    <div>
+                        <a href="{% url 'edit_tier' league_id=league.id subleague_id=subleague.id tier_id=tier.id %}" class="btn btn-sm btn-primary text-medium">Edit</a>
+                        <a href="{% url 'delete_tier' league_id=league.id subleague_id=subleague.id tier_id=tier.id %}" class="btn btn-sm btn-danger text-medium">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+    <div class="col-md-9">
+        {% if tiers_csv %}
+        <div>
+            <div>Tiers may be uploaded using a CSV file. CSV files can be created, edited, and exported from Microsoft Excel, Google Sheets, among others. Pokemon must exactly match the name used on the site or they will be placed in "Banned". Tiers may be renamed. Tiers may be added by entering a new column. A CSV template with all pokemon can be found <a href="{% static 'files/tiers.csv' %}">here</a>.</div>
+            <div class="pt-2 pb-3">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="tier_csv">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <input type="submit" class="btn btn-primary form-control">
+                    </div>
+                </form>
+            </div>       
+        </div>
+        {% elif tiers_site_template %}
+        <div>
+            <form method="post">{% csrf_token %}
+            <label for="templateid">Select a template:</label>
+            <select name="templateid" id="templateid" class="form-control">
+                {% for item in templates %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" class="btn btn-primary">
+            </form>
+        </div>
+        {% elif tiers_other_league %}
+        <div>Not yet setup</div>
+        {% else %}
+        <table class="table table-sm bg-lightcolor text-center table-responsive text-nowrap text-small"> 
+            <thead>
+                <tr><th colspan="100%">Tiers (Drag and Drop to Rearrange)</th></tr>
+                <tr>
+                    {% for tier, tierlist in tier_list %}
+                    <th>{{ tier.tier }}({{ tier.points|default_if_none:"N/A" }} pts)</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody id="tiers_body">
+                <tr>
+                    {% for tier, tierlist in tier_list %}
+                    <td id="tier-{{tier.id}}" class="droppable">
+                        {% for mon in tierlist %}
+                        <div id="pokemon-{{ mon.id }}"class="draggable">{{mon.pokemon__name}}</div>
+                        {% endfor %}
+                    </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function() {
+    $('#scratch').click(function() {
+    var c = confirm("Are you sure you want to do this? Existing tiers will be reset.");
+    return c;
+    })
+    $('.draggable').draggable({
+        containment: '#tiers_body',
+        cursor: 'move',
+    }).css('cursor', 'grab')
+    $('.droppable').droppable({
+        hoverClass: 'hovered',
+        drop: handleDropEvent
+    }).hover(function() {
+        $( this ).addClass( "bg-lightgreen" );
+    }, function() {
+        $( this ).removeClass( "bg-lightgreen" );
+    })
+})
+function handleDropEvent( event, ui ) {
+    var draggable = ui.draggable;
+    var droppedtier = $(this).attr( 'id' )
+    draggable.css({ 'left' : '', 'top' : '' })
+    $("#"+droppedtier).prepend(draggable)
+    var tieritems=$("#"+droppedtier).children("div")
+    tieritems.detach().sort(function(a, b) {
+        var compA = $(a).text().toUpperCase();
+        var compB = $(b).text().toUpperCase();
+        return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+    })
+    $("#"+droppedtier).append(tieritems)
+    tierid=droppedtier.replace("tier-","")
+    pokemonid=draggable.attr( 'id' ).replace("pokemon-","")
+    const csrftoken = getCookie('csrftoken');
+    $.ajax({
+        url: '/api/league_pokemon/'+pokemonid+'/',
+        type: 'PUT',
+        headers: {'X-CSRFToken': csrftoken},
+        data: "tier="+tierid,
+        success: function(data) {
+            console.log('Tier updated')
+        }
+    });
+}
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+<script>
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+{% endblock %}

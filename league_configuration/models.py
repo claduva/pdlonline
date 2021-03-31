@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 
+from pokemon.models import pokemon
+
 # Create your models here.
 class league(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -21,7 +23,6 @@ class league(models.Model):
         ('Recruiting Coaches','Recruiting Coaches'),
         ('In Offseason','In Offseason'),
     ),default="Inactive")
-    discordserver=models.CharField(max_length=50, null=True,blank=True)
     discordurl=models.CharField(max_length=50, null=True,blank=True)
     created = models.DateTimeField(auto_now_add=True)
     
@@ -43,3 +44,64 @@ class subleague(models.Model):
 
     def __str__(self):
         return f'{self.league.name} Subleague: {self.name}'
+
+class discord_settings(models.Model):
+    subleague = models.OneToOneField(subleague, on_delete=models.CASCADE)
+    draftchannel=models.BigIntegerField(null=True)
+    replaychannel=models.BigIntegerField(null=True)
+    fachannel=models.BigIntegerField(null=True)
+    tradechannel=models.BigIntegerField(null=True)
+    
+class league_tier(models.Model):
+    subleague = models.ForeignKey(subleague, on_delete=models.CASCADE,related_name="tiers")
+    tier = models.CharField(max_length=20)
+    points = models.IntegerField(null=True)
+    
+    class Meta:
+        unique_together = (("subleague", "tier"),) 
+        ordering = ['-points']
+
+class league_pokemon(models.Model):
+    subleague = models.ForeignKey(subleague, on_delete=models.CASCADE,related_name="pokemon_list")
+    pokemon = models.ForeignKey(pokemon, on_delete=models.CASCADE)
+    tier = models.ForeignKey(league_tier, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = (("subleague", "pokemon"),) 
+
+    def __str__(self):
+        return f'{self.subleague.league.name}-{self.subleague.name}: {self.pokemon.name}'
+
+class tier_template(models.Model):
+    name = models.CharField(max_length=20)
+    pokemon = models.ForeignKey(pokemon, on_delete=models.CASCADE)
+    tier = models.CharField(max_length=20)
+    points = models.IntegerField(null=True)
+
+class conference(models.Model):
+    subleague = models.ForeignKey(subleague, on_delete=models.CASCADE, related_name="conferences")
+    conference = models.CharField(max_length=40)
+
+class division(models.Model):
+    subleague = models.ForeignKey(subleague, on_delete=models.CASCADE,related_name="divisions")
+    conference = models.ForeignKey(conference, on_delete=models.CASCADE,related_name="conference_divisions")
+    division = models.CharField(max_length=40)
+
+class rules(models.Model):
+    subleague = models.OneToOneField(subleague, on_delete=models.CASCADE)
+    rules = models.TextField(default="No rules entered")
+
+class season(models.Model):
+    subleague = models.OneToOneField(subleague, on_delete=models.CASCADE)
+    name = models.CharField(max_length=20)
+    draftstart=models.DateTimeField(null=True,blank=True)
+    drafttimer=models.IntegerField(default=12)
+    draftbudget = models.IntegerField(default=1000)
+    picksperteam = models.IntegerField(default=11)
+    drafttype = models.CharField(max_length=25, choices=(("Snake","Snake"),),default="Snake")
+    seasonstart=models.DateTimeField(null=True,blank=True)
+    seasonlength = models.IntegerField(default=7)
+    playoffslength = models.IntegerField(default=3)
+    freeagenciesallowed= models.IntegerField(default=4)
+    tradesallowed= models.IntegerField(default=4)
+    created = models.DateTimeField(auto_now_add=True)

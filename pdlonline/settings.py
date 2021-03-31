@@ -29,11 +29,7 @@ else:
     USER=os.environ.get('USER')
     PASSWORD=os.environ.get('PASSWORD')
     HOST=os.environ.get('HOST')
-    REST_FRAMEWORK = {
-        'DEFAULT_RENDERER_CLASSES': (
-            'rest_framework.renderers.JSONRenderer',
-        )
-    }
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -177,3 +173,9 @@ AUTHENTICATION_BACKENDS = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 BREADCRUMBS_TEMPLATE = "django_bootstrap_breadcrumbs/bootstrap4.html"
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework.renderers.JSONRenderer',
+    ),
+    }
