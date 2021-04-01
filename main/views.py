@@ -7,11 +7,15 @@ import psycopg2
 import requests
 
 from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_ability, move
-from league_configuration.models import subleague, discord_settings
+from league_configuration.models import league, subleague, discord_settings
 
 # Create your views here.
 def home(request):
-    return  render(request,"index.html")
+    all_leagues=league.objects.all()
+    context={
+        'all_leagues':all_leagues,
+    }
+    return  render(request,"index.html",context)
 
 def settings(request):
     return  render(request,"settings.html")

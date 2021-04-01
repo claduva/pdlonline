@@ -19,6 +19,12 @@
     <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
     <div class="col-12">
         <table class="table table-sm bg-lightcolor text-center"> 
+            <tr><th>Conferences</th></tr>
+            {% if conferences %}
+            {% for conference in conferences %}
+            <tr><th>{{ conference.conference }} <a href="{% url 'delete_conference' league_id=league.id subleague_id=subleague.id conference_id=conference.id %}" class="btn btn-danger btn-sm">Delete</a></th></tr>
+            {% endfor %}
+            {% endif %}
             <tr>
                 <td class="d-flex justify-content-center">
                     <form method= 'post' class="bg-lightcolor text-dark form-inline">
@@ -26,21 +32,19 @@
                     </form>
                 </td>
             </tr>
-            {% if conferences %}
-            {% for conference in conferences %}
-            <tr><th>Conference: {{ conference.conference }} <a href="{% url 'delete_conference' league_id=league.id subleague_id=subleague.id conference_id=conference.id %}" class="btn btn-danger btn-sm">Delete</a></th></tr>
-            {% for division in conference.conference_divisions.all %}
-            <tr><td>Division: {{ division.division }} <a href="{% url 'delete_division' league_id=league.id subleague_id=subleague.id conference_id=conference.id division_id=division.id %}" class="btn btn-danger btn-sm">Delete</a></td></tr>
+            <tr><th>Divisons (Optional)</th></tr>
+            {% if divisions %}
+            {% for division in divisions %}
+            <tr><th>{{ division.division }} <a href="{% url 'delete_division' league_id=league.id subleague_id=subleague.id division_id=division.id %}" class="btn btn-danger btn-sm">Delete</a></th></tr>
             {% endfor %}
+            {% endif %}
             <tr>
                 <td class="d-flex justify-content-center">
-                    <form method= 'post' class="form-inline" action="{% url 'add_division' league_id=league.id subleague_id=subleague.id conference_id=conference.id %}">
+                    <form method= 'post' class="form-inline" action="{% url 'add_division' league_id=league.id subleague_id=subleague.id %}">
                         {% crispy division_form %}
                     </form>
                 </td>
             </tr>
-            {% endfor %}
-            {% endif %}
         </table>
     </div>
 </div>

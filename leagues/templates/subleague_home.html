@@ -1,0 +1,37 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}{{ league.abbreviation }}-{{subleague.name}} Home{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-6 justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><a class="text-light" href="{{league.discordurl}}"><h5><i class="fab fa-discord"></i></h5></a></div>
+        </div>
+    </div>
+    <div class="col-3 d-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    {% for conference,divisions,coaches in conferences %}
+    <div class="col">
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <tr><th>{{ conference }}</th></tr>
+            {% if divisions %}
+                {% for division in divisions %}
+                <tr><th>{{ division }}</th></tr>
+                {% endfor %}
+            {% else %}
+            {% endif %}
+        </table>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

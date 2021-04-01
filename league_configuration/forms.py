@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 from .models import league, league_configuration, subleague, league_tier, rules, season, conference, division
+from leagues.models import coach
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 
@@ -20,6 +21,24 @@ class CreateLeagueForm(forms.ModelForm):
             'name': 'e.g. All Star Premier League',
             'abbreviation': 'e.g. ASPL',
             'logo': 'Try uploading image to Discord, right-clicking, and selecting "Copy Image Address"',
+        }
+
+class UpdateLeagueForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Next', css_class='btn-primary'))
+
+    class Meta:
+        model = league
+        fields = ['name','abbreviation','logo','moderators','platform']
+        labels = {
+            'name': 'League Name',
+            'abbreviation': 'League Abbreviation',
+        }
+        help_texts = {
+            'name': 'e.g. All Star Premier League',
+            'abbreviation': 'e.g. ASPL',
+            'logo': 'Try uploading image to Discord, right-clicking, and selecting "Copy Image Address"',
+            'moderators': 'Hold "Ctrl" or "Command" and click.',
         }
 
 class LeagueConfigurationForm(forms.ModelForm):
@@ -129,3 +148,31 @@ class DivisionForm(forms.ModelForm):
             'division': 'Division Name',
         }
     
+class AdminManageCoachForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+    conference = forms.ChoiceField()
+    division = forms.ChoiceField()
+
+    class Meta:
+        model = coach
+        fields = ['user','teamname','teamabbreviation','logo','conference','division',]
+        labels = {
+            'user': 'Coach(s)',
+            'teamname': 'Team Name',
+            'teamabbreviation': 'Team Abbreviation',
+        }
+        help_texts={
+            'user':'Hold "Ctrl" or "Command" and click.',
+            'logo:':'Try uploading image to Discord, right-clicking, and selecting "Copy Image Address"',
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super(AdminManageCoachForm, self).__init__(*args, **kwargs)
+        coi=kwargs['instance']
+        confs=coi.season.subleague.conferences.all()
+        divs=coi.season.subleague.divisions.all()
+        conferencechoices=[(item.conference,item.conference) for item in confs]
+        divisionchoices=[(item.division,item.division) for item in divs]
+        self.fields['conference'].choices = conferencechoices
+        self.fields['division'].choices = divisionchoices

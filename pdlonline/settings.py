@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'draft_planner.apps.DraftPlannerConfig',
     'league_configuration.apps.LeagueConfigurationConfig',
+    'leagues.apps.LeaguesConfig',
     'main.apps.MainConfig',
     'matches.apps.MatchesConfig',
     'pokemon.apps.PokemonConfig',

@@ -23,11 +23,11 @@
             <tr><td><a href="{% url 'subleague_configuration' league_id=league.id subleague_id=subleague.id %}">{{ subleague.name }}</a></td></tr>
             {% endfor %}
             <tr><th>Coach Management</th></tr>
-            <tr><td><a href="">Manage Coaches</a></td></tr>
+            <tr><td><a href="{% url 'manage_coaches' league_id=league.id %}">Manage Coaches</a></td></tr>
             {% if league.configuration.teambased %}
             <tr><td><a href="">Manage Teams of Coachs</a></td></tr>
             {% endif %}
-            <tr><td><a href="">Manage Applications</a></td></tr>
+            <tr><td><a href="{% url 'manage_applications' league_id=league.id %}">Manage Applications</a></td></tr>
         </table>
     </div>
     <form method= 'post' class="col-md-9">

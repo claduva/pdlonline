@@ -5,9 +5,10 @@ from django.shortcuts import redirect, render
 import csv
 import pandas as pd
 
-from .forms import CreateLeagueForm, LeagueConfigurationForm, SubleagueConfigurationForm, TierForm, RulesForm, SeasonConfigurationForm, ConferenceForm, DivisionForm
-from .models import league,subleague,league_configuration, league_pokemon, league_tier, tier_template,rules,conference,division,discord_settings
+from .forms import CreateLeagueForm, LeagueConfigurationForm, SubleagueConfigurationForm, TierForm, RulesForm, SeasonConfigurationForm, ConferenceForm, DivisionForm, UpdateLeagueForm, AdminManageCoachForm
+from .models import league,subleague,league_configuration, league_pokemon, league_tier, tier_template,rules,conference,division,discord_settings,season
 from pokemon.models import pokemon
+from leagues.models import application, coach
 
 from pdlonline.customdecorators import check_if_moderator
 
@@ -44,18 +45,17 @@ def leagues_moderating(request):
 def league_settings(request,league_id):
     loi=league.objects.get(id=league_id)
     if request.method=="POST":
-        form=CreateLeagueForm(request.POST,instance=loi)
+        form=UpdateLeagueForm(request.POST,instance=loi)
         if form.is_valid():
             newleague=form.save(commit=False)
             newleague.host=request.user
             newleague.save()
-            newleague.moderators.add(request.user)
-            newleague.save()
+            form.save_m2m()
             messages.success(request,f'Your league has been successfully updated!')
             return redirect('league_configuration',league_id=newleague.id)
         else:
             print(form.errors)
-    form = CreateLeagueForm(instance=loi)
+    form = UpdateLeagueForm(instance=loi)
     context={
         'league':loi,
         'form':form,
@@ -138,6 +138,7 @@ def subleague_conferences_and_divisions(request,league_id,subleague_id):
         else:
             print(form.errors)
     conferences=soi.conferences.all()
+    divisions=soi.divisions.all()
     conference_form = ConferenceForm()
     division_form = DivisionForm()
     context={
@@ -146,21 +147,20 @@ def subleague_conferences_and_divisions(request,league_id,subleague_id):
         'conference_form':conference_form,
         'division_form':division_form,
         'conferences': conferences,
+        'divisions': divisions,
     }
     return  render(request,"subleague_conf_div.html",context)
 
 @login_required
 @check_if_moderator
-def add_division(request,league_id,subleague_id,conference_id):
+def add_division(request,league_id,subleague_id):
     loi=league.objects.get(id=league_id)
     soi=subleague.objects.get(id=subleague_id)
-    coi=conference.objects.get(id=conference_id)
     if request.method=="POST":
         form = DivisionForm(request.POST)
         if form.is_valid():
             newdivision=form.save(commit=False)
             newdivision.subleague=soi
-            newdivision.conference=coi
             newdivision.save()
             messages.success(request,f'Your division have been successfully added!')
     return redirect('conferences_and_divisions',league_id=loi.id,subleague_id=soi.id)
@@ -173,7 +173,7 @@ def delete_conference(request,league_id,subleague_id,conference_id):
 
 @login_required
 @check_if_moderator
-def delete_division(request,league_id,subleague_id,conference_id,division_id):
+def delete_division(request,league_id,subleague_id,division_id):
     division.objects.get(id=division_id).delete()
     return redirect('conferences_and_divisions',league_id=league_id,subleague_id=subleague_id)
 
@@ -395,7 +395,7 @@ def season_configuration(request,league_id,subleague_id):
     soi=subleague.objects.get(id=subleague_id)
     if request.method=="POST":
         try:
-            config=soi.season
+            config=soi.seasons.all().get(archived=False)
             form = SeasonConfigurationForm(request.POST,instance=config)
         except:
             form = SeasonConfigurationForm(request.POST)
@@ -404,11 +404,13 @@ def season_configuration(request,league_id,subleague_id):
             newconfig.subleague=soi
             newconfig.save()
             messages.success(request,f'Your season configuration has been successfully updated!')
+            loi.status="Recruiting Coaches"
+            loi.save()
             return redirect('season_configuration',league_id=loi.id,subleague_id=soi.id)
         else:
             print(form.errors)
     try:
-        config=soi.season
+        config=soi.seasons.all().get(archived=False)
         form = SeasonConfigurationForm(instance=config)
         showmenu=True
     except:
@@ -421,6 +423,87 @@ def season_configuration(request,league_id,subleague_id):
         'showmenu':showmenu,
     }
     return  render(request,"season_configuration.html",context)
+
+@login_required
+@check_if_moderator
+def manage_coaches(request,league_id):
+    loi=league.objects.get(id=league_id)
+    coaches = coach.objects.filter(season__subleague__league=loi).order_by('season__subleague__name')
+    context={
+        'league':loi,
+        'coaches': coaches,
+    }
+    return  render(request,"manage_coaches.html",context)
+
+@login_required
+@check_if_moderator
+def manage_coach(request,league_id,coach_id):
+    loi=league.objects.get(id=league_id)
+    coi=coach.objects.get(id=coach_id)
+    if request.method=="POST":
+        form=AdminManageCoachForm(request.POST,instance=coi)
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'Team has been successfully updated!')
+            return redirect('manage_coaches',league_id=league_id)
+    form=AdminManageCoachForm(instance=coi)
+    context={
+        'league':loi,
+        'coach': coi,
+        'form':form,
+    }
+    return  render(request,"manage_coaches.html",context)
+
+@login_required
+@check_if_moderator
+def manage_applications(request,league_id):
+    loi=league.objects.get(id=league_id)
+    subleagues=loi.subleagues.all()
+    apps = loi.applications.all()
+    context={
+        'league':loi,
+        'applications': apps,
+        'subleagues': subleagues,
+    }
+    return  render(request,"manage_applications.html",context)
+
+@login_required
+@check_if_moderator
+def view_application(request,league_id,application_id):
+    loi=league.objects.get(id=league_id)
+    aoi=application.objects.get(id=application_id)
+    subleagues=loi.subleagues.all()
+    context={
+        'league':loi,
+        'application': aoi,
+        'subleagues': subleagues,
+    }
+    return  render(request,"manage_applications.html",context)
+
+@login_required
+@check_if_moderator
+def delete_application(request,league_id,application_id):
+    application.objects.get(id=application_id).delete()
+    return redirect('manage_applications',league_id=league_id)
+
+@login_required
+@check_if_moderator
+def add_to_subleague(request,league_id,application_id):
+    loi=league.objects.get(id=league_id)
+    aoi=application.objects.get(id=application_id)
+    if request.method=="POST":
+        soi=subleague.objects.get(id=request.POST['subleague'])
+        try:
+            season_to_add=soi.seasons.all().get(archived=False)
+        except:
+            messages.error(request,'Subleague does not have season! Configure it first!',extra_tags="danger")
+            return redirect('season_configuration', league_id=league_id,subleague_id=soi.id)
+        newcoach=coach.objects.create(season = season_to_add,teamname = aoi.teamname,teamabbreviation = aoi.teamabbreviation)
+        newcoach.user.add(aoi.user)
+        newcoach.save()
+        aoi.delete()
+        messages.success(request, f'Coach has been added!')
+    return redirect('manage_applications',league_id=league_id)
 
 ##Helper Functions
 def rectify_subleague_count(loi,new_subleague_count,old_subleague_count):

@@ -1,0 +1,104 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+    {% breadcrumb "Manage Applications" "manage_applications" league.id %}
+    {% if application %}
+        {% breadcrumb application.user "view_application" league.id application.id %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    <div class="col-12">
+        {% if application %}
+        <div class="bg-lightcolor text-dark p-2 text-center">
+            <div class="font-weight-bold">Username:</div>
+            <div>{{application.user}}</div>
+            <div class="font-weight-bold">Teamname:</div>
+            <div>{{application.teamname}}</div>
+            <div class="font-weight-bold">Team Abbreviation:</div>
+            <div>{{application.teamabbreviation}}</div>
+            <div class="font-weight-bold">Subleague Preference:</div>
+            <div>
+                {% for subleague in application.subleagues.all %}
+                    <div>-{{subleague.name}}</div>
+                {% endfor %}
+            </div>
+            <div class="font-weight-bold">Willing to be alternate?</div>
+            <div>{% if application.alternate %}Yes{% else %}No {%endif%}</div>
+            <div class="font-weight-bold">Primary Showdown Username:</div>
+            <div>{{application.showdown_username}}</div>
+            <div class="font-weight-bold">Draft League Resume:</div>
+            <div>{{application.resume}}</div>
+            {% if application.replays %}
+            <div class="font-weight-bold">Provided Replays:</div>
+            <div>{{application.replays}}</div>
+            {% endif %}
+        </div>
+        <div class="text-center bg-lightcolor text-dark mb-3 px-2 pb-2">
+            <h5>Add to Subleague</h5>
+            <form method="post" action="{% url 'add_to_subleague' league_id=league.id application_id=application.id %}">
+                {% csrf_token %}
+                <select class="form-control" name="subleague">
+                    {% for subleague in subleagues %}
+                    <option value="{{ subleague.id }}">{{subleague.name}}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" class="btn btn-sm btn-primary form-control">
+            </form>
+            <div><a href="{% url 'delete_application' league_id=league.id application_id=application.id %}" class="btn btn-sm btn-danger form-control">Delete</a></div>
+        </div>
+        {% else %}
+        <table class="table table-sm bg-lightcolor text-center">
+            <tr>
+                <th>Applicant</th>
+                <th>Discord</th>
+                <th>Subleague Preference</th>
+                <th>Alternate?</th>
+                <th>Actions</th>
+                <th>Add to Subleague</th>
+            </tr>
+            {% for application in applications %}
+            <tr>
+                <td class="align-middle">{{ application.user.username }}</td>
+                <td class="align-middle">{{ application.user.discord_tag }}</td>
+                <td class="align-middle">
+                    {% for subleague in application.subleagues.all %}
+                        <div>{{ subleague.name }}</div>
+                    {% endfor %}
+                </td>
+                <td class="align-middle">{% if application.alternate %}Yes{% else %}No{% endif %}</td>
+                <td class="align-middle">
+                    <div><a href="{% url 'view_application' league_id=league.id application_id=application.id %}" class="btn btn-sm btn-primary form-control">View</a></div>
+                    <div><a href="{% url 'delete_application' league_id=league.id application_id=application.id %}" class="btn btn-sm btn-danger form-control">Delete</a></div>
+                </td>
+                <td class="align-middle">
+                    <form method="post" action="{% url 'add_to_subleague' league_id=league.id application_id=application.id %}">
+                        {% csrf_token %}
+                        <select class="form-control" name="subleague">
+                            {% for subleague in subleagues %}
+                            <option value="{{ subleague.id }}">{{subleague.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" class="btn btn-sm btn-primary form-control">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

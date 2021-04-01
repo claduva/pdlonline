@@ -1,0 +1,16 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Application{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <form method= 'post' class="col-12">
+        {% crispy form %}
+    </form>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

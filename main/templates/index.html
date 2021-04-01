@@ -26,4 +26,32 @@
     </div>
 </div>
 {% endif %}
+<div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
+    <div class="col-12">
+        <table class="table table-sm bg-lightcolor mt-3">
+            <tr>
+                <th>League</th>
+                <th>Status</th>
+                <th>Socials</th>
+            </tr>
+            {% for league in all_leagues %}
+            <tr>
+                <td><a href="{% url 'league_home' league_id=league.id %}">{{league.name}} ({{league.abbreviation}})</a></td>
+                <td>
+                    {% if league.status == 'Recruiting Coaches' %}
+                        <a href="{% url 'apply' league_id=league.id %}">Apply</i></a>
+                    {% else %}
+                        {{ league.status }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if league.discordurl %}
+                        <a href="{{league.discordurl}}"><i class="fab fa-discord"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock %}

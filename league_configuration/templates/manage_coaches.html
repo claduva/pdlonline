@@ -1,0 +1,57 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+    {% breadcrumb "Manage Coaches" "manage_coaches" league.id %}
+    {% if coach %}
+        {% breadcrumb coach.teamname "manage_coach" league.id coach.id %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    <div class="col-12">
+        {% if coach %}
+        <form method="post">{% csrf_token %}
+            {% crispy form %} 
+        </form>
+        {% else %}
+        {% regroup coaches by season as season_list %}
+        <table class="table table-sm bg-lightcolor text-center">
+            {% for season in season_list %} 
+                <tr>
+                    <th colspan="100%">{{season.grouper.subleague.name}}</th>
+                </tr>
+                <tr>
+                    <th>Coach(s)</th>
+                    <th>Team</th>
+                    <th>Manage</th>
+                </tr>
+                {% for coach in season.list %}
+                <tr>
+                    <td class="align-middle">
+                        {% for user in coach.user.all %}
+                        <div>{{user.username}} ({{user.discord_tag}})</div>
+                        {% endfor %}
+                    </td>
+                    <td class="align-middle">{{coach.teamname}} ({{coach.teamabbreviation}})</td>
+                    <td class="align-middle"><a href="{% url 'manage_coach' league_id=league.id coach_id=coach.id %}" class="btn btn-primary btn-sm form-control">Manage</a></td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

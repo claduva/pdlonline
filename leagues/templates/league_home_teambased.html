@@ -1,0 +1,16 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}{{ league.abbreviation }} Home{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3"><img src="{{league.logo}}"></div>
+    <div class="col-6">{{ league.abbreviation }}</div>
+    <div class="col-3"><img src="{{league.logo}}"></div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

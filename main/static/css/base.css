@@ -51,6 +51,11 @@ body{
     max-height:200px;
 }
 
+.headerimage{
+    max-width:150px;
+    max-height:150px;
+}
+
 .mediumimage{
     max-width:75px;
     max-height:75px;
