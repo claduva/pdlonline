@@ -1,0 +1,57 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}{{ league.abbreviation }}-{{subleague.name}} Tiers{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-6 justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><h5>Tiers</h5></div>
+        </div>
+    </div>
+    <div class="col-3 d-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+<div class="row bg-darkcolor rounded mt-2 p-3">
+    <div class="col-12 bg-lightcolor text-dark">
+    <table class="table table-sm text-small">
+        {% for item in tiers %}
+        <tr class="row {% if item.team %}bg-lightred{% else %}bg-lightgreen{% endif %}">
+            <td class="col-2 d-flex align-items-center justify-content-center">{% if item.team %}Signed by {{ item.team }}{% else %}FREE{% endif %}</td>
+            <td class="col-2 d-flex align-items-center justify-content-center">
+                <div>{{ item.tier__tier }} ({{ item.tier__points }} pts)</div>
+            </td>
+            <td class="col-3 d-flex align-items-center justify-content-center"><img class="smallimage" src="{{item.pokemon__sprite}}">{{ item.pokemon__data.pokemon}}</td>
+            <td class="col-1 d-flex align-items-center justify-content-center">
+                {% for type in item.pokemon__data.types %}
+                {% with "images/type_images/"|add:type|add:".png" as source %}
+                <img src="{% static source %}">
+                {% endwith %}
+                {% endfor %}
+            </td>
+            <td class="col-1 d-flex align-items-center justify-content-center">
+                <div class="text-center">
+                {% for ability in item.pokemon__data.abilities %}
+                <div>{{ability}}</div>
+                {% endfor %}
+                </div>
+            </td>
+            <td class="col-3 d-flex align-items-center justify-content-center">
+                <table class="table table-sm table-borderless p-0 m-0 text-center">
+                    <tr><td class="p-0 m-0">HP</td><td class="p-0 m-0">Atk</td><td class="p-0 m-0">Def</td><td class="p-0 m-0">SpA</td><td class="p-0 m-0">SpD</td><td class="p-0 m-0">Spe</td><td class="p-0 m-0">BST</td></tr>
+                    <tr><td class="p-0 m-0">{{ item.pokemon__data.basestats.hp}}</td><td class="p-0 m-0">{{ item.pokemon__data.basestats.attack}}</td><td class="p-0 m-0">{{ item.pokemon__data.basestats.defense}}</td><td class="p-0 m-0">{{ item.pokemon__data.basestats.special_attack}}</td><td class="p-0 m-0">{{ item.pokemon__data.basestats.special_defense}}</td><td class="p-0 m-0">{{ item.pokemon__data.basestats.speed}}</td><td class="p-0 m-0">{{ item.pokemon__data.basestats.bst}}</td></tr>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

@@ -13,6 +13,10 @@ body{
     background-color: rgb(52, 57, 61);
 }
 
+.bg-intermediatecolor{
+    background-color: rgb(112, 111, 111);
+}
+
 .bg-lightcolor{
     background-color: rgb(247, 244, 244);
 }
@@ -31,6 +35,10 @@ body{
 
 .bg-lightgreen{
     background-color:rgb(207, 247, 213);
+}
+
+.bg-lightred{
+    background-color:rgb(247, 215, 207);
 }
 
 .bg-discord{

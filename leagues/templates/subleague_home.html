@@ -18,19 +18,32 @@
     <div class="col-3 d-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
-    {% for conference,divisions,coaches in conferences %}
+    {% if coaches %}
+    {% regroup coaches by conference as conference_list %}
+    {% for conference in conference_list %}
     <div class="col">
         <table class="table table-sm bg-lightcolor text-dark text-center">
-            <tr><th>{{ conference }}</th></tr>
-            {% if divisions %}
-                {% for division in divisions %}
-                <tr><th>{{ division }}</th></tr>
-                {% endfor %}
-            {% else %}
-            {% endif %}
+            <tr><th colspan="100%">{{ conference.grouper }}</th></tr>
+            {% regroup conference.list by division as division_list %}
+            {% for division in division_list %}
+            <tr><th colspan="100%">{{ division.grouper }}</th></tr>
+            <tr><th>Name</th><th>W</th><th>L</th><th>+/-</th><th>Streak</th></tr>
+            {% for team in division.list %}
+            <tr>
+                <td>{{ team.teamname }}</td>
+                <td>{{ team.wins }}</td>
+                <td>{{ team.losses}}</td>
+                <td>{{ team.differential }}</td>
+                <td>{{ team.streak }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
         </table>
     </div>
     {% endfor %}
+    {% else %}
+    <div><h4 class="m-2 p-2 bg-lightcolor text-dark text-center">No active season currently. This is either because this league is in the offseason or because a season has not yet been configured by league admins.</h4></div>
+    {% endif %}
 </div>
 {% endblock %}
 {% block script %}

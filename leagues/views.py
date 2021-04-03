@@ -2,9 +2,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from .forms import ApplicationForm
-from .models import application
-from league_configuration.models import league, subleague
+from .forms import ApplicationForm, DraftForm, LeftPickForm
+from .models import application,coach,draft,roster,left_pick
+from pokemon.models import pokemon
+from league_configuration.models import league, subleague,rules, league_pokemon
 
 # Create your views here.
 @login_required
@@ -17,7 +18,7 @@ def apply(request,league_id):
         messages.error(request,"You have already applied!",extra_tags='danger')
         return redirect('home')
     if request.method=="POST":
-        form = ApplicationForm(request.POST)
+        form = ApplicationForm(request.POST,loi=loi)
         if form.is_valid():
             app=form.save(commit=False)
             app.user=request.user
@@ -28,7 +29,7 @@ def apply(request,league_id):
         else:
             messages.error(request,form.errors,extra_tags='danger')
         return redirect('home')
-    form = ApplicationForm()
+    form = ApplicationForm(loi=loi)
     context={
         'form':form,
     }
@@ -48,21 +49,155 @@ def league_home(request,league_id):
         return render(request,"league_home_teambased.html",context)
 
 def subleague_home(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    return  render(request,"subleague_home.html",context)
+
+def subleague_tierset(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    context['tiers']=soi.pokemon_list.all().exclude(tier__tier="Banned").order_by('-tier__points','pokemon__name').values('team','pokemon__data','pokemon__sprite','tier__tier','tier__points')
+    return  render(request,"tiers.html",context)
+
+def subleague_draft(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    #generaldata
+    subleague_draft=draft.objects.filter(team__season=szn)
+    fulldraft=subleague_draft.order_by('picknumber').values('id','picknumber','pokemon__id','pokemon__name','pokemon__sprite','team__id','team__teamname','team__teamabbreviation','points','skipped')
+    takenpokemon=fulldraft.filter(pokemon__id__isnull=False).values_list('pokemon__id',flat=True)
+    availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon))
+    distinct_teams=fulldraft[0:coaches.count()]
+    teamdraft=[fulldraft.filter(team__teamname=team['team__teamname']) for team in distinct_teams]
+    try:
+        currentpick=fulldraft.filter(skipped=False, pokemon__id__isnull=True).first()
+        currentroster=fulldraft.filter(team__teamname=currentpick['team__teamname'])
+        #check for left picks
+        availablepicks=left_pick.objects.filter(team__id=currentpick['team__id']).order_by('id')
+        for item in availablepicks:
+            availablepick=item.pokemon
+            if availablepick in availablepokemon:
+                currentpick_=draft.objects.get(id=currentpick['id'])
+                currentpick_.pokemon=availablepick
+                lpoi=league_pokemon.objects.filter(subleague=soi).get(pokemon=availablepick)
+                currentpick_.points=lpoi.tier.points
+                lpoi.team=currentpick_.team.teamabbreviation
+                lpoi.save()
+                currentpick_.save()
+                roster.objects.create(team=currentpick_.team,pokemon=currentpick_.pokemon)
+                item.delete()
+                return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+            else:
+                item.delete()
+        #user specific data
+        leftpicks=left_pick.objects.filter(team__season=szn,team__user=request.user)
+        currentteam=coach.objects.get(id=currentpick['team__id'])
+        if request.user in loi.moderators.all() or request.user in currentteam.user.all():
+            candraft=True
+        else:
+            candraft=False
+        try:
+            coaches.filter(user=request.user).first()
+            canleavepick=True
+        except:
+            canleavepick=False
+    except:
+        currentpick=None
+        currentroster=None
+        leftpicks=None
+        candraft=False
+        canleavepick=False
+    #add to context
+    context['fulldraft']=fulldraft
+    context['teamdraft']=teamdraft
+    context['season']=szn
+    context['draftform']=DraftForm(availablepokemon=availablepokemon)
+    context['leftpickform']=LeftPickForm(availablepokemon=availablepokemon)
+    context['currentpick']=currentpick
+    context['currentroster']=currentroster
+    context['availablepokemon']=availablepokemon
+    context['leftpicks']=leftpicks
+    context['candraft']=candraft
+    context['canleavepick']=canleavepick
+    return  render(request,"draft.html",context)
+
+@login_required
+def execute_draft(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    szn=soi.seasons.all().get(archived=False)
+    subleague_draft=draft.objects.filter(team__season=szn)
+    fulldraft=subleague_draft.order_by('picknumber').values('id','picknumber','pokemon__id','pokemon__name','pokemon__sprite','team__teamname','team__teamabbreviation','points')
+    currentpick=fulldraft.filter(skipped=False, pokemon__id__isnull=True).first()
+    currentpick=draft.objects.get(id=currentpick['id'])
+    if request.method=="POST":
+        form = DraftForm(request.POST,instance=currentpick)
+        if form.is_valid():
+            newdraft=form.save(commit=False)
+            poi=newdraft.pokemon
+            lpoi=league_pokemon.objects.filter(subleague=soi).get(pokemon=poi)
+            newdraft.points=lpoi.tier.points
+            lpoi.team=currentpick.team.teamabbreviation
+            lpoi.save()
+            newdraft.save()
+            roster.objects.create(team=newdraft.team,pokemon=newdraft.pokemon)
+            messages.success(request,f'Your pick has been executed!')
+    return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+
+@login_required
+def skip_pick(request,league_id,subleague_id):
+    if request.method=="POST":
+        loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+        szn=soi.seasons.all().get(archived=False)
+        subleague_draft=draft.objects.filter(team__season=szn)
+        fulldraft=subleague_draft.order_by('picknumber').values('id','picknumber','pokemon__id','pokemon__name','pokemon__sprite','team__teamname','team__teamabbreviation','points')
+        currentpick=fulldraft.filter(skipped=False, pokemon__id__isnull=True).first()
+        currentpick=draft.objects.get(id=currentpick['id'])
+        currentpick.skipped=True
+        currentpick.save()
+        messages.success(request,f'Pick has been skipped!')
+    return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+
+@login_required
+def leave_pick(request,league_id,subleague_id):
+    if request.method=="POST":
+        form = LeftPickForm(request.POST)
+        if form.is_valid():
+            leftpick=form.save(commit=False)
+            loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+            szn=soi.seasons.all().get(archived=False)
+            team=coach.objects.filter(season=szn,user=request.user).first()
+            leftpick.team=team
+            leftpick.save()
+            messages.success(request,f'Your pick has been left!')
+    return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+
+@login_required
+def delete_left_pick(request,league_id,subleague_id,pick_id):
+    if request.method=="POST":
+        left_pick.objects.get(id=pick_id).delete()
+        messages.success(request,f'Your pick has been deleted!')
+    return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+
+def subleague_ruleset(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    roi,created=rules.objects.get_or_create(subleague=soi)
+    context['rules']=roi
+    return  render(request,"rules.html",context)
+
+#helper functions
+def get_subleague_data(league_id,subleague_id):
     loi=league.objects.get(id=league_id)
     soi=subleague.objects.get(id=subleague_id)
-    conference_list=[]
-    for conference in soi.conferences.all():
-        division_list=[]
-        for division in conference.conference_divisions.all():
-            division_list.append(division.division)
-            coaches=None
-        if len(division_list)==0: 
-            coaches=None
-            division_list=None
-        conference_list.append([conference.conference,division_list,coaches])
+    try:
+        coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference','division','wins','differential')
+    except:
+        coaches=None
     context={
         'league': loi,
         'subleague': soi,
-        'conferences': conference_list,
+        'coaches': coaches,
+        'subleaguepage':True,
     }
-    return  render(request,"subleague_home.html",context)
+    return loi,soi,coaches,context

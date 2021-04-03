@@ -1,0 +1,164 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+{% load extratags %}
+
+{% block title %}{{ league.abbreviation }}-{{subleague.name}} Draft{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-6 justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><h5>Draft</h5></div>
+        </div>
+    </div>
+    <div class="col-3 d-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+{% if currentpick %}
+<div class="row bg-darkcolor text-light rounded mt-2 py-3">
+    <div class="col-md text-center">
+        <table class="table table-sm table-borderless bg-lightcolor text-dark">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Current Drafting Team</th><th>Points Remaining</th>
+            </tr>
+            <tr>
+                <td>{{currentpick.team__teamname}} ({{currentpick.team__teamabbreviation}})</td>
+                <td>
+                {% with currentroster|sum_points as pointsused %}
+                {{ season.draftbudget|subtract:pointsused }}
+                {% endwith %}
+                </td>
+            </tr>
+            {% if candraft %}
+            <tr class="bg-intermediatecolor text-light">
+                <th colspan="2">Pick</th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <form method="post" class="form-inline" action="{% url 'execute_draft' league_id=league.id subleague_id=subleague.id %}">
+                    {% crispy draftform %}
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <form method="post" action="{% url 'skip_pick' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+                    <input type="submit" class="btn btn-sm btn-warning form-control" value="Skip">
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+    <div class="col-md text-center overflow-auto" style="height: 400px;">
+        <table class="table table-sm table-borderless bg-lightcolor text-dark">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Available Pokemon</th>
+            </tr>
+            {% for pokemon in availablepokemon %}
+            <tr>
+                <th>{{ pokemon.name }}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% if canleavepick %}
+    <div class="col-md text-center">
+        <table class="table table-sm table-borderless bg-lightcolor text-dark">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Leave Pick</th>
+            </tr>
+            <tr>
+                <td>
+                    <form method="post" class="form-inline" action="{% url 'leave_pick' league_id=league.id subleague_id=subleague.id %}">
+                    {% crispy leftpickform %}
+                    </form>
+                </td>
+            </tr>
+            {% if leftpicks %}
+            <tr class="bg-intermediatecolor text-light">
+                <th>Left Picks</th>
+            </tr>
+            {% endif %}
+            {% for pick in leftpicks %}
+            <tr>
+                <td class="d-flex justify-content-center">
+                    <div>{{pick.pokemon.name}}</div>
+                    <form method='post' action="{% url 'delete_left_pick' league_id=league.id subleague_id=subleague.id pick_id=pick.id %}">{% csrf_token %}<input type="submit" value="Delete" class="btn btn-sm btn-danger"></form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    <div class="col-md-3">
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">Draft</th></tr>
+            <tr class="bg-intermediatecolor text-light"><th>Pick</th><th>Team</th><th>Pokemon</th></tr>
+            {% for pick in fulldraft %}
+            <tr>
+                <td>{{ pick.picknumber }}</td>
+                <td>{{ pick.team__teamabbreviation }}</td>
+                <td>
+                    {% if pick.pokemon__name %}
+                    <img class="smallimage" src="{{pick.pokemon__sprite}}">{{pick.pokemon__name}}
+                    {% elif pick.skipped %}
+                    Skipped
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-9">
+        <div class="row d-flex justify-content-center">
+            {% for team in teamdraft %}
+            <div class="col-4">
+                <table class="table table-sm bg-lightcolor text-dark text-center">
+                    {% with team|first as team %}
+                    <tr class="bg-intermediatecolor text-light"><th colspan="100%">{{team.team__teamname}} ({{team.team__teamabbreviation}})</th></tr>
+                    {% endwith %}
+                    <tr class="bg-intermediatecolor text-light"><th>Pick</th><th>Pokemon</th><th>Points</th></tr>
+                    {% for pick in team %}
+                    <tr>
+                        <td>{{ pick.picknumber }}</td>
+                        <td>
+                            {% if pick.pokemon__name %}
+                            <img class="smallimage" src="{{pick.pokemon__sprite}}">{{pick.pokemon__name}}
+                            {% elif pick.skipped %}
+                            Skipped
+                            {% else %}
+                            -
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if pick.points %}
+                            {{pick.points}}
+                            {% else %}
+                            -
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% with team|sum_points as pointsused %}
+                    <tr><th class="bg-intermediatecolor text-light" colspan="2">Points Used:</th><td>{{ pointsused }}</td></tr>
+                    <tr><th class="bg-intermediatecolor text-light" colspan="2">Points Remaining:</th><td>{{ season.draftbudget|subtract:pointsused }}</td></tr>
+                    {% endwith %}
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

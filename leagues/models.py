@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
-from league_configuration.models import league, subleague,conference,division,season
+from league_configuration.models import league,subleague,conference,division,season,league_pokemon
+from pokemon.models import pokemon
 
 # Create your models here.
 class application(models.Model):
@@ -35,3 +36,29 @@ class coach(models.Model):
     luck = models.FloatField(default=0)
     remaininghealth = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
+
+class roster(models.Model):
+    team=models.ForeignKey(coach, on_delete=models.CASCADE)
+    pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE)
+    wins = models.IntegerField(default=0)
+    losses = models.IntegerField(default=0)
+    differential = models.IntegerField(default=0)
+    streak = models.IntegerField(default=0)
+    support = models.IntegerField(default=0)
+    damagedone = models.IntegerField(default=0)
+    hphealed = models.IntegerField(default=0)
+    luck = models.FloatField(default=0)
+    remaininghealth = models.IntegerField(default=0)
+
+class draft(models.Model):
+    team=models.ForeignKey(coach, on_delete=models.CASCADE)
+    pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True)
+    picknumber=models.IntegerField()
+    points=models.IntegerField(null=True)
+    picktime=models.DateTimeField(auto_now=True, null=True)
+    skipped=models.BooleanField(default=False)
+    announced=models.BooleanField(default=False)
+
+class left_pick(models.Model):
+    team=models.ForeignKey(coach, on_delete=models.CASCADE)
+    pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True)

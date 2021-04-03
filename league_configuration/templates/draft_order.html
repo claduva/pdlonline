@@ -1,0 +1,70 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+    {% breadcrumb subleague.name "subleague_configuration" league.id subleague.id %}
+    {% breadcrumb "Season" "season_configuration" league.id subleague.id %}
+    {% breadcrumb "Draft Order" "set_draft_order" league.id subleague.id %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    <div class="col-12 text-center">
+        <h5>Randomize</h5>
+        <form class="bg-lightcolor text-dark mb-3 py-2" method="post">{% csrf_token %}
+            <input id="randomize" type="submit" value="Randomize" name="draftordermethod" class="btn btn-sm btn-primary settingorderbutton">
+        </form>
+        <h5>Set Manually (Drag and Drop)</h5>
+        <form class="bg-lightcolor text-dark mb-3 py-2" method="post">{% csrf_token %}
+            <div id="draftorder">
+            {% if existing_order %}
+            {% for coach in existing_order %}
+            <div id="draftorder-{{ forloop.counter }}" class="droppable">
+                <div class="border draggable">{{ coach.team.teamname }}<input name="coach-{{ coach.team.id }}" hidden readonly value="{{ coach.team.id }}"></div>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% for coach in coaches %}
+            <div id="draftorder-{{ forloop.counter }}" class="droppable">
+                <div class="border draggable">{{ coach.teamname }}<input name="coach-{{ coach.id }}" hidden readonly value="{{ coach.id }}"></div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            </div>
+            <input id="submit" type="submit" name="draftordermethod" class="btn btn-sm btn-primary settingorderbutton">
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function() {
+    $('.settingorderbutton').click(function() {
+    var c = confirm("Are you sure you want to do this? If you have previously set draft order, the draft will be reset and all picks will be lost.");
+    return c;
+    })
+    $('.draggable').draggable({
+        containment: '#draftorder',
+    }).css('cursor', 'grab')
+    $('.droppable').droppable({
+        hoverClass: 'hovered',
+        drop: handleDropEvent
+    })
+})
+function handleDropEvent( event, ui ) {
+    var draggable = ui.draggable;
+    var droppedorder = $(this).attr( 'id' )
+    draggable.css({ 'left' : '', 'top' : '' })
+    $("#"+droppedorder).append(draggable)
+}
+</script>
+{% endblock %}

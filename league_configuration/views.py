@@ -2,13 +2,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-import csv
+import csv, random
 import pandas as pd
 
 from .forms import CreateLeagueForm, LeagueConfigurationForm, SubleagueConfigurationForm, TierForm, RulesForm, SeasonConfigurationForm, ConferenceForm, DivisionForm, UpdateLeagueForm, AdminManageCoachForm
 from .models import league,subleague,league_configuration, league_pokemon, league_tier, tier_template,rules,conference,division,discord_settings,season
 from pokemon.models import pokemon
-from leagues.models import application, coach
+from leagues.models import application, coach,draft,roster
 
 from pdlonline.customdecorators import check_if_moderator
 
@@ -504,6 +504,52 @@ def add_to_subleague(request,league_id,application_id):
         aoi.delete()
         messages.success(request, f'Coach has been added!')
     return redirect('manage_applications',league_id=league_id)
+
+@login_required
+@check_if_moderator
+def set_draft_order(request,league_id,subleague_id):
+    loi=league.objects.get(id=league_id)
+    soi=subleague.objects.get(id=subleague_id)
+    coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference','division','wins','differential')
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season! Configure it first!',extra_tags="danger")
+        return redirect('season_configuration', league_id=league_id,subleague_id=soi.id)
+    try:
+        existing_order=draft.objects.filter(team__season=szn).order_by('picknumber')[0:coaches.count()]
+    except:
+        existing_order=None
+    if request.method=="POST":
+        draft.objects.filter(team__season=szn).delete()
+        draftordermethod=request.POST['draftordermethod']
+        if draftordermethod=="Randomize":
+            draftorder=list(coaches)
+            random.shuffle(draftorder)
+        else:
+            order=request.POST.copy()
+            order.pop("csrfmiddlewaretoken",None)
+            order.pop("draftordermethod",None)
+            draftorder=[coach.objects.get(id=item[1]) for item in order.items()]
+        subleague_draft=[]
+        picknumber=1
+        for roundnumber in range(szn.picksperteam):
+            roundorder=draftorder
+            if roundnumber % 2 ==1:
+                roundorder=draftorder[::-1]
+            for team in roundorder:
+                subleague_draft.append(draft(team=team,picknumber=picknumber))
+                picknumber+=1
+        draft.objects.bulk_create(subleague_draft)
+        messages.success(request, f'Draft order has been set!')
+        return redirect('set_draft_order',league_id=league_id,subleague_id=subleague_id)
+    context={
+        'league':loi,
+        'subleague': soi,
+        'coaches': coaches,
+        'existing_order':existing_order,
+    }
+    return  render(request,"draft_order.html",context)
 
 ##Helper Functions
 def rectify_subleague_count(loi,new_subleague_count,old_subleague_count):

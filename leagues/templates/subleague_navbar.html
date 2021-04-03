@@ -1,0 +1,30 @@
+{% load extratags %}
+<a class="nav-item nav-link" href="{% url 'league_home' league_id=league.id %}">{{ league.abbreviation }} Home</a>
+<a class="nav-item nav-link" href="{% url 'subleague_home' league_id=league.id subleague_id=subleague.id %}">{{ subleague.name }} Home</a>
+{% if coaches %}
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Team Pages
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {% for team in coaches|order_by:"teamname" %}
+        <a class="dropdown-item" href="">{{ team.teamname }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        League Resources
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="">Schedule</a>
+        <a class="dropdown-item" href="{% url 'draft' league_id=league.id subleague_id=subleague.id %}">Draft</a>
+        <a class="dropdown-item" href="">Free Agency</a>
+        <a class="dropdown-item" href="">Trading</a>
+        <a class="dropdown-item" href="{% url 'tiers' league_id=league.id subleague_id=subleague.id %}">Tiers</a>
+        <a class="dropdown-item" href="{% url 'rules' league_id=league.id subleague_id=subleague.id %}">Rules</a>
+    </div>
+</div>

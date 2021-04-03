@@ -65,6 +65,7 @@ class league_pokemon(models.Model):
     subleague = models.ForeignKey(subleague, on_delete=models.CASCADE,related_name="pokemon_list")
     pokemon = models.ForeignKey(pokemon, on_delete=models.CASCADE)
     tier = models.ForeignKey(league_tier, on_delete=models.CASCADE)
+    team = models.CharField(max_length=40,null=True)
 
     class Meta:
         unique_together = (("subleague", "pokemon"),) 
