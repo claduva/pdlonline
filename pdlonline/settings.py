@@ -23,7 +23,7 @@ if (socket.gethostname().find("local")>-1 or socket.gethostname().find("Harshith
     PASSWORD=PASSWORD
     HOST=HOST
 else:
-    DEBUG = False
+    DEBUG = True
     SECRET_KEY = os.environ.get('SECRET_KEY','developmentkey')
     NAME=os.environ.get('NAME')
     USER=os.environ.get('USER')
