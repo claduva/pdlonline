@@ -173,6 +173,7 @@ class AdminManageCoachForm(forms.ModelForm):
         confs=coi.season.subleague.conferences.all()
         divs=coi.season.subleague.divisions.all()
         conferencechoices=[(item.conference,item.conference) for item in confs]
-        divisionchoices=[(item.division,item.division) for item in divs]
+        divisionchoices=[("","---------")]+[(item.division,item.division) for item in divs]
         self.fields['conference'].choices = conferencechoices
         self.fields['division'].choices = divisionchoices
+        self.fields['division'].required = False

@@ -4,6 +4,8 @@ from discord.ext import commands
 from helperfunctions import getDiscordToken,loadCogs, change_pr
 
 #set command prefix
+#intents = discord.Intents().all()
+#bot=commands.Bot(command_prefix="pdl.",intents=intents)
 bot=commands.Bot(command_prefix="pdl.")
 
 #load cogs

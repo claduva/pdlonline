@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.db.models import Q
 
 import csv, random
 import pandas as pd
@@ -8,7 +9,8 @@ import pandas as pd
 from .forms import CreateLeagueForm, LeagueConfigurationForm, SubleagueConfigurationForm, TierForm, RulesForm, SeasonConfigurationForm, ConferenceForm, DivisionForm, UpdateLeagueForm, AdminManageCoachForm
 from .models import league,subleague,league_configuration, league_pokemon, league_tier, tier_template,rules,conference,division,discord_settings,season
 from pokemon.models import pokemon
-from leagues.models import application, coach,draft,roster
+from leagues.models import application, coach,draft,roster,match
+from leagues.forms import MatchForm
 
 from pdlonline.customdecorators import check_if_moderator
 
@@ -443,7 +445,9 @@ def manage_coach(request,league_id,coach_id):
     if request.method=="POST":
         form=AdminManageCoachForm(request.POST,instance=coi)
         if form.is_valid():
-            form.save()
+            c=form.save()
+            if c.division=="":c.division=None
+            c.save()
             messages.success(request,f'Team has been successfully updated!')
             return redirect('manage_coaches',league_id=league_id)
     form=AdminManageCoachForm(instance=coi)
@@ -550,6 +554,98 @@ def set_draft_order(request,league_id,subleague_id):
         'existing_order':existing_order,
     }
     return  render(request,"draft_order.html",context)
+
+@login_required
+@check_if_moderator
+def scheduling(request,league_id,subleague_id):
+    loi=league.objects.get(id=league_id)
+    soi=subleague.objects.get(id=subleague_id)
+    coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference','division','wins','differential')
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season! Configure it first!',extra_tags="danger")
+        return redirect('season_configuration', league_id=league_id,subleague_id=soi.id)
+    if request.method=="POST":
+        form=MatchForm(request.POST,szn=szn)
+        if form.is_valid():
+            newmatch=form.save(commit=False)
+            if newmatch.week=="":newmatch.week=None
+            if newmatch.playoff_week=="":newmatch.playoff_week=None
+            if newmatch.week==None and newmatch.playoff_week==None:
+                messages.error(request,'One week selection must be selected!',extra_tags="danger")
+                return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id) 
+            if newmatch.week!=None and newmatch.playoff_week!=None:
+                messages.error(request,'Both week selections cannot be selected!',extra_tags="danger")
+                return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
+            newmatch.save()  
+            messages.success(request, f'Match has been created!')    
+        return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
+    form=MatchForm(coaches=coaches,szn=szn)
+    matches=match.objects.filter(Q(playoff_week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    playoff_matches=match.objects.filter(Q(week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    context={
+        'league':loi,
+        'subleague': soi,
+        'coaches': coaches,
+        'form':form,
+        'matches':matches,
+        'playoff_matches':playoff_matches,
+    }
+    return  render(request,"scheduling.html",context)
+
+@login_required
+@check_if_moderator
+def edit_match(request,league_id,subleague_id,match_id):
+    loi=league.objects.get(id=league_id)
+    soi=subleague.objects.get(id=subleague_id)
+    coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference','division','wins','differential')
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season! Configure it first!',extra_tags="danger")
+        return redirect('season_configuration', league_id=league_id,subleague_id=soi.id)
+    moi=match.objects.get(id=match_id)
+    if request.method=="POST":
+        form=MatchForm(request.POST,szn=szn,instance=moi)
+        if form.is_valid():
+            editmatch=form.save(commit=False)
+            if editmatch.week=="":editmatch.week=None
+            if editmatch.playoff_week=="":editmatch.playoff_week=None
+            if editmatch.week==None and editmatch.playoff_week==None:
+                messages.error(request,'One week selection must be selected!',extra_tags="danger")
+                return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id) 
+            if editmatch.week!=None and editmatch.playoff_week!=None:
+                messages.error(request,'Both week selections cannot be selected!',extra_tags="danger")
+                return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
+            editmatch.save()
+            messages.success(request, f'Match has been updated!')    
+        return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
+    form=MatchForm(coaches=coaches,szn=szn,instance=moi)
+    matches=match.objects.filter(Q(playoff_week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    playoff_matches=match.objects.filter(Q(week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    context={
+        'league':loi,
+        'subleague': soi,
+        'coaches': coaches,
+        'form':form,
+        'matches':matches,
+        'playoff_matches':playoff_matches,
+    }
+    return  render(request,"scheduling.html",context)
+
+@login_required
+@check_if_moderator
+def delete_match(request,league_id,subleague_id,match_id):
+    match.objects.get(id=match_id).delete()
+    messages.success(request, f'Match has been deleted!')    
+    return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
+
+@login_required
+@check_if_moderator
+def create_round_robin(request,league_id,subleague_id):
+    messages.success(request, f'Round Robin has been created!')    
+    return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
 
 ##Helper Functions
 def rectify_subleague_count(loi,new_subleague_count,old_subleague_count):

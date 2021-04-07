@@ -26,11 +26,13 @@
             <tr><th colspan="100%">{{ conference.grouper }}</th></tr>
             {% regroup conference.list by division as division_list %}
             {% for division in division_list %}
+            {% if division.grouper %}
             <tr><th colspan="100%">{{ division.grouper }}</th></tr>
+            {% endif %}
             <tr><th>Name</th><th>W</th><th>L</th><th>+/-</th><th>Streak</th></tr>
             {% for team in division.list %}
             <tr>
-                <td>{{ team.teamname }}</td>
+                <td><a href="{% url 'teampage' league_id=league.id subleague_id=subleague.id coach_id=team.id %}"><img class="smallimage" src="{{team.logo}}">{{ team.teamname }}</a></td>
                 <td>{{ team.wins }}</td>
                 <td>{{ team.losses}}</td>
                 <td>{{ team.differential }}</td>

@@ -92,7 +92,9 @@ class rules(models.Model):
     rules = models.TextField(default="No rules entered")
 
 class season(models.Model):
-    subleague = models.ForeignKey(subleague, on_delete=models.CASCADE,related_name='seasons')
+    league = models.ForeignKey(league, on_delete=models.CASCADE)
+    subleague = models.ForeignKey(subleague, on_delete=models.SET_NULL,related_name='seasons',null=True)
+    subleague_name = models.CharField(max_length=30,null=True)
     name = models.CharField(max_length=20)
     draftstart=models.DateTimeField(null=True,blank=True)
     drafttimer=models.IntegerField(default=12)

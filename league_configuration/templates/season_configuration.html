@@ -22,7 +22,7 @@
         <table class="table table-sm bg-lightcolor text-center"> 
             <tr><th>Season Activities</th></tr>
             <tr><td><a href="{% url 'set_draft_order' league_id=league.id subleague_id=subleague.id %}">Draft Order</a></td></tr>
-            <tr><td><a href="">Matches</a></td></tr>
+            <tr><td><a href="{% url 'manage_matches' league_id=league.id subleague_id=subleague.id %}">Matches</a></td></tr>
         </table>
     </div>
     <div class="col-md-9">

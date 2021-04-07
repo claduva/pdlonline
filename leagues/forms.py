@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
-from .models import application, coach, draft, left_pick
+from .models import application, coach, draft, left_pick, match
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 
@@ -57,3 +57,38 @@ class LeftPickForm(forms.ModelForm):
         availablepokemon = kwargs.pop('availablepokemon', None)
         super(LeftPickForm, self).__init__(*args, **kwargs)
         if availablepokemon: self.fields['pokemon'].queryset=availablepokemon
+
+class MatchForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+    week = forms.ChoiceField()
+    playoff_week = forms.ChoiceField()
+
+    class Meta:
+        model = match
+        fields = ['week','playoff_week','team1','team2']
+        labels = {
+            'team1':'Team 1',
+            'team2':'Team 2',
+        }
+    
+    def __init__(self, *args, **kwargs):
+        coaches = kwargs.pop('coaches', None)
+        szn = kwargs.pop('szn', None)
+        super(MatchForm, self).__init__(*args, **kwargs)
+        if coaches: 
+            self.fields['team1'].queryset=coaches
+            self.fields['team2'].queryset=coaches
+        if szn:
+            self.fields['week'].choices = [(None,"---------")]+[(week+1,week+1) for week in range(szn.seasonlength)]
+            baseplayoffsoptions=['Quarterfinals','Semifinals','Finals']
+            extraplayoffs=[]
+            if szn.playoffslength>3:
+                for i in range(szn.playoffslength-3):
+                    extraplayoffs.append(f'Playoffs Week {i+1}')
+            playoffsoptions=extraplayoffs+baseplayoffsoptions
+            self.fields['playoff_week'].choices = [(None,"---------")]+[(week,week) for week in playoffsoptions]
+        self.fields['week'].label="Week (Only select if regular season match)"
+        self.fields['week'].required=False
+        self.fields['playoff_week'].label="Playoff Week (Only select if playoff match)"
+        self.fields['playoff_week'].required=False

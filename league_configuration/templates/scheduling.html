@@ -1,0 +1,74 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+    {% breadcrumb subleague.name "subleague_configuration" league.id subleague.id %}
+    {% breadcrumb "Season" "season_configuration" league.id subleague.id %}
+    {% breadcrumb "Matches" "manage_matches" league.id subleague.id %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    <div class="col-12">
+        <h4>Automatically Create Schedule</h4>
+        <div><a href="{% url 'round_robin' league_id=league.id subleague_id=subleague.id %}" class="btn btn-primary form-control">Generate Round Robin</a></div>
+    </div>
+    <div class="col-12"><h4>Manually Create/Modify Schedule</h4></div>
+    {% if matches or playoff_matches %}
+    <div class="col-md-6">
+        <div class="bg-lightcolor text-dark p-2 rounded">
+            {% if matches %}
+            {% regroup matches by week as weeks %}
+            <h4>Existing Regular Season Matches</h4>
+            {% for week in weeks %}
+            <h5>Week {{week.grouper}}</h5>
+            {% for match in week.list %}
+            <div class="d-flex justify-content-between">
+                <div>{{match.team1.teamname}} vs {{match.team2.teamname}}</div>
+                <div>
+                    <a class="btn btn-sm btn-warning" href="{% url 'edit_match' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_match' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% endif %}
+            {% if playoff_matches %}
+            {% regroup playoff_matches by playoff_week as weeks %}
+            <h4>Existing Playoff Matches</h4>
+            {% for week in weeks %}
+            <h5>{{week.grouper}}</h5>
+            {% for match in week.list %}
+            <div class="d-flex justify-content-between">
+                <div>{{match.team1.teamname}} vs {{match.team2.teamname}}</div>
+                <div>
+                    <a class="btn btn-sm btn-warning" href="{% url 'edit_match' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_match' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-6">
+    {% else %}
+    <div class="col-12">
+    {% endif %}
+        <form method="post">{% csrf_token %}
+            {% crispy form %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

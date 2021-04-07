@@ -9,7 +9,7 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         {% for team in coaches|order_by:"teamname" %}
-        <a class="dropdown-item" href="">{{ team.teamname }}</a>
+        <a class="dropdown-item" href="{% url 'teampage' league_id=league.id subleague_id=subleague.id coach_id=team.id %}">{{ team.teamname }}</a>
         {% endfor %}
     </div>
 </div>
@@ -20,10 +20,10 @@
         League Resources
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="">Schedule</a>
+        <a class="dropdown-item" href="{% url 'schedule' league_id=league.id subleague_id=subleague.id %}">Schedule</a>
         <a class="dropdown-item" href="{% url 'draft' league_id=league.id subleague_id=subleague.id %}">Draft</a>
-        <a class="dropdown-item" href="">Free Agency</a>
-        <a class="dropdown-item" href="">Trading</a>
+        <a class="dropdown-item" href="{% url 'free_agency' league_id=league.id subleague_id=subleague.id %}">Free Agency</a>
+        <a class="dropdown-item" href="{% url 'trading' league_id=league.id subleague_id=subleague.id %}">Trading</a>
         <a class="dropdown-item" href="{% url 'tiers' league_id=league.id subleague_id=subleague.id %}">Tiers</a>
         <a class="dropdown-item" href="{% url 'rules' league_id=league.id subleague_id=subleague.id %}">Rules</a>
     </div>

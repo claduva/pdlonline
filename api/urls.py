@@ -6,6 +6,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'pokemon', views.PokemonViewSet,basename='pokemon')
+router.register(r'bot_message', views.BotMessageViewSet,basename='bot_message')
 
 urlpatterns = [ 
     path('api/', include(router.urls)),

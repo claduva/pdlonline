@@ -8,8 +8,9 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from api.serializers import PokemonSerializer, LeaguePokemonSerializer, LeagueSerializer, DiscordSettingsSerializer
+from api.serializers import PokemonSerializer, LeaguePokemonSerializer, LeagueSerializer, DiscordSettingsSerializer, BotMessageSerializer
 from league_configuration.models import league_pokemon, league,discord_settings
+from main.models import bot_message
 from pokemon.models import move, pokemon, pokemon_ability, pokemon_type
 
 # Create your views here.
@@ -69,7 +70,6 @@ class LeagueDetail(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 class LeaguePokemonDetail(APIView):
     def get_object(self, id):
         try:
@@ -109,3 +109,8 @@ class DiscordSettingsDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class BotMessageViewSet(viewsets.ModelViewSet):
+    queryset = bot_message.objects.all()
+    serializer_class = BotMessageSerializer
+    permission_classes = [permissions.AllowAny]

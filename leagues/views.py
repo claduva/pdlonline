@@ -1,9 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.db.models import Q
 
 from .forms import ApplicationForm, DraftForm, LeftPickForm
-from .models import application,coach,draft,roster,left_pick
+from .models import application,coach,draft,roster,left_pick, match
 from pokemon.models import pokemon
 from league_configuration.models import league, subleague,rules, league_pokemon
 
@@ -52,6 +53,14 @@ def subleague_home(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
     return  render(request,"subleague_home.html",context)
 
+def subleague_teampage(request,league_id,subleague_id,coach_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    team=coach.objects.get(id=coach_id)
+    team_roster=team.roster.all()
+    context['team']=team
+    context['roster']=team_roster
+    return  render(request,"teampage.html",context)
+
 def subleague_tierset(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
     context['tiers']=soi.pokemon_list.all().exclude(tier__tier="Banned").order_by('-tier__points','pokemon__name').values('team','pokemon__data','pokemon__sprite','tier__tier','tier__points')
@@ -99,8 +108,13 @@ def subleague_draft(request,league_id,subleague_id):
         else:
             candraft=False
         try:
-            coaches.filter(user=request.user).first()
+            usersteam=coaches.filter(user=request.user).first()
             canleavepick=True
+            skipped=fulldraft.filter(skipped=True,team__id=usersteam.id).first()
+            if skipped:
+                skippedpick=True
+            else:
+                skippedpick=False
         except:
             canleavepick=False
     except:
@@ -109,6 +123,7 @@ def subleague_draft(request,league_id,subleague_id):
         leftpicks=None
         candraft=False
         canleavepick=False
+        skippedpick=False
     #add to context
     context['fulldraft']=fulldraft
     context['teamdraft']=teamdraft
@@ -121,6 +136,7 @@ def subleague_draft(request,league_id,subleague_id):
     context['leftpicks']=leftpicks
     context['candraft']=candraft
     context['canleavepick']=canleavepick
+    context['skippedpick']=skippedpick
     return  render(request,"draft.html",context)
 
 @login_required
@@ -138,6 +154,30 @@ def execute_draft(request,league_id,subleague_id):
             poi=newdraft.pokemon
             lpoi=league_pokemon.objects.filter(subleague=soi).get(pokemon=poi)
             newdraft.points=lpoi.tier.points
+            lpoi.team=currentpick.team.teamabbreviation
+            lpoi.save()
+            newdraft.save()
+            roster.objects.create(team=newdraft.team,pokemon=newdraft.pokemon)
+            messages.success(request,f'Your pick has been executed!')
+    return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+
+@login_required
+def make_up_pick(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    szn=soi.seasons.all().get(archived=False)
+    subleague_draft=draft.objects.filter(team__season=szn)
+    fulldraft=subleague_draft.order_by('picknumber').values('id','picknumber','pokemon__id','pokemon__name','pokemon__sprite','team__teamname','team__teamabbreviation','points')
+    usersteam=coaches.filter(user=request.user).first()
+    currentpick=fulldraft.filter(skipped=True,team__id=usersteam.id).first()
+    currentpick=draft.objects.get(id=currentpick['id'])
+    if request.method=="POST":
+        form = DraftForm(request.POST,instance=currentpick)
+        if form.is_valid():
+            newdraft=form.save(commit=False)
+            poi=newdraft.pokemon
+            lpoi=league_pokemon.objects.filter(subleague=soi).get(pokemon=poi)
+            newdraft.points=lpoi.tier.points
+            newdraft.skipped=False
             lpoi.team=currentpick.team.teamabbreviation
             lpoi.save()
             newdraft.save()
@@ -179,6 +219,25 @@ def delete_left_pick(request,league_id,subleague_id,pick_id):
         left_pick.objects.get(id=pick_id).delete()
         messages.success(request,f'Your pick has been deleted!')
     return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+
+def subleague_schedule(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    context['matches']=match.objects.filter(Q(playoff_week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    context['playoff_matches']=match.objects.filter(Q(week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    return  render(request,"schedule.html",context)
+
+def subleague_freeagency(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    return  render(request,"teampage.html",context)
+
+def subleague_trading(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    return  render(request,"teampage.html",context)
 
 def subleague_ruleset(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)

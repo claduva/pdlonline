@@ -8,15 +8,15 @@
 
 {% block body %}
 <div class="row bg-darkcolor text-light rounded mt-2">
-    <div class="col-3 d-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
-    <div class="col-6 justify-content-center d-flex align-items-center">
+    <div class="col-3 d-none d-sm-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col justify-content-center d-flex align-items-center">
         <div class="text-center">
             <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
             <div><h5>{{ subleague.name }}</h5></div>
             <div><h5>Draft</h5></div>
         </div>
     </div>
-    <div class="col-3 d-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-3 d-none d-sm-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
 {% if currentpick %}
 <div class="row bg-darkcolor text-light rounded mt-2 py-3">
@@ -48,6 +48,18 @@
                 <td colspan="2">
                     <form method="post" action="{% url 'skip_pick' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
                     <input type="submit" class="btn btn-sm btn-warning form-control" value="Skip">
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+            {% if skippedpick %}
+            <tr class="bg-intermediatecolor text-light">
+                <th colspan="2">Make Up Skipped Pick</th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <form method="post" class="form-inline" action="{% url 'make_up_pick' league_id=league.id subleague_id=subleague.id %}">
+                    {% crispy draftform %}
                     </form>
                 </td>
             </tr>
@@ -122,7 +134,7 @@
     <div class="col-md-9">
         <div class="row d-flex justify-content-center">
             {% for team in teamdraft %}
-            <div class="col-4">
+            <div class="col-md-4">
                 <table class="table table-sm bg-lightcolor text-dark text-center">
                     {% with team|first as team %}
                     <tr class="bg-intermediatecolor text-light"><th colspan="100%">{{team.team__teamname}} ({{team.team__teamabbreviation}})</th></tr>
