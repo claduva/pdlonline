@@ -8,7 +8,10 @@ UserModel = get_user_model()
 class DiscordAuthenticationBackend(BaseBackend):
     def authenticate(self, request, user):
         try:
-            found_user = UserModel.objects.get(email=user["email"])
+            try:
+                found_user = UserModel.objects.get(email=user["email"])
+            except:
+                found_user = UserModel.objects.get(discordid=user["id"])
             found_user = update_discord_user(found_user,user)
             return found_user
         except:
