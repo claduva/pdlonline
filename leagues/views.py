@@ -44,7 +44,7 @@ def league_home(request,league_id):
     context={
         'league': loi,
     }
-    if league.configuration.teambased:
+    if loi.configuration.teambased:
         return render(request,"league_home_not_teambased.html",context)
     else:
         return render(request,"league_home_teambased.html",context)
