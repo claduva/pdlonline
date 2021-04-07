@@ -12,6 +12,9 @@ class CustomUser(AbstractUser):
     mfa_enabled = models.BooleanField(null=True)
 
     objects = DiscordUserManager()
+    
+    class Meta:
+        ordering = ['username']
 
     def __str__(self):
         return self.username
