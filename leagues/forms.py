@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
-from .models import application, coach, draft, left_pick, match
+from .models import application, coach, draft, left_pick, match,free_agency,trade_request
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 
@@ -92,3 +92,39 @@ class MatchForm(forms.ModelForm):
         self.fields['week'].required=False
         self.fields['playoff_week'].label="Playoff Week (Only select if playoff match)"
         self.fields['playoff_week'].required=False
+
+class FreeAgencyForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+
+    class Meta:
+        model = free_agency
+        fields = ['dropped_pokemon','added_pokemon']
+    
+    def __init__(self, *args, **kwargs):
+        user_pokemon = kwargs.pop('user_pokemon', None)
+        availablepokemon = kwargs.pop('availablepokemon', None)
+        super(FreeAgencyForm, self).__init__(*args, **kwargs)
+        if user_pokemon: self.fields['dropped_pokemon'].queryset=user_pokemon
+        if availablepokemon: self.fields['added_pokemon'].queryset=availablepokemon
+        self.fields['dropped_pokemon'].label="Pokemon to Drop"
+        self.fields['added_pokemon'].label="Pokemon to Add"
+
+class TradeRequestForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+
+    class Meta:
+        model = trade_request
+        fields = ['offeredpokemon','requestedpokemon']
+    
+    def __init__(self, *args, **kwargs):
+        user_pokemon = kwargs.pop('user_pokemon', None)
+        availablepokemon = kwargs.pop('availablepokemon', None)
+        super(TradeRequestForm, self).__init__(*args, **kwargs)
+        if user_pokemon: self.fields['offeredpokemon'].queryset=user_pokemon
+        if availablepokemon: self.fields['requestedpokemon'].queryset=availablepokemon
+        self.fields['offeredpokemon'].label="Offered Pokemon"
+        self.fields['requestedpokemon'].label="Requested Pokemon"
+        self.fields['offeredpokemon'].label_from_instance = lambda obj: f'{obj.pokemon.name}'
+        self.fields['requestedpokemon'].label_from_instance = lambda obj: f'{obj.team.teamname}: {obj.pokemon.name}'

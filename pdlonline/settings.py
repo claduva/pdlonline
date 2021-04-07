@@ -22,13 +22,15 @@ if (socket.gethostname().find("local")>-1 or socket.gethostname().find("Harshith
     USER=USER
     PASSWORD=PASSWORD
     HOST=HOST
+    ROOTURL="https://pokemondraftleagueonline.herokuapp.com"
 else:
-    DEBUG = True
+    DEBUG = False
     SECRET_KEY = os.environ.get('SECRET_KEY','developmentkey')
     NAME=os.environ.get('NAME')
     USER=os.environ.get('USER')
     PASSWORD=os.environ.get('PASSWORD')
     HOST=os.environ.get('HOST')
+    ROOTURL="https://pokemondraftleagueonline.herokuapp.com"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

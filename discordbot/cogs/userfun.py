@@ -30,5 +30,22 @@ class Userfun(commands.Cog):
         embed.set_image(url="https://www.pbs.org/wnet/nature/files/2016/02/Moose16-c.gif")
         await ctx.send(embed=embed)
 
+    @commands.command(aliases=["marryme"])
+    async def marrymemoose(self,ctx):
+        moose = await self.bot.fetch_user("259499391843303427")
+        def check(reaction, user):
+            return user == moose and reaction.emoji in ["🇾","🇳"]
+        msg=await ctx.send(f"{moose.mention}... Will you marry me?")
+        await msg.add_reaction("🇾")
+        await msg.add_reaction("🇳")
+        try:
+            reaction, user = await self.bot.wait_for('reaction_add', timeout=3000.0, check=check)
+            if reaction.emoji=="🇾":
+                await ctx.send(f"This is the greatest day of my bot life.")
+            else:
+                await ctx.send(f"I'm heartbroken.")
+        except:
+            pass
+
 def setup(bot):
     bot.add_cog(Userfun(bot))

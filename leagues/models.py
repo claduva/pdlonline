@@ -89,7 +89,6 @@ class trading(models.Model):
 class trade_request(models.Model):
     offeredpokemon=models.ForeignKey(roster,on_delete=models.CASCADE,related_name="offered")
     requestedpokemon=models.ForeignKey(roster,on_delete=models.CASCADE,related_name="requested")
-    sent=models.BooleanField(default=False)
 
 class match(models.Model):
     week=models.IntegerField(null=True,blank=True)

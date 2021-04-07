@@ -2,10 +2,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.db.models import Q
+from django.conf import settings
 
-from .forms import ApplicationForm, DraftForm, LeftPickForm
+from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, TradeRequestForm
 from .models import application,coach,draft,roster,left_pick, match
 from pokemon.models import pokemon
+from main.models import bot_message
 from league_configuration.models import league, subleague,rules, league_pokemon
 
 # Create your views here.
@@ -233,11 +235,48 @@ def subleague_schedule(request,league_id,subleague_id):
 
 def subleague_freeagency(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
-    return  render(request,"teampage.html",context)
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    if request.method=="POST":
+        form=FreeAgencyForm(request.POST)
+        if form.is_valid():
+            print("FA")
+    user_team=coaches.filter(user=request.user).first()
+    takenpokemon=roster.objects.filter(team__season=szn)
+    user_pokemon=takenpokemon.filter(team=user_team).values_list('pokemon__id',flat=True)
+    takenpokemon=takenpokemon.values_list('pokemon__id',flat=True)
+    user_pokemon=pokemon.objects.filter(id__in=list(user_pokemon))
+    availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon))
+    context['form']=FreeAgencyForm(user_pokemon=user_pokemon,availablepokemon=availablepokemon)
+    return  render(request,"free_agency.html",context)
 
 def subleague_trading(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
-    return  render(request,"teampage.html",context)
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    if request.method=="POST":
+        form=TradeRequestForm(request.POST)
+        if form.is_valid():
+            tr=form.save()
+            bot_message.objects.create(
+                sender = request.user,
+                recipient = tr.requestedpokemon.team.user.all().first(),
+                message=f"I would like to trade my {tr.offeredpokemon.pokemon.name} for your {tr.requestedpokemon.pokemon.name}. Please go to {settings.ROOTURL+request.path} to accept or decline my trade."
+            )
+            messages.success(request,f'Your trade request has been sent!')
+        return redirect('trading',league_id=league_id,subleague_id=subleague_id)
+    user_team=coaches.filter(user=request.user).first()
+    takenpokemon=roster.objects.filter(team__season=szn)
+    user_pokemon=takenpokemon.filter(team=user_team)
+    availablepokemon=takenpokemon.exclude(team=user_team)
+    context['form']=TradeRequestForm(user_pokemon=user_pokemon,availablepokemon=availablepokemon)
+    return  render(request,"trading.html",context)
 
 def subleague_ruleset(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
