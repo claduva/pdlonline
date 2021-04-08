@@ -27,9 +27,9 @@
     <div class="col-md-6">
         <div class="bg-lightcolor text-dark p-2 rounded">
             {% if matches %}
-            {% regroup matches by week as weeks %}
+            {% regroup matches by week as week_list %}
             <h4>Existing Regular Season Matches</h4>
-            {% for week in weeks %}
+            {% for week in week_list %}
             <h5>Week {{week.grouper}}</h5>
             {% for match in week.list %}
             <div class="d-flex justify-content-between">
@@ -43,9 +43,9 @@
             {% endfor %}
             {% endif %}
             {% if playoff_matches %}
-            {% regroup playoff_matches by playoff_week as weeks %}
+            {% regroup playoff_matches by playoff_week as week_list %}
             <h4>Existing Playoff Matches</h4>
-            {% for week in weeks %}
+            {% for week in week_list %}
             <h5>{{week.grouper}}</h5>
             {% for match in week.list %}
             <div class="d-flex justify-content-between">
@@ -64,8 +64,22 @@
     {% else %}
     <div class="col-12">
     {% endif %}
+        <h4>Create New Match</h4>
         <form method="post">{% csrf_token %}
             {% crispy form %}
+        </form>
+        <h4>Set Due Dates</h4>
+        <div class="mb-2">Use the following format [Timezone: UTC]: YYYY-MM-DD HH:MM</div>
+        <form method="post" action="{% url 'due_dates' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+            {% for item in weeks %}
+            <label for="{{item.id}}">Week {{item.week}}</label>
+            <div><input class="form-control" name="{{item.id}}" value="{{item.duedate}}"></div>
+            {% endfor %}
+            {% for item in playoff_weeks %}
+            <label for="{{item.id}}">{{item.playoff_week}}</label>
+            <div><input class="form-control" name="{{item.id}}" value="{{item.duedate}}"></div>
+            {% endfor %}
+            <input class="btn btn-primary my-3" type="submit">
         </form>
     </div>
 </div>

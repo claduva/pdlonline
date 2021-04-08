@@ -2,12 +2,29 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 import requests
 import os
 import socket
 import urllib.parse
+from .forms import UserSettingsForm
+
+def user_settings(request):
+    if request.method=="POST":
+        form=UserSettingsForm(request.POST,instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'Your details have updated!')
+        else:
+            messages.error(request,form.errors,extra_tags='danger')
+        return redirect('user_settings')
+    form=UserSettingsForm(instance=request.user)
+    context={
+        'form':form
+    }
+    return  render(request,"user_settings.html",context)
 
 # Getting env vars
 if (socket.gethostname().find("local")>-1 or socket.gethostname().find("Harshith")>-1):

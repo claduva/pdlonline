@@ -582,8 +582,10 @@ def scheduling(request,league_id,subleague_id):
             messages.success(request, f'Match has been created!')    
         return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
     form=MatchForm(coaches=coaches,szn=szn)
-    matches=match.objects.filter(Q(playoff_week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    matches=match.objects.filter(Q(playoff_week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn))).order_by('week')
     playoff_matches=match.objects.filter(Q(week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    weeks=matches.distinct('week')
+    playoff_weeks=playoff_matches.distinct('playoff_week')
     context={
         'league':loi,
         'subleague': soi,
@@ -591,6 +593,8 @@ def scheduling(request,league_id,subleague_id):
         'form':form,
         'matches':matches,
         'playoff_matches':playoff_matches,
+        'weeks':weeks,
+        'playoff_weeks':playoff_weeks,
     }
     return  render(request,"scheduling.html",context)
 
@@ -645,6 +649,26 @@ def delete_match(request,league_id,subleague_id,match_id):
 @check_if_moderator
 def create_round_robin(request,league_id,subleague_id):
     messages.success(request, f'Round Robin has been created!')    
+    return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
+
+@login_required
+@check_if_moderator
+def set_due_dates(request,league_id,subleague_id):
+    if request.method=="POST":
+        data=request.POST.copy()
+        data.pop("csrfmiddlewaretoken",None)
+        for week in data.items():
+            if week[1]!="None":
+                moi=match.objects.get(id=week[0])
+                mtu=match.objects.filter(team1__season=moi.team1.season,week=moi.week,playoff_week=moi.playoff_week)
+                try:
+                    mtu.update(duedate=week[1])
+                except:
+                    if moi.week:
+                        messages.error(request,f'Your input for Week {moi.week} was invalid. Please follow the stated format.',extra_tags="danger")
+                    else:
+                        messages.error(request,f'Your input for {moi.playoff_week} was invalid. Please follow the stated format.',extra_tags="danger")
+        messages.success(request, f'Due dates were updated!')    
     return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
 
 ##Helper Functions

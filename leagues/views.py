@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.conf import settings
 
 from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, TradeRequestForm
-from .models import application,coach,draft,roster,left_pick, match
+from .models import application,coach,draft,roster,left_pick, match, trade_request
 from pokemon.models import pokemon
 from main.models import bot_message
 from league_configuration.models import league, subleague,rules, league_pokemon
@@ -276,7 +276,39 @@ def subleague_trading(request,league_id,subleague_id):
     user_pokemon=takenpokemon.filter(team=user_team)
     availablepokemon=takenpokemon.exclude(team=user_team)
     context['form']=TradeRequestForm(user_pokemon=user_pokemon,availablepokemon=availablepokemon)
+    context['sentrequests']=trade_request.objects.filter(offeredpokemon__team=user_team)
+    context['receivedrequests']=trade_request.objects.filter(requestedpokemon__team=user_team)
     return  render(request,"trading.html",context)
+
+def trading_actions(request,league_id,subleague_id):
+    if request.method=="POST":
+        tr=trade_request.objects.get(id=request.POST['id'])
+        action=request.POST['action']
+        if action=="Rescind":
+            bot_message.objects.create(
+                sender = request.user,
+                recipient = tr.requestedpokemon.team.user.all().first(),
+                message=f"I'm sorry. I have rescinded my trade offer of my {tr.offeredpokemon.pokemon.name} for your {tr.requestedpokemon.pokemon.name}."
+            )
+            tr.delete()
+            messages.success(request,f'Your trade request has been rescinded!')
+        elif action=="Accept":
+            bot_message.objects.create(
+                sender = request.user,
+                recipient = tr.offeredpokemon.team.user.all().first(),
+                message=f"I have accepted your trade offer of my {tr.requestedpokemon.pokemon.name} for your {tr.offeredpokemon.pokemon.name}. It was a pleasure doing bussiness with you."
+            )
+            tr.delete()
+            messages.success(request,f'You have accepted the trade request!')
+        elif action=="Decline":
+            bot_message.objects.create(
+                sender = request.user,
+                recipient = tr.offeredpokemon.team.user.all().first(),
+                message=f"I'm sorry. I have declined your trade offer of my {tr.requestedpokemon.pokemon.name} for your {tr.offeredpokemon.pokemon.name}."
+            )
+            tr.delete()
+            messages.success(request,f'You have declined the trade request!')
+    return redirect('trading',league_id=league_id,subleague_id=subleague_id)
 
 def subleague_ruleset(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)

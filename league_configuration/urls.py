@@ -20,6 +20,7 @@ urlpatterns = [
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/manage_matches/edit/<int:match_id>/", views.edit_match, name="edit_match"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/manage_matches/delete/<int:match_id>/", views.delete_match, name="delete_match"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/manage_matches/round_robin/", views.create_round_robin, name="round_robin"),
+    path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/manage_matches/due_dates/", views.set_due_dates, name="due_dates"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/delete/", views.delete_subleague, name="delete_subleague"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/conferences_and_divisions/", views.subleague_conferences_and_divisions, name="conferences_and_divisions"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/conferences_and_divisions/add_division/", views.add_division, name="add_division"),

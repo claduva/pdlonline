@@ -18,9 +18,60 @@
     <div class="col-3 d-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    {% if sentrequests or receivedrequests %}
+    <div class="col-md-8">
+    {% if sentrequests %}
+    <table class="table table-sm text-center bg-lightcolor">
+        <tr><th colspan="100%" class="bg-intermediatecolor text-light">Sent Requests</th></tr>
+        <tr><th>Trade Partner</th><th>Offered Pokemon</th><th>Requested Pokemon</th><th>Actions</th></tr>
+        {% for item in sentrequests %}
+        <tr>
+            <td>{{item.requestedpokemon.team.teamname}}</td>
+            <td>{{item.offeredpokemon.pokemon.name}}</td>
+            <td>{{item.requestedpokemon.pokemon.name}}</td>
+            <td>
+                <form method="post" action="{% url 'trading_actions' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+                    <input name="id" value="{{item.id}}" hidden readonly>
+                    <input name="action" type="submit" class="btn btn-sm btn-warning" value="Rescind"> 
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    {% if receivedrequests %}
+    <table class="table table-sm text-center bg-lightcolor">
+        <tr><th colspan="100%" class="bg-intermediatecolor text-light">Received Requests</th></tr>
+        <tr><th>Trade Partner</th><th>Offered Pokemon</th><th>Requested Pokemon</th><th>Actions</th></tr>
+        {% for item in receivedrequests %}
+        <tr>
+            <td>{{item.offeredpokemon.team.teamname}}</td>
+            <td>{{item.offeredpokemon.pokemon.name}}</td>
+            <td>{{item.requestedpokemon.pokemon.name}}</td>
+            <td class="d-flex justify-content-around">
+                <form method="post" action="{% url 'trading_actions' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+                    <input name="id" value="{{item.id}}" hidden readonly>
+                    <input name="action" type="submit" class="btn btn-sm btn-success" value="Accept"> 
+                </form>
+                <form method="post" action="{% url 'trading_actions' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+                    <input name="id" value="{{item.id}}" hidden readonly>
+                    <input name="action" type="submit" class="btn btn-sm btn-danger" value="Decline"> 
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    </div>
+    <div class="col-md-4">
+        <h4>Create New Trade Request</h4>
+        {% crispy form %}
+    </div>
+    {% else %}
     <div class="col-12">
         {% crispy form %}
     </div>
+    {% endif %}
 </div>
 {% endblock %}
 {% block script %}

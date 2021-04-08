@@ -82,6 +82,7 @@ class trading(models.Model):
     dropped_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True,related_name="trade_dropped")
     added_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True,related_name="trade_added")
     timeeffective=models.DateTimeField()
+    weekeffective=models.CharField(max_length=30)
     created=models.DateTimeField(auto_now_add=True)
     executed=models.BooleanField(default=False)
     announced=models.BooleanField(default=False)

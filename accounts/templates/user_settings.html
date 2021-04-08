@@ -1,29 +1,22 @@
 {% extends "template.html" %}
 {% load static %}
 {% load django_bootstrap_breadcrumbs %}
+{% load crispy_forms_tags %}
 
 {% block title %}Settings{% endblock %}
 
 {% block breadcrumbs %}
-    {% clear_breadcrumbs %}
     {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "User Settings" "user_settings" %}
 {% endblock %}
 
 {% block body %}
 <div class="row bg-darkcolor text-light text-center rounded mt-2">
     <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
     <div class="col-12">
-        <table class="table table-sm bg-lightcolor mb-3">
-            <tr>
-                <td><a href="{% url 'user_settings' %}">User Settings</a></td>
-            </tr>
-            <tr>
-                <td>Teams Coaching</td>
-            </tr>
-            <tr>
-                <td><a href="{% url 'leagues_moderating' %}">Leagues Moderating</a></td>
-            </tr>
-        </table>
+        <form method="post">
+            {% crispy form %}
+        </form>
     </div>
 </div>
 {% endblock %}
