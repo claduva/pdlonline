@@ -1,6 +1,7 @@
 {% extends "template.html" %}
 {% load crispy_forms_tags %}
 {% load django_bootstrap_breadcrumbs %}
+{% load extratags %}
 {% load static %}
 
 {% block title %}{{ league.abbreviation }}-{{subleague.name}} Tiers{% endblock %}
@@ -17,11 +18,58 @@
     </div>
     <div class="col-3 d-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
+<div class="row bg-darkcolor text-light rounded mt-2 py-2">
+    <div class="col-md-1 d-flex justify-content-center align-items-center font-weight-bold">Sort By:</div>
+    <div class="col-md-3">
+        <select id="sortby" class="form-control">
+            <option value="tier-dec">Tier (highest first)</option>
+            <option value="tier-inc">Tier (lowest first)</option>
+            <option value="az">A->Z</option>
+            <option value="za">Z->A</option>
+            <option value="bst-dec">BST (highest first)</option>
+            <option value="bst-inc">BST (lowest first)</option>
+            <option value="hp-dec">HP (highest first)</option>
+            <option value="hp-inc">HP (lowest first)</option>
+            <option value="atk-dec">Attack (highest first)</option>
+            <option value="atk-inc">Attack (lowest first)</option>
+            <option value="def-dec">Defense (highest first)</option>
+            <option value="def-inc">Defense (lowest first)</option>
+            <option value="spa-dec">Special Attack (highest first)</option>
+            <option value="spa-inc">Special Attack (lowest first)</option>
+            <option value="spd-dec">Special Defense (highest first)</option>
+            <option value="spd-inc">Special Defense (lowest first)</option>
+            <option value="speed-dec">Speed (highest first)</option>
+            <option value="speed-inc">Speed (lowest first)</option>
+        </select>
+    </div>
+    <div class="col-md-1 d-flex justify-content-center align-items-center font-weight-bold">Filter:</div>
+    <div class="col-md-6">
+        <form id="filterform" class="form-inline" action="javascript:void(0);">
+            <select id="filteroptions" class="form-control">
+                <option value="">---------</option>
+                <option value="available">Availability</option>
+                <option value="tier">Tier</option>
+                <option value="type">Type</option>
+                <option value="ability">Ability</option>
+                <option value="move">Move</option>
+            </select>
+            <select id="filter" class="form-control">
+                <option value="">---------</option>
+            </select>
+            <button id="addfilter" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+</div>
+<div id="filterdiv" class="row bg-darkcolor text-light rounded mt-2 py-2 d-none">
+    <div class="col-md-2 d-flex justify-content-center align-items-center font-weight-bold">Active Filters:</div>
+    <div id="activefilters" class="col-md-10"></div>
+</div>
 <div class="row bg-darkcolor rounded mt-2 p-3">
     <div class="col-12 bg-lightcolor text-dark">
-    <table class="table table-sm text-small">
+    <table id="tierlist" class="table table-sm text-small">
         {% for item in tiers %}
-        <tr class="row {% if item.team %}bg-lightred{% else %}bg-lightgreen{% endif %}">
+        <tr class="tieritem row tier-{{item.tier__tier|converttoclass}} {% if item.team %}bg-lightred available-unavailable{% else %}bg-lightgreen available-available{% endif %} {{item.pokemon__data|classfromdata}}" 
+        data-tier="{{ item.tier__points }}" data-pokemon="{{ item.pokemon__data.pokemon}}" data-bst="{{ item.pokemon__data.basestats.bst}}" data-hp="{{ item.pokemon__data.basestats.hp}}" data-atk="{{ item.pokemon__data.basestats.attack}}" data-def="{{ item.pokemon__data.basestats.defense}}" data-spa="{{ item.pokemon__data.basestats.special_attack}}" data-spd="{{ item.pokemon__data.basestats.special_defense}}" data-speed="{{ item.pokemon__data.basestats.speed}}">
             <td class="col-2 d-flex align-items-center justify-content-center">{% if item.team %}Signed by {{ item.team }}{% else %}FREE{% endif %}</td>
             <td class="col-2 d-flex align-items-center justify-content-center">
                 <div>{{ item.tier__tier }} ({{ item.tier__points }} pts)</div>
@@ -54,4 +102,8 @@
 </div>
 {% endblock %}
 {% block script %}
+<script>
+    var tieroptions={{tieroptions|safe}}
+</script>
+<script src="{% static 'scripts/tiers.js' %}"></script>
 {% endblock %}

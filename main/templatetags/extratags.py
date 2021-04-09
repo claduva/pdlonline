@@ -48,3 +48,18 @@ def sum_points(qs):
 def subtract(value, arg):
     return value - arg
 
+@register.filter(name="classfromdata")
+def classfromdata(data):
+    classstring=""
+    for t in data['types']:
+        classstring=classstring+f"type-{t.replace(' ','').replace('%','').replace(':','').replace('.','').lower()} "
+    for a in data['abilities']:
+        classstring=classstring+f"ability-{a.replace(' ','').replace('%','').replace(':','').replace('.','').lower()} "
+    for m in data['movesets']['gen8']:
+        classstring=classstring+f"move-{m.replace(' ','').replace('%','').replace(':','').replace('.','').lower()} "
+    return classstring
+
+@register.filter(name="converttoclass")
+def converttoclass(string):
+    string=string.replace(" ","").lower()
+    return string

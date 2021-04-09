@@ -11,7 +11,7 @@ from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, Tra
 from .models import application,coach,draft,roster,left_pick, match, trade_request, free_agency, trading
 from pokemon.models import pokemon
 from main.models import bot_message
-from league_configuration.models import league, subleague,rules, league_pokemon
+from league_configuration.models import league, subleague,rules, league_pokemon,league_tier
 
 # Create your views here.
 @login_required
@@ -69,6 +69,7 @@ def subleague_teampage(request,league_id,subleague_id,coach_id):
 def subleague_tierset(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
     context['tiers']=soi.pokemon_list.all().exclude(tier__tier="Banned").order_by('-tier__points','pokemon__name').values('team','pokemon__data','pokemon__sprite','tier__tier','tier__points')
+    context['tieroptions']=list(league_tier.objects.filter(subleague=soi).exclude(tier="Banned").values_list('tier',flat=True))
     return  render(request,"tiers.html",context)
 
 def subleague_draft(request,league_id,subleague_id):
