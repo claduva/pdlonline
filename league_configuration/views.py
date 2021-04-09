@@ -12,7 +12,7 @@ from pokemon.models import pokemon
 from leagues.models import application, coach,draft,roster,match
 from leagues.forms import MatchForm
 
-from pdlonline.customdecorators import check_if_moderator
+from pdlonline.customdecorators import check_if_moderator,check_if_coach
 
 @login_required
 def create_league(request):
@@ -43,8 +43,15 @@ def teams_coaching(request):
     return  render(request,"teams_coaching.html",context)
 
 @login_required
-def team_coaching_settings(request,team_id):
-    toi=coach.objects.get(id=team_id)
+@check_if_coach
+def team_coaching_settings(request,*args,**kwargs):
+    toi=kwargs['team']
+    if request.method=="POST":
+        form=TeamForm(request.POST,instance=toi)
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'Your team has been updated!')
+            return redirect('teams_coaching')
     form=TeamForm(instance=toi)
     context={
         'team':toi,
