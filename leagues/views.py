@@ -4,8 +4,11 @@ from django.shortcuts import redirect, render
 from django.db.models import Q
 from django.conf import settings
 
+import datetime, pytz
+utc=pytz.UTC
+
 from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, TradeRequestForm
-from .models import application,coach,draft,roster,left_pick, match, trade_request
+from .models import application,coach,draft,roster,left_pick, match, trade_request, free_agency, trading
 from pokemon.models import pokemon
 from main.models import bot_message
 from league_configuration.models import league, subleague,rules, league_pokemon
@@ -240,17 +243,42 @@ def subleague_freeagency(request,league_id,subleague_id):
     except:
         messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
         return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    user_team=coaches.filter(user=request.user).first()
     if request.method=="POST":
         form=FreeAgencyForm(request.POST)
         if form.is_valid():
-            print("FA")
-    user_team=coaches.filter(user=request.user).first()
+            now=datetime.datetime.now().replace(tzinfo=utc)
+            seasonstart=szn.seasonstart.replace(tzinfo=utc)
+            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).order_by('duedate').first()
+            if seasonstart:
+                if now<seasonstart:
+                    weekeffective="1"
+                    timeeffective=now
+                else:
+                    if nextmatch:
+                        if nextmatch.week: weekeffective=nextmatch.week
+                        if nextmatch.playoff_week: weekeffective=nextmatch.playoff_week
+                        timeeffective=nextmatch.duedate
+                    else:
+                        messages.error(request,'Could not find an upcoming match due date. League admin need to set this.',extra_tags="danger")
+                        return redirect('free_agency',league_id=league_id,subleague_id=subleague_id)
+            else:
+                messages.error(request,'The season start date has to be specified before proceeding. League admin need to do this.',extra_tags="danger")
+                return redirect('free_agency', league_id=league_id,subleague_id=subleague_id)
+            fapick=form.save(commit=False)
+            fapick.team=user_team
+            fapick.timeeffective=timeeffective
+            fapick.weekeffective=weekeffective
+            fapick.save()
+            messages.success(request,f'Your free agency pick has gone through!')
+            return redirect('free_agency', league_id=league_id,subleague_id=subleague_id)
     takenpokemon=roster.objects.filter(team__season=szn)
     user_pokemon=takenpokemon.filter(team=user_team).values_list('pokemon__id',flat=True)
     takenpokemon=takenpokemon.values_list('pokemon__id',flat=True)
     user_pokemon=pokemon.objects.filter(id__in=list(user_pokemon))
     availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon))
     context['form']=FreeAgencyForm(user_pokemon=user_pokemon,availablepokemon=availablepokemon)
+    context['subleague_fas']=free_agency.objects.filter(team__season=szn)
     return  render(request,"free_agency.html",context)
 
 def subleague_trading(request,league_id,subleague_id):
@@ -281,6 +309,7 @@ def subleague_trading(request,league_id,subleague_id):
     return  render(request,"trading.html",context)
 
 def trading_actions(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
     if request.method=="POST":
         tr=trade_request.objects.get(id=request.POST['id'])
         action=request.POST['action']
@@ -293,10 +322,43 @@ def trading_actions(request,league_id,subleague_id):
             tr.delete()
             messages.success(request,f'Your trade request has been rescinded!')
         elif action=="Accept":
+            now=datetime.datetime.now().replace(tzinfo=utc)
+            szn=soi.seasons.all().get(archived=False)
+            seasonstart=szn.seasonstart.replace(tzinfo=utc)
+            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).order_by('duedate').first()
+            if seasonstart:
+                if now<seasonstart:
+                    weekeffective="1"
+                    timeeffective=now
+                else:
+                    if nextmatch:
+                        if nextmatch.week: weekeffective=nextmatch.week
+                        if nextmatch.playoff_week: weekeffective=nextmatch.playoff_week
+                        timeeffective=nextmatch.duedate
+                    else:
+                        messages.error(request,'Could not find an upcoming match due date. League admin need to set this.',extra_tags="danger")
+                        return redirect('trading',league_id=league_id,subleague_id=subleague_id)
+            else:
+                messages.error(request,'The season start date has to be specified before proceeding. League admin need to do this.',extra_tags="danger")
+                return redirect('trading',league_id=league_id,subleague_id=subleague_id)
             bot_message.objects.create(
                 sender = request.user,
                 recipient = tr.offeredpokemon.team.user.all().first(),
                 message=f"I have accepted your trade offer of my {tr.requestedpokemon.pokemon.name} for your {tr.offeredpokemon.pokemon.name}. It was a pleasure doing bussiness with you."
+            )
+            trading.objects.create(
+                team=tr.offeredpokemon.team,
+                dropped_pokemon=tr.offeredpokemon.pokemon,
+                added_pokemon=tr.requestedpokemon.pokemon,
+                timeeffective=timeeffective,
+                weekeffective=weekeffective
+            )
+            trading.objects.create(
+                team=tr.requestedpokemon.team,
+                dropped_pokemon=tr.requestedpokemon.pokemon,
+                added_pokemon=tr.offeredpokemon.pokemon,
+                timeeffective=timeeffective,
+                weekeffective=weekeffective
             )
             tr.delete()
             messages.success(request,f'You have accepted the trade request!')

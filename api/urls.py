@@ -17,4 +17,13 @@ urlpatterns = [
     path('api/league_pokemon/<int:id>/', views.LeaguePokemonDetail.as_view()),
     path('api/leagues/<int:id>/', views.LeagueDetail.as_view()),
     path('api/discord_settings/<int:subleague_id>/', views.DiscordSettingsDetail.as_view()),
+    path('api/draft/', views.DraftList.as_view()),
+    path('api/draft/<int:pk>/', views.DraftDetail.as_view()),
+    path('api/draft/', views.DraftList.as_view()),
+    path('api/draft/<int:pk>/', views.DraftDetail.as_view()),
+    path('api/draft/nextpick/<int:subleague_id>/<int:picknumber>/', views.nextpick),
+    path('api/free_agency/', views.FreeAgencyList.as_view()),
+    path('api/free_agency/<int:pk>/', views.FreeAgencyDetail.as_view()),
+    path('api/trading/', views.TradingList.as_view()),
+    path('api/trading/<int:pk>/', views.TradingDetail.as_view()),
 ]

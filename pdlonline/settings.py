@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.postgres',
     'django.contrib.staticfiles',
 
     #local apps
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
     'multiselectfield',
     'template_timings_panel',
     'storages',
+    'timezone_field',
     'widget_tweaks',
 
     #autoregister

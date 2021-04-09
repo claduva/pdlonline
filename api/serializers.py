@@ -3,7 +3,8 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 
-from league_configuration.models import league_pokemon,league,discord_settings
+from league_configuration.models import league_pokemon,league,discord_settings,season,subleague
+from leagues.models import draft, free_agency, trading,coach
 from pokemon.models import pokemon
 from main.models import bot_message
 
@@ -30,15 +31,13 @@ class LeaguePokemonSerializer(serializers.ModelSerializer):
 class LeagueSerializer(serializers.ModelSerializer):
     class Meta:
         model = league
-        fields = [
-                'discordurl'
-            ]
+        fields = ['id','discordurl']
 
 class DiscordSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = discord_settings
         fields = [
-                'draftchannel','replaychannel','fachannel','tradechannel'
+                'server','draftchannel','replaychannel','fachannel','tradechannel'
             ]
 
 class BotMessageSerializer(serializers.ModelSerializer):
@@ -48,3 +47,67 @@ class BotMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = bot_message
         fields = ['id','sender','recipient','message']
+
+class SubleagueSerializer(serializers.ModelSerializer):
+    league = LeagueSerializer(read_only = True)
+    
+    class Meta:
+        model = subleague
+        fields = ['id','league']
+
+class SeasonSerializer(serializers.ModelSerializer):
+    subleague = SubleagueSerializer(read_only = True)
+
+    class Meta:
+        model = season
+        fields = ['subleague']
+
+class TeamSerializer(serializers.ModelSerializer):
+    season = SeasonSerializer(read_only = True)
+
+    class Meta:
+        model = coach
+        fields = ['id','season','teamname','teamabbreviation','logo']
+
+class DraftSerializer(serializers.ModelSerializer):
+    team = TeamSerializer(read_only = True)
+    pokemon = PokemonSerializer(read_only=True)
+
+    class Meta:
+        model = draft
+        fields = ['id','team','pokemon','points','picknumber']
+
+class DraftDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = draft
+        fields = ['announced']
+
+class FreeAgencySerializer(serializers.ModelSerializer):
+    team=TeamSerializer(read_only = True)
+    dropped_pokemon=PokemonSerializer(read_only=True)
+    added_pokemon=PokemonSerializer(read_only=True)
+
+    class Meta:
+        model = free_agency
+        fields = ['id','team','dropped_pokemon','added_pokemon','weekeffective']
+
+class FreeAgencyDetailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = free_agency
+        fields = ['announced']
+
+class TradingSerializer(serializers.ModelSerializer):
+    team=TeamSerializer(read_only = True)
+    dropped_pokemon=PokemonSerializer(read_only=True)
+    added_pokemon=PokemonSerializer(read_only=True)
+
+    class Meta:
+        model = trading
+        fields = ['id','team','dropped_pokemon','added_pokemon','weekeffective']
+
+class TradingDetailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = trading
+        fields = ['announced']

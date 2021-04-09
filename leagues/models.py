@@ -70,17 +70,18 @@ class left_pick(models.Model):
 
 class free_agency(models.Model):
     team=models.ForeignKey(coach, on_delete=models.CASCADE)
-    dropped_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True,related_name="fa_dropped")
-    added_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True,related_name="fa_added")
+    dropped_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE,related_name="fa_dropped")
+    added_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE,related_name="fa_added")
     timeeffective=models.DateTimeField()
+    weekeffective=models.CharField(max_length=30)
     created=models.DateTimeField(auto_now_add=True)
     executed=models.BooleanField(default=False)
     announced=models.BooleanField(default=False)
 
 class trading(models.Model):
     team=models.ForeignKey(coach, on_delete=models.CASCADE)
-    dropped_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True,related_name="trade_dropped")
-    added_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True,related_name="trade_added")
+    dropped_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE,related_name="trade_dropped")
+    added_pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE,related_name="trade_added")
     timeeffective=models.DateTimeField()
     weekeffective=models.CharField(max_length=30)
     created=models.DateTimeField(auto_now_add=True)

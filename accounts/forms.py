@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
+from timezone_field import TimeZoneFormField
+from django.contrib.postgres.forms import SimpleArrayField, SplitArrayField
 
 class CustomUserCreationForm(UserCreationForm):
 
@@ -19,7 +21,17 @@ class CustomUserChangeForm(UserChangeForm):
 class UserSettingsForm(forms.ModelForm):
     helper = FormHelper()
     helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
-
+    timezone=TimeZoneFormField()
+    #showdown_alts=SplitArrayField(forms.CharField(max_length=30,required=False), size=10, remove_trailing_nulls=True)
+    showdown_alts = SimpleArrayField(forms.CharField(max_length=30))
+    
     class Meta:
         model = CustomUser
-        fields = ['username', 'email']
+        fields = ['username', 'email','biography','timezone','showdown_alts']
+
+        labels = {
+            'showdown_alts': 'Pokemon Showdown Usernames/Alts',
+        }
+        help_texts = {
+            'showdown_alts': 'Enter each username separated by commas. E.g.: pokemontrainer1,pokemontrainer2',
+        }

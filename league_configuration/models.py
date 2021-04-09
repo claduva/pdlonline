@@ -47,6 +47,7 @@ class subleague(models.Model):
 
 class discord_settings(models.Model):
     subleague = models.OneToOneField(subleague, on_delete=models.CASCADE)
+    server=models.BigIntegerField(null=True)
     draftchannel=models.BigIntegerField(null=True)
     replaychannel=models.BigIntegerField(null=True)
     fachannel=models.BigIntegerField(null=True)

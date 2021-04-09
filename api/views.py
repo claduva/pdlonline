@@ -3,13 +3,14 @@ from django.http import JsonResponse, Http404
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 
-from rest_framework import status, permissions, viewsets
+from rest_framework import status, permissions, viewsets, mixins,generics
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from api.serializers import PokemonSerializer, LeaguePokemonSerializer, LeagueSerializer, DiscordSettingsSerializer, BotMessageSerializer
+from api.serializers import PokemonSerializer, LeaguePokemonSerializer, LeagueSerializer, DiscordSettingsSerializer, BotMessageSerializer,DraftSerializer,TradingSerializer,FreeAgencySerializer,DraftDetailSerializer,FreeAgencyDetailSerializer,TradingDetailSerializer
 from league_configuration.models import league_pokemon, league,discord_settings
+from leagues.models import draft, free_agency, trading
 from main.models import bot_message
 from pokemon.models import move, pokemon, pokemon_ability, pokemon_type
 
@@ -114,3 +115,42 @@ class BotMessageViewSet(viewsets.ModelViewSet):
     queryset = bot_message.objects.all()
     serializer_class = BotMessageSerializer
     permission_classes = [permissions.AllowAny]
+
+class DraftList(generics.ListCreateAPIView):
+    queryset = draft.objects.filter(pokemon__isnull=False,announced=False)
+    serializer_class = DraftSerializer
+
+class DraftDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = draft.objects.all()
+    serializer_class = DraftDetailSerializer
+
+def nextpick(request,subleague_id,picknumber):
+    nextpick=draft.objects.filter(team__season__subleague__id=subleague_id).get(picknumber=picknumber+1)
+    try:
+        pick=nextpick.team
+        user=pick.user.all().first()
+        data={
+            'userid':user.discordid,
+            'username':user.username,
+            'teamname':pick.teamname,
+            'teamabbreviation':pick.teamabbreviation
+        }
+    except:
+        data=None
+    return JsonResponse(data, safe=False)
+
+class FreeAgencyList(generics.ListCreateAPIView):
+    queryset = free_agency.objects.filter(announced=False)
+    serializer_class = FreeAgencySerializer
+
+class FreeAgencyDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = free_agency.objects.all()
+    serializer_class = FreeAgencyDetailSerializer
+
+class TradingList(generics.ListCreateAPIView):
+    queryset = trading.objects.filter(announced=False)
+    serializer_class = TradingSerializer
+
+class TradingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = trading.objects.all()
+    serializer_class = TradingDetailSerializer

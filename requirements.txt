@@ -13,6 +13,7 @@ django-redis-cache
 django-select2==7.2.2
 django-sendgrid-v5==0.8.0
 django-storages==1.7.1
+django-timezone-field
 django-widget-tweaks==1.4.8
 djangorestframework
 gunicorn

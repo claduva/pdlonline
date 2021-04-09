@@ -1,8 +1,7 @@
 import discord, requests
 from discord.ext import commands
 from discord.utils import get
-#baseurl="http://localhost:8000/api/"
-baseurl="https://pokemondraftleagueonline.herokuapp.com/api/"
+from rooturl import baseurl
 
 class LeagueConfiguration(commands.Cog):
     def __init__(self,bot):
@@ -16,6 +15,7 @@ class LeagueConfiguration(commands.Cog):
             return m.channel == ctx.channel and m.author == ctx.author
         def check_react(reaction, user):
             return user == ctx.author and reaction.emoji in emojis
+        server=ctx.guild.id
         await ctx.send("What is the name of the league you are configuring? Pick the corresponding emoji.")
         url=f'{baseurl}user/{ctx.author.id}/'
         user_data = requests.get(url).json()
@@ -87,6 +87,7 @@ class LeagueConfiguration(commands.Cog):
                 await ctx.send('Timed Out') 
                 return
             data={
+                'server':server,
                 'draftchannel':draftchannel,
                 'replaychannel':replaychannel,
                 'fachannel':fachannel,
