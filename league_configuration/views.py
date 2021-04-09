@@ -427,6 +427,7 @@ def season_configuration(request,league_id,subleague_id):
             form = SeasonConfigurationForm(request.POST)
         if form.is_valid():
             newconfig=form.save(commit=False)
+            newconfig.league=loi
             newconfig.subleague=soi
             newconfig.save()
             messages.success(request,f'Your season configuration has been successfully updated!')
