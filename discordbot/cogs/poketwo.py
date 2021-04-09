@@ -19,7 +19,7 @@ class Poketwo(commands.Cog):
                         'image':embed.image,
                     }
                     print(data)
-                    await message.channel.send("p!c Lillipup")
+            
             except:
                 pass
     """

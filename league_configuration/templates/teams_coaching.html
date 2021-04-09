@@ -5,8 +5,8 @@
 {% block title %}Settings{% endblock %}
 
 {% block breadcrumbs %}
-    {% clear_breadcrumbs %}
     {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Teams Coaching" "Teams_coaching" %}
 {% endblock %}
 
 {% block body %}
@@ -14,15 +14,11 @@
     <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
     <div class="col-12">
         <table class="table table-sm bg-lightcolor mb-3">
+            {% for team in teams_coaching %}
             <tr>
-                <td><a href="{% url 'user_settings' %}">User Settings</a></td>
+                <td><a href="{% url 'team_coaching_settings' team_id=team.id %}">{{team.season.subleague.league.name}} ({{team.season.subleague.league.abbreviation}})-{{team.season.subleague.name}}:{{ team.teamname }} ({{ team.teamabbreviation }})</a></td>
             </tr>
-            <tr>
-                <td><a href="{% url 'leagues_coaching' %}">Leagues Coaching</a></td>
-            </tr>
-            <tr>
-                <td><a href="{% url 'leagues_moderating' %}">Leagues Moderating</a></td>
-            </tr>
+            {% endfor %}
         </table>
     </div>
 </div>

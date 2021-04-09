@@ -177,3 +177,20 @@ class AdminManageCoachForm(forms.ModelForm):
         self.fields['conference'].choices = conferencechoices
         self.fields['division'].choices = divisionchoices
         self.fields['division'].required = False
+
+class TeamForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+
+    class Meta:
+        model = coach
+        fields = ['user','teamname','teamabbreviation','logo']
+        labels = {
+            'user': 'Coach(s)',
+            'teamname': 'Team Name',
+            'teamabbreviation': 'Team Abbreviation',
+        }
+        help_texts={
+            'user':'Select all that apply. Hold "Ctrl" or "Command" and click.',
+            'logo:':'Try uploading image to Discord, right-clicking, and selecting "Copy Image Address"',
+        }

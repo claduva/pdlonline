@@ -4,6 +4,8 @@ from . import views
 
 urlpatterns = [ 
     path("create_league/", views.create_league, name="create_league"),
+    path("settings/teams_coaching/", views.teams_coaching, name="teams_coaching"),
+    path("settings/teams_coaching/<int:team_id>/", views.team_coaching_settings, name="team_coaching_settings"),
     path("settings/leagues_moderating/", views.leagues_moderating, name="leagues_moderating"),
     path("settings/leagues_moderating/<int:league_id>/", views.league_settings, name="league_settings"),
     path("settings/leagues_moderating/<int:league_id>/configuration/", views.league_configuration, name="league_configuration"),

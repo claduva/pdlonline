@@ -6,7 +6,7 @@ from django.db.models import Q
 import csv, random
 import pandas as pd
 
-from .forms import CreateLeagueForm, LeagueConfigurationForm, SubleagueConfigurationForm, TierForm, RulesForm, SeasonConfigurationForm, ConferenceForm, DivisionForm, UpdateLeagueForm, AdminManageCoachForm
+from .forms import CreateLeagueForm, LeagueConfigurationForm, SubleagueConfigurationForm, TierForm, RulesForm, SeasonConfigurationForm, ConferenceForm, DivisionForm, UpdateLeagueForm, AdminManageCoachForm,TeamForm
 from .models import league,subleague,league_configuration, league_pokemon, league_tier, tier_template,rules,conference,division,discord_settings,season
 from pokemon.models import pokemon
 from leagues.models import application, coach,draft,roster,match
@@ -34,6 +34,23 @@ def create_league(request):
         'form':form,
     }
     return  render(request,"genericform.html",context)
+
+@login_required
+def teams_coaching(request):
+    context={
+        'teams_coaching':request.user.coaching.all()
+    }
+    return  render(request,"teams_coaching.html",context)
+
+@login_required
+def team_coaching_settings(request,team_id):
+    toi=coach.objects.get(id=team_id)
+    form=TeamForm(instance=toi)
+    context={
+        'team':toi,
+        'form':form,
+    }
+    return  render(request,"team_coaching_settings.html",context)
 
 @login_required
 def leagues_moderating(request):
