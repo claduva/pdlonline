@@ -23,7 +23,7 @@
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
     <div class="col-12">
         <table class="table table-sm bg-lightcolor text-center">
-            <tr class="bg-intermediatecolor"><th>Pokemon</th><th>GP</th><th>GW</th><th>K</th><th>D</th><th>+/-</th><th>HR</th><th>DD</th><th>HPH</th><th>L</th><th>SP</th></tr>
+            <tr class="bg-intermediatecolor"><th>Pokemon</th><th>GP</th><th>GW</th><th>K</th><th>D</th><th>+/-</th><th class="d-none d-md-block">HR</th><th class="d-none d-md-block">DD</th><th class="d-none d-md-block">HPH</th><th class="d-none d-md-block">L</th><th class="d-none d-md-block">SP</th></tr>
             {% for pokemon in roster %}
                 <tr>
                     <td><img class="smallimage" src="{{pokemon.pokemon.sprite}}">{{pokemon.pokemon.name}}</td>
@@ -32,11 +32,11 @@
                     <td>{{pokemon.kills}}</td>
                     <td>{{pokemon.deaths}}</td>
                     <td>{{pokemon.differential}}</td>
-                    <td>{{pokemon.remaininghealth}}</td>
-                    <td>{{pokemon.damagedone}}</td>
-                    <td>{{pokemon.hphealed}}</td>
-                    <td>{{pokemon.luck}}</td>
-                    <td>{{pokemon.support}}</td>
+                    <td class="d-none d-md-block">{{pokemon.remaininghealth}}</td>
+                    <td class="d-none d-md-block">{{pokemon.damagedone}}</td>
+                    <td class="d-none d-md-block">{{pokemon.hphealed}}</td>
+                    <td class="d-none d-md-block">{{pokemon.luck}}</td>
+                    <td class="d-none d-md-block">{{pokemon.support}}</td>
                 </tr>
             {% endfor %}
         </table>
