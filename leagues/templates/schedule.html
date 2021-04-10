@@ -34,7 +34,7 @@
                 <td><a class="btn btn-sm btn-primary" href="">Replay</a></td>
                 {% else %}
                 <td><a class="btn btn-sm btn-primary" href="">Matchup</a></td>
-                {% if request.user in match.team1.user.all or request.user in match.team2.user.all or request.user in match.team1.season.subleague.league.moderators %}
+                {% if request.user in match.team1.user.all or request.user in match.team2.user.all or request.user in match.team1.season.subleague.league.moderators.all %}
                 <td><a class="btn btn-sm btn-primary" href="">Upload Replay</a></td>
                 {% endif %}
                 {% if request.user in match.team1.season.subleague.league.moderators.all %}

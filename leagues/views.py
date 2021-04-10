@@ -132,6 +132,7 @@ def subleague_draft(request,league_id,subleague_id):
                 skippedpick=False
         except:
             canleavepick=False
+            skippedpick=False
     except:
         currentpick=None
         currentroster=None
