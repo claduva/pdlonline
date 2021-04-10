@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
     mfa_enabled = models.BooleanField(null=True)
     biography = models.TextField(null=True,blank=True)
     timezone = models.CharField(max_length=100,null=True,blank=True)
-    showdown_alts=ArrayField(models.CharField(max_length=30, blank=True,null=True))
+    showdown_alts=ArrayField(models.CharField(max_length=30, blank=True,null=True),null=True)
 
     objects = DiscordUserManager()
     
