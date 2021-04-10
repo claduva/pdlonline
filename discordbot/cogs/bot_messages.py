@@ -10,6 +10,7 @@ class BotMessages(commands.Cog):
     async def send_bot_messages(self):
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
+            await asyncio.sleep(30)
             bot_messages=requests.get(f'http://localhost:8000/api/bot_message/').json()
             for message in bot_messages:
                 try:
@@ -22,7 +23,6 @@ class BotMessages(commands.Cog):
                     print("Message failed")
                 x = requests.delete(f"http://localhost:8000/api/bot_message/{message['id']}")
                 print(x.status_code)
-            await asyncio.sleep(30)
 
 def setup(bot):
     bot.add_cog(BotMessages(bot))

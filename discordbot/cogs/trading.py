@@ -12,6 +12,7 @@ class Trading(commands.Cog):
     async def trading(self):
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
+            await asyncio.sleep(30)
             trade_data=requests.get(f'{baseurl}trading/').json()
             for item in trade_data:
                 #tradedata
@@ -47,7 +48,6 @@ class Trading(commands.Cog):
                     print("updated")
                 else:
                     print("error")
-            await asyncio.sleep(30)
 
 def setup(bot):
     bot.add_cog(Trading(bot))

@@ -12,6 +12,7 @@ class FreeAgency(commands.Cog):
     async def freeagency(self):
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
+            await asyncio.sleep(30)
             fa_data=requests.get(f'{baseurl}free_agency/').json()
             for item in fa_data:
                 #fadata
@@ -47,7 +48,6 @@ class FreeAgency(commands.Cog):
                     print("updated")
                 else:
                     print("error")
-            await asyncio.sleep(30)
 
 def setup(bot):
     bot.add_cog(FreeAgency(bot))

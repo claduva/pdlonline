@@ -12,6 +12,7 @@ class Draft(commands.Cog):
     async def draft(self):
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
+            await asyncio.sleep(30)
             draft_data=requests.get(f'{baseurl}draft/').json()
             for pick in draft_data:
                 #pickdata
@@ -57,7 +58,6 @@ class Draft(commands.Cog):
                     print("updated")
                 else:
                     print("error")
-            await asyncio.sleep(30)
 
 def setup(bot):
     bot.add_cog(Draft(bot))
