@@ -1,0 +1,16 @@
+{% extends "template.html" %}
+{% load static %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block title %}Discord Bot{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light text-center rounded mt-2">
+    <div class="col-12">
+        <div><h5>The site has a discord bot to help run your league. It will automatically announce draft picks, replays, free agencies, and trades.</h5></div>
+        <div><h5><a href="https://discord.com/api/oauth2/authorize?client_id=579025959211237376&permissions=8&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2F&scope=bot">Here is the invite link.</a></h5></div>
+        <div><h5>It responds to the "pdl." prefix.</h5></div>
+        <div><h5>Initial integration uses the pdl.configure_league, pdl.configure, or pdl.cl commands.</h5></div>
+    </div>
+</div>
+{% endblock %}

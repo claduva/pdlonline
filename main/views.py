@@ -17,6 +17,9 @@ def home(request):
     }
     return  render(request,"index.html",context)
 
+def discord(request):
+    return  render(request,"discordbot.html")
+
 def settings(request):
     return  render(request,"settings.html")
 
