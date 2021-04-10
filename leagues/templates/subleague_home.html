@@ -23,7 +23,9 @@
     {% for conference in conference_list %}
     <div class="col">
         <table class="table table-sm bg-lightcolor text-dark text-center">
+            {% if conference.grouper %}
             <tr class="bg-intermediatecolor text-light"><th colspan="100%">{{ conference.grouper }}</th></tr>
+            {% endif %}
             {% regroup conference.list by division as division_list %}
             {% for division in division_list %}
             {% if division.grouper %}
