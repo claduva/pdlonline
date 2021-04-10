@@ -7,6 +7,48 @@
 
 {% block body %}
 <div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-none d-md-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-12 col-md-6 justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><a class="text-light" href="{{league.discordurl}}"><h5><i class="fab fa-discord"></i></h5></a></div>
+        </div>
+    </div>
+    <div class="col-3 d-none d-md-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    {% if coaches %}
+    {% regroup coaches by season as season_list %}
+    {% for season in season_list %}
+    <div class="col-6">
+    {% regroup season.list by conference as conference_list %}
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">{{ season.grouper.subleague.name }} Subleague</th></tr>
+            {% for conference in conference_list %}
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">{{ conference.grouper }}</th></tr>
+            {% regroup conference.list by division as division_list %}
+            {% for division in division_list %}
+            {% if division.grouper %}
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">{{ division.grouper }}</th></tr>
+            {% endif %}
+            <tr class="bg-intermediatecolor text-light"><th>Name</th><th>W</th><th>L</th><th>+/-</th><th>Streak</th></tr>
+            {% for team in division.list %}
+            <tr>
+                <td><a href="{% url 'teampage' league_id=league.id subleague_id=season.grouper.subleague.id coach_id=team.id %}"><img class="smallimage" src="{{team.logo}}">{{ team.teamname }}</a></td>
+                <td>{{ team.wins }}</td>
+                <td>{{ team.losses}}</td>
+                <td>{{ team.differential }}</td>
+                <td>{{ team.streak }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div><h4 class="m-2 p-2 bg-lightcolor text-dark text-center">No active season currently. This is either because this league is in the offseason or because a season has not yet been configured by league admins.</h4></div>
+    {% endif %}
 </div>
 {% endblock %}
 {% block script %}

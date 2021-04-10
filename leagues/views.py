@@ -43,16 +43,21 @@ def apply(request,league_id):
 
 def league_home(request,league_id):
     loi=league.objects.get(id=league_id)
-    if loi.subleagues.all().count()==1:
-        soi=loi.subleagues.all().first()
+    subleagues=loi.subleagues.all()
+    if subleagues.count()==1:
+        soi=subleagues.first()
         return redirect('subleague_home',league_id=league_id,subleague_id=soi.id)
+    coaches=coach.objects.all().filter(season__archived=False,season__subleague__league=loi).order_by('season','conference','division','wins','differential')
     context={
         'league': loi,
+        'subleagues':subleagues,
+        'coaches':coaches,
+        'leaguepage':True,
     }
     if loi.configuration.teambased:
-        return render(request,"league_home_not_teambased.html",context)
-    else:
         return render(request,"league_home_teambased.html",context)
+    else:
+        return render(request,"league_home_not_teambased.html",context)
 
 def subleague_home(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)

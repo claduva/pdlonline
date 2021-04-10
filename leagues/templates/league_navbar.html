@@ -1,0 +1,13 @@
+{% load extratags %}
+<a class="nav-item nav-link" href="{% url 'league_home' league_id=league.id %}">{{ league.abbreviation }} Home</a>
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Subleagues
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {% for subleague in subleagues %}
+        <a class="dropdown-item" href="{% url 'subleague_home' league_id=league.id subleague_id=subleague.id %}">{{ subleague.name }}</a>
+        {% endfor %}
+    </div>
+</div>

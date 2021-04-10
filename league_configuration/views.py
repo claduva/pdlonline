@@ -194,13 +194,17 @@ def add_division(request,league_id,subleague_id):
 @login_required
 @check_if_moderator
 def delete_conference(request,league_id,subleague_id,conference_id):
-    conference.objects.get(id=conference_id).delete()
+    conf=conference.objects.get(id=conference_id)
+    coach.objects.filter(season__subleague__id=subleague_id,conference=conf.conference).update(conference="")
+    conf.delete()
     return redirect('conferences_and_divisions',league_id=league_id,subleague_id=subleague_id)
 
 @login_required
 @check_if_moderator
 def delete_division(request,league_id,subleague_id,division_id):
-    division.objects.get(id=division_id).delete()
+    div=division.objects.get(id=division_id)
+    coach.objects.filter(season__subleague__id=subleague_id,division=div.division).update(division=None)
+    div.delete()
     return redirect('conferences_and_divisions',league_id=league_id,subleague_id=subleague_id)
 
 @login_required
