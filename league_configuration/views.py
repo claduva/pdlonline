@@ -195,7 +195,7 @@ def add_division(request,league_id,subleague_id):
 @check_if_moderator
 def delete_conference(request,league_id,subleague_id,conference_id):
     conf=conference.objects.get(id=conference_id)
-    coach.objects.filter(season__subleague__id=subleague_id,conference=conf.conference).update(conference="")
+    coach.objects.filter(season__subleague__id=subleague_id,conference=conf.conference).update(conference=None)
     conf.delete()
     return redirect('conferences_and_divisions',league_id=league_id,subleague_id=subleague_id)
 
@@ -576,6 +576,8 @@ def set_draft_order(request,league_id,subleague_id):
                 subleague_draft.append(draft(team=team,picknumber=picknumber))
                 picknumber+=1
         draft.objects.bulk_create(subleague_draft)
+        loi.status="In Season"
+        loi.save()
         messages.success(request, f'Draft order has been set!')
         return redirect('set_draft_order',league_id=league_id,subleague_id=subleague_id)
     context={

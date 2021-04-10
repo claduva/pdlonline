@@ -23,7 +23,7 @@ class coach(models.Model):
     teamname = models.CharField(max_length=50)
     teamabbreviation = models.CharField(max_length=4)
     logo = models.URLField(default="https://media.discordapp.net/attachments/821585145961644062/821585437163782154/genericteam.png",max_length=400,blank=True)
-    conference = models.CharField(max_length=30)
+    conference = models.CharField(max_length=30,null=True, blank=True)
     division = models.CharField(max_length=30, null=True, blank=True)
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
