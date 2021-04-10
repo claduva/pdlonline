@@ -24,7 +24,7 @@ if (socket.gethostname().find("local")>-1 or socket.gethostname().find("Harshith
     HOST=HOST
     ROOTURL="https://pokemondraftleagueonline.herokuapp.com"
 else:
-    DEBUG = False
+    DEBUG = True
     SECRET_KEY = os.environ.get('SECRET_KEY','developmentkey')
     NAME=os.environ.get('NAME')
     USER=os.environ.get('USER')
