@@ -334,28 +334,23 @@ def tiers_site_template(request,league_id,subleague_id):
 def tiers_other_league(request,league_id,subleague_id):
     loi=league.objects.get(id=league_id)
     soi=subleague.objects.get(id=subleague_id)
+    templates=subleague.objects.all().exclude(id=soi.id)
     if request.method=="POST":
-        csv_file=request.FILES['tier_csv']
-        if not csv_file.name.endswith('.csv'):
-            messages.error(request,'File is not CSV type',extra_tags="danger")
-        existing_tiers=soi.pokemon_list.all()
         banned_tier, created = league_tier.objects.get_or_create(subleague=soi,tier="Banned")
+        existing_tiers=soi.pokemon_list.all()
         existing_tiers.update(tier=banned_tier)
         soi.tiers.all().exclude(tier="Banned").delete()
-        data = pd.read_csv(csv_file).T.to_csv()
-        lines = data.split("\n")
-        for line in lines[1:len(lines)-1]:
-            fields = line.split(",")
-            tiername=fields[0]
-            if tiername!="Banned":
-                points=fields[1]
-                tiertoadd=league_tier.objects.create(subleague=soi,tier=tiername,points=points)
-                mons=[x for x in fields[2:] if x]
-                existing_tiers.filter(pokemon__name__in=mons).update(tier=tiertoadd)
+        template_items=league_pokemon.objects.filter(subleague__id=request.POST['templateid']).exclude(tier__tier="Banned")
+        unique_tiers=template_items.distinct('tier')
+        for tier in unique_tiers:
+            filtered_template=template_items.filter(tier=tier.tier).values_list('pokemon__id',flat=True)
+            newtier=league_tier.objects.create(subleague=soi,tier=tier.tier.tier,points=tier.tier.points)
+            existing_tiers.filter(pokemon__id__in=filtered_template).update(tier=newtier)
         return redirect('manage_tiers',league_id=loi.id,subleague_id=soi.id)
     context={
         'league':loi,
         'subleague':soi,
+        'templates': templates,
         'tiers_other_league':True,
     }
     return  render(request,"manage_tiers.html",context)

@@ -77,7 +77,7 @@
                 </form>
             </div>       
         </div>
-        {% elif tiers_site_template %}
+        {% elif tiers_site_template%}
         <div>
             <form method="post">{% csrf_token %}
             <label for="templateid">Select a template:</label>
@@ -90,7 +90,17 @@
             </form>
         </div>
         {% elif tiers_other_league %}
-        <div>Not yet setup</div>
+        <div>
+            <form method="post">{% csrf_token %}
+            <label for="templateid">Select a template:</label>
+            <select name="templateid" id="templateid" class="form-control">
+                {% for item in templates %}
+                <option value="{{ item.id }}">{{ item.league.name }}-{{ item.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" class="btn btn-primary">
+            </form>
+        </div>
         {% else %}
         <table class="table table-sm bg-lightcolor text-center table-responsive text-nowrap text-small"> 
             <thead>
