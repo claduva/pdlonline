@@ -9,6 +9,7 @@ from helperfunctions import getDiscordToken,loadCogs, change_pr
 bot=commands.Bot(command_prefix="pdl.")
 
 #load cogs
+await asyncio.sleep(30)
 loadCogs(bot)
 
 #initialize bot
