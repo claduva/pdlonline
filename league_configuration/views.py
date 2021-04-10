@@ -239,6 +239,8 @@ def delete_subleague(request,league_id,subleague_id):
     config=loi.configuration
     config.number_of_subleagues+=(-1)
     config.save()
+    #update seasons 
+    21
     soi.delete()
     return redirect('league_configuration',league_id=loi.id)
 
@@ -710,12 +712,18 @@ def rectify_subleague_count(loi,new_subleague_count,old_subleague_count):
             updated_subleague=loi.subleagues.all().first()
             updated_subleague.name="Main"
             updated_subleague.save()
-            loi.subleagues.all().exclude(id=updated_subleague.id).delete() 
+            std=loi.subleagues.all().exclude(id=updated_subleague.id)
+            for soi in std:
+                soi.seasons.all().update(subleague_name=soi.name,subleague=None)
+                soi.delete() 
     else:
         subleague_count_change=new_subleague_count-old_subleague_count
         if subleague_count_change<0:
             delete=loi.subleagues.all().order_by('-id')[0:abs(subleague_count_change)].values_list("id", flat=True)
-            subleague.objects.filter(id__in=list(delete)).delete()
+            std=subleague.objects.filter(id__in=list(delete))
+            for soi in std:
+                soi.seasons.all().update(subleague_name=soi.name,subleague=None)
+                soi.delete()
         elif subleague_count_change>0:
             for i in range(subleague_count_change):
                 soi=subleague.objects.create(league=loi,name=f"Subleague{i+1}")
