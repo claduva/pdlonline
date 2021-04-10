@@ -1,6 +1,7 @@
 import asyncio, discord, json,requests
 from discord.ext import commands
 from discord.utils import get
+from rooturl import baseurl
 
 class BotMessages(commands.Cog):
     def __init__(self,bot):
@@ -11,7 +12,7 @@ class BotMessages(commands.Cog):
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
             await asyncio.sleep(30)
-            bot_messages=requests.get(f'http://localhost:8000/api/bot_message/').json()
+            bot_messages=requests.get(f'{baseurl}bot_message/').json()
             for message in bot_messages:
                 try:
                     recipient = await self.bot.fetch_user(message['recipient']['discordid'])
@@ -21,7 +22,7 @@ class BotMessages(commands.Cog):
                     await channel.send(content)
                 except:
                     print("Message failed")
-                x = requests.delete(f"http://localhost:8000/api/bot_message/{message['id']}")
+                x = requests.delete(f"{baseurl}bot_message/{message['id']}")
                 print(x.status_code)
 
 def setup(bot):
