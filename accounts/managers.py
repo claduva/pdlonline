@@ -15,5 +15,6 @@ class DiscordUserManager(models.UserManager):
             locale=user["locale"], 
             mfa_enabled=user["mfa_enabled"], 
             discord_tag=f'{user["username"]}#{user["discriminator"]}',
+            showdown_alts="[]"
         )
         return new_user
