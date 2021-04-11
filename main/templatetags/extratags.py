@@ -57,6 +57,8 @@ def classfromdata(data):
         classstring=classstring+f"ability-{a.replace(' ','').replace('%','').replace(':','').replace('.','').lower()} "
     for m in data['movesets']['gen8']:
         classstring=classstring+f"move-{m.replace(' ','').replace('%','').replace(':','').replace('.','').lower()} "
+    for m in data['movesets']['gen7']:
+        classstring=classstring+f"move-{m.replace(' ','').replace('%','').replace(':','').replace('.','').lower()} "
     return classstring
 
 @register.filter(name="converttoclass")

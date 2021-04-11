@@ -92,7 +92,8 @@ def subleague_draft(request,league_id,subleague_id):
     subleague_draft=draft.objects.filter(team__season=szn)
     fulldraft=subleague_draft.order_by('picknumber').values('id','picknumber','pokemon__id','pokemon__name','pokemon__sprite','team__id','team__teamname','team__teamabbreviation','points','skipped')
     takenpokemon=fulldraft.filter(pokemon__id__isnull=False).values_list('pokemon__id',flat=True)
-    availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon))
+    banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
+    availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon)).exclude(id__in=list(banned))
     distinct_teams=fulldraft[0:coaches.count()]
     teamdraft=[fulldraft.filter(team__teamname=team['team__teamname']) for team in distinct_teams]
     try:
@@ -287,7 +288,8 @@ def subleague_freeagency(request,league_id,subleague_id):
     user_pokemon=takenpokemon.filter(team=user_team).values_list('pokemon__id',flat=True)
     takenpokemon=takenpokemon.values_list('pokemon__id',flat=True)
     user_pokemon=pokemon.objects.filter(id__in=list(user_pokemon))
-    availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon))
+    banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
+    availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon)).exclude(id__in=list(banned))
     context['form']=FreeAgencyForm(user_pokemon=user_pokemon,availablepokemon=availablepokemon)
     context['subleague_fas']=free_agency.objects.filter(team__season=szn)
     return  render(request,"free_agency.html",context)
