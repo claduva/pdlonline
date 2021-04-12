@@ -1,0 +1,155 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load extratags %}
+{% load static %}
+
+{% block title %}{{ league.abbreviation }}-{{subleague.name}} Matchup{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-none d-md-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-12 col-md-6 justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><h5>Matchup</h5></div>
+        </div>
+    </div>
+    <div class="col-3 d-none d-md-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr><th><img class="mediumimage" src="{{team1.logo}}"></th></tr>
+            <tr><th>{{team1.teamname}} ({{team1.teamabbreviation}})</th></tr>
+            <tr><th>Coach(es)</th></tr>
+            <tr>
+                <td>
+                    {% for user in team1.user.all %}
+                    <div>{{ user.username }} ({{user.discord_tag}})</div>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr><th><img class="mediumimage" src="{{team2.logo}}"></th></tr>
+            <tr><th>{{team2.teamname}} ({{team2.teamabbreviation}})</th></tr>
+            <tr><th>Coach(es)</th></tr>
+            <tr>
+                <td>
+                    {% for user in team2.user.all %}
+                    <div>{{ user.username }} ({{user.discord_tag}})</div>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-12 text-center"><h4>Speed Tiers</h4></div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Pokemon</th>
+                <th>Base Speed</th>
+                <th class="lvl100">-2</th>
+                <th class="lvl100">-1</th>
+                <th class="lvl100">Neutral</th>
+                <th class="lvl100">+1</th>
+                <th class="lvl100">+2</th>
+            </tr>
+            {% for pokemon in team1roster|order_by:"-pokemon__data__basestats__speed" %}
+            <tr>
+                <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{pokemon.pokemon.name}}</td>
+                <td>{{ pokemon.pokemon.data.basestats.speed }}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"-2,100"}}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"-1,100"}}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"0,100"}}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"1,100"}}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"2,100"}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Pokemon</th>
+                <th>Base Speed</th>
+                <th class="lvl100">-2</th>
+                <th class="lvl100">-1</th>
+                <th class="lvl100">Neutral</th>
+                <th class="lvl100">+1</th>
+                <th class="lvl100">+2</th>
+            </tr>
+            {% for pokemon in team2roster|order_by:"-pokemon__data__basestats__speed" %}
+            <tr>
+                <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{pokemon.pokemon.name}}</td>
+                <td>{{ pokemon.pokemon.data.basestats.speed }}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"-2,100"}}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"-1,100"}}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"0,100"}}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"1,100"}}</td>
+                <td class="lvl100">{{pokemon.pokemon.data.basestats.speed|speed:"2,100"}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-12 text-center"><h4>Base Stats</h4></div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Pokemon</th>
+                <th>HP</th>
+                <th>Atl</th>
+                <th>Def</th>
+                <th>SpA</th>
+                <th>SpD</th>
+                <th>Spe</th>
+                <th>BST</th>  
+            </tr>
+            {% for pokemon in team1roster|order_by:"-pokemon__data__basestats__speed" %}
+            <tr>
+                <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{pokemon.pokemon.name}}</td>
+                <td>{{pokemon.pokemon.data.basestats.hp}}</td>
+                <td>{{pokemon.pokemon.data.basestats.attack}}</td>
+                <td>{{pokemon.pokemon.data.basestats.defense}}</td>
+                <td>{{pokemon.pokemon.data.basestats.special_attack}}</td>
+                <td>{{pokemon.pokemon.data.basestats.special_defense}}</td>
+                <td>{{pokemon.pokemon.data.basestats.speed}}</td>
+                <td>{{pokemon.pokemon.data.basestats.bst}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Pokemon</th>
+                <th>HP</th>
+                <th>Atl</th>
+                <th>Def</th>
+                <th>SpA</th>
+                <th>SpD</th>
+                <th>Spe</th>
+                <th>BST</th>  
+            </tr>
+            {% for pokemon in team2roster|order_by:"-pokemon__data__basestats__speed" %}
+            <tr>
+                <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{pokemon.pokemon.name}}</td>
+                <td>{{pokemon.pokemon.data.basestats.hp}}</td>
+                <td>{{pokemon.pokemon.data.basestats.attack}}</td>
+                <td>{{pokemon.pokemon.data.basestats.defense}}</td>
+                <td>{{pokemon.pokemon.data.basestats.special_attack}}</td>
+                <td>{{pokemon.pokemon.data.basestats.special_defense}}</td>
+                <td>{{pokemon.pokemon.data.basestats.speed}}</td>
+                <td>{{pokemon.pokemon.data.basestats.bst}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

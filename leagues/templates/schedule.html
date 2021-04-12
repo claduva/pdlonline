@@ -30,18 +30,24 @@
             {% for match in week.list %}
             <tr> 
                 <td>{{match.team1.teamname}} ({{match.team1.teamabbreviation}}) vs {{match.team2.teamname}} ({{match.team2.teamabbreviation}})</td>
+                <td><a class="btn btn-sm btn-primary" href="{% url 'matchup' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Matchup</a></td>
                 {% if match.replay %}
                 <td><a class="btn btn-sm btn-primary" href="">Replay</a></td>
                 {% else %}
-                <td><a class="btn btn-sm btn-primary" href="">Matchup</a></td>
                 {% if request.user in match.team1.user.all or request.user in match.team2.user.all or request.user in match.team1.season.subleague.league.moderators.all %}
                 <td><a class="btn btn-sm btn-primary" href="">Upload Replay</a></td>
                 {% endif %}
                 {% if request.user in match.team1.season.subleague.league.moderators.all %}
-                <td>
-                    <a class="btn btn-sm btn-primary" href="">{{ match.team1.teamabbreviation }} Forfeits</a>
-                    <a class="btn btn-sm btn-primary" href="">{{ match.team2.teamabbreviation }} Forfeits</a>
-                    <a class="btn btn-sm btn-primary" href="">Both Teams Forfeit</a>
+                <td class="d-flex justify-content-around">
+                    <form action="{% url 'handle_forfeits' league_id=league.id subleague_id=subleague.id match_id=match.id %}" method="post" >{% csrf_token %}
+                        <input class="btn btn-sm btn-primary" type="submit" name="team1ff" value="{{ match.team1.teamabbreviation }} Forfeits">
+                    </form>
+                    <form action="{% url 'handle_forfeits' league_id=league.id subleague_id=subleague.id match_id=match.id %}" method="post" >{% csrf_token %}
+                        <input class="btn btn-sm btn-primary" type="submit" name="team2ff" value="{{ match.team2.teamabbreviation }} Forfeits">
+                    </form>
+                    <form action="{% url 'handle_forfeits' league_id=league.id subleague_id=subleague.id match_id=match.id %}" method="post" >{% csrf_token %}
+                        <input class="btn btn-sm btn-primary" type="submit" name="bothteamsff" value="Both Teams Forfeit">
+                    </form>
                 </td>
                 {% endif %}
                 {% endif %}

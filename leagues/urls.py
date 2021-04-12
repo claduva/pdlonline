@@ -18,5 +18,7 @@ urlpatterns = [
     path("league/<int:league_id>/subleague/<int:subleague_id>/trading/", views.subleague_trading, name="trading"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/trading/actions/", views.trading_actions, name="trading_actions"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/schedule/", views.subleague_schedule, name="schedule"),
+    path("league/<int:league_id>/subleague/<int:subleague_id>/schedule/forfeits/<int:match_id>/", views.handle_forfeits, name="handle_forfeits"),
+    path("league/<int:league_id>/subleague/<int:subleague_id>/schedule/matchup/<int:match_id>/", views.matchup, name="matchup"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/rules/", views.subleague_ruleset, name="rules"),
 ]

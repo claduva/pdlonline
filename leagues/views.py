@@ -244,9 +244,67 @@ def subleague_schedule(request,league_id,subleague_id):
     except:
         messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
         return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
-    context['matches']=match.objects.filter(Q(playoff_week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
+    context['matches']=match.objects.filter(Q(playoff_week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn))).order_by('week')
     context['playoff_matches']=match.objects.filter(Q(week__isnull=True)&(Q(team1__season=szn)|Q(team2__season=szn)))
     return  render(request,"schedule.html",context)
+
+def handle_forfeits(request,league_id,subleague_id,match_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    szn=soi.seasons.all().get(archived=False)
+    if request.method=="POST":
+        moi=match.objects.get(id=match_id)
+        team1=moi.team1
+        team2=moi.team2
+        if "team1ff" in request.POST:
+            moi.replay=f'Team 1 Forfeits'
+            moi.winner=team2
+            team1.losses+=1; team2.wins+=1
+            team1.differential+=(-3); team2.differential+=3
+            team1.forfeits+=1
+            if team1.streak>-1:team1.streak=-1
+            else:team1.streak+=(-1)
+            if team2.streak>-1:team2.streak+=1
+            else:team2.streak=1
+            messages.success(request,'Match has been forfeited by Team 1!')
+        elif "team2ff" in request.POST:
+            moi.replay=f'Team 2 Forfeits'
+            moi.winner=team1
+            team2.losses+=1; team1.wins+=1
+            team2.differential+=(-3); team1.differential+=3
+            team2.forfeits+=1
+            if team2.streak>-1:team2.streak=-1
+            else:team2.streak+=(-1)
+            if team1.streak>-1:team1.streak+=1
+            else:team1.streak=1
+            messages.success(request,'Match has been forfeited by Team 2!')
+        elif "bothteamsff" in request.POST:
+            moi.replay=f'Both Teams Forfeit'
+            team2.losses+=1; team1.losses+=1
+            team2.differential+=(-3); team1.differential+=(-3)
+            team2.forfeits+=1;team1.forfeits+=1
+            if team2.streak>-1:team2.streak=-1
+            else:team2.streak+=(-1)
+            if team1.streak>-1:team1.streak=-1
+            else:team1.streak+=(-1)
+            messages.success(request,'Match has been forfeited by both teams!')
+        team1.save()
+        team2.save()
+        moi.save()
+    return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+
+def matchup(request,league_id,subleague_id,match_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    moi=match.objects.get(id=match_id)
+    context['team1']=moi.team1
+    context['team2']=moi.team2
+    context['team1roster']=moi.team1.roster.all()
+    context['team2roster']=moi.team2.roster.all()
+    return  render(request,"matchup.html",context)
 
 def subleague_freeagency(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)

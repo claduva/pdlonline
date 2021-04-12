@@ -1,6 +1,7 @@
 from django import template
 register = template.Library()
 from accounts.models import CustomUser
+import math
 
 @register.filter(name='pokedexnumber')
 def pokedexnumber(int):
@@ -65,3 +66,20 @@ def classfromdata(data):
 def converttoclass(string):
     string=string.replace(" ","").lower()
     return string
+
+@register.filter(name='speed')
+def speed(value,arg):
+    multiplier=int(arg.split(",")[0])
+    lvl=int(arg.split(",")[1])
+    neutral=math.floor((((2*value+31+252/4)*lvl)/100+5)*1.1)
+    if multiplier==-2:
+        resp=math.floor(neutral*1/2)
+    elif multiplier==-1:
+        resp=math.floor(neutral*2/3)
+    elif multiplier==0:
+        resp=neutral
+    elif multiplier==1:
+        resp=math.floor(neutral*3/2)
+    elif multiplier==2:
+        resp=math.floor(neutral*2)  
+    return resp
