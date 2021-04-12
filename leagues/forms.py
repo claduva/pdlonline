@@ -56,8 +56,10 @@ class LeftPickForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         availablepokemon = kwargs.pop('availablepokemon', None)
         super(LeftPickForm, self).__init__(*args, **kwargs)
-        if availablepokemon: self.fields['pokemon'].queryset=availablepokemon
-
+        if availablepokemon: 
+            self.fields['pokemon']=forms.ModelChoiceField(widget=forms.Select(attrs={'id':'leftPick'}),queryset=availablepokemon)
+            #self.fields['pokemon'].queryset=availablepokemon
+        
 class MatchForm(forms.ModelForm):
     helper = FormHelper()
     helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))

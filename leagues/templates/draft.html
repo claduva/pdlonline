@@ -46,12 +46,13 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <form method="post" action="{% url 'skip_pick' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+                    <form method="post" id="skippick" action="{% url 'skip_pick' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
                     <input type="submit" class="btn btn-sm btn-warning form-control" value="Skip">
                     </form>
                 </td>
             </tr>
             {% endif %}
+<!-- 
             {% if skippedpick %}
             <tr class="bg-intermediatecolor text-light">
                 <th colspan="2">Make Up Skipped Pick</th>
@@ -64,6 +65,7 @@
                 </td>
             </tr>
             {% endif %}
+-->
         </table>
     </div>
     <div class="col-md text-center overflow-auto" style="height: 400px;">
@@ -173,4 +175,15 @@
 </div>
 {% endblock %}
 {% block script %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script>
+$(document).ready(function () {
+    $('#skippick').submit(function() {
+        var c = confirm("This pick will be skipped. Are you sure you want to do this?");
+        return c;
+        })
+    $("select").select2();
+});
+</script>
 {% endblock %}
