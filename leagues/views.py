@@ -99,11 +99,11 @@ def subleague_draft(request,league_id,subleague_id):
     takenpokemon=fulldraft.filter(pokemon__id__isnull=False).values_list('pokemon__id',flat=True)
     banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
     availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon)).exclude(id__in=list(banned))
+    availablepokemontiers=league_pokemon.objects.filter(subleague=soi,pokemon__in=availablepokemon).order_by('tier__points','pokemon__name').values('pokemon__name','pokemon__sprite','pokemon__data','tier__tier','tier__points')
     distinct_teams=fulldraft[0:coaches.count()]
     teamdraft=[fulldraft.filter(team__teamname=team['team__teamname']) for team in distinct_teams]
     try:
         currentpick=fulldraft.filter(skipped=False, pokemon__id__isnull=True).first()
-        print(szn.drafttimer)
         try: timerstart=draft.objects.filter(team__season=szn).get(picknumber=(currentpick['picknumber']-1)).picktime+datetime.timedelta(hours=szn.drafttimer)
         except: timerstart=szn.draftstart + datetime.timedelta(hours=szn.drafttimer)
         currentroster=fulldraft.filter(team__teamname=currentpick['team__teamname'])
@@ -159,6 +159,7 @@ def subleague_draft(request,league_id,subleague_id):
     context['currentpick']=currentpick
     context['currentroster']=currentroster
     context['availablepokemon']=availablepokemon
+    context['availablepokemontiers']=availablepokemontiers
     context['leftpicks']=leftpicks
     context['candraft']=candraft
     context['canleavepick']=canleavepick

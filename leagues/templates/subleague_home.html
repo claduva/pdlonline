@@ -31,7 +31,7 @@
             {% if division.grouper %}
             <tr class="bg-intermediatecolor text-light"><th colspan="100%">{{ division.grouper }}</th></tr>
             {% endif %}
-            <tr class="bg-intermediatecolor text-light"><th>Name</th><th>W</th><th>L</th><th>+/-</th><th>Streak</th></tr>
+            <tr class="bg-intermediatecolor text-light"><th>Name</th><th>W</th><th>L</th><th>+/-</th><th>Stk</th></tr>
             {% for team in division.list %}
             <tr>
                 <td><a href="{% url 'teampage' league_id=league.id subleague_id=subleague.id coach_id=team.id %}"><img class="smallimage" src="{{team.logo}}">{{ team.teamname }}</a></td>

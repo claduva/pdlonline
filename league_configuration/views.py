@@ -432,7 +432,7 @@ def season_configuration(request,league_id,subleague_id):
             newconfig.subleague=soi
             newconfig.save()
             messages.success(request,f'Your season configuration has been successfully updated!')
-            loi.status="Recruiting Coaches"
+            if draft.objects.filter(team__season__subleague=soi).count()==0: loi.status="Recruiting Coaches"
             loi.save()
             return redirect('season_configuration',league_id=loi.id,subleague_id=soi.id)
         else:

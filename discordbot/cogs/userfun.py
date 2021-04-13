@@ -22,7 +22,7 @@ class Userfun(commands.Cog):
         sleepy = await self.bot.fetch_user("248633879529783296")
         channel = await sleepy.create_dm()
         await channel.send(f"{ctx.author.mention} wants you to know that you suck.")
-        await ctx.send(f"I've let Sleepy know he sucks for you. No thanks needed. It was my pleasure. {sleepy.mention}, in case you blocked me...You suck.")
+        await ctx.send(f"I've let Sleepy know he sucks for you. No thanks needed. It was my pleasure (Just a friendly reminder his username used to be SoggyWaffle, so he had it coming). {sleepy.mention}, in case you blocked me...You suck.")
     
     @commands.command(aliases=["iaremoose"])
     async def moose(self,ctx):

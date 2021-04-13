@@ -76,14 +76,18 @@
     </div>
     <div class="col-md text-center overflow-auto" style="height: 400px;">
         <table class="table table-sm table-borderless bg-lightcolor text-dark">
-            <tr class="bg-intermediatecolor text-light">
-                <th>Available Pokemon</th>
-            </tr>
-            {% for pokemon in availablepokemon %}
+            <thead>
+                <tr class="bg-intermediatecolor text-light">
+                    <th colspan="2" class="bg-intermediatecolor text-light" style="position: sticky; top: 1;">Available Pokemon</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for pokemon in availablepokemontiers %}
             <tr>
-                <th>{{ pokemon.name }}</th>
+                <td colspan="2"><img class="smallimage" src="{{ pokemon.pokemon__sprite }}">{{ pokemon.pokemon__name }} ({{pokemon.tier__tier}}: {{pokemon.tier__points}} pts)</td>
             </tr>
             {% endfor %}
+            </tbody>
         </table>
     </div>
     {% if canleavepick %}
@@ -218,7 +222,7 @@ $(document).ready(function () {
       // If the count down is finished, write some text
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("timer").innerHTML = "EXPIRED";
+        document.getElementById("timer").innerHTML = "TIME IS UP";
       }
     }, 1000);
 </script>

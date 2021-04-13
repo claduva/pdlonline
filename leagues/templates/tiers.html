@@ -106,4 +106,9 @@
     var tieroptions={{tieroptions|safe}}
 </script>
 <script src="{% static 'scripts/tiers.js' %}"></script>
+<script>
+$(document).ready(function () {
+    $("select").select2();
+});
+</script>
 {% endblock %}
