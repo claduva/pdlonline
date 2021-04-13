@@ -122,7 +122,7 @@ def subleague_draft(request,league_id,subleague_id):
             else:
                 item.delete()
         #user specific data
-        leftpicks=left_pick.objects.filter(team__season=szn,team__user=request.user)
+        leftpicks=left_pick.objects.filter(team__season=szn,team__user=request.user).order_by('id')
         currentteam=coach.objects.get(id=currentpick['team__id'])
         if request.user in loi.moderators.all() or request.user in currentteam.user.all():
             candraft=True
