@@ -2,8 +2,27 @@
 {% load static %}
 {% load extratags %}
 
-{% block title %}Replay Analyzer Results{% endblock %}
+{% block title %}
+{% if match %}
+{{ league.abbreviation }}-{{subleague.name}} Replay
+{% else %}
+Replay Analyzer Results
+{% endif %}
+{% endblock %}
 {% block body %}
+{% if match %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-none d-md-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-12 col-md-6 justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><h5>Replay</h5></div>
+        </div>
+    </div>
+    <div class="col-3 d-none d-md-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+{% else %}
 <div class="row align-items-center bg-darkcolor text-light rounded mt-2">
     <div class="col-md-4 d-flex justify-content-start"><img src="{% static 'images/pdllogo.png' %}"
             class="mediumimage m-2"></div>
@@ -13,7 +32,9 @@
     <div class="col-md-4 d-flex justify-content-end"><img src="{% static 'images/pdllogo.png' %}"
             class="mediumimage m-2"></div>
 </div>
+{% endif %}
 <div class="row align-items-center bg-darkcolor text-light rounded mt-2 pt-2">
+    {% if results %}
     <div class="col-12">
         {% if results.replay %}
         <iframe src="{{ results.replay }}" height="500vh" width="100%"></iframe>
@@ -285,5 +306,10 @@
             </table>
         </div>
     </div>
+    {% else %}
+    <div class="col-12 text-center">
+        <h4>{{match.replay}}</h4>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

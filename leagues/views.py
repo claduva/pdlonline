@@ -7,11 +7,16 @@ from django.conf import settings
 import datetime, pytz
 utc=pytz.UTC
 
-from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, TradeRequestForm
+from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, TradeRequestForm, ReplayForm
 from .models import application,coach,draft,roster,left_pick, match, trade_request, free_agency, trading
 from pokemon.models import pokemon
 from main.models import bot_message
 from league_configuration.models import league, subleague,rules, league_pokemon,league_tier
+from matches.parser.parser import *
+from django.contrib.auth import get_user_model
+UserModel = get_user_model()
+
+claduva=UserModel.objects.get(username='claduva')
 
 # Create your views here.
 @login_required
@@ -51,7 +56,7 @@ def league_home(request,league_id):
     if subleagues.count()==1:
         soi=subleagues.first()
         return redirect('subleague_home',league_id=league_id,subleague_id=soi.id)
-    coaches=coach.objects.all().filter(season__archived=False,season__subleague__league=loi).order_by('season','conference','division','wins','differential')
+    coaches=coach.objects.all().filter(season__archived=False,season__subleague__league=loi).order_by('season','conference','division','-wins','-differential')
     context={
         'league': loi,
         'subleagues':subleagues,
@@ -306,6 +311,79 @@ def matchup(request,league_id,subleague_id,match_id):
     context['team2roster']=moi.team2.roster.all()
     return  render(request,"matchup.html",context)
 
+def upload_replay(request,league_id,subleague_id,match_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    moi=match.objects.get(id=match_id)
+    if moi.replay:
+        messages.error(request,f'A replay for that match already exists!',extra_tags="danger")
+        return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+    if request.method=="POST":
+        form=ReplayForm(request.POST,instance=moi)
+        if form.is_valid():
+            mtu=form.save(commit=False)
+            url=mtu.replay
+            team1=mtu.team1
+            team2=mtu.team2
+            #analyze replay
+            try:
+                results = replayparse(url)
+                if len(results['errormessage'])!=0 and request.user!=claduva:
+                    bot_message.objects.create(sender=request.user,recipient=claduva,message=f'Failed Replay (Data Error): {url}')
+                    messages.error(request,f'There was an error processing your replay. Site admin has been notified.',extra_tags="danger")
+                    return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+            except:
+                bot_message.objects.create(sender=request.user,recipient=claduva,message=f'Failed Replay (Code Error): {url}')
+                messages.error(request,f'There was an error processing your replay. Site admin has been notified.',extra_tags="danger")
+                return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+            # check for alts
+            coach1=results['team1']['coach']
+            coach2=results['team2']['coach']
+            try:
+                coach1user=UserModel.objects.get(showdow_alts__contains=[coach1])
+            except:
+                messages.error(request,f'A matching showdown alt for {coach1} was not found!',extra_tags='danger')
+                return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+            try:
+                coach2user=UserModel.objects.get(showdow_alts__contains=[coach2])
+            except:
+                messages.error(request,f'A matching showdown alt for {coach2} was not found!',extra_tags='danger')
+                return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+            #align teams
+            if coach1user in team1.user.all() and coach2user in team2.user.all():
+                print("No reallignment needed")
+            elif coach1user in team2.user.all() and coach2user in team1.user.all():
+                team1=mtu.team2;team2=mtu.team1
+            elif coach1user in team1.user.all() or coach1user in team2.user.all():
+                messages.error(request,f'The account corresponding to {coach2} does not correspond to either team!',extra_tags='danger')
+                return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+            elif coach2user in team1.user.all() or coach2user in team2.user.all():
+                messages.error(request,f'The account corresponding to {coach1} does not correspond to either team!',extra_tags='danger')
+                return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+            else:
+                messages.error(request,f'The accounts corresponding to both Showdown Alts do not correspond to the teams in this match!',extra_tags='danger')
+                return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
+            save_league_replay(request,results,team1,team2,mtu)
+        return redirect('replay',league_id=league_id,subleague_id=subleague_id,match_id=match_id)
+    context['form']=ReplayForm(instance=moi)
+    return  render(request,"upload_replay.html",context)
+
+def replay(request,league_id,subleague_id,match_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    moi=match.objects.get(id=match_id)
+    context['match']= moi
+    context['results']= moi.data
+    return render(request,"replayanalysisresults.html",context)
+
 def subleague_freeagency(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
     try:
@@ -454,7 +532,7 @@ def get_subleague_data(league_id,subleague_id):
     loi=league.objects.get(id=league_id)
     soi=subleague.objects.get(id=subleague_id)
     try:
-        coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference','division','wins','differential')
+        coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference','division','-wins','-differential')
     except:
         coaches=None
     context={
@@ -464,3 +542,221 @@ def get_subleague_data(league_id,subleague_id):
         'subleaguepage':True,
     }
     return loi,soi,coaches,context
+
+def save_league_replay(request,results,team1,team2,mtu):
+    #iterate through team 1
+    team1roster=team1.roster.all()
+    objectstosave=[mtu]
+    erroritems=[]
+    for mon in results['team1']['roster']:
+        foundmon,erroritems=pokemonsearch(mon['pokemon'],team1roster,erroritems)
+        if foundmon:
+            #update stats
+            foundmon.kills+=mon['kills']
+            foundmon.deaths+=mon['deaths']
+            foundmon.differential+=mon['kills']-mon['deaths']
+            foundmon.gp+=1
+            foundmon.gw+=results['team1']['wins']
+            foundmon.support+=mon['support']
+            foundmon.damagedone+=mon['damagedone']
+            foundmon.hphealed+=mon['hphealed']
+            foundmon.luck+=mon['luck']
+            foundmon.remaininghealth+=mon['remaininghealth']
+            if foundmon.streak < 0:
+                if results['team1']['wins'] == 1: foundmon.streak=1
+                else:foundmon.streak+=(-1)
+            else:
+                if results['team1']['wins'] == 1:foundmon.streak+=1
+                else:foundmon.streak=(-1)
+            #append to save
+            objectstosave.append(foundmon)
+            #iterate moves
+            #iterate_moves(mon['moves'],team1,foundmon,results['replay'])
+    #iterate through team 2
+    team2roster=team2.roster.all()
+    for mon in results['team2']['roster']:
+        foundmon,erroritems=pokemonsearch(mon['pokemon'],team2roster,erroritems)
+        if foundmon:
+            #update stats
+            foundmon.kills+=mon['kills']
+            foundmon.deaths+=mon['deaths']
+            foundmon.differential+=mon['kills']-mon['deaths']
+            foundmon.gp+=1
+            foundmon.gw+=results['team2']['wins']
+            foundmon.support+=mon['support']
+            foundmon.damagedone+=mon['damagedone']
+            foundmon.hphealed+=mon['hphealed']
+            foundmon.luck+=mon['luck']
+            foundmon.remaininghealth+=mon['remaininghealth']
+            if foundmon.streak < 0:
+                if results['team2']['wins'] == 1: foundmon.streak=1
+                else:foundmon.streak+=(-1)
+            else:
+                if results['team2']['wins'] == 1:foundmon.streak+=1
+                else:foundmon.streak=(-1)
+            #append to save
+            objectstosave.append(foundmon)
+            #iterate moves
+            #iterate_moves(mon['moves'],team2,foundmon,results['replay'])
+    #update coach1 data
+    team1.wins+=results['team1']['wins']
+    team1.losses+=abs(results['team1']['wins']-1)
+    team1.forfeits+=results['team1']['forfeit']
+    if results['team1']['forfeit'] == 1:
+        team1.differential+=(-3)
+    else:
+        team1.differential+=results['team1']['score']-results['team2']['score']
+    if team1.streak < 0:
+        if results['team1']['wins'] == 1:
+            team1.streak=1
+        else:
+            team1.streak+=(-1)
+    else:
+        if results['team1']['wins'] == 1:
+            team1.streak+=1
+        else:
+            team1.streak=(-1)
+    objectstosave.append(team1)
+    #update coach2 data
+    team2.wins+=results['team2']['wins']
+    team2.losses+=abs(results['team2']['wins']-1)
+    team2.forfeit+=results['team2']['forfeit']
+    if results['team2']['forfeit'] == 1:
+        team2.differential+=(-3)
+    else:
+        team2.differential+=results['team2']['score']-results['team1']['score']
+    if team2.streak < 0:
+        if results['team2']['wins'] == 1:
+            team2.streak=1
+        else:
+            team2.streak+=(-1)
+    else:
+        if results['team2']['wins'] == 1:
+            team2.streak+=1
+        else:
+            team2.streak=(-1)
+    objectstosave.append(team2)
+    #update match
+    mtu.team1score=results['team1']['score'] 
+    mtu.team2score=results['team2']['score'] 
+    if results['team1']['wins'] ==1: mtu.winner=team1
+    elif results['team2']['wins']==1: mtu.winner=team2
+    objectstosave.append(mtu)
+    if len(erroritems)==0:
+        for obj in objectstosave:
+            obj.save()
+        messages.success(request,'Replay has been saved!')
+    else:
+        for obj in erroritems:
+            messages.error(request,f'A roster spot matching {obj} does not exist.',extra_tags="danger")
+    return
+
+def pokemonsearch(pokemon,rosterofinterest,errormons):
+    try:
+        mon=rosterofinterest.get(pokemon__pokemon=pokemon)
+    except:
+        try:
+            mon=rosterofinterest.get(pokemon__pokemon__icontains=pokemon)
+        except:
+            mon=None
+            errormons.append(pokemon)
+    return mon, errormons
+
+def iterate_moves(movelist,team,foundmon,replay):
+    for move in movelist:
+        ##update moveinfo
+        move_=move.replace("Z-","")
+        moi=moveinfo.objects.get(name=move_)
+        moi.uses+=movelist[move]['uses']
+        moi.hits+=movelist[move]['hits']
+        moi.crits+=movelist[move]['crits']
+        moi.posssecondaryeffects+=movelist[move]['posssecondaryeffects']
+        moi.secondaryeffects+=movelist[move]['secondaryeffects']
+        moi.save()
+        ##update coach 
+        #if current
+        try:
+            #for coach
+            try:
+                um=user_movedata.objects.filter(moveinfo=moi).get(coach=team.coach)
+            except:
+                um=user_movedata.objects.create(moveinfo=moi,coach=team.coach)
+            um.uses+=movelist[move]['uses']
+            um.hits+=movelist[move]['hits']
+            um.crits+=movelist[move]['crits']
+            um.posssecondaryeffects+=movelist[move]['posssecondaryeffects']
+            um.secondaryeffects+=movelist[move]['secondaryeffects']
+            um.save()
+            #for teammate
+            if team.teammate:
+                try:
+                    um=user_movedata.objects.filter(moveinfo=moi).get(coach=team.teammate)
+                except:
+                    um=user_movedata.objects.create(moveinfo=moi,coach=team.teammate)
+                um.uses+=movelist[move]['uses']
+                um.hits+=movelist[move]['hits']
+                um.crits+=movelist[move]['crits']
+                um.posssecondaryeffects+=movelist[move]['posssecondaryeffects']
+                um.secondaryeffects+=movelist[move]['secondaryeffects']
+                um.save()
+        except:
+            #for coach
+            try:
+                um=user_movedata.objects.filter(moveinfo=moi).get(coach=team.coach1)
+            except:
+                um=user_movedata.objects.create(moveinfo=moi,coach=team.coach1)
+            um.uses+=movelist[move]['uses']
+            um.hits+=movelist[move]['hits']
+            um.crits+=movelist[move]['crits']
+            um.posssecondaryeffects+=movelist[move]['posssecondaryeffects']
+            um.secondaryeffects+=movelist[move]['secondaryeffects']
+            um.save()
+            #for teammate
+            if team.coach2:
+                try:
+                    um=user_movedata.objects.filter(moveinfo=moi).get(coach=team.coach2)
+                except:
+                    um=user_movedata.objects.create(moveinfo=moi,coach=team.coach2)
+                um.uses+=movelist[move]['uses']
+                um.hits+=movelist[move]['hits']
+                um.crits+=movelist[move]['crits']
+                um.posssecondaryeffects+=movelist[move]['posssecondaryeffects']
+                um.secondaryeffects+=movelist[move]['secondaryeffects']
+                um.save()
+        ##update mon moves
+        try:
+            try:
+                pm=pokemon_movedata.objects.filter(moveinfo=moi).get(pokemon=foundmon)
+            except:
+                pm=pokemon_movedata.objects.create(moveinfo=moi,pokemon=foundmon)
+            if move in list(foundmon.moves.all().values_list('moveinfo__name',flat=True)):
+                pm.uses+=movelist[move]['uses']
+                pm.hits+=movelist[move]['hits']
+                pm.crits+=movelist[move]['crits']
+                pm.posssecondaryeffects+=movelist[move]['posssecondaryeffects']
+                pm.secondaryeffects+=movelist[move]['secondaryeffects']
+                pm.save()
+            else:
+                try:
+                    unmatched_moves.objects.create(pokemon=foundmon,moveinfo=moi,replay=replay)
+                except:
+                    pass
+        #elif historic or current
+        except:
+            try:
+                pm=pokemon_movedata.objects.filter(moveinfo=moi).get(pokemon=foundmon.pokemon)
+            except:
+                pm=pokemon_movedata.objects.create(moveinfo=moi,pokemon=foundmon.pokemon)
+            if move in list(foundmon.pokemon.moves.all().values_list('moveinfo__name',flat=True)):
+                pm.uses+=movelist[move]['uses']
+                pm.hits+=movelist[move]['hits']
+                pm.crits+=movelist[move]['crits']
+                pm.posssecondaryeffects+=movelist[move]['posssecondaryeffects']
+                pm.secondaryeffects+=movelist[move]['secondaryeffects']
+                pm.save()
+            else:
+                try:
+                    unmatched_moves.objects.create(pokemon=foundmon.pokemon,moveinfo=moi,replay=replay)
+                except:
+                    pass
+    return

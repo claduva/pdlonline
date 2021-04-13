@@ -15,7 +15,7 @@
             <div><h5>Schedule</h5></div>
         </div>
     </div>
-    <div class="col-3 d-none d-md-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-3 d-none d-md-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
     <div class="col-12">
@@ -32,10 +32,10 @@
                 <td>{{match.team1.teamname}} ({{match.team1.teamabbreviation}}) vs {{match.team2.teamname}} ({{match.team2.teamabbreviation}})</td>
                 <td><a class="btn btn-sm btn-primary" href="{% url 'matchup' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Matchup</a></td>
                 {% if match.replay %}
-                <td><a class="btn btn-sm btn-primary" href="">Replay</a></td>
+                <td><a class="btn btn-sm btn-primary" href="{% url 'replay' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Replay</a></td>
                 {% else %}
                 {% if request.user in match.team1.user.all or request.user in match.team2.user.all or request.user in match.team1.season.subleague.league.moderators.all %}
-                <td><a class="btn btn-sm btn-primary" href="">Upload Replay</a></td>
+                <td><a class="btn btn-sm btn-primary" href="{% url 'upload_replay' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Upload Replay</a></td>
                 {% endif %}
                 {% if request.user in match.team1.season.subleague.league.moderators.all %}
                 <td class="d-flex justify-content-around">

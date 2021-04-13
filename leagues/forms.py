@@ -95,6 +95,14 @@ class MatchForm(forms.ModelForm):
         self.fields['playoff_week'].label="Playoff Week (Only select if playoff match)"
         self.fields['playoff_week'].required=False
 
+class ReplayForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+
+    class Meta:
+        model = match
+        fields = ['replay']
+
 class FreeAgencyForm(forms.ModelForm):
     helper = FormHelper()
     helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))

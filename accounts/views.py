@@ -10,12 +10,20 @@ import os
 import socket
 import urllib.parse
 from .forms import UserSettingsForm
+from django.contrib.auth import get_user_model
+UserModel = get_user_model()
 
 def user_settings(request):
     if request.method=="POST":
         form=UserSettingsForm(request.POST,instance=request.user)
         if form.is_valid():
-            form.save()
+            nu=form.save(commit=False)
+            for sa in nu.showdown_alts:
+                otherusers=UserModel.objects.filter(showdown_alts__contains=[sa]).exclude(id=request.user.id)
+                if otherusers.count()>0:
+                    messages.error(request,"Showdown Alt is already registered to another user!",extra_tags='danger')
+                    return redirect('user_settings')
+            nu.save()
             messages.success(request,f'Your details have updated!')
         else:
             messages.error(request,form.errors,extra_tags='danger')

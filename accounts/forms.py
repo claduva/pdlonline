@@ -29,9 +29,7 @@ class UserSettingsForm(forms.ModelForm):
         model = CustomUser
         fields = ['username', 'email','biography','timezone','showdown_alts']
 
-        labels = {
-            'showdown_alts': 'Pokemon Showdown Usernames/Alts',
-        }
-        help_texts = {
-            'showdown_alts': 'Enter each username separated by commas. E.g.: pokemontrainer1,pokemontrainer2',
-        }
+    def __init__(self, *args, **kwargs):
+        super(UserSettingsForm, self).__init__(*args, **kwargs)
+        self.fields['showdown_alts'].label="Pokemon Showdown Usernames/Alts"
+        self.fields['showdown_alts'].help_text="Enter each username separated by commas. E.g.: pokemontrainer1,pokemontrainer2"
