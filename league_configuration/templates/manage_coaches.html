@@ -19,12 +19,20 @@
 {% block body %}
 <div class="row bg-darkcolor text-light rounded mt-2">
     <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
-    <div class="col-12">
-        {% if coach %}
+    {% if coach %}
+    <div class="col-md-3">
+        <table class="table table-sm bg-lightcolor text-center"> 
+            <tr><td><a href="{% url 'update_draft' league_id=league.id coach_id=coach.id %}">Update Draft</a></td></tr>
+            <tr><td><a href="{% url 'update_roster' league_id=league.id coach_id=coach.id %}">Update Roster</a></td></tr>
+        </table>
+    </div>
+    <div class="col-md-9">
         <form method="post">{% csrf_token %}
             {% crispy form %} 
         </form>
-        {% else %}
+    </div>
+    {% else %}
+    <div class="col-12">
         {% regroup coaches by season as season_list %}
         <table class="table table-sm bg-lightcolor text-center">
             {% for season in season_list %} 
@@ -49,8 +57,8 @@
                 {% endfor %}
             {% endfor %}
         </table>
-        {% endif %}
     </div>
+    {% endif %}
 </div>
 {% endblock %}
 {% block script %}

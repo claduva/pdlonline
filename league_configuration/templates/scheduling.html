@@ -20,12 +20,12 @@
     <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
     <div class="col-12">
         <h4>Automatically Create Schedule</h4>
-        <div><a href="{% url 'round_robin' league_id=league.id subleague_id=subleague.id %}" class="btn btn-primary form-control">Generate Round Robin</a></div>
+        <div><a href="{% url 'create_schedule' league_id=league.id subleague_id=subleague.id %}" class="btn btn-primary form-control">Generate Default Schedule</a></div>
     </div>
     <div class="col-12"><h4>Manually Create/Modify Schedule</h4></div>
     {% if matches or playoff_matches %}
     <div class="col-md-6">
-        <div class="bg-lightcolor text-dark p-2 rounded">
+        <div class="bg-lightcolor text-dark p-2 mb-3 rounded">
             {% if matches %}
             {% regroup matches by week as week_list %}
             <h4>Existing Regular Season Matches</h4>

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 from .models import league, league_configuration, subleague, league_tier, rules, season, conference, division
-from leagues.models import coach
+from leagues.models import coach, draft,roster
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 
@@ -172,10 +172,11 @@ class AdminManageCoachForm(forms.ModelForm):
         coi=kwargs['instance']
         confs=coi.season.subleague.conferences.all()
         divs=coi.season.subleague.divisions.all()
-        conferencechoices=[(item.conference,item.conference) for item in confs]
+        conferencechoices=[("","---------")]+[(item.conference,item.conference) for item in confs]
         divisionchoices=[("","---------")]+[(item.division,item.division) for item in divs]
         self.fields['conference'].choices = conferencechoices
         self.fields['division'].choices = divisionchoices
+        self.fields['conference'].required = False
         self.fields['division'].required = False
 
 class TeamForm(forms.ModelForm):
@@ -194,3 +195,21 @@ class TeamForm(forms.ModelForm):
             'user':'Select all that apply. Hold "Ctrl" or "Command" and click.',
             'logo:':'Try uploading image to Discord, right-clicking, and selecting "Copy Image Address"',
         }
+
+class UpdateDraftForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Update', css_class='btn-primary btn-sm form-control'))
+    helper.form_show_labels = False
+
+    class Meta:
+        model = draft
+        fields = ['pokemon','points']
+
+class UpdateRosterForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Update', css_class='btn-primary btn-sm form-control'))
+    helper.form_show_labels = False
+
+    class Meta:
+        model = roster
+        fields = ['pokemon']

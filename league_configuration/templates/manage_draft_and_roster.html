@@ -1,0 +1,52 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumb "Settings" "settings" %}
+    {% breadcrumb "Leagues Moderating" "leagues_moderating" %}
+    {% breadcrumb league.name "league_settings" league.id %}
+    {% breadcrumb "League Configuration" "league_configuration" league.id %}
+    {% breadcrumb "Manage Coaches" "manage_coaches" league.id %}
+    {% breadcrumb coach.teamname "manage_coach" league.id coach.id %}
+    {% if draft %}
+    {% breadcrumb "Update Draft" "update_draft" league.id coach.id %}
+    {% endif %}
+    {% if roster %}
+    {% breadcrumb "Update Roster" "update_roster" league.id coach.id %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-12 mt-3">{% render_breadcrumbs "breadcrumbs.html" %}</div>
+    {% if draft %}
+    <div class="col-12 mb-3">
+        {% for item in draft %}
+        <div>
+            <a class="btn btn-primary" href="{% url 'update_draft_item' league_id=league.id coach_id=coach.id draft_id=item.id %}">Pick {{item.picknumber}}: {{item.pokemon.name}}</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if roster %}
+    <div class="col-12 mb-3">
+        {% for item in roster %}
+        <div>
+            <a class="btn btn-primary" href="{% url 'update_roster_item' league_id=league.id coach_id=coach.id roster_id=item.id %}">{{item.pokemon.name}}</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if form %}
+    <div class="col-12 mb-3">
+        {% crispy form %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

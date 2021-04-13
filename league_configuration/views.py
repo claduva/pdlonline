@@ -6,7 +6,7 @@ from django.db.models import Q
 import csv, random
 import pandas as pd
 
-from .forms import CreateLeagueForm, LeagueConfigurationForm, SubleagueConfigurationForm, TierForm, RulesForm, SeasonConfigurationForm, ConferenceForm, DivisionForm, UpdateLeagueForm, AdminManageCoachForm,TeamForm
+from .forms import CreateLeagueForm, LeagueConfigurationForm, SubleagueConfigurationForm, TierForm, RulesForm, SeasonConfigurationForm, ConferenceForm, DivisionForm, UpdateLeagueForm, AdminManageCoachForm,TeamForm, UpdateDraftForm, UpdateRosterForm
 from .models import league,subleague,league_configuration, league_pokemon, league_tier, tier_template,rules,conference,division,discord_settings,season
 from pokemon.models import pokemon
 from leagues.models import application, coach,draft,roster,match
@@ -486,6 +486,68 @@ def manage_coach(request,league_id,coach_id):
 
 @login_required
 @check_if_moderator
+def update_draft(request,league_id,coach_id):
+    loi=league.objects.get(id=league_id)
+    coi=coach.objects.get(id=coach_id)
+    context={
+        'league':loi,
+        'coach': coi,
+        'draft':coi.draft.all().order_by('picknumber')
+    }
+    return  render(request,"manage_draft_and_roster.html",context)
+
+@login_required
+@check_if_moderator
+def update_draft_item(request,league_id,coach_id,draft_id):
+    loi=league.objects.get(id=league_id)
+    coi=coach.objects.get(id=coach_id)
+    di=draft.objects.get(id=draft_id)
+    if request.method=="POST":
+        form=UpdateDraftForm(request.POST,instance=di)
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'Draft has been successfully updated!')
+        return redirect('update_draft',league_id=league_id,coach_id=coach_id)
+    context={
+        'league':loi,
+        'coach': coi,
+        'form': UpdateDraftForm(instance=di)
+    }
+    return  render(request,"manage_draft_and_roster.html",context)
+
+@login_required
+@check_if_moderator
+def update_roster(request,league_id,coach_id):
+    loi=league.objects.get(id=league_id)
+    coi=coach.objects.get(id=coach_id)
+    context={
+        'league':loi,
+        'coach': coi,
+        'roster':coi.roster.all(),
+    }
+    return  render(request,"manage_draft_and_roster.html",context)
+
+@login_required
+@check_if_moderator
+def update_roster_item(request,league_id,coach_id,roster_id):
+    loi=league.objects.get(id=league_id)
+    coi=coach.objects.get(id=coach_id)
+    ri=roster.objects.get(id=roster_id)
+    if request.method=="POST":
+        form=UpdateRosterForm(request.POST,instance=ri)
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'Roster has been successfully updated!')
+        return redirect('update_roster',league_id=league_id,coach_id=coach_id)
+    context={
+        'league':loi,
+        'coach': coi,
+        'form': UpdateRosterForm(instance=ri)
+    }
+    return  render(request,"manage_draft_and_roster.html",context)
+
+@login_required
+@check_if_moderator
 def manage_applications(request,league_id):
     loi=league.objects.get(id=league_id)
     subleagues=loi.subleagues.all()
@@ -675,8 +737,50 @@ def delete_match(request,league_id,subleague_id,match_id):
 
 @login_required
 @check_if_moderator
-def create_round_robin(request,league_id,subleague_id):
-    messages.success(request, f'Round Robin has been created!')    
+def create_schedule(request,league_id,subleague_id):
+    loi=league.objects.get(id=league_id)
+    soi=subleague.objects.get(id=subleague_id)
+    coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference')
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season! Configure it first!',extra_tags="danger")
+        return redirect('season_configuration', league_id=league_id,subleague_id=soi.id)
+    existingmatches=match.objects.filter(team1__season=szn)
+    if existingmatches.exclude(replay__isnull=True).count()>0:
+        messages.error(request,'Matches already exist!',extra_tags='danger')
+        return redirect('scheduling',league_id=league_id,subleague_id=subleague_id)
+    existingmatches.delete()
+    #get conferences
+    conferences=list(coaches.distinct('conference').values_list('conference',flat=True))
+    conference_rosters=[]
+    for c in conferences:
+        coaches_=coaches.filter(conference=c)
+        conference_rosters.append(coaches_)
+    #create matches
+    seasonlength=szn.seasonlength
+    interconfteams=[]
+    for conference in conference_rosters:
+        conference=list(conference)
+        if len(conference) % 2:
+            conference.append(None)
+        count=len(conference)
+        sets=count-1
+        interconf=[]
+        for week in range(sets):
+            if week < seasonlength:
+                for i in range(int(count/2)):
+                    if conference[i]!=None and conference[count-i-1]!=None:
+                        match.objects.create(week=(week+1),team1=conference[i],team2=conference[count-i-1])
+                    elif conference[i]==None:
+                        interconf.append(conference[count-i-1])
+                    elif conference[count-i-1]==None:
+                        interconf.append(conference[i])
+                conference.insert(1, conference.pop())
+        interconfteams.append(interconf)
+    for i in range(len(interconfteams[0])):
+        schedule.objects.create(week=(i+1),team1=interconfteams[0][i],team2=interconfteams[1][i])
+    messages.success(request, f'Schedule has been created!')  
     return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
 
 @login_required
