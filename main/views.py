@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
+from django.db.models import Q
 
 import json
 import math
@@ -8,15 +9,27 @@ import requests
 
 from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_ability, move
 from league_configuration.models import league, subleague, discord_settings
-from leagues.models import coach
+from leagues.models import coach,match
 
 # Create your views here.
 def home(request):
-    all_leagues=league.objects.all()
+    all_leagues=league.objects.all().order_by('name').exclude(name__icontains="test")
     context={
         'all_leagues':all_leagues,
     }
+    coaching=request.user.coaching.all()
+    if coaching.count()>0:
+        context['coaching']=coaching
+        context['upcomingmatches']=match.objects.filter(Q(team1__user=request.user)|Q(team2__user=request.user)).order_by('duedate').exclude(replay__isnull=False)[0:5]
+        return  render(request,"coach_landing_page.html",context)
     return  render(request,"index.html",context)
+
+def league_list(request):
+    all_leagues=league.objects.all().order_by('name').exclude(name__icontains="test")
+    context={
+        'all_leagues':all_leagues,
+    }
+    return  render(request,"league_list.html",context)
 
 def discord(request):
     return  render(request,"discordbot.html")

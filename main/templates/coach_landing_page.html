@@ -1,0 +1,61 @@
+{% extends "template.html" %}
+{% load static %}
+
+{% block title %}Pokemon Draft League Online{% endblock %}
+
+{% block body %}
+<div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
+    <div class="col-12 mt-2">
+        <h4>Teams</h4>
+        <table class="table table-sm bg-lightcolor text-center">
+            {% for team in coaching %}
+            <tr>
+                <td class="align-middle">
+                    <img class="mediumimage" src="{{team.logo}}">
+                </td>
+                <td class="align-middle">
+                    <div><a href="{% url 'league_home' league_id=team.season.subleague.league.id %}">{{team.season.subleague.league.name}} ({{team.season.subleague.league.abbreviation}})</a></div>
+                    <div><a href="{% url 'subleague_home' league_id=team.season.subleague.league.id subleague_id=team.season.subleague.id %}">{{team.season.subleague.name}} Subleague</a></div>
+                    <div><a href="{% url 'teampage' league_id=team.season.subleague.league.id subleague_id=team.season.subleague.id coach_id=team.id %}">{{team.teamname}} ({{team.teamabbreviation}})</a></div>
+                </td>
+                <td class="align-middle">
+                    <div><a href="{% url 'schedule' league_id=team.season.subleague.league.id subleague_id=team.season.subleague.id %}">Schedule</a></div>
+                    <div><a href="{% url 'tiers' league_id=team.season.subleague.league.id subleague_id=team.season.subleague.id %}">Tiers</a></div>
+                    <div><a href="{% url 'draft' league_id=team.season.subleague.league.id subleague_id=team.season.subleague.id %}">Draft</a></div>
+                    <div><a href="{% url 'rules' league_id=team.season.subleague.league.id subleague_id=team.season.subleague.id %}">Rules</a></div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
+    <div class="col-12 mt-2">
+        <h4>Upcoming Matches</h4>
+        <table class="table table-sm bg-lightcolor text-center">
+            {% for match in upcomingmatches %}
+            <tr>
+                <td class="align-middle"><img class="mediumimage" src="{{match.team1.logo}}"></td>
+                <td class="align-middle">
+                    <div><a href="{% url 'teampage' league_id=match.team1.season.subleague.league.id subleague_id=match.team1.season.subleague.id coach_id=match.team1.id %}">{{match.team1.teamname}} ({{match.team1.teamabbreviation}})</a></div>
+                    <div>vs.</div>
+                    <div><a href="{% url 'teampage' league_id=match.team2.season.subleague.league.id subleague_id=match.team2.season.subleague.id coach_id=match.team2.id %}">{{match.team2.teamname}} ({{match.team2.teamabbreviation}})</a></div>
+                    <div>
+                        {% if match.week %}
+                        Week {{match.week}} (Due: {{match.duedate}})
+                        {% else %}
+                        {{match.playoff_week}} (Due: {{match.duedate}})
+                        {% endif %}
+                    </div>
+                </td>
+                <td class="align-middle"><img class="mediumimage" src="{{match.team2.logo}}"></td>
+                <td class="align-middle">
+                    <div><a href="{% url 'matchup' league_id=match.team1.season.subleague.league.id subleague_id=match.team1.season.subleague.id match_id=match.id %}">Matchup</a></div>
+                    <div><a href="{% url 'upload_replay' league_id=match.team1.season.subleague.league.id subleague_id=match.team1.season.subleague.id match_id=match.id %}">Upload Replay</a></div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
