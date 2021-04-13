@@ -103,6 +103,9 @@ def subleague_draft(request,league_id,subleague_id):
     teamdraft=[fulldraft.filter(team__teamname=team['team__teamname']) for team in distinct_teams]
     try:
         currentpick=fulldraft.filter(skipped=False, pokemon__id__isnull=True).first()
+        print(szn.drafttimer)
+        try: timerstart=draft.objects.filter(team__season=szn).get(picknumber=(currentpick['picknumber']-1)).picktime+datetime.timedelta(hours=szn.drafttimer)
+        except: timerstart=szn.draftstart + datetime.timedelta(hours=szn.drafttimer)
         currentroster=fulldraft.filter(team__teamname=currentpick['team__teamname'])
         #check for left picks
         availablepicks=left_pick.objects.filter(team__id=currentpick['team__id']).order_by('id')
@@ -146,6 +149,7 @@ def subleague_draft(request,league_id,subleague_id):
         candraft=False
         canleavepick=False
         skippedpick=False
+        timerstart=None
     #add to context
     context['fulldraft']=fulldraft
     context['teamdraft']=teamdraft
@@ -159,6 +163,7 @@ def subleague_draft(request,league_id,subleague_id):
     context['candraft']=candraft
     context['canleavepick']=canleavepick
     context['skippedpick']=skippedpick
+    context['timerstart']=timerstart
     return  render(request,"draft.html",context)
 
 @login_required
