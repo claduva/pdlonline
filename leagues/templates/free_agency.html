@@ -22,6 +22,48 @@
         {% crispy form %}
     </div>
 </div>
+{% if pending_fas or executed_fas %}
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    <div class="col-12">
+        <table class="table table-sm bg-lightcolor text-center">
+            {% if pending_fas %}
+            <tr class="bg-intermediatecolor text-light"><th colspan="4">Pending Free Agencies</th></tr>
+            <tr class="bg-intermediatecolor text-light">
+                <th>Team</th>
+                <th>Dropped Pokemon</th>
+                <th>Added Pokemon</th>
+                <th>Week Effective</th>
+            </tr>
+            {% for item in pending_fas %}
+            <tr>
+                <td><img class="smallimage" src="{{item.team.logo}}">{{item.team.teamname}} ({{item.team.teamabbreviation}})</td>
+                <td><img class="smallimage" src="{{item.dropped_pokemon.sprite}}">{{item.dropped_pokemon.name}}</td>
+                <td><img class="smallimage" src="{{item.added_pokemon.sprite}}">{{item.added_pokemon.name}}</td>
+                <td>{{item.weekeffective}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            {% if executed_fas %}
+            <tr class="bg-intermediatecolor text-light"><th colspan="4">Completed Free Agencies</th></tr>
+            <tr class="bg-intermediatecolor text-light">
+                <th>Team</th>
+                <th>Dropped Pokemon</th>
+                <th>Added Pokemon</th>
+                <th>Week Effective</th>
+            </tr>
+            {% for item in executed_fas %}
+            <tr>
+                <td><img class="smallimage" src="{{item.team.logo}}">{{item.team.teamname}} ({{item.team.teamabbreviation}})</td>
+                <td><img class="smallimage" src="{{item.dropped_pokemon.sprite}}">{{item.dropped_pokemon.name}}</td>
+                <td><img class="smallimage" src="{{item.added_pokemon.sprite}}">{{item.added_pokemon.name}}</td>
+                <td>{{item.weekeffective}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
 {% block script %}
 {% endblock %}

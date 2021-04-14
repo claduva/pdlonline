@@ -433,7 +433,10 @@ def subleague_freeagency(request,league_id,subleague_id):
     banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
     availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon)).exclude(id__in=list(banned))
     context['form']=FreeAgencyForm(user_pokemon=user_pokemon,availablepokemon=availablepokemon)
-    context['subleague_fas']=free_agency.objects.filter(team__season=szn)
+    subleague_fas=free_agency.objects.filter(team__season=szn)
+    context['subleague_fas']=subleague_fas
+    context['executed_fas']=subleague_fas.filter(executed=True)
+    context['pending_fas']=subleague_fas.filter(executed=False)
     return  render(request,"free_agency.html",context)
 
 def subleague_trading(request,league_id,subleague_id):
@@ -458,9 +461,19 @@ def subleague_trading(request,league_id,subleague_id):
     takenpokemon=roster.objects.filter(team__season=szn)
     user_pokemon=takenpokemon.filter(team=user_team)
     availablepokemon=takenpokemon.exclude(team=user_team)
+    executed_trades=[]
+    executed=list(trading.objects.filter(team__season=szn,executed=True).order_by('id'))
+    for i in range(len(executed)):
+        if i%2==0:executed_trades.append((executed[i],executed[i+1]))
+    pending_trades=[]
+    pending=list(trading.objects.filter(team__season=szn,executed=False).order_by('id'))
+    for i in range(len(pending)):
+        if i%2==0:pending_trades.append((pending[i],pending[i+1]))
     context['form']=TradeRequestForm(user_pokemon=user_pokemon,availablepokemon=availablepokemon)
     context['sentrequests']=trade_request.objects.filter(offeredpokemon__team=user_team)
     context['receivedrequests']=trade_request.objects.filter(requestedpokemon__team=user_team)
+    context['executed_trades']=executed_trades
+    context['pending_trades']=pending_trades
     return  render(request,"trading.html",context)
 
 def trading_actions(request,league_id,subleague_id):
