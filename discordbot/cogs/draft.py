@@ -31,16 +31,15 @@ class Draft(commands.Cog):
                     draft_data=requests.get(f'{baseurl}discord_settings/{subleagueid}/').json()
                     server=draft_data['server']
                     draftchannel=draft_data['draftchannel']
-                    #get nextpick
-                    nextpick=requests.get(f'{baseurl}draft/nextpick/{subleagueid}/{picknumber}/').json()
                     #get guild
                     goi=get(self.bot.guilds,id=server)
                     channel=get(goi.channels,id=draftchannel)
+                    upnextuser=None
                     try:
+                        nextpick=requests.get(f'{baseurl}draft/nextpick/{subleagueid}/{picknumber}/').json()
                         upnextuser=await self.bot.fetch_user(nextpick['userid'])
                         desc=f"The {nextpick['teamname']} ({nextpick['teamabbreviation']}), coached by {nextpick['username']}, are now on the clock. Please go to https://pokemondraftleagueonline.herokuapp.com/league/{leagueid}/subleague/{subleagueid}/draft/ to input your pick."
                     except:
-                        upnextuser
                         desc=f"The draft has completed. Please go to https://pokemondraftleagueonline.herokuapp.com/league/{leagueid}/subleague/{subleagueid}/draft/ to see the complete draft."
                     embed=discord.Embed(
                         title=f"With pick number {picknumber} of the draft, the {teamname} ({teamabbreviation}) have selected {pokemon} for {points} points.", 
