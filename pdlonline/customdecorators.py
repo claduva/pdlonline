@@ -3,6 +3,14 @@ from django.contrib import messages
 from league_configuration.models import league
 from leagues.models import coach
 
+def check_if_clad(view):
+    def wrap(request, *args, **kwargs):
+        if request.user.username!="claduva":
+            return redirect('home')
+        else:    
+            return view(request, *args, **kwargs)
+    return wrap
+
 def check_if_moderator(view):
     def wrap(request, *args, **kwargs):
         league_=league.objects.get(id=kwargs['league_id'])

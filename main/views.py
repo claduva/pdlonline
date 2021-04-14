@@ -17,11 +17,14 @@ def home(request):
     context={
         'all_leagues':all_leagues,
     }
-    coaching=request.user.coaching.all()
-    if coaching.count()>0:
-        context['coaching']=coaching
-        context['upcomingmatches']=match.objects.filter(Q(team1__user=request.user)|Q(team2__user=request.user)).order_by('duedate').exclude(replay__isnull=False)[0:5]
-        return  render(request,"coach_landing_page.html",context)
+    try:
+        coaching=request.user.coaching.all()
+        if coaching.count()>0:
+            context['coaching']=coaching
+            context['upcomingmatches']=match.objects.filter(Q(team1__user=request.user)|Q(team2__user=request.user)).order_by('duedate').exclude(replay__isnull=False)[0:5]
+            return  render(request,"coach_landing_page.html",context)
+    except:
+        pass
     return  render(request,"index.html",context)
 
 def league_list(request):
