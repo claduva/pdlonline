@@ -437,6 +437,7 @@ def subleague_freeagency(request,league_id,subleague_id):
     context['subleague_fas']=subleague_fas
     context['executed_fas']=subleague_fas.filter(executed=True)
     context['pending_fas']=subleague_fas.filter(executed=False)
+    context['remaining']=szn.freeagenciesallowed-free_agency.objects.filter(team=user_team).count()
     return  render(request,"free_agency.html",context)
 
 def subleague_trading(request,league_id,subleague_id):
@@ -474,6 +475,7 @@ def subleague_trading(request,league_id,subleague_id):
     context['receivedrequests']=trade_request.objects.filter(requestedpokemon__team=user_team)
     context['executed_trades']=executed_trades
     context['pending_trades']=pending_trades
+    context['remaining']=szn.tradesallowed-trading.objects.filter(team=user_team).count()
     return  render(request,"trading.html",context)
 
 def trading_actions(request,league_id,subleague_id):

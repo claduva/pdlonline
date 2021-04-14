@@ -13,10 +13,12 @@
             <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
             <div><h5>{{ subleague.name }}</h5></div>
             <div><h5>Trading</h5></div>
+            <div><h5>Remaining Transactions: {{remaining}}</h5></div>
         </div>
     </div>
     <div class="col-3 d-none d-md-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
+{% if remaining > 0 %}
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
     {% if sentrequests or receivedrequests %}
     <div class="col-md-8">
@@ -73,6 +75,7 @@
     </div>
     {% endif %}
 </div>
+{% endif %}
 {% if pending_trades or executed_trades %}
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
     <div class="col-12">
