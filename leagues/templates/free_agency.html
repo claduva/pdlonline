@@ -18,11 +18,13 @@
     </div>
     <div class="col-3 d-none d-md-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
+{% if remaining > 0 %}
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
     <div class="col-12">
         {% crispy form %}
     </div>
 </div>
+{% endif %}
 {% if pending_fas or executed_fas %}
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
     <div class="col-12">
