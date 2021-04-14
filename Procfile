@@ -1,2 +1,2 @@
-web: python manage.py process_tasks & gunicorn pokemondraftleague.wsgi
+web: python manage.py process_tasks & gunicorn pdlonline.wsgi
 worker2: python discordbot/discordbot.py
