@@ -13,8 +13,6 @@ class Events(commands.Cog):
     async def on_message(self,message):
         if message.author==self.bot.user:
             return
-        user=message.author.name
-        msg=message.content
 
     @commands.Cog.listener()
     async def on_command_error(self,ctx,error):
