@@ -13,12 +13,14 @@
             <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
             <div><h5>{{ subleague.name }}</h5></div>
             <div><h5>Free Agency</h5></div>
+            {% if userteam %}
             <div><h5>Remaining Transactions: {{remaining}}</h5></div>
+            {% endif %}
         </div>
     </div>
     <div class="col-3 d-none d-md-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
-{% if remaining > 0 %}
+{% if remaining > 0 and userteam %}
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
     <div class="col-12">
         {% crispy form %}
