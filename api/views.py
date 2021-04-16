@@ -157,7 +157,7 @@ class TradingDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TradingDetailSerializer
 
 class MatchList(generics.ListCreateAPIView):
-    queryset = match.objects.filter(announced=False)
+    queryset = match.objects.filter(announced=False,replay__isnull=False)
     serializer_class = MatchSerializer
 
 class MatchDetail(generics.RetrieveUpdateDestroyAPIView):
