@@ -13,8 +13,8 @@ class Match(commands.Cog):
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
             await asyncio.sleep(30)
-            fa_data=requests.get(f'{baseurl}free_agency/').json()
-            for item in fa_data:
+            match_data=requests.get(f'{baseurl}match/').json()
+            for item in match_data:
                 try:
                     #fadata
                     faid=item['id']
@@ -28,9 +28,9 @@ class Match(commands.Cog):
                     droppedpokemon=item['dropped_pokemon']['name']
                     weekeffective=item['weekeffective']
                     #get channel data
-                    fadata=requests.get(f'{baseurl}discord_settings/{subleagueid}/').json()
-                    server=fadata['server']
-                    fachannel=fadata['fachannel']
+                    matchdata=requests.get(f'{baseurl}discord_settings/{subleagueid}/').json()
+                    server=matchdata['server']
+                    fachannel=matchdata['replaychannel']
                     #get guild
                     goi=get(self.bot.guilds,id=server)
                     channel=get(goi.channels,id=fachannel)
