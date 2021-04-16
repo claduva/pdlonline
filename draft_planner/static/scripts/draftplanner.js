@@ -34,7 +34,7 @@ $(document).ready(function() {
         if ($(".team_mon").length > 1){
             $(".activemon").remove()
             console.log($(".team_mon"))
-            newmon=$(".team_mon").first()
+            newmon=$(".team_mon").last()
             newmon.addClass('activemon')
             newname=newmon.find(".top_mon_name").text()
             update_table_data(newname)
@@ -80,7 +80,7 @@ function loadData(){
 function addMon(){
     $(".activemon").removeClass("activemon")
     montoadd=$(".addedmon_template").first().clone()
-    montoadd.removeClass("addedmon_template").addClass("activemon")
+    montoadd.removeClass("addedmon_template").addClass("activemon").addClass("team_mon")
     $("#addmon").before(montoadd);  
     update_table_data("")
 }
@@ -293,9 +293,49 @@ function saveDraft(){
 }
 
 function loadDraft(){
+    draftid=$("#draftselect").val()
+    if (draftid!='None'){
+        url=`/api/draft_plan/${draftid}/`
+        $.get(url, function( data ) {
+            $("#draftname").val(data.draftname)
+            $("#generation").val(data.generation)
+            if (data.associatedleague){$("#associatedleague").val(data.associatedleague)}
+            else {$("#associatedleague").val('None')}
+            team=data.team
+            $(".team_mon").remove()
+            $.each(team, function(index, item) {
+                addMon()
+                activemon=$(".activemon").first()
+                selectedmon=$("."+classify("pokemon",item)).first()
+                //update active mon
+                newimage=selectedmon.find('.monimage').attr("src")
+                currentimg=activemon.find('img').attr("src", newimage);
+                activemon.removeClass("nomonselected")
+                newname=selectedmon.find('.pokemonname').text()
+                activemon.find('.top_mon_name').text(newname)
+                //update table data
+                update_table_data(newname)
+                update_team_details()
+            })
+        });
+    }
 }
 
 function deleteDraft(){
+    if ($("#draftselect").val() != 'None'){
+        draftid=$("#draftselect").val()
+        url=`/api/draft_plan/${draftid}/`
+        const csrftoken = getCookie('csrftoken');
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            headers: {'X-CSRFToken': csrftoken},
+            success: function(data) {
+                alert('Draft Deleted')
+                location.reload()
+            }
+        });
+    }
 }
 
 function getCookie(name) {

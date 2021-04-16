@@ -33,7 +33,7 @@
             </div>
             <div class="dropdown-divider"></div>
             <div class="font-weight-bold">Associated League</div>
-            <div>
+            <div class="d-none">
                 <select id="associatedleague">
                     <option value="None">None Selected</option>
                 </select>
@@ -43,6 +43,9 @@
             <div>
                 <select id="draftselect">
                     <option value="None">None Selected</option>
+                    {% for plan in plans %}
+                    <option value="{{plan.id}}">{{plan.draftname}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="dropdown-divider"></div>
@@ -435,7 +438,7 @@
     </div>
 </div>
 <div class="row d-none">
-    <div class='col-md-1 bg-lightcolor border text-center rounded addedmon_template team_mon nomonselected'>
+    <div class='col-md-1 bg-lightcolor border text-center rounded addedmon_template nomonselected'>
         <img class="mediumimage" src='{% static "images/defaultsprite.png" %}'>
         <div class="top_mon_name d-none"></div>
     </div>

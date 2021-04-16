@@ -7,9 +7,14 @@ from .models import draft_plan
 # Create your views here.
 def draft_planner(request):
     types=["Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water"]
+    if request.user.is_anonymous:
+        plans=None
+    else:
+        plans=draft_plan.objects.filter(user=request.user)
     context = {
         'types': types,
         'defaultname': 'Untitled',
+        'plans':plans
     }
     return  render(request,"draft_planner.html",context)
 

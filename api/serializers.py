@@ -5,7 +5,7 @@ UserModel = get_user_model()
 
 from draft_planner.models import draft_plan
 from league_configuration.models import league_pokemon,league,discord_settings,season,subleague
-from leagues.models import draft, free_agency, trading,coach
+from leagues.models import draft, free_agency, trading,coach,match
 from pokemon.models import pokemon
 from main.models import bot_message
 
@@ -118,3 +118,15 @@ class DraftPlanSerializer(serializers.ModelSerializer):
     class Meta:
         model=draft_plan
         fields = ['draftname','generation','associatedleague','team']
+
+class MatchSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=match
+        fields = ['week','playoff_week','team1','team2','winner','replay','team1score','team2score']
+
+class MatchAnnouncedSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=match
+        fields = ['announced']
