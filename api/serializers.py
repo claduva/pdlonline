@@ -123,10 +123,10 @@ class MatchSerializer(serializers.ModelSerializer):
     team1=TeamSerializer(read_only = True)
     team2=TeamSerializer(read_only = True)
     winner=TeamSerializer(read_only = True)
-    
+
     class Meta:
         model=match
-        fields = ['id','week','playoff_week','team1','team2','winner','replay','team1score','team2score']
+        fields = ['id','week','playoff_week','team1','team2','winner','replay','team1score','team2score','announced']
 
 class MatchAnnouncedSerializer(serializers.ModelSerializer):
 

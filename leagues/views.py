@@ -269,6 +269,7 @@ def handle_forfeits(request,league_id,subleague_id,match_id):
         if "team1ff" in request.POST:
             moi.replay=f'Team 1 Forfeits'
             moi.winner=team2
+            moi.team2score=3
             team1.losses+=1; team2.wins+=1
             team1.differential+=(-3); team2.differential+=3
             team1.forfeits+=1
@@ -280,6 +281,7 @@ def handle_forfeits(request,league_id,subleague_id,match_id):
         elif "team2ff" in request.POST:
             moi.replay=f'Team 2 Forfeits'
             moi.winner=team1
+            moi.team1score=3
             team2.losses+=1; team1.wins+=1
             team2.differential+=(-3); team1.differential+=3
             team2.forfeits+=1

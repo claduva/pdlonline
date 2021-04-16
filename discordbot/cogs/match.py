@@ -19,16 +19,18 @@ class Match(commands.Cog):
                     matchid=item['id']
                     week=item['week']
                     playoff_week=item['playoff_week']
-
-                    subleagueid=item['team']['season']['subleague']['id']
-                    leagueid=item['team']['season']['subleague']['league']['id']
-                    teamname=item['team']['teamname']
-                    teamabbreviation=item['team']['teamabbreviation']
-                    logo=item['team']['logo']
-                    addedpokemon=item['added_pokemon']['name']
-                    sprite=item['added_pokemon']['sprite']
-                    droppedpokemon=item['dropped_pokemon']['name']
-                    weekeffective=item['weekeffective']
+                    wtu = f"Week {week}" if week else playoff_week
+                    team1=item['team1']['teamname']
+                    team1a=item['team1']['teamabbreviation']
+                    team1score=item['team1score']
+                    team2=item['team2']['teamname']
+                    team2a=item['team2']['teamabbreviation']
+                    team2score=item['team2score']
+                    winner=item['winner']['teamname']
+                    winnera=item['winner']['teamabbreviation']
+                    replay=item['replay']
+                    subleagueid=item['team1']['season']['subleague']['id']
+                    leagueid=item['team1']['season']['subleague']['league']['id']
                     #get channel data
                     matchdata=requests.get(f'{baseurl}discord_settings/{subleagueid}/').json()
                     server=matchdata['server']
@@ -36,10 +38,17 @@ class Match(commands.Cog):
                     #get guild
                     goi=get(self.bot.guilds,id=server)
                     channel=get(goi.channels,id=fachannel)
-                    embed=discord.Embed(
-                        title=f"The {teamname} ({teamabbreviation}) have picked up {addedpokemon} in free agency. To make room on the roster, they have released {droppedpokemon}.", 
-                        url=f"https://pokemondraftleagueonline.herokuapp.com/league/{leagueid}/subleague/{subleagueid}/free_agency/", 
-                        description=f"This will be effective Week {weekeffective}. Go to https://pokemondraftleagueonline.herokuapp.com/league/{leagueid}/subleague/{subleagueid}/free_agency/ for more information.")
+                    if replay.find("Forfeit")>-1:
+                        embed=discord.Embed(
+                            title=f"{wtu}: {team1} ({team1a}) vs. {team2} ({team2a})", 
+                            description=f"Replay: {replay}")
+                    else:
+                        embed=discord.Embed(
+                            title=f"{wtu}: {team1} ({team1a}) vs. {team2} ({team2a})", 
+                            url=replay, 
+                            description=f"Replay: {replay}")
+                    embed.add_field(name="Winner", value=f"||{winnera}||", inline=True)
+                    embed.add_field(name="Score", value=f"||{team1score}-{team2score}||", inline=True)
                     #embed.timestamp = datetime.datetime.utcnow()
                     await channel.send(embed=embed)
                     url=f'{baseurl}match/{matchid}/'
