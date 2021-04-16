@@ -39,7 +39,7 @@
                 </select>
             </div>
             <div class="dropdown-divider"></div>
-            <div class="font-weight-bold">Load Existing Draft</div>
+            <div class="font-weight-bold">Loaded Draft</div>
             <div>
                 <select id="draftselect">
                     <option value="None">None Selected</option>
@@ -55,6 +55,7 @@
         <div id="teamlist" class="row m-2 justify-content-center">
             <div class='col-md-1 bg-lightcolor activemon border text-center rounded team_mon nomonselected'>
                 <img class="mediumimage" src='{% static "images/defaultsprite.png" %}'>
+                <div class="top_mon_name d-none"></div>
             </div>
             <div id="addmon" class='col-md-1 border text-center bg-lightcolor text-dark rounded'>
                 <i class="bi-plus-circle-fill" style="font-size: 2rem;"></i>
@@ -67,8 +68,8 @@
         <div class="card table-responsive bg-lightcolor text-dark text-center text-nowrap overflow-auto">
             <table class="table table-sm p-0 m-0 text-center">
                 <tr class="bg-darkcolor text-light">
-                    <th class="text-left"><i class="bi-trash-fill" style="font-size: 1rem;"></i></th>
-                    <th><img class="smallimage mx-2" src='{% static "images/defaultsprite.png" %}'></th>
+                    <th class="text-left"><i id="deleteactivemon" class="bi-trash-fill" style="font-size: 1rem;"></i></th>
+                    <th><img id="tableimg" class="smallimage mx-2" src='{% static "images/defaultsprite.png" %}'></th>
                 </tr>
                 <tr>
                     <td>Pokemon</td>
@@ -257,7 +258,7 @@
         </div>
     </div>
 </div>
-<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+<div id="teaminfo" class="row align-items-center bg-darkcolor text-light rounded mt-2 teaminfo">
     <div class="col-4">
         <table class="table table-sm table-striped table-bordered bg-lightcolor mt-2 text-center">
             <thead>
@@ -268,35 +269,35 @@
             <tbody>
                 <tr>
                     <td>Stealth Rock</td>
-                    <td id="StealthRock"></td>
+                    <td class="teamdata move-stealthrock"></td>
                 </tr>
                 <tr>
                     <td>Spikes</td>
-                    <td id="Spikes"></td>
+                    <td class="teamdata move-spikes"></td>
                 </tr>
                 <tr>
                     <td>Toxic Spikes</td>
-                    <td id="ToxicSpikes"></td>
+                    <td class="teamdata move-toxicspikes"></td>
                 </tr>
                 <tr>
                     <td>Sticky Web</td>
-                    <td id="StickyWeb"></td>
+                    <td class="teamdata move-stickyweb"></td>
                 </tr>
                 <tr>
                     <td>Hazard Control</td>
-                    <td id="HazardControl"></td>
+                    <td class="teamdata move-rapidspin move-defog move-courtchange"></td>
                 </tr>
                 <tr>
                     <td>Heal Bell/Aromatherapy</td>
-                    <td id="Cleric"></td>
+                    <td class="teamdata move-aromatherapy move-healbell"></td>
                 </tr>
                 <tr>
                     <td>Wish</td>
-                    <td id="Wish"></td>
+                    <td class="teamdata move-wish"></td>
                 </tr>
                 <tr>
                     <td>Priority</td>
-                    <td id="Priority"></td>
+                    <td class="teamdata" id="Priority"></td>
                 </tr>
             </tbody>
         </table>
@@ -315,9 +316,9 @@
                     <td><img src="{% static 'images/type_images/Water.png' %}"></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="teamdata type-grass"></td>
+                    <td class="teamdata type-fire"></td>
+                    <td class="teamdata type-water"></td>
                 </tr>
                 <tr>
                     <td><img src="{% static 'images/type_images/Dark.png' %}"></td>
@@ -325,9 +326,9 @@
                     <td><img src="{% static 'images/type_images/Psychic.png' %}"></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="teamdata type-dark"></td>
+                    <td class="teamdata type-fighting"></td>
+                    <td class="teamdata type-psychic"></td>
                 </tr>
                 <tr>
                     <td><img src="{% static 'images/type_images/Dragon.png' %}"></td>
@@ -335,9 +336,9 @@
                     <td><img src="{% static 'images/type_images/Steel.png' %}"></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="teamdata type-dragon"></td>
+                    <td class="teamdata type-fairy"></td>
+                    <td class="teamdata type-steel"></td>
                 </tr>
                 <tr>
                     <td><img src="{% static 'images/type_images/Electric.png' %}"></td>
@@ -345,15 +346,15 @@
                     <td><img src="{% static 'images/type_images/Poison.png' %}"></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="teamdata type-electric"></td>
+                    <td class="teamdata type-dark"></td>
+                    <td class="teamdata type-poison"></td>
                 </tr>
                 <tr>
                     <td colspan="3"><img src="{% static 'images/type_images/Ghost.png' %}"></td>
                 </tr>
                 <tr>
-                    <td colspan="3"></td>
+                    <td class="teamdata type-ghost" colspan="3"></td>
                 </tr>
             </tbody>
         </table>
@@ -368,37 +369,35 @@
             <tbody>
                 <tr>
                     <td>&lt;=30</td>
-                    <td></td>
+                    <td id="speed30" class="teamdata"></td>
                 </tr>
                 <tr>
                     <td>31-50</td>
-                    <td></td>
+                    <td id="speed50" class="teamdata"></td>
                 </tr>
                 <tr>
                     <td>51-70</td>
-                    <td></td>
+                    <td id="speed70" class="teamdata"></td>
                 </tr>
                 <tr>
                     <td>71-90</td>
-                    <td></td>
+                    <td id="speed90" class="teamdata"></td>
                 </tr>
                 <tr>
                     <td>91-110</td>
-                    <td></td>
+                    <td id="speed110" class="teamdata"></td>
                 </tr>
                 <tr>
                     <td>>110</td>
-                    <td></td>
+                    <td id="speedfast" class="teamdata"></td>
                 </tr>
                 <tr>
                     <td>Largest Speed Gap</td>
-                    <td></td>
+                    <td class="teamdata" id="speedgap"></td>
                 </tr>
             </tbody>
         </table>
     </div>
-</div>
-<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
     <div class="col-12">
         <table class="table table-sm table-striped table-bordered bg-lightcolor mt-2 text-center">
             <thead>
@@ -424,11 +423,11 @@
                         <img src="{% static source %}">
                         {% endwith %}
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="teamdata {{type|lower}}3"></td>
+                    <td class="teamdata {{type|lower}}2"></td>
+                    <td class="teamdata {{type|lower}}1"></td>
+                    <td class="teamdata {{type|lower}}-1"></td>
+                    <td class="teamdata {{type|lower}}-2"></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -438,6 +437,7 @@
 <div class="row d-none">
     <div class='col-md-1 bg-lightcolor border text-center rounded addedmon_template team_mon nomonselected'>
         <img class="mediumimage" src='{% static "images/defaultsprite.png" %}'>
+        <div class="top_mon_name d-none"></div>
     </div>
 </div>
 {% endblock %}

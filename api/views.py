@@ -8,11 +8,12 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from api.serializers import PokemonSerializer, LeaguePokemonSerializer, LeagueSerializer, DiscordSettingsSerializer, BotMessageSerializer,DraftSerializer,TradingSerializer,FreeAgencySerializer,DraftDetailSerializer,FreeAgencyDetailSerializer,TradingDetailSerializer
+from api.serializers import PokemonSerializer, LeaguePokemonSerializer, LeagueSerializer, DiscordSettingsSerializer, BotMessageSerializer,DraftSerializer,TradingSerializer,FreeAgencySerializer,DraftDetailSerializer,FreeAgencyDetailSerializer,TradingDetailSerializer, DraftPlanSerializer
 from league_configuration.models import league_pokemon, league,discord_settings
 from leagues.models import draft, free_agency, trading
 from main.models import bot_message
 from pokemon.models import move, pokemon, pokemon_ability, pokemon_type
+from draft_planner.models import *
 
 # Create your views here.
 class PokemonViewSet(viewsets.ModelViewSet):
@@ -154,3 +155,7 @@ class TradingList(generics.ListCreateAPIView):
 class TradingDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = trading.objects.all()
     serializer_class = TradingDetailSerializer
+
+class DraftPlanDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = draft_plan.objects.all()
+    serializer_class = DraftPlanSerializer

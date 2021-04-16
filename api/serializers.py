@@ -3,6 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 
+from draft_planner.models import draft_plan
 from league_configuration.models import league_pokemon,league,discord_settings,season,subleague
 from leagues.models import draft, free_agency, trading,coach
 from pokemon.models import pokemon
@@ -111,3 +112,9 @@ class TradingDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = trading
         fields = ['announced']
+
+class DraftPlanSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=draft_plan
+        fields = ['draftname','generation','associatedleague','team']

@@ -44,24 +44,161 @@ def runscript(request):
     return redirect('home')
 
 def update_all_pokemon(request):
-    with open('pokemonmovesets.json') as f:
-        movesets = json.load(f)
-        for item in pokemon.objects.all():
-            print(item.name)
-            name=item.name.replace("-Eternal","")
-            moveset=movesets[name]
-            data=item.data
-            data['movesets']={}
-            data['movesets']['gen8']=moveset['ss']
-            data['movesets']['gen7']=moveset['sm']
-            data['movesets']['gen6']=moveset['xy']
-            data['movesets']['gen5']=moveset['bw']
-            data['movesets']['gen4']=moveset['dp']
-            data['movesets']['gen3']=moveset['rs']
-            data['movesets']['gen2']=moveset['gs']
-            data['movesets']['gen1']=moveset['rb']
-            item.data=data
-            item.save()
+    types=["Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water"]
+    for i, item in enumerate(pokemon.objects.all(), start=1):
+        template = {t: 0 for t in types}
+        print(i)
+        data=item.data
+        for t in data['types']:
+            if t=="Bug":
+                template["Fighting"]+=1
+                template["Flying"]+=-1
+                template["Ground"]+=1
+                template["Rock"]+=-1
+                template["Fire"]+=-1
+                template["Grass"]+=1
+            elif t=="Dark":
+                template["Fighting"]+=-1
+                template["Bug"]+=-1
+                template["Ghost"]+=1
+                template["Dark"]+=1
+                template["Fairy"]+=-1
+            elif t=="Dragon":
+                template["Fire"]+=1
+                template["Water"]+=1
+                template["Grass"]+=1
+                template["Electric"]+=1
+                template["Ice"]+=-1
+                template["Dragon"]+=-1
+                template["Fairy"]+=-1
+            elif t=="Electric":
+                template["Flying"]+=1
+                template["Ground"]+=-1
+                template["Steel"]+=1
+                template["Electric"]+=1
+            elif t=="Fairy":
+                template["Fighting"]+=1
+                template["Poison"]+=-1
+                template["Bug"]+=1
+                template["Steel"]+=-1
+                template["Dark"]+=1
+            elif t=="Fighting":
+                template["Flying"]+=-1
+                template["Rock"]+=1
+                template["Bug"]+=1
+                template["Psychic"]+=-1
+                template["Dark"]+=1
+                template["Fairy"]+=-1
+            elif t=="Fire":
+                template["Ground"]+=-1
+                template["Rock"]+=-1
+                template["Bug"]+=1
+                template["Steel"]+=1
+                template["Fire"]+=1
+                template["Water"]+=-1
+                template["Grass"]+=1
+                template["Ice"]+=1
+                template["Fairy"]+=1
+            elif t=="Flying":
+                template["Fighting"]+=1
+                template["Rock"]+=-1
+                template["Bug"]+=1
+                template["Grass"]+=1
+                template["Electric"]+=-1
+                template["Ice"]+=-1
+            elif t=="Ghost":
+                template["Poison"]+=1
+                template["Bug"]+=1
+                template["Dark"]+=-1
+                template["Ghost"]+=-1
+            elif t=="Grass":
+                template["Flying"]+=-1
+                template["Poison"]+=-1
+                template["Grass"]+=1
+                template["Ground"]+=1
+                template["Bug"]+=-1
+                template["Fire"]+=-1
+                template["Water"]+=1
+                template["Electric"]+=1
+                template["Ice"]+=-1
+            elif t=="Ground":
+                template["Poison"]+=1
+                template["Rock"]+=1
+                template["Water"]+=-1
+                template["Grass"]+=-1
+                template["Ice"]+=-1
+            elif t=="Ice":
+                template["Fighting"]+=-1
+                template["Steel"]+=-1
+                template["Fire"]+=-1
+                template["Rock"]+=-1
+                template["Ice"]+=1
+            elif t=="Normal":
+                template["Fighting"]+=-1
+            elif t=="Poison":
+                template["Fighting"]+=1
+                template["Poison"]+=1
+                template["Ground"]+=-1
+                template["Bug"]+=1
+                template["Grass"]+=1
+                template["Psychic"]+=-1
+                template["Fairy"]+=1
+            elif t=="Psychic":
+                template["Fighting"]+=1
+                template["Bug"]+=-1
+                template["Ghost"]+=-1
+                template["Dark"]+=-1
+                template["Psychic"]+=1
+            elif t=="Rock":
+                template["Normal"]+=1
+                template["Fighting"]+=-1
+                template["Flying"]+=1
+                template["Poison"]+=1
+                template["Ground"]+=-1
+                template["Steel"]+=-1
+                template["Fire"]+=1
+                template["Water"]+=-1
+                template["Grass"]+=-1
+            elif t=="Steel":
+                template["Normal"]+=1
+                template["Fighting"]+=-1
+                template["Flying"]+=1
+                template["Ground"]+=-1
+                template["Rock"]+=1
+                template["Bug"]+=1
+                template["Steel"]+=1
+                template["Fire"]+=-1
+                template["Grass"]+=1
+                template["Psychic"]+=1
+                template["Ice"]+=1
+                template["Dragon"]+=1
+                template["Fairy"]+=1
+            elif t=="Water":
+                template["Steel"]+=1
+                template["Fire"]+=1
+                template["Water"]+=1
+                template["Grass"]+=-1
+                template["Electric"]+=-1
+                template["Ice"]+=1
+        for t in data['types']:
+            if t=="Dark":
+                template["Psychic"]=3
+            elif t=="Fairy":
+                template["Dragon"]=3
+            elif t=="Flying":
+                template["Ground"]=3
+            elif t=="Ghost":
+                template["Normal"]=3
+                template["Fighting"]=3
+            elif t=="Ground":
+                template["Electric"]=3
+            elif t=="Normal":
+                template["Ghost"]=3
+            elif t=="Steel":
+                template["Poison"]=3
+        data['type_effectiveness']=template
+        item.data=data
+        item.save()
     return redirect('home')
 
 #if settings.DEBUG == True:

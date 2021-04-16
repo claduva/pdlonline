@@ -26,4 +26,5 @@ urlpatterns = [
     path('api/free_agency/<int:pk>/', views.FreeAgencyDetail.as_view()),
     path('api/trading/', views.TradingList.as_view()),
     path('api/trading/<int:pk>/', views.TradingDetail.as_view()),
+    path('api/draft_plan/<int:pk>/', views.DraftPlanDetail.as_view()),
 ]
