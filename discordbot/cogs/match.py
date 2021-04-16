@@ -16,8 +16,10 @@ class Match(commands.Cog):
             match_data=requests.get(f'{baseurl}match/').json()
             for item in match_data:
                 try:
-                    #fadata
-                    faid=item['id']
+                    matchid=item['id']
+                    week=item['week']
+                    playoff_week=item['playoff_week']
+
                     subleagueid=item['team']['season']['subleague']['id']
                     leagueid=item['team']['season']['subleague']['league']['id']
                     teamname=item['team']['teamname']
@@ -38,11 +40,9 @@ class Match(commands.Cog):
                         title=f"The {teamname} ({teamabbreviation}) have picked up {addedpokemon} in free agency. To make room on the roster, they have released {droppedpokemon}.", 
                         url=f"https://pokemondraftleagueonline.herokuapp.com/league/{leagueid}/subleague/{subleagueid}/free_agency/", 
                         description=f"This will be effective Week {weekeffective}. Go to https://pokemondraftleagueonline.herokuapp.com/league/{leagueid}/subleague/{subleagueid}/free_agency/ for more information.")
-                    embed.set_thumbnail(url=logo)
-                    embed.set_image(url=sprite)
                     #embed.timestamp = datetime.datetime.utcnow()
                     await channel.send(embed=embed)
-                    url=f'{baseurl}free_agency/{faid}/'
+                    url=f'{baseurl}match/{matchid}/'
                     data={'announced':True}
                     update=requests.put(url,data = data)
                     if update.status_code == 200:
