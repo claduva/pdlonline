@@ -120,7 +120,8 @@ class DraftPlanSerializer(serializers.ModelSerializer):
         fields = ['draftname','generation','associatedleague','team']
 
 class MatchSerializer(serializers.ModelSerializer):
-
+    team1=TeamSerializer(read_only = True)
+    team2=TeamSerializer(read_only = True)
     class Meta:
         model=match
         fields = ['week','playoff_week','team1','team2','winner','replay','team1score','team2score']
