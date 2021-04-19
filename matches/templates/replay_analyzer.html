@@ -24,6 +24,17 @@
 </div>
 <div class="row align-items-center bg-darkcolor text-light rounded mt-2">
     <div class="col-12">
+        <form method="post" class="mt-2 mb-3" enctype="multipart/form-data" action="{% url 'replay_analyzer_html' %}">{% csrf_token %}
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="replay_html">
+                <label class="custom-file-label" for="customFile">Choose HTML File</label>
+                <input type="submit" class="btn btn-primary form-control">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light rounded mt-2">
+    <div class="col-12">
         <div class="bg-lightcolor text-dark my-2 p-2 rounded text-center">
         <h4>Replay Analyzer Statistics</h4>
         <div>Kills (K): Total Pokemon knocked out directly or indirectly</div>
@@ -39,4 +50,12 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block script %}
+<script>
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
 {% endblock %}

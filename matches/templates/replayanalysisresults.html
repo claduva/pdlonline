@@ -36,8 +36,11 @@ Replay Analyzer Results
 <div class="row align-items-center bg-darkcolor text-light rounded mt-2 pt-2">
     {% if results %}
     <div class="col-12">
+        {% if filedata %}
+        {% else %}
         {% if results.replay %}
         <iframe src="{{ results.replay }}" height="500vh" width="100%"></iframe>
+        {% endif %}
         {% endif %}
     </div>
     <div class="col-12">
@@ -109,7 +112,7 @@ Replay Analyzer Results
                 <td>
                     <div class="d-flex justify-content-center">
                         <img class="smallimage"
-                        src="{% static 'images/pdllogo.png' %}">
+                        src="{{item.pokemon|sprite}}">
                         <div>{{item.pokemon}} ({{item.remaininghealth}}/100)</div>
                     </div>
                 </td>
@@ -168,7 +171,7 @@ Replay Analyzer Results
                 <td>
                     <div class="d-flex justify-content-center">
                         <img class="smallimage"
-                            src="{% static 'images/pdllogo.png' %}">
+                        src="{{ item.pokemon|sprite }}">
                         <div>{{item.pokemon}} ({{item.remaininghealth}}/100)</div>
                     </div>
                 </td>
@@ -213,7 +216,7 @@ Replay Analyzer Results
             <tr class="bg-dark text-light"><th colspan="6">
                 <div class="d-flex justify-content-center">
                     <img class="smallimage"
-                        src="{% static 'images/pdllogo.png' %}">
+                        src="{{ mon.pokemon|sprite }}">
                     <div>{{mon.pokemon}}</div>
                 </div>
             </th></tr>
@@ -242,7 +245,7 @@ Replay Analyzer Results
             <tr class="bg-dark text-light"><th colspan="6">
                 <div class="d-flex justify-content-center">
                     <img class="smallimage"
-                        src="{% static 'images/pdllogo.png' %}">
+                        src="{{ mon.pokemon|sprite }}">
                     <div>{{mon.pokemon}}</div>
                 </div>
             </th></tr>

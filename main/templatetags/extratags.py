@@ -1,6 +1,7 @@
 from django import template
 register = template.Library()
 from accounts.models import CustomUser
+from pokemon.models import pokemon
 import math
 
 @register.filter(name='pokedexnumber')
@@ -83,3 +84,11 @@ def speed(value,arg):
     elif multiplier==2:
         resp=math.floor(neutral*2)  
     return resp
+
+@register.filter(name="sprite")
+def sprite(string):
+    try:
+        sprite=pokemon.objects.get(name=string).sprite
+    except:
+        sprite="/static/images/pdllogo.png"
+    return sprite

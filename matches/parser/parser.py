@@ -110,8 +110,8 @@ def prepare_parsedlogfile(logfile,replay):
 
 def replayparse(replay):
     #initialize variables
-    if replay.find("logfiles")>-1 and replay.find(".txt")>-1:
-        logfile = requests.get(replay).text.splitlines()
+    if len(replay.splitlines())>1:
+        logfile = replay.splitlines()
     else:
         logfile = requests.get(replay+".log").text.splitlines()   
     #iterate through parsed logfile
@@ -551,6 +551,8 @@ def move_function(line,parsedlogfile,results):
             if line_[2]=="activate" and line_[3].find(defendingteam)>-1 and line_[3].find(target['nickname'])>-1 and line_[3].split("|")[1].split("move: ")[1] in ['Protect','Detect',"King's Sheild",'Spiky Sheild','Mat Block','Obstruct']:
                 targetnotprotected=False
             if line_[2] in ['switch','drag'] and line_[3].find(attackingteam)>-1:
+                break
+            if line_[2]=="damage" and line_[3].find(defendingteam)>-1 and line_[3].find(target['nickname'])>-1:
                 break
         for line_ in turndata_:
             if line_[2] in ["move","switch"] and line_[3].split(": ")[0]==defendingteam:
