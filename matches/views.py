@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .parser.parser import *
-from lxml import html
 
 # Create your views here.
 def replay_analyzer(request):
