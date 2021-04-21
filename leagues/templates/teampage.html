@@ -35,7 +35,7 @@
                     <td class="d-none d-md-table-cell">{{pokemon.remaininghealth}}</td>
                     <td class="d-none d-md-table-cell">{{pokemon.damagedone}}</td>
                     <td class="d-none d-md-table-cell">{{pokemon.hphealed}}</td>
-                    <td class="d-none d-md-table-cell">{{pokemon.luck}}</td>
+                    <td class="d-none d-md-table-cell">{{pokemon.luck|floatformat:2}}</td>
                     <td class="d-none d-md-table-cell">{{pokemon.support}}</td>
                 </tr>
             {% endfor %}
