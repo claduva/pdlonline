@@ -352,13 +352,15 @@ def upload_replay(request,league_id,subleague_id,match_id):
             coach1=results['team1']['coach']
             coach2=results['team2']['coach']
             try:
-                coach1user=UserModel.objects.get(showdow_alts__contains=[coach1])
-            except:
+                coach1user=UserModel.objects.get(showdown_alts__contains=[coach1])
+            except Exception as e:
+                print(e)
                 messages.error(request,f'A matching showdown alt for {coach1} was not found!',extra_tags='danger')
                 return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
             try:
-                coach2user=UserModel.objects.get(showdow_alts__contains=[coach2])
-            except:
+                coach2user=UserModel.objects.get(showdown_alts__contains=[coach2])
+            except Exception as e:
+                print(e)
                 messages.error(request,f'A matching showdown alt for {coach2} was not found!',extra_tags='danger')
                 return redirect('schedule',league_id=league_id,subleague_id=subleague_id)
             #align teams
@@ -390,6 +392,7 @@ def replay(request,league_id,subleague_id,match_id):
     moi=match.objects.get(id=match_id)
     context['match']= moi
     context['results']= moi.data
+    print(moi.data)
     return render(request,"replayanalysisresults.html",context)
 
 def subleague_freeagency(request,league_id,subleague_id):
@@ -645,7 +648,7 @@ def save_league_replay(request,results,team1,team2,mtu):
     #update coach2 data
     team2.wins+=results['team2']['wins']
     team2.losses+=abs(results['team2']['wins']-1)
-    team2.forfeit+=results['team2']['forfeit']
+    team2.forfeits+=results['team2']['forfeit']
     if results['team2']['forfeit'] == 1:
         team2.differential+=(-3)
     else:
@@ -664,6 +667,7 @@ def save_league_replay(request,results,team1,team2,mtu):
     #update match
     mtu.team1score=results['team1']['score'] 
     mtu.team2score=results['team2']['score'] 
+    mtu.data=results
     if results['team1']['wins'] ==1: mtu.winner=team1
     elif results['team2']['wins']==1: mtu.winner=team2
     objectstosave.append(mtu)
@@ -678,10 +682,10 @@ def save_league_replay(request,results,team1,team2,mtu):
 
 def pokemonsearch(pokemon,rosterofinterest,errormons):
     try:
-        mon=rosterofinterest.get(pokemon__pokemon=pokemon)
+        mon=rosterofinterest.get(pokemon__name=pokemon)
     except:
         try:
-            mon=rosterofinterest.get(pokemon__pokemon__icontains=pokemon)
+            mon=rosterofinterest.get(pokemon__name__icontains=pokemon)
         except:
             mon=None
             errormons.append(pokemon)

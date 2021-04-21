@@ -1,58 +1,18 @@
 {
   "team1": {
-    "coach": "ThinkingSceptile",
+    "coach": "Somewhat Ok",
     "roster": [
       {
-        "pokemon": "Zapdos-Galar",
-        "startform": "Zapdos",
-        "nickname": "Zapdos",
-        "kills": 1,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 81,
-        "hphealed": -31,
-        "luck": -0.04167,
-        "remaininghealth": 57,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Brave Bird": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Roserade",
-        "startform": "Roserade",
-        "nickname": "Roserade",
+        "pokemon": "Coalossal",
+        "startform": "Coalossal",
+        "nickname": "Stone Cold",
         "kills": 0,
         "deaths": 1,
         "causeofdeath": null,
         "support": 1,
-        "damagedone": 84,
+        "damagedone": 133,
         "hphealed": 0,
-        "luck": 1.84167,
+        "luck": 0.1,
         "remaininghealth": 0,
         "lines": [],
         "confusion": null,
@@ -65,7 +25,7 @@
         "Curse": null,
         "atk": 0,
         "def": 0,
-        "spa": 0,
+        "spa": -6,
         "spd": 0,
         "spe": 0,
         "accuracy": 0,
@@ -73,53 +33,13 @@
         "Focus Energy": false,
         "semiinv": false,
         "moves": {
-          "Spikes": {
-            "uses": 1,
-            "hits": 1,
+          "Earth Power": {
+            "uses": 2,
+            "hits": 2,
             "crits": 0,
-            "posssecondaryeffects": 0,
+            "posssecondaryeffects": 2,
             "secondaryeffects": 0
           },
-          "Sludge Bomb": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 1,
-            "secondaryeffects": 1
-          }
-        }
-      },
-      {
-        "pokemon": "Tyranitar",
-        "startform": "Tyranitar",
-        "nickname": "Tyranitar",
-        "kills": 0,
-        "deaths": 1,
-        "causeofdeath": null,
-        "support": 2,
-        "damagedone": 120,
-        "hphealed": 19,
-        "luck": -1.1333199999999999,
-        "remaininghealth": 0,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": "Slowking",
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
           "Stealth Rock": {
             "uses": 1,
             "hits": 1,
@@ -127,189 +47,32 @@
             "posssecondaryeffects": 0,
             "secondaryeffects": 0
           },
-          "Thunder Wave": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Earthquake": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Excadrill",
-        "startform": "Excadrill",
-        "nickname": "Excadrill",
-        "kills": 1,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 49,
-        "hphealed": -9,
-        "luck": -0.04167,
-        "remaininghealth": 91,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Iron Head": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Tapu Fini",
-        "startform": "Tapu Fini",
-        "nickname": "Tapu Fini",
-        "kills": 1,
-        "deaths": 1,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 135,
-        "hphealed": 26,
-        "luck": 0.8,
-        "remaininghealth": 0,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Ice Beam": {
+          "Overheat": {
             "uses": 3,
             "hits": 3,
             "crits": 0,
-            "posssecondaryeffects": 2,
-            "secondaryeffects": 1
-          }
-        }
-      },
-      {
-        "pokemon": "Heatran",
-        "startform": "Heatran",
-        "nickname": "Heatran",
-        "kills": 3,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 214,
-        "hphealed": 0,
-        "luck": -0.04167,
-        "remaininghealth": 100,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Eruption": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
             "posssecondaryeffects": 0,
             "secondaryeffects": 0
           }
         }
-      }
-    ],
-    "wins": 1,
-    "forfeit": 0,
-    "score": 3,
-    "megaevolved": false,
-    "usedzmove": false,
-    "timesswitched": 10,
-    "selfdeaths": 0,
-    "remaininghealth": 248,
-    "totalhealth": 600,
-    "kills": 6,
-    "deaths": 3,
-    "luck": 1.3833000000000002,
-    "damagedone": 683,
-    "hphealed": 5,
-    "support": 3,
-    "activemon": "Heatran",
-    "Toxic Spikes": null,
-    "Spikes": null,
-    "Stealth Rock": null,
-    "G-Max Steelsurge": null,
-    "Future Sight": "Slowking",
-    "Doom Desire": null,
-    "Sandstorm": null,
-    "Hail": null,
-    "Leech Seed": null
-  },
-  "team2": {
-    "coach": "LuckyLucas0464",
-    "roster": [
+      },
       {
-        "pokemon": "Slowking-Galar",
-        "startform": "Slowking",
-        "nickname": "Slowking",
+        "pokemon": "Simisear",
+        "startform": "Simisear",
+        "nickname": "Gas Monkey",
         "kills": 0,
         "deaths": 1,
         "causeofdeath": null,
         "support": 0,
-        "damagedone": 115,
-        "hphealed": 39,
-        "luck": 1.41666,
+        "damagedone": 0,
+        "hphealed": 0,
+        "luck": 0.04167,
         "remaininghealth": 0,
         "lines": [],
         "confusion": null,
         "psn": null,
         "brn": null,
-        "par": "Tyranitar",
+        "par": null,
         "frz": null,
         "tox": null,
         "slp": null,
@@ -323,34 +86,19 @@
         "evasion": 0,
         "Focus Energy": false,
         "semiinv": false,
-        "moves": {
-          "Scald": {
-            "uses": 3,
-            "hits": 3,
-            "crits": 1,
-            "posssecondaryeffects": 3,
-            "secondaryeffects": 1
-          },
-          "Future Sight": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
+        "moves": {}
       },
       {
-        "pokemon": "Garchomp",
-        "startform": "Garchomp",
-        "nickname": "Garchomp",
-        "kills": 1,
+        "pokemon": "Bouffalant",
+        "startform": "Bouffalant",
+        "nickname": "The Clown",
+        "kills": 0,
         "deaths": 1,
         "causeofdeath": null,
         "support": 0,
-        "damagedone": 88,
-        "hphealed": -19,
-        "luck": -0.04167,
+        "damagedone": 0,
+        "hphealed": -25,
+        "luck": 0.12500999999999998,
         "remaininghealth": 0,
         "lines": [],
         "confusion": null,
@@ -371,9 +119,9 @@
         "Focus Energy": false,
         "semiinv": false,
         "moves": {
-          "Earthquake": {
-            "uses": 2,
-            "hits": 2,
+          "Substitute": {
+            "uses": 1,
+            "hits": 1,
             "crits": 0,
             "posssecondaryeffects": 0,
             "secondaryeffects": 0
@@ -388,63 +136,9 @@
         }
       },
       {
-        "pokemon": "Tornadus-Therian",
-        "startform": "Tornadus",
-        "nickname": "Tornadus",
-        "kills": 2,
-        "deaths": 1,
-        "causeofdeath": null,
-        "support": 1,
-        "damagedone": 68,
-        "hphealed": 33,
-        "luck": -2.8583299999999996,
-        "remaininghealth": 0,
-        "lines": [],
-        "confusion": null,
-        "psn": "Roserade",
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Defog": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "U-turn": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Hurricane": {
-            "uses": 3,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Melmetal",
-        "startform": "Melmetal",
-        "nickname": "Melmetal",
+        "pokemon": "Cryogonal",
+        "startform": "Cryogonal",
+        "nickname": "Mr.Freeze",
         "kills": 0,
         "deaths": 1,
         "causeofdeath": null,
@@ -474,17 +168,246 @@
         "moves": {}
       },
       {
-        "pokemon": "Tangrowth",
-        "startform": "Tangrowth",
-        "nickname": "Tangrowth",
+        "pokemon": "Exeggutor",
+        "startform": "Exeggutor",
+        "nickname": "Arnold Palmer",
+        "kills": 1,
+        "deaths": 1,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 77,
+        "hphealed": 25,
+        "luck": 0.18334,
+        "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Psychic": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Floatzel",
+        "startform": "Floatzel",
+        "nickname": "The Undertaker",
         "kills": 0,
         "deaths": 1,
         "causeofdeath": null,
         "support": 0,
-        "damagedone": 86,
-        "hphealed": 30,
-        "luck": 0.1,
+        "damagedone": 83,
+        "hphealed": 0,
+        "luck": 0.05833,
         "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Aqua Jet": {
+            "uses": 2,
+            "hits": 2,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      }
+    ],
+    "wins": 0,
+    "forfeit": 0,
+    "score": 0,
+    "megaevolved": false,
+    "usedzmove": false,
+    "timesswitched": 9,
+    "selfdeaths": 0,
+    "remaininghealth": 0,
+    "totalhealth": 600,
+    "kills": 1,
+    "deaths": 6,
+    "luck": 0.5083,
+    "damagedone": 293,
+    "hphealed": 0,
+    "support": 1,
+    "activemon": "Stone Cold",
+    "Toxic Spikes": null,
+    "Spikes": null,
+    "Stealth Rock": null,
+    "G-Max Steelsurge": null,
+    "Future Sight": null,
+    "Doom Desire": null,
+    "Sandstorm": null,
+    "Hail": null,
+    "Leech Seed": null
+  },
+  "team2": {
+    "coach": "spookd",
+    "roster": [
+      {
+        "pokemon": "Regigigas",
+        "startform": "Regigigas",
+        "nickname": "Regigigas",
+        "kills": 1,
+        "deaths": 0,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 42,
+        "hphealed": 57,
+        "luck": -0.15833,
+        "remaininghealth": 77,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 3,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Power-Up Punch": {
+            "uses": 3,
+            "hits": 3,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Rest": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Magmortar",
+        "startform": "Magmortar",
+        "nickname": "Magmortar",
+        "kills": 1,
+        "deaths": 0,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 64,
+        "hphealed": 0,
+        "luck": -0.04167,
+        "remaininghealth": 76,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Flamethrower": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Lurantis",
+        "startform": "Lurantis",
+        "nickname": "Lurantis",
+        "kills": 0,
+        "deaths": 0,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 0,
+        "hphealed": 0,
+        "luck": 0.0,
+        "remaininghealth": 100,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {}
+      },
+      {
+        "pokemon": "Persian-Alola",
+        "startform": "Persian",
+        "nickname": "Persian",
+        "kills": 0,
+        "deaths": 0,
+        "causeofdeath": null,
+        "support": 2,
+        "damagedone": 33,
+        "hphealed": 0,
+        "luck": -0.12500999999999998,
+        "remaininghealth": 100,
         "lines": [],
         "confusion": null,
         "psn": null,
@@ -511,7 +434,21 @@
             "posssecondaryeffects": 0,
             "secondaryeffects": 0
           },
-          "Giga Drain": {
+          "Foul Play": {
+            "uses": 2,
+            "hits": 2,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Taunt": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Parting Shot": {
             "uses": 1,
             "hits": 1,
             "crits": 0,
@@ -521,16 +458,77 @@
         }
       },
       {
-        "pokemon": "Tapu Koko",
-        "startform": "Tapu Koko",
-        "nickname": "Tapu Koko",
-        "kills": 0,
+        "pokemon": "Aurorus",
+        "startform": "Aurorus",
+        "nickname": "Aurorus",
+        "kills": 3,
+        "deaths": 0,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 339,
+        "hphealed": 0,
+        "luck": -0.04167,
+        "remaininghealth": 11,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Rock Polish": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Meteor Beam": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Hyper Voice": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Earth Power": {
+            "uses": 2,
+            "hits": 2,
+            "crits": 0,
+            "posssecondaryeffects": 1,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Garbodor",
+        "startform": "Garbodor",
+        "nickname": "Garbodor",
+        "kills": 1,
         "deaths": 1,
         "causeofdeath": null,
         "support": 0,
-        "damagedone": 0,
+        "damagedone": 122,
         "hphealed": 0,
-        "luck": 0.0,
+        "luck": -0.14167,
         "remaininghealth": 0,
         "lines": [],
         "confusion": null,
@@ -550,28 +548,43 @@
         "evasion": 0,
         "Focus Energy": false,
         "semiinv": false,
-        "moves": {}
+        "moves": {
+          "Stomping Tantrum": {
+            "uses": 2,
+            "hits": 2,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Gunk Shot": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 1,
+            "secondaryeffects": 0
+          }
+        }
       }
     ],
-    "wins": 0,
-    "forfeit": 1,
-    "score": 0,
+    "wins": 1,
+    "forfeit": 0,
+    "score": 5,
     "megaevolved": false,
     "usedzmove": false,
-    "timesswitched": 7,
+    "timesswitched": 4,
     "selfdeaths": 0,
-    "remaininghealth": 0,
+    "remaininghealth": 364,
     "totalhealth": 600,
-    "kills": 3,
-    "deaths": 6,
-    "luck": -1.3833000000000002,
-    "damagedone": 357,
-    "hphealed": 83,
-    "support": 1,
-    "activemon": "Tornadus",
+    "kills": 6,
+    "deaths": 1,
+    "luck": -0.5084000000000001,
+    "damagedone": 600,
+    "hphealed": 57,
+    "support": 2,
+    "activemon": "Regigigas",
     "Toxic Spikes": null,
-    "Spikes": "Roserade",
-    "Stealth Rock": "Tyranitar",
+    "Spikes": null,
+    "Stealth Rock": "Stone Cold",
     "G-Max Steelsurge": null,
     "Future Sight": null,
     "Doom Desire": null,
@@ -583,647 +596,515 @@
   "Gravity": 1.0,
   "Rain": false,
   "Hail": false,
-  "numberofturns": 21,
+  "numberofturns": 20,
   "turns": [],
-  "replay": "|html|<div class=\"broadcast-blue\"><strong>[Gen 8] OU is currently suspecting Zamazenta-Crowned! For information on how to participate check out the <a href=\"https://www.smogon.com/forums/threads/np-ss-ou-suspect-process-round-10-royals.3681787/\">suspect thread</a>.</strong></div>\n|j|\u2606ThinkingSceptile\n|j|\u2606LuckyLucas0464\n|t:|1618687662\n|gametype|singles\n|player|p1|ThinkingSceptile|ghetsis|1318\n|player|p2|LuckyLucas0464|harlequin|1333\n|teamsize|p1|6\n|teamsize|p2|6\n|gen|8\n|tier|[Gen 8] OU\n|rated|\n|clearpoke\n|poke|p1|Zapdos-Galar|\n|poke|p1|Roserade, F|\n|poke|p1|Tyranitar, F|\n|poke|p1|Excadrill, M|\n|poke|p1|Tapu Fini|\n|poke|p1|Heatran, M|\n|poke|p2|Slowking-Galar, F|\n|poke|p2|Garchomp, F|\n|poke|p2|Tornadus-Therian, M|\n|poke|p2|Melmetal|\n|poke|p2|Tangrowth, F|\n|poke|p2|Tapu Koko|\n|rule|Sleep Clause Mod: Limit one foe put to sleep\n|rule|Species Clause: Limit one of each Pok\u00e9mon\n|rule|OHKO Clause: OHKO moves are banned\n|rule|Evasion Moves Clause: Evasion moves are banned\n|rule|Endless Battle Clause: Forcing endless battles is banned\n|rule|HP Percentage Mod: HP is shown in percentages\n|rule|Dynamax Clause: You cannot dynamax\n|teampreview\n|inactive|Battle timer is ON: inactive players will automatically lose when time's up. (requested by ThinkingSceptile)\n|\n|t:|1618687678\n|start\n|switch|p1a: Heatran|Heatran, M|100/100\n|switch|p2a: Slowking|Slowking-Galar, F|100/100\n|turn|1\n|\n|t:|1618687692\n|switch|p1a: Tyranitar|Tyranitar, F|100/100\n|-weather|Sandstorm|[from] ability: Sand Stream|[of] p1a: Tyranitar\n|move|p2a: Slowking|Scald|p1a: Tyranitar\n|-supereffective|p1a: Tyranitar\n|-damage|p1a: Tyranitar|77/100\n|\n|-weather|Sandstorm|[upkeep]\n|-damage|p2a: Slowking|94/100|[from] Sandstorm\n|-heal|p1a: Tyranitar|83/100|[from] item: Leftovers\n|upkeep\n|turn|2\n|\n|t:|1618687709\n|switch|p2a: Tangrowth|Tangrowth, F|100/100\n|move|p1a: Tyranitar|Stealth Rock|p2a: Tangrowth\n|-sidestart|p2: LuckyLucas0464|move: Stealth Rock\n|\n|-weather|Sandstorm|[upkeep]\n|-damage|p2a: Tangrowth|94/100|[from] Sandstorm\n|-heal|p1a: Tyranitar|90/100|[from] item: Leftovers\n|upkeep\n|turn|3\n|\n|t:|1618687718\n|switch|p1a: Roserade|Roserade, F|100/100\n|move|p2a: Tangrowth|Knock Off|p1a: Roserade\n|-damage|p1a: Roserade|58/100\n|-enditem|p1a: Roserade|Life Orb|[from] move: Knock Off|[of] p2a: Tangrowth\n|\n|-weather|Sandstorm|[upkeep]\n|-damage|p1a: Roserade|52/100|[from] Sandstorm\n|-damage|p2a: Tangrowth|88/100|[from] Sandstorm\n|upkeep\n|turn|4\n|\n|t:|1618687723\n|switch|p2a: Slowking|Slowking-Galar, F|100/100\n|-damage|p2a: Slowking|88/100|[from] Stealth Rock\n|move|p1a: Roserade|Spikes|p2a: Slowking\n|-sidestart|p2: LuckyLucas0464|Spikes\n|\n|-weather|Sandstorm|[upkeep]\n|-damage|p1a: Roserade|46/100|[from] Sandstorm\n|-damage|p2a: Slowking|82/100|[from] Sandstorm\n|upkeep\n|turn|5\n|\n|t:|1618687733\n|switch|p1a: Tyranitar|Tyranitar, F|90/100\n|move|p2a: Slowking|Future Sight|p1a: Tyranitar\n|-start|p2a: Slowking|move: Future Sight\n|\n|-weather|none\n|-heal|p1a: Tyranitar|96/100|[from] item: Leftovers\n|upkeep\n|turn|6\n|\n|t:|1618687743\n|move|p1a: Tyranitar|Thunder Wave|p2a: Slowking\n|-status|p2a: Slowking|par\n|move|p2a: Slowking|Scald|p1a: Tyranitar\n|-supereffective|p1a: Tyranitar\n|-damage|p1a: Tyranitar|62/100\n|\n|-heal|p1a: Tyranitar|68/100|[from] item: Leftovers\n|upkeep\n|turn|7\n|\n|t:|1618687751\n|move|p1a: Tyranitar|Earthquake|p2a: Slowking\n|-supereffective|p2a: Slowking\n|-damage|p2a: Slowking|22/100 par\n|move|p2a: Slowking|Scald|p1a: Tyranitar\n|-supereffective|p1a: Tyranitar\n|-crit|p1a: Tyranitar\n|-damage|p1a: Tyranitar|22/100\n|-status|p1a: Tyranitar|brn\n|\n|-end|p1a: Tyranitar|move: Future Sight\n|-immune|p1a: Tyranitar\n|-heal|p1a: Tyranitar|28/100 brn|[from] item: Leftovers\n|-damage|p1a: Tyranitar|22/100 brn|[from] brn\n|upkeep\n|turn|8\n|\n|t:|1618687764\n|switch|p1a: Tapu Fini|Tapu Fini|100/100\n|-fieldstart|move: Misty Terrain|[from] ability: Misty Surge|[of] p1a: Tapu Fini\n|switch|p2a: Tangrowth|Tangrowth, F|100/100\n|-damage|p2a: Tangrowth|88/100|[from] Stealth Rock\n|-damage|p2a: Tangrowth|76/100|[from] Spikes\n|\n|upkeep\n|turn|9\n|\n|t:|1618687768\n|move|p1a: Tapu Fini|Ice Beam|p2a: Tangrowth\n|-supereffective|p2a: Tangrowth\n|-damage|p2a: Tangrowth|22/100\n|move|p2a: Tangrowth|Giga Drain|p1a: Tapu Fini\n|-supereffective|p1a: Tapu Fini\n|-damage|p1a: Tapu Fini|58/100\n|-heal|p2a: Tangrowth|40/100|[from] drain|[of] p1a: Tapu Fini\n|\n|-heal|p1a: Tapu Fini|64/100|[from] item: Leftovers\n|upkeep\n|turn|10\n|\n|t:|1618687780\n|move|p1a: Tapu Fini|Ice Beam|p2a: Tangrowth\n|-supereffective|p2a: Tangrowth\n|-damage|p2a: Tangrowth|0 fnt\n|faint|p2a: Tangrowth\n|\n|-heal|p1a: Tapu Fini|70/100|[from] item: Leftovers\n|upkeep\n|\n|t:|1618687786\n|switch|p2a: Tornadus|Tornadus-Therian, M|100/100\n|turn|11\n|\n|t:|1618687794\n|move|p2a: Tornadus|Defog|p1a: Tapu Fini\n|-unboost|p1a: Tapu Fini|evasion|1\n|-sideend|p2: LuckyLucas0464|Spikes|[from] move: Defog|[of] p2a: Tornadus\n|-sideend|p2: LuckyLucas0464|Stealth Rock|[from] move: Defog|[of] p2a: Tornadus\n|-fieldend|Misty Terrain\n|move|p1a: Tapu Fini|Ice Beam|p2a: Tornadus\n|-supereffective|p2a: Tornadus\n|-damage|p2a: Tornadus|59/100\n|-status|p2a: Tornadus|frz\n|\n|-heal|p1a: Tapu Fini|76/100|[from] item: Leftovers\n|upkeep\n|turn|12\n|c|\u2606ThinkingSceptile|sry\n|c|\u2606LuckyLucas0464|-,-\n|\n|t:|1618687809\n|switch|p1a: Tyranitar|Tyranitar, F|22/100 brn\n|-weather|Sandstorm|[from] ability: Sand Stream|[of] p1a: Tyranitar\n|cant|p2a: Tornadus|frz\n|\n|-weather|Sandstorm|[upkeep]\n|-damage|p2a: Tornadus|53/100 frz|[from] Sandstorm\n|-heal|p1a: Tyranitar|28/100 brn|[from] item: Leftovers\n|-damage|p1a: Tyranitar|22/100 brn|[from] brn\n|upkeep\n|turn|13\n|c|\u2606LuckyLucas0464|not your fault\n|\n|t:|1618687826\n|-curestatus|p2a: Tornadus|frz|[msg]\n|move|p2a: Tornadus|U-turn|p1a: Tyranitar\n|-supereffective|p1a: Tyranitar\n|-damage|p1a: Tyranitar|0 fnt\n|faint|p1a: Tyranitar\n|\n|t:|1618687831\n|switch|p2a: Slowking|Slowking-Galar, F|55/100 par|[from]move: U-turn\n|\n|-weather|Sandstorm|[upkeep]\n|-damage|p2a: Slowking|49/100 par|[from] Sandstorm\n|upkeep\n|\n|t:|1618687834\n|switch|p1a: Excadrill|Excadrill, M|100/100\n|turn|14\n|\n|t:|1618687838\n|move|p1a: Excadrill|Iron Head|p2a: Slowking\n|-damage|p2a: Slowking|0 fnt\n|-damage|p1a: Excadrill|91/100|[from] item: Life Orb\n|faint|p2a: Slowking\n|\n|-weather|Sandstorm|[upkeep]\n|upkeep\n|\n|t:|1618687846\n|switch|p2a: Garchomp|Garchomp, F|100/100\n|turn|15\n|\n|t:|1618687850\n|switch|p1a: Tapu Fini|Tapu Fini|76/100\n|-fieldstart|move: Misty Terrain|[from] ability: Misty Surge|[of] p1a: Tapu Fini\n|move|p2a: Garchomp|Earthquake|p1a: Tapu Fini\n|-damage|p1a: Tapu Fini|35/100\n|-damage|p2a: Garchomp|91/100|[from] item: Life Orb\n|\n|-weather|Sandstorm|[upkeep]\n|-damage|p1a: Tapu Fini|29/100|[from] Sandstorm\n|-heal|p1a: Tapu Fini|35/100|[from] item: Leftovers\n|upkeep\n|turn|16\n|\n|t:|1618687856\n|move|p2a: Garchomp|Earthquake|p1a: Tapu Fini\n|-damage|p1a: Tapu Fini|0 fnt\n|-damage|p2a: Garchomp|81/100|[from] item: Life Orb\n|faint|p1a: Tapu Fini\n|\n|-weather|none\n|upkeep\n|\n|t:|1618687862\n|switch|p1a: Zapdos|Zapdos-Galar|100/100\n|turn|17\n|\n|t:|1618687865\n|move|p2a: Garchomp|Swords Dance|p2a: Garchomp\n|-boost|p2a: Garchomp|atk|2\n|move|p1a: Zapdos|Brave Bird|p2a: Garchomp\n|-damage|p2a: Garchomp|0 fnt\n|-damage|p1a: Zapdos|88/100|[from] ability: Rough Skin|[of] p2a: Garchomp\n|-damage|p1a: Zapdos|58/100|[from] Recoil\n|faint|p2a: Garchomp\n|\n|upkeep\n|\n|t:|1618687874\n|switch|p2a: Tornadus|Tornadus-Therian, M|86/100\n|turn|18\n|\n|t:|1618687880\n|switch|p1a: Roserade|Roserade, F|46/100\n|move|p2a: Tornadus|Hurricane|p1a: Roserade|[miss]\n|-miss|p2a: Tornadus|p1a: Roserade\n|\n|upkeep\n|turn|19\n|\n|t:|1618687885\n|move|p2a: Tornadus|Hurricane|p1a: Roserade|[miss]\n|-miss|p2a: Tornadus|p1a: Roserade\n|move|p1a: Roserade|Sludge Bomb|p2a: Tornadus\n|-damage|p2a: Tornadus|39/100\n|-status|p2a: Tornadus|psn\n|\n|-damage|p2a: Tornadus|26/100 psn|[from] psn\n|-fieldend|Misty Terrain\n|upkeep\n|turn|20\n|\n|t:|1618687898\n|move|p2a: Tornadus|Hurricane|p1a: Roserade\n|-supereffective|p1a: Roserade\n|-damage|p1a: Roserade|0 fnt\n|faint|p1a: Roserade\n|\n|-damage|p2a: Tornadus|14/100 psn|[from] psn\n|upkeep\n|\n|t:|1618687907\n|switch|p1a: Heatran|Heatran, M|100/100\n|turn|21\n|\n|t:|1618687929\n|move|p1a: Heatran|Eruption|p2a: Tornadus\n|-damage|p2a: Tornadus|0 fnt\n|faint|p2a: Tornadus\n|\n|upkeep\n|-message|LuckyLucas0464 forfeited.\n|\n|win|ThinkingSceptile\n|raw|ThinkingSceptile's rating: 1318 &rarr; <strong>1339</strong><br />(+21 for winning)\n|raw|LuckyLucas0464's rating: 1333 &rarr; <strong>1312</strong><br />(-21 for losing)\n|l|\u2606LuckyLucas0464\n||Ladder isn't responding, score probably updated but might not have (Request timeout).\n",
+  "replay": "https://replay.pokemonshowdown.com/sports-gen8nationaldexdraft-391755-9llpn2ux0c2dtvmif3vovghz5swd42lpw",
   "significantevents": [
     [
-      2,
-      "Tyranitar provided support by using Stealth Rock"
-    ],
-    [
       4,
-      "Roserade provided support by using Spikes"
+      "Persian-Alola provided support by using Taunt"
     ],
     [
-      6,
-      "Tyranitar provided support by using Thunder Wave"
+      5,
+      "Persian-Alola provided support by using Parting Shot"
     ],
     [
-      10,
-      "Tapu Fini killed Tangrowth with Ice Beam"
+      7,
+      "Aurorus killed Cryogonal with Meteor Beam"
+    ],
+    [
+      8,
+      "Aurorus killed Bouffalant with Hyper Voice"
+    ],
+    [
+      9,
+      "Aurorus killed Simisear with Earth Power"
     ],
     [
       11,
-      "Tornadus-Therian provided support by using Defog"
+      "Garbodor killed Floatzel via item: Rocky Helmet|[of] p2a: Garbodor"
     ],
     [
-      13,
-      "Tornadus-Therian killed Tyranitar with U-turn"
+      12,
+      "Coalossal provided support by using Stealth Rock"
     ],
     [
       14,
-      "Excadrill killed Slowking-Galar with Iron Head"
+      "Exeggutor killed Garbodor with Psychic"
     ],
     [
-      16,
-      "Garchomp killed Tapu Fini with Earthquake"
-    ],
-    [
-      17,
-      "Zapdos-Galar killed Garchomp with Brave Bird"
+      15,
+      "Magmortar killed Exeggutor with Flamethrower"
     ],
     [
       20,
-      "Tornadus-Therian killed Roserade with Hurricane"
-    ],
-    [
-      21,
-      "Heatran killed Tornadus-Therian with Eruption"
+      "Regigigas killed Coalossal with Power-Up Punch"
     ]
   ],
   "luckcatalog": [
     [
-      14,
-      "Excadrill",
-      "Mon Used Move With Crit Chance (Iron Head)",
-      0.0,
-      -0.04167,
-      -0.04167
-    ],
-    [
-      15,
-      "Garchomp",
-      "Mon Used Move With Crit Chance (Earthquake)",
-      0.0,
-      -0.04167,
-      -0.04167
-    ],
-    [
-      16,
-      "Garchomp",
-      "Mon Used Move With Crit Chance (Earthquake)",
-      -0.04167,
-      -0.04167,
-      -0.08334
-    ],
-    [
-      17,
-      "Garchomp",
-      "Target of Move With Crit Chance (Brave Bird)",
-      -0.08334,
-      0.04167,
-      -0.04167
-    ],
-    [
-      21,
-      "Heatran",
-      "Mon Used Move With Crit Chance (Eruption)",
-      0.0,
-      -0.04167,
-      -0.04167
-    ],
-    [
-      3,
-      "Roserade",
-      "Target of Move With Crit Chance (Knock Off)",
+      5,
+      "Aurorus",
+      "Target of Move With Crit Chance (Earth Power)",
       0.0,
       0.04167,
       0.04167
     ],
     [
-      18,
-      "Roserade",
-      "Target of Move That Can Miss (Hurricane)",
-      0.04167,
-      -0.3,
-      -0.25833
-    ],
-    [
-      18,
-      "Roserade",
-      "Opponent missed a move (Hurricane)",
-      -0.25833,
-      1.0,
-      0.74167
-    ],
-    [
-      19,
-      "Roserade",
-      "Target of Move That Can Miss (Hurricane)",
-      0.74167,
-      -0.3,
-      0.44167
-    ],
-    [
-      19,
-      "Roserade",
-      "Opponent missed a move (Hurricane)",
-      0.44167,
-      1.0,
-      1.44167
-    ],
-    [
-      19,
-      "Roserade",
-      "Mon Used Move With Crit Chance (Sludge Bomb)",
-      1.44167,
-      -0.04167,
-      1.4
-    ],
-    [
-      19,
-      "Roserade",
-      "Mon Used Move With Secondary Effect Chance (Sludge Bomb)",
-      1.4,
-      -0.3,
-      1.1
-    ],
-    [
-      19,
-      "Roserade",
-      "Mon incurred secondary effect (Sludge Bomb)",
-      1.1,
-      1.0,
-      2.1
-    ],
-    [
-      20,
-      "Roserade",
-      "Target of Move That Can Miss (Hurricane)",
-      2.1,
-      -0.3,
-      1.8
-    ],
-    [
-      20,
-      "Roserade",
-      "Target of Move With Crit Chance (Hurricane)",
-      1.8,
-      0.04167,
-      1.84167
-    ],
-    [
-      1,
-      "Slowking-Galar",
-      "Mon Used Move With Crit Chance (Scald)",
-      0.0,
-      -0.04167,
-      -0.04167
-    ],
-    [
-      1,
-      "Slowking-Galar",
-      "Mon Used Move With Secondary Effect Chance (Scald)",
-      -0.04167,
-      -0.3,
-      -0.34167000000000003
-    ],
-    [
       5,
-      "Slowking-Galar",
-      "Mon Used Move With Crit Chance (Future Sight)",
-      -0.34167000000000003,
-      -0.04167,
-      -0.38334
-    ],
-    [
-      6,
-      "Slowking-Galar",
-      "Target of Move That Can Miss (Thunder Wave)",
-      -0.38334,
-      -0.1,
-      -0.48334000000000005
-    ],
-    [
-      6,
-      "Slowking-Galar",
-      "Mon Broke Through Paralysis",
-      -0.48334000000000005,
-      0.25,
-      -0.23334000000000002
-    ],
-    [
-      6,
-      "Slowking-Galar",
-      "Mon Used Move With Crit Chance (Scald)",
-      -0.23334000000000002,
-      -0.04167,
-      -0.27501000000000003
-    ],
-    [
-      6,
-      "Slowking-Galar",
-      "Mon Used Move With Secondary Effect Chance (Scald)",
-      -0.27501000000000003,
-      -0.3,
-      -0.57501
-    ],
-    [
-      7,
-      "Slowking-Galar",
-      "Target of Move With Crit Chance (Earthquake)",
-      -0.57501,
+      "Aurorus",
+      "Target of Move With Secondary Effect Chance (Earth Power)",
       0.04167,
-      -0.53334
-    ],
-    [
-      7,
-      "Slowking-Galar",
-      "Mon Broke Through Paralysis",
-      -0.53334,
-      0.25,
-      -0.28334000000000004
-    ],
-    [
-      7,
-      "Slowking-Galar",
-      "Mon Used Move With Crit Chance (Scald)",
-      -0.28334000000000004,
-      -0.04167,
-      -0.32501
-    ],
-    [
-      7,
-      "Slowking-Galar",
-      "Mon Used Move With Secondary Effect Chance (Scald)",
-      -0.32501,
-      -0.3,
-      -0.6250100000000001
-    ],
-    [
-      7,
-      "Slowking-Galar",
-      "Mon incurred secondary effect (Scald)",
-      -0.6250100000000001,
-      1.0,
-      0.37498999999999993
-    ],
-    [
-      7,
-      "Slowking-Galar",
-      "Mon landed a critical hit",
-      0.37498999999999993,
-      1.0,
-      1.37499
-    ],
-    [
-      14,
-      "Slowking-Galar",
-      "Target of Move With Crit Chance (Iron Head)",
-      1.37499,
-      0.04167,
-      1.41666
-    ],
-    [
-      3,
-      "Tangrowth",
-      "Mon Used Move With Crit Chance (Knock Off)",
-      0.0,
-      -0.04167,
-      -0.04167
-    ],
-    [
-      9,
-      "Tangrowth",
-      "Target of Move With Crit Chance (Ice Beam)",
-      -0.04167,
-      0.04167,
-      0.0
-    ],
-    [
-      9,
-      "Tangrowth",
-      "Target of Move With Secondary Effect Chance (Ice Beam)",
-      0.0,
       0.1,
+      0.14167
+    ],
+    [
+      8,
+      "Aurorus",
+      "Mon Used Move With Crit Chance (Hyper Voice)",
+      0.14167,
+      -0.04167,
       0.1
     ],
     [
       9,
-      "Tangrowth",
-      "Mon Used Move With Crit Chance (Giga Drain)",
+      "Aurorus",
+      "Mon Used Move With Crit Chance (Earth Power)",
       0.1,
       -0.04167,
       0.05833
     ],
     [
       10,
-      "Tangrowth",
-      "Target of Move With Crit Chance (Ice Beam)",
+      "Aurorus",
+      "Target of Move With Crit Chance (Aqua Jet)",
       0.05833,
       0.04167,
       0.1
     ],
     [
-      9,
-      "Tapu Fini",
-      "Mon Used Move With Crit Chance (Ice Beam)",
-      0.0,
+      10,
+      "Aurorus",
+      "Mon Used Move With Crit Chance (Earth Power)",
+      0.1,
       -0.04167,
-      -0.04167
-    ],
-    [
-      9,
-      "Tapu Fini",
-      "Mon Used Move With Secondary Effect Chance (Ice Beam)",
-      -0.04167,
-      -0.1,
-      -0.14167
-    ],
-    [
-      9,
-      "Tapu Fini",
-      "Target of Move With Crit Chance (Giga Drain)",
-      -0.14167,
-      0.04167,
-      -0.1
+      0.05833
     ],
     [
       10,
-      "Tapu Fini",
-      "Mon Used Move With Crit Chance (Ice Beam)",
+      "Aurorus",
+      "Mon Used Move With Secondary Effect Chance (Earth Power)",
+      0.05833,
       -0.1,
-      -0.04167,
-      -0.14167
+      -0.04167
     ],
     [
-      11,
-      "Tapu Fini",
-      "Mon Used Move With Crit Chance (Ice Beam)",
-      -0.14167,
-      -0.04167,
-      -0.18334
-    ],
-    [
-      11,
-      "Tapu Fini",
-      "Mon Used Move With Secondary Effect Chance (Ice Beam)",
-      -0.18334,
-      -0.1,
-      -0.28334
-    ],
-    [
-      11,
-      "Tapu Fini",
-      "Mon incurred secondary effect (Ice Beam)",
-      -0.28334,
-      1.0,
-      0.71666
-    ],
-    [
-      15,
-      "Tapu Fini",
-      "Target of Move With Crit Chance (Earthquake)",
-      0.71666,
-      0.04167,
-      0.75833
-    ],
-    [
-      16,
-      "Tapu Fini",
-      "Target of Move With Crit Chance (Earthquake)",
-      0.75833,
-      0.04167,
-      0.8
-    ],
-    [
-      11,
-      "Tornadus-Therian",
-      "Target of Move With Crit Chance (Ice Beam)",
+      1,
+      "Bouffalant",
+      "Target of Move With Crit Chance (Knock Off)",
       0.0,
       0.04167,
       0.04167
     ],
     [
+      2,
+      "Bouffalant",
+      "Target of Move With Crit Chance (Foul Play)",
+      0.04167,
+      0.04167,
+      0.08334
+    ],
+    [
+      8,
+      "Bouffalant",
+      "Target of Move With Crit Chance (Hyper Voice)",
+      0.08334,
+      0.04167,
+      0.12500999999999998
+    ],
+    [
+      3,
+      "Coalossal",
+      "Target of Move With Crit Chance (Foul Play)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      5,
+      "Coalossal",
+      "Mon Used Move With Crit Chance (Earth Power)",
+      0.04167,
+      -0.04167,
+      0.0
+    ],
+    [
+      5,
+      "Coalossal",
+      "Mon Used Move With Secondary Effect Chance (Earth Power)",
+      0.0,
+      -0.1,
+      -0.1
+    ],
+    [
+      12,
+      "Coalossal",
+      "Target of Move With Crit Chance (Stomping Tantrum)",
+      -0.1,
+      0.04167,
+      -0.05833
+    ],
+    [
+      16,
+      "Coalossal",
+      "Mon Used Move With Crit Chance (Earth Power)",
+      -0.05833,
+      -0.04167,
+      -0.1
+    ],
+    [
+      16,
+      "Coalossal",
+      "Mon Used Move With Secondary Effect Chance (Earth Power)",
+      -0.1,
+      -0.1,
+      -0.2
+    ],
+    [
+      17,
+      "Coalossal",
+      "Target of Move With Crit Chance (Power-Up Punch)",
+      -0.2,
+      0.04167,
+      -0.15833
+    ],
+    [
+      17,
+      "Coalossal",
+      "Mon Used a Move That Can Miss (Overheat)",
+      -0.15833,
+      0.1,
+      -0.05833
+    ],
+    [
+      17,
+      "Coalossal",
+      "Mon Used Move With Crit Chance (Overheat)",
+      -0.05833,
+      -0.04167,
+      -0.1
+    ],
+    [
+      18,
+      "Coalossal",
+      "Mon Used a Move That Can Miss (Overheat)",
+      -0.1,
+      0.1,
+      0.0
+    ],
+    [
+      18,
+      "Coalossal",
+      "Mon Used Move With Crit Chance (Overheat)",
+      0.0,
+      -0.04167,
+      -0.04167
+    ],
+    [
+      19,
+      "Coalossal",
+      "Target of Move With Crit Chance (Power-Up Punch)",
+      -0.04167,
+      0.04167,
+      0.0
+    ],
+    [
+      19,
+      "Coalossal",
+      "Mon Used a Move That Can Miss (Overheat)",
+      0.0,
+      0.1,
+      0.1
+    ],
+    [
+      19,
+      "Coalossal",
+      "Mon Used Move With Crit Chance (Overheat)",
+      0.1,
+      -0.04167,
+      0.05833
+    ],
+    [
+      20,
+      "Coalossal",
+      "Target of Move With Crit Chance (Power-Up Punch)",
+      0.05833,
+      0.04167,
+      0.1
+    ],
+    [
+      13,
+      "Exeggutor",
+      "Target of Move With Crit Chance (Stomping Tantrum)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      14,
+      "Exeggutor",
+      "Target of Move That Can Miss (Gunk Shot)",
+      0.04167,
+      -0.2,
+      -0.15833
+    ],
+    [
+      14,
+      "Exeggutor",
+      "Target of Move With Crit Chance (Gunk Shot)",
+      -0.15833,
+      0.04167,
+      -0.11666
+    ],
+    [
+      14,
+      "Exeggutor",
+      "Target of Move With Secondary Effect Chance (Gunk Shot)",
+      -0.11666,
+      0.3,
+      0.18334
+    ],
+    [
+      14,
+      "Exeggutor",
+      "Mon Used Move With Crit Chance (Psychic)",
+      0.18334,
+      -0.04167,
+      0.14167
+    ],
+    [
+      15,
+      "Exeggutor",
+      "Target of Move With Crit Chance (Flamethrower)",
+      0.14167,
+      0.04167,
+      0.18334
+    ],
+    [
+      10,
+      "Floatzel",
+      "Mon Used Move With Crit Chance (Aqua Jet)",
+      0.0,
+      -0.04167,
+      -0.04167
+    ],
+    [
+      10,
+      "Floatzel",
+      "Target of Move With Crit Chance (Earth Power)",
+      -0.04167,
+      0.04167,
+      0.0
+    ],
+    [
+      10,
+      "Floatzel",
+      "Target of Move With Secondary Effect Chance (Earth Power)",
+      0.0,
+      0.1,
+      0.1
+    ],
+    [
       11,
-      "Tornadus-Therian",
-      "Target of Move With Secondary Effect Chance (Ice Beam)",
+      "Floatzel",
+      "Mon Used Move With Crit Chance (Aqua Jet)",
+      0.1,
+      -0.04167,
+      0.05833
+    ],
+    [
+      11,
+      "Garbodor",
+      "Target of Move With Crit Chance (Aqua Jet)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      12,
+      "Garbodor",
+      "Mon Used Move With Crit Chance (Stomping Tantrum)",
+      0.04167,
+      -0.04167,
+      0.0
+    ],
+    [
+      13,
+      "Garbodor",
+      "Mon Used Move With Crit Chance (Stomping Tantrum)",
+      0.0,
+      -0.04167,
+      -0.04167
+    ],
+    [
+      14,
+      "Garbodor",
+      "Mon Used a Move That Can Miss (Gunk Shot)",
+      -0.04167,
+      0.2,
+      0.15833
+    ],
+    [
+      14,
+      "Garbodor",
+      "Mon Used Move With Crit Chance (Gunk Shot)",
+      0.15833,
+      -0.04167,
+      0.11666
+    ],
+    [
+      14,
+      "Garbodor",
+      "Mon Used Move With Secondary Effect Chance (Gunk Shot)",
+      0.11666,
+      -0.3,
+      -0.18334
+    ],
+    [
+      14,
+      "Garbodor",
+      "Target of Move With Crit Chance (Psychic)",
+      -0.18334,
+      0.04167,
+      -0.14167
+    ],
+    [
+      15,
+      "Magmortar",
+      "Mon Used Move With Crit Chance (Flamethrower)",
+      0.0,
+      -0.04167,
+      -0.04167
+    ],
+    [
+      1,
+      "Persian-Alola",
+      "Mon Used Move With Crit Chance (Knock Off)",
+      0.0,
+      -0.04167,
+      -0.04167
+    ],
+    [
+      2,
+      "Persian-Alola",
+      "Mon Used Move With Crit Chance (Foul Play)",
+      -0.04167,
+      -0.04167,
+      -0.08334
+    ],
+    [
+      3,
+      "Persian-Alola",
+      "Mon Used Move With Crit Chance (Foul Play)",
+      -0.08334,
+      -0.04167,
+      -0.12500999999999998
+    ],
+    [
+      16,
+      "Regigigas",
+      "Target of Move With Crit Chance (Earth Power)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      16,
+      "Regigigas",
+      "Target of Move With Secondary Effect Chance (Earth Power)",
       0.04167,
       0.1,
       0.14167
     ],
     [
-      11,
-      "Tornadus-Therian",
-      "Mon harmed by secondary effect (Ice Beam)",
+      17,
+      "Regigigas",
+      "Mon Used Move With Crit Chance (Power-Up Punch)",
       0.14167,
-      -1.0,
-      -0.85833
-    ],
-    [
-      12,
-      "Tornadus-Therian",
-      "Mon Could Not Move Due to Freeze",
-      -0.85833,
-      -0.2,
-      -1.05833
-    ],
-    [
-      13,
-      "Tornadus-Therian",
-      "Mon Used Move With Crit Chance (U-turn)",
-      -1.05833,
       -0.04167,
-      -1.1
+      0.1
     ],
     [
-      18,
-      "Tornadus-Therian",
-      "Mon Used a Move That Can Miss (Hurricane)",
-      -1.1,
-      0.3,
-      -0.8
+      17,
+      "Regigigas",
+      "Target of Move That Can Miss (Overheat)",
+      0.1,
+      -0.1,
+      0.0
     ],
     [
-      18,
-      "Tornadus-Therian",
-      "Mon missed a move (Hurricane)",
-      -0.8,
-      -1.0,
-      -1.8
-    ],
-    [
-      19,
-      "Tornadus-Therian",
-      "Mon Used a Move That Can Miss (Hurricane)",
-      -1.8,
-      0.3,
-      -1.5
-    ],
-    [
-      19,
-      "Tornadus-Therian",
-      "Mon missed a move (Hurricane)",
-      -1.5,
-      -1.0,
-      -2.5
-    ],
-    [
-      19,
-      "Tornadus-Therian",
-      "Target of Move With Crit Chance (Sludge Bomb)",
-      -2.5,
-      0.04167,
-      -2.45833
-    ],
-    [
-      19,
-      "Tornadus-Therian",
-      "Target of Move With Secondary Effect Chance (Sludge Bomb)",
-      -2.45833,
-      0.3,
-      -2.15833
-    ],
-    [
-      19,
-      "Tornadus-Therian",
-      "Mon harmed by secondary effect (Sludge Bomb)",
-      -2.15833,
-      -1.0,
-      -3.15833
-    ],
-    [
-      20,
-      "Tornadus-Therian",
-      "Mon Used a Move That Can Miss (Hurricane)",
-      -3.15833,
-      0.3,
-      -2.8583299999999996
-    ],
-    [
-      20,
-      "Tornadus-Therian",
-      "Mon Used Move With Crit Chance (Hurricane)",
-      -2.8583299999999996,
-      -0.04167,
-      -2.8999999999999995
-    ],
-    [
-      21,
-      "Tornadus-Therian",
-      "Target of Move With Crit Chance (Eruption)",
-      -2.8999999999999995,
-      0.04167,
-      -2.8583299999999996
-    ],
-    [
-      1,
-      "Tyranitar",
-      "Target of Move With Crit Chance (Scald)",
+      17,
+      "Regigigas",
+      "Target of Move With Crit Chance (Overheat)",
       0.0,
       0.04167,
       0.04167
     ],
     [
-      1,
-      "Tyranitar",
-      "Target of Move With Secondary Effect Chance (Scald)",
+      18,
+      "Regigigas",
+      "Target of Move That Can Miss (Overheat)",
       0.04167,
-      0.3,
-      0.34167000000000003
+      -0.1,
+      -0.05833
     ],
     [
-      5,
-      "Tyranitar",
-      "Target of Move With Crit Chance (Future Sight)",
-      0.34167000000000003,
+      18,
+      "Regigigas",
+      "Target of Move With Crit Chance (Overheat)",
+      -0.05833,
       0.04167,
-      0.38334
+      -0.016660000000000005
     ],
     [
-      6,
-      "Tyranitar",
-      "Mon Used a Move That Can Miss (Thunder Wave)",
-      0.38334,
-      0.1,
-      0.48334000000000005
-    ],
-    [
-      6,
-      "Tyranitar",
-      "Opponent Broke Through Paralysis",
-      0.48334000000000005,
-      -0.25,
-      0.23334000000000002
-    ],
-    [
-      6,
-      "Tyranitar",
-      "Target of Move With Crit Chance (Scald)",
-      0.23334000000000002,
-      0.04167,
-      0.27501000000000003
-    ],
-    [
-      6,
-      "Tyranitar",
-      "Target of Move With Secondary Effect Chance (Scald)",
-      0.27501000000000003,
-      0.3,
-      0.57501
-    ],
-    [
-      7,
-      "Tyranitar",
-      "Mon Used Move With Crit Chance (Earthquake)",
-      0.57501,
+      19,
+      "Regigigas",
+      "Mon Used Move With Crit Chance (Power-Up Punch)",
+      -0.016660000000000005,
       -0.04167,
-      0.53334
+      -0.05833
     ],
     [
-      7,
-      "Tyranitar",
-      "Opponent Broke Through Paralysis",
-      0.53334,
-      -0.25,
-      0.28334000000000004
+      19,
+      "Regigigas",
+      "Target of Move That Can Miss (Overheat)",
+      -0.05833,
+      -0.1,
+      -0.15833
     ],
     [
-      7,
-      "Tyranitar",
-      "Target of Move With Crit Chance (Scald)",
-      0.28334000000000004,
+      19,
+      "Regigigas",
+      "Target of Move With Crit Chance (Overheat)",
+      -0.15833,
       0.04167,
-      0.32501
+      -0.11666
     ],
     [
-      7,
-      "Tyranitar",
-      "Target of Move With Secondary Effect Chance (Scald)",
-      0.32501,
-      0.3,
-      0.6250100000000001
+      20,
+      "Regigigas",
+      "Mon Used Move With Crit Chance (Power-Up Punch)",
+      -0.11666,
+      -0.04167,
+      -0.15833
     ],
     [
-      7,
-      "Tyranitar",
-      "Mon harmed by secondary effect (Scald)",
-      0.6250100000000001,
-      -1.0,
-      -0.37498999999999993
-    ],
-    [
-      7,
-      "Tyranitar",
-      "Mon was hit by a critical hit",
-      -0.37498999999999993,
-      -1.0,
-      -1.37499
-    ],
-    [
-      12,
-      "Tyranitar",
-      "Opponent Could Not Move Due to Freeze",
-      -1.37499,
-      0.2,
-      -1.17499
-    ],
-    [
-      13,
-      "Tyranitar",
-      "Target of Move With Crit Chance (U-turn)",
-      -1.17499,
-      0.04167,
-      -1.1333199999999999
-    ],
-    [
-      17,
-      "Zapdos-Galar",
-      "Mon Used Move With Crit Chance (Brave Bird)",
+      9,
+      "Simisear",
+      "Target of Move With Crit Chance (Earth Power)",
       0.0,
-      -0.04167,
-      -0.04167
+      0.04167,
+      0.04167
     ]
   ],
   "errormessage": []
