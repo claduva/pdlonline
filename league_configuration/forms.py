@@ -156,9 +156,10 @@ class AdminManageCoachForm(forms.ModelForm):
 
     class Meta:
         model = coach
-        fields = ['user','teamname','teamabbreviation','logo','conference','division',]
+        fields = ['user','teamname','teamabbreviation','logo','season','conference','division',]
         labels = {
             'user': 'Coach(s)',
+            'season': 'Subleague',
             'teamname': 'Team Name',
             'teamabbreviation': 'Team Abbreviation',
         }
@@ -170,6 +171,8 @@ class AdminManageCoachForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AdminManageCoachForm, self).__init__(*args, **kwargs)
         coi=kwargs['instance']
+        self.fields['season'].label_from_instance = lambda obj: obj.subleague
+        self.fields['season'].queryset = season.objects.filter(subleague__league=coi.season.subleague.league)
         confs=coi.season.subleague.conferences.all()
         divs=coi.season.subleague.divisions.all()
         conferencechoices=[("","---------")]+[(item.conference,item.conference) for item in confs]
