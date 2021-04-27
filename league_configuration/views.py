@@ -537,6 +537,13 @@ def update_roster_item(request,league_id,coach_id,roster_id):
         form=UpdateRosterForm(request.POST,instance=ri)
         if form.is_valid():
             form.save()
+            prior_poke=league_pokemon.objects.filter(subleague=coi.season.subleague).get(pokemon=ri.pokemon)
+            prior_poke.team = None
+            prior_poke.save()
+            np=form.save()
+            new_poke=league_pokemon.objects.filter(subleague=coi.season.subleague).get(pokemon=np.pokemon)
+            new_poke.team = coi.teamabbreviation
+            new_poke.save()
             messages.success(request,f'Roster has been successfully updated!')
         return redirect('update_roster',league_id=league_id,coach_id=coach_id)
     context={
