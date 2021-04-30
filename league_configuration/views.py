@@ -536,7 +536,6 @@ def update_roster_item(request,league_id,coach_id,roster_id):
     if request.method=="POST":
         form=UpdateRosterForm(request.POST,instance=ri)
         if form.is_valid():
-            form.save()
             prior_poke=league_pokemon.objects.filter(subleague=coi.season.subleague).get(pokemon=ri.pokemon)
             prior_poke.team = None
             prior_poke.save()

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from background_task import background
 from pdlonline.customdecorators import check_if_clad
 from leagues.models import free_agency,trading,match,roster
+from league_configuration.models import league_pokemon
 from django.db.models import Q
 import datetime
 
@@ -41,7 +42,12 @@ def execute_transaction(item):
     if completedmatches:
         montoupdate=item.dropped_pokemon.battlestats
         try:
+            coi = item.team
             droppedpokemon=roster.objects.filter(team=item.team).get(pokemon=item.dropped_pokemon)
+            prior_poke=league_pokemon.objects.filter(subleague=coi.season.subleague).get(pokemon=item.dropped_pokemon)
+            prior_poke.team = None
+            prior_poke.save()
+
             montoupdate.kills=droppedpokemon.kills
             droppedpokemon.kills=0
             montoupdate.deaths=droppedpokemon.deaths
@@ -63,6 +69,9 @@ def execute_transaction(item):
             montoupdate.remaininghealth=droppedpokemon.remaininghealth
             droppedpokemon.remaininghealth=0
             droppedpokemon.pokemon=item.added_pokemon
+            new_poke=league_pokemon.objects.filter(subleague=coi.season.subleague).get(pokemon=item.added_pokemon)
+            new_poke.team = coi.teamabbreviation
+            new_poke.save()
             item.executed=True
             item.save()
             droppedpokemon.save() 
