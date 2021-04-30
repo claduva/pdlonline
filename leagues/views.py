@@ -408,8 +408,8 @@ def subleague_freeagency(request,league_id,subleague_id):
         if form.is_valid():
             now=datetime.datetime.now().replace(tzinfo=utc)
             seasonstart=szn.seasonstart.replace(tzinfo=utc)
-            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).order_by('duedate').first()
-            currentmatch=match.objects.filter(team1__season=szn,duedate__lt=now).order_by('-duedate').first()
+            currentmatch=match.objects.filter(team1__season=szn,duedate__gte=now).order_by('duedate').first()
+            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).exclude(id=currentmatch.id).order_by('duedate').first()
             if seasonstart:
                 if now<seasonstart:
                     weekeffective="1"
