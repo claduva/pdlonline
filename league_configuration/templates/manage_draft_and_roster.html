@@ -39,6 +39,9 @@
             <a class="btn btn-primary" href="{% url 'update_roster_item' league_id=league.id coach_id=coach.id roster_id=item.id %}">{{item.pokemon.name}}</a>
         </div>
         {% endfor %}
+        <div>
+            <a class="btn btn-primary" href="{% url 'add_roster_item' league_id=league.id coach_id=coach.id %}">Add New Pokemon</a>
+        </div>
     </div>
     {% endif %}
     {% if form %}

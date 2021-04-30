@@ -14,6 +14,7 @@ urlpatterns = [
     path("settings/leagues_moderating/<int:league_id>/configuration/coaches/<int:coach_id>/update_draft/", views.update_draft, name="update_draft"),
     path("settings/leagues_moderating/<int:league_id>/configuration/coaches/<int:coach_id>/update_draft/<int:draft_id>/", views.update_draft_item, name="update_draft_item"),
     path("settings/leagues_moderating/<int:league_id>/configuration/coaches/<int:coach_id>/update_roster/", views.update_roster, name="update_roster"),
+    path("settings/leagues_moderating/<int:league_id>/configuration/coaches/<int:coach_id>/update_roster/add/", views.add_roster_item, name="add_roster_item"),
     path("settings/leagues_moderating/<int:league_id>/configuration/coaches/<int:coach_id>/update_roster/<int:roster_id>/", views.update_roster_item, name="update_roster_item"),
     path("settings/leagues_moderating/<int:league_id>/configuration/applications/", views.manage_applications, name="manage_applications"),
     path("settings/leagues_moderating/<int:league_id>/configuration/applications/<int:application_id>/", views.view_application, name="view_application"),

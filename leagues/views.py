@@ -402,6 +402,10 @@ def subleague_freeagency(request,league_id,subleague_id):
     except:
         messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
         return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
+    subleague_draft=draft.objects.filter(team__season=szn,skipped=False,pokemon__isnull=True)
+    if subleague_draft.count()>0:
+        messages.error(request,'Free agency is not available prior to draft completion!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
     user_team=coaches.filter(user=request.user).first()
     if request.method=="POST":
         form=FreeAgencyForm(request.POST)
@@ -409,13 +413,13 @@ def subleague_freeagency(request,league_id,subleague_id):
             now=datetime.datetime.now().replace(tzinfo=utc)
             seasonstart=szn.seasonstart.replace(tzinfo=utc)
             currentmatch=match.objects.filter(team1__season=szn,duedate__gte=now).order_by('duedate').first()
-            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).exclude(id=currentmatch.id).order_by('duedate').first()
             if seasonstart:
                 if now<seasonstart:
                     weekeffective="1"
                     timeeffective=now
                 else:
-                    if nextmatch:
+                    if currentmatch:
+                        nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).exclude(id=currentmatch.id).order_by('duedate').first()
                         if nextmatch.week: weekeffective=nextmatch.week
                         if nextmatch.playoff_week: weekeffective=nextmatch.playoff_week
                         timeeffective=currentmatch.duedate

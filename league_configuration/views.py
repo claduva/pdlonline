@@ -554,6 +554,30 @@ def update_roster_item(request,league_id,coach_id,roster_id):
 
 @login_required
 @check_if_moderator
+def add_roster_item(request,league_id,coach_id):
+    loi=league.objects.get(id=league_id)
+    coi=coach.objects.get(id=coach_id)
+    if request.method=="POST":
+        form=UpdateRosterForm(request.POST)
+        if form.is_valid():
+            np=form.save(commit=False)
+            np.team=coi
+            np.save()
+            new_poke=league_pokemon.objects.filter(subleague=coi.season.subleague).get(pokemon=np.pokemon)
+            new_poke.team = coi.teamabbreviation
+            new_poke.save()
+            messages.success(request,f'Roster has been successfully updated!')
+        return redirect('update_roster',league_id=league_id,coach_id=coach_id)
+    context={
+        'league':loi,
+        'coach': coi,
+        'form': UpdateRosterForm()
+    }
+    return  render(request,"manage_draft_and_roster.html",context)
+
+
+@login_required
+@check_if_moderator
 def manage_applications(request,league_id):
     loi=league.objects.get(id=league_id)
     subleagues=loi.subleagues.all()
