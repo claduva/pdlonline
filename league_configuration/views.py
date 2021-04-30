@@ -809,7 +809,7 @@ def create_schedule(request,league_id,subleague_id):
                 conference.insert(1, conference.pop())
         interconfteams.append(interconf)
     for i in range(len(interconfteams[0])):
-        schedule.objects.create(week=(i+1),team1=interconfteams[0][i],team2=interconfteams[1][i])
+        match.objects.create(week=(i+1),team1=interconfteams[0][i],team2=interconfteams[1][i])
     messages.success(request, f'Schedule has been created!')  
     return redirect('manage_matches',league_id=league_id,subleague_id=subleague_id)
 
