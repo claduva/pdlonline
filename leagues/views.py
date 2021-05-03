@@ -419,9 +419,14 @@ def subleague_freeagency(request,league_id,subleague_id):
                     timeeffective=now
                 else:
                     if currentmatch:
-                        nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).exclude(id=currentmatch.id).order_by('duedate').first()
-                        if nextmatch.week: weekeffective=nextmatch.week
-                        if nextmatch.playoff_week: weekeffective=nextmatch.playoff_week
+                        if currentmatch.week: 
+                            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).exclude(week=currentmatch.week).order_by('duedate').first()
+                        elif currentmatch.playoff_week: 
+                            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).exclude(playoff_week=currentmatch.playoff_week).order_by('duedate').first() 
+                        if nextmatch.week:
+                            weekeffective=nextmatch.week
+                        elif nextmatch.playoff_week:
+                            weekeffective=nextmatch.playoff_week
                         timeeffective=currentmatch.duedate
                     else:
                         messages.error(request,'Could not find an upcoming match due date. League admin need to set this.',extra_tags="danger")
