@@ -13,3 +13,8 @@ class LeagueSerializer(serializers.ModelSerializer):
     class Meta:
         model = league
         fields = ['id','name','abbreviation','logo','discordurl']
+
+class CoachSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = coach
+        fields = ['id','teamname','teamabbreviation','logo']
