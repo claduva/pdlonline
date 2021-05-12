@@ -21,6 +21,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('', include('accounts.urls')),
     path('', include('api.urls')),
+    path('', include('app_api.urls')),
     path('', include('backgroundtasks.urls')),
     path('',include("draft_planner.urls")),
     path('',include("league_configuration.urls")),

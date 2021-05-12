@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     #local apps
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
+    'app_api.apps.AppApiConfig',
     'backgroundtasks.apps.BackgroundtasksConfig',
     'draft_planner.apps.DraftPlannerConfig',
     'league_configuration.apps.LeagueConfigurationConfig',
