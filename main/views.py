@@ -8,8 +8,8 @@ import psycopg2
 import requests
 
 from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_ability, move
-from league_configuration.models import league, subleague, discord_settings
-from leagues.models import coach,match
+from league_configuration.models import league, league_pokemon, subleague, discord_settings
+from leagues.models import coach,match, roster
 
 # Create your views here.
 def home(request):
@@ -41,6 +41,7 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
+
     return redirect('home')
 
 def update_all_pokemon(request):

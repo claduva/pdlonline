@@ -497,6 +497,11 @@ def subleague_trading(request,league_id,subleague_id):
 
 def trading_actions(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    try:
+        szn=soi.seasons.all().get(archived=False)
+    except:
+        messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
+        return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
     if request.method=="POST":
         tr=trade_request.objects.get(id=request.POST['id'])
         action=request.POST['action']
@@ -510,18 +515,23 @@ def trading_actions(request,league_id,subleague_id):
             messages.success(request,f'Your trade request has been rescinded!')
         elif action=="Accept":
             now=datetime.datetime.now().replace(tzinfo=utc)
-            szn=soi.seasons.all().get(archived=False)
             seasonstart=szn.seasonstart.replace(tzinfo=utc)
-            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).order_by('duedate').first()
+            currentmatch=match.objects.filter(team1__season=szn,duedate__gte=now).order_by('duedate').first()
             if seasonstart:
                 if now<seasonstart:
                     weekeffective="1"
                     timeeffective=now
                 else:
-                    if nextmatch:
-                        if nextmatch.week: weekeffective=nextmatch.week
-                        if nextmatch.playoff_week: weekeffective=nextmatch.playoff_week
-                        timeeffective=nextmatch.duedate
+                    if currentmatch:
+                        if currentmatch.week: 
+                            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).exclude(week=currentmatch.week).order_by('duedate').first()
+                        elif currentmatch.playoff_week: 
+                            nextmatch=match.objects.filter(team1__season=szn,duedate__gte=now).exclude(playoff_week=currentmatch.playoff_week).order_by('duedate').first() 
+                        if nextmatch.week:
+                            weekeffective=nextmatch.week
+                        elif nextmatch.playoff_week:
+                            weekeffective=nextmatch.playoff_week
+                        timeeffective=currentmatch.duedate
                     else:
                         messages.error(request,'Could not find an upcoming match due date. League admin need to set this.',extra_tags="danger")
                         return redirect('trading',league_id=league_id,subleague_id=subleague_id)
