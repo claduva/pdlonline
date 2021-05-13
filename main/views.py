@@ -35,7 +35,10 @@ def league_list(request):
     return  render(request,"league_list.html",context)
 
 def discord(request):
-    return  render(request,"discordbot.html")
+    return render(request,"discordbot.html")
+
+def privacypolicy(request):
+    return render(request,"privacypolicy.html")
 
 def settings(request):
     return  render(request,"settings.html")
