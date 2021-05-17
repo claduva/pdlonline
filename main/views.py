@@ -46,6 +46,7 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
+    """
     with open('imports/users.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
@@ -57,8 +58,8 @@ def runscript(request):
             except: 
                 discordid = 0
                 did = None
-            if (un+email+discordid)==0:
-                UserModel.objects.create(username=row[0],email=row[1],discordid=did)
+            if (un+email+discordid)==0 and row[0] == "Nerf":
+    """
     return redirect('home')
 
 def update_all_pokemon(request):

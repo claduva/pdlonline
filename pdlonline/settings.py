@@ -35,7 +35,7 @@ else:
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','localhost','pokemondraftleagueonline.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','localhost','pokemondraftleagueonline.herokuapp.com','pokemondraftleague.online']
 
 # Application definition
 
