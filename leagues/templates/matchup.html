@@ -109,7 +109,7 @@
                 <th>Spe</th>
                 <th>BST</th>  
             </tr>
-            {% for pokemon in team1roster|order_by:"-pokemon__data__basestats__speed" %}
+            {% for pokemon in team1roster|order_by:"-pokemon__data__basestats__bst" %}
             <tr>
                 <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{pokemon.pokemon.name}}</td>
                 <td>{{pokemon.pokemon.data.basestats.hp}}</td>
@@ -135,7 +135,7 @@
                 <th>Spe</th>
                 <th>BST</th>  
             </tr>
-            {% for pokemon in team2roster|order_by:"-pokemon__data__basestats__speed" %}
+            {% for pokemon in team2roster|order_by:"-pokemon__data__basestats__bst" %}
             <tr>
                 <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{pokemon.pokemon.name}}</td>
                 <td>{{pokemon.pokemon.data.basestats.hp}}</td>
@@ -147,6 +147,80 @@
                 <td>{{pokemon.pokemon.data.basestats.bst}}</td>
             </tr>
             {% endfor %}
+        </table>
+    </div>
+    <div class="col-12 text-center"><h4>Season Stats</h4></div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Pokemon</th>
+                <th>K</th>
+                <th>D</th>
+                <th>+/-</th>
+                <th>GP</th>
+                <th>GW</th>
+            </tr>
+            {% for pokemon in team1roster|order_by:"pokemon__name" %}
+            <tr>
+                <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{pokemon.pokemon.name}}</td>
+                <td>{{pokemon.gp}}</td>
+                <td>{{pokemon.gw}}</td>
+                <td>{{pokemon.kills}}</td>
+                <td>{{pokemon.deaths}}</td>
+                <td>{{pokemon.differential}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Pokemon</th>
+                <th>K</th>
+                <th>D</th>
+                <th>+/-</th>
+                <th>GP</th>
+                <th>GW</th>
+            </tr>
+            {% for pokemon in team2roster|order_by:"pokemon__name" %}
+            <tr>
+                <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{pokemon.pokemon.name}}</td>
+                <td>{{pokemon.gp}}</td>
+                <td>{{pokemon.gw}}</td>
+                <td>{{pokemon.kills}}</td>
+                <td>{{pokemon.deaths}}</td>
+                <td>{{pokemon.differential}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-12 text-center"><h4>Export To Showdown</h4></div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Team</th>
+            </tr>
+            <tr>
+                <td>
+                    {% for pokemon in team1roster %}
+                    {{pokemon.pokemon.name}}<br><br>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-sm text-center bg-lightcolor">
+            <tr class="bg-intermediatecolor text-light">
+                <th>Team</th>
+            </tr>
+            <tr>
+                <td>
+                    {% for pokemon in team2roster %}
+                    {{pokemon.pokemon.name}}<br><br>
+                    {% endfor %}
+                </td>
+            </tr>
         </table>
     </div>
 </div>
