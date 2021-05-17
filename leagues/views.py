@@ -68,6 +68,15 @@ def league_home(request,league_id):
     else:
         return render(request,"league_home_not_teambased.html",context)
 
+
+def league_league_leaders(request,league_id):
+    loi = league.objects.get(id=league_id)
+    context = {
+        'league': loi,
+    }
+    context['leaderboard']=roster.objects.all().filter(team__season__subleague__league=loi).order_by('-kills','-differential','gp')
+    return  render(request,"league_leaders.html",context)
+
 def subleague_home(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
     return  render(request,"subleague_home.html",context)

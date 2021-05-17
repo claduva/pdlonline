@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [ 
     path("league/<int:league_id>/apply/", views.apply, name="apply"),
     path("league/<int:league_id>/", views.league_home, name="league_home"),
+    path("league/<int:league_id>/league_leaders/", views.league_league_leaders, name="total_league_leaders"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/", views.subleague_home, name="subleague_home"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/teams/<int:coach_id>/", views.subleague_teampage, name="teampage"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/tiers/", views.subleague_tierset, name="tiers"),

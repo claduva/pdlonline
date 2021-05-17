@@ -11,3 +11,12 @@
         {% endfor %}
     </div>
 </div>
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        League Resources
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="{% url 'total_league_leaders' league_id=league.id %}">League Leaders</a>
+    </div>
+</div>
