@@ -5,6 +5,14 @@
 
 {% block body %}
 <div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
+    <div class="col-6 my-2">
+        <a class="btn btn-primary" href="{% url 'create_league' %}">Create A League</a>
+    </div>
+    <div class="col-6 my-2">
+        <a class="btn btn-primary" href="{% url 'league_list' %}">Join A League</a>
+    </div>
+</div>
+<div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
     <div class="col-12 mt-2">
         <h4>Teams</h4>
         <table class="table table-sm bg-lightcolor text-center">

@@ -14,6 +14,14 @@
         <div>This is a website designed to assist in running and participating in Pokemon Draft Leagues.</div>
     </div>
 </div>
+<div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
+    <div class="col-6 my-2">
+        <a class="btn btn-primary" href="{% url 'create_league' %}">Create A League</a>
+    </div>
+    <div class="col-6 my-2">
+        <a class="btn btn-primary" href="{% url 'league_list' %}">Join A League</a>
+    </div>
+</div>
 {% else %}
 <div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
     <div class="col-md-6 p-2">
