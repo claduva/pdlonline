@@ -569,6 +569,11 @@ def trading_actions(request,league_id,subleague_id):
             messages.success(request,f'You have declined the trade request!')
     return redirect('trading',league_id=league_id,subleague_id=subleague_id)
 
+def subleague_league_leaders(request,league_id,subleague_id):
+    loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    context['leaderboard']=roster.objects.all().filter(team__season__subleague=soi).order_by('-kills','-differential','gp')
+    return  render(request,"league_leaders.html",context)
+
 def subleague_ruleset(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
     roi,created=rules.objects.get_or_create(subleague=soi)

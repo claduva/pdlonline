@@ -22,5 +22,6 @@ urlpatterns = [
     path("league/<int:league_id>/subleague/<int:subleague_id>/schedule/matchup/<int:match_id>/", views.matchup, name="matchup"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/schedule/upload_replay/<int:match_id>/", views.upload_replay, name="upload_replay"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/schedule/replay/<int:match_id>/", views.replay, name="replay"),
+    path("league/<int:league_id>/subleague/<int:subleague_id>/league_leaders/", views.subleague_league_leaders, name="league_leaders"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/rules/", views.subleague_ruleset, name="rules"),
 ]
