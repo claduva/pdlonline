@@ -5,7 +5,7 @@ from timezone_field import TimeZoneField
 from django.contrib.postgres.fields import ArrayField
 
 class CustomUser(AbstractUser):
-    discordid = models.BigIntegerField(unique=True)
+    discordid = models.BigIntegerField(unique=True,null=True)
     discord_tag = models.CharField(max_length=100,null=True)
     avatar = models.CharField(max_length=100,null=True)
     public_flags = models.IntegerField(null=True)

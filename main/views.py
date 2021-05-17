@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.db.models import Q
+from django.contrib.auth import get_user_model
+UserModel = get_user_model()
 
 import json
-import math
+import math, csv
 import psycopg2
 import requests
 
@@ -44,7 +46,19 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
-
+    with open('imports/users.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in csv_reader:
+            un = UserModel.objects.filter(username=row[0]).count()
+            email = UserModel.objects.filter(email=row[1]).count()
+            try:
+                did = int(row[2])
+                discordid = UserModel.objects.filter(discordid=did).count()
+            except: 
+                discordid = 0
+                did = None
+            if (un+email+discordid)==0:
+                UserModel.objects.create(username=row[0],email=row[1],discordid=did)
     return redirect('home')
 
 def update_all_pokemon(request):

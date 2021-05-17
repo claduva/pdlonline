@@ -1,19 +1,19 @@
 {
   "team1": {
-    "coach": "Accidental",
+    "coach": "RevezSurge",
     "roster": [
       {
-        "pokemon": "Grookey",
-        "startform": "Grookey",
-        "nickname": "Baby Monke",
+        "pokemon": "Sableye",
+        "startform": "Sableye",
+        "nickname": "The WOAT",
         "kills": 0,
-        "deaths": 1,
+        "deaths": 0,
         "causeofdeath": null,
-        "support": 0,
-        "damagedone": 42,
-        "hphealed": -18,
+        "support": 1,
+        "damagedone": 36,
+        "hphealed": 36,
         "luck": 0.04167,
-        "remaininghealth": 0,
+        "remaininghealth": 100,
         "lines": [],
         "confusion": null,
         "psn": null,
@@ -33,7 +33,14 @@
         "Focus Energy": false,
         "semiinv": false,
         "moves": {
-          "Wood Hammer": {
+          "Will-O-Wisp": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Recover": {
             "uses": 1,
             "hits": 1,
             "crits": 0,
@@ -43,16 +50,56 @@
         }
       },
       {
-        "pokemon": "Pikachu",
-        "startform": "Pikachu",
-        "nickname": "Not Hawlucha",
+        "pokemon": "Drednaw",
+        "startform": "Drednaw",
+        "nickname": "WaterDruddigon",
         "kills": 0,
+        "deaths": 0,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 32,
+        "hphealed": 0,
+        "luck": 0.05833,
+        "remaininghealth": 100,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Rock Slide": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Kadabra",
+        "startform": "Kadabra",
+        "nickname": "Wrinkles",
+        "kills": 3,
         "deaths": 1,
         "causeofdeath": null,
         "support": 0,
-        "damagedone": 97,
-        "hphealed": 12,
-        "luck": -0.85833,
+        "damagedone": 175,
+        "hphealed": 0,
+        "luck": 0.67499,
         "remaininghealth": 0,
         "lines": [],
         "confusion": null,
@@ -73,75 +120,54 @@
         "Focus Energy": false,
         "semiinv": false,
         "moves": {
-          "Grass Knot": {
-            "uses": 1,
-            "hits": 1,
+          "Psychic": {
+            "uses": 5,
+            "hits": 5,
             "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Flying Press": {
+            "posssecondaryeffects": 2,
+            "secondaryeffects": 1
+          }
+        }
+      },
+      {
+        "pokemon": "Sliggoo",
+        "startform": "Sliggoo",
+        "nickname": "Gooey",
+        "kills": 2,
+        "deaths": 1,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 159,
+        "hphealed": 0,
+        "luck": 0.40001,
+        "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Curse": {
             "uses": 2,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Lapras",
-        "startform": "Lapras",
-        "nickname": "Sit on my Lapras",
-        "kills": 0,
-        "deaths": 1,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 197,
-        "hphealed": 95,
-        "luck": 0.024989999999999953,
-        "remaininghealth": 0,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": "Sit on my Lapras",
-        "Curse": null,
-        "atk": -1,
-        "def": 0,
-        "spa": -1,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Hydro Pump": {
-            "uses": 5,
-            "hits": 5,
+            "hits": 2,
             "crits": 0,
             "posssecondaryeffects": 0,
             "secondaryeffects": 0
           },
-          "Freeze-Dry": {
-            "uses": 5,
-            "hits": 5,
-            "crits": 0,
-            "posssecondaryeffects": 4,
-            "secondaryeffects": 0
-          },
-          "Rest": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Sleep Talk": {
+          "Outrage": {
             "uses": 2,
             "hits": 2,
             "crits": 0,
@@ -151,16 +177,63 @@
         }
       },
       {
-        "pokemon": "Lycanroc-Midnight",
-        "startform": "Lycanroc-Midnight",
-        "nickname": "After Hours",
+        "pokemon": "Hitmontop",
+        "startform": "Hitmontop",
+        "nickname": "RichardSimmons",
+        "kills": 1,
+        "deaths": 0,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 52,
+        "hphealed": 0,
+        "luck": -0.8,
+        "remaininghealth": 36,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": "Bad Entei",
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Triple Axel": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Earthquake": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 1,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Persian",
+        "startform": "Persian",
+        "nickname": "DefinitelyGood",
         "kills": 0,
         "deaths": 1,
         "causeofdeath": null,
-        "support": 0,
-        "damagedone": 45,
+        "support": 1,
+        "damagedone": 180,
         "hphealed": 0,
-        "luck": 0.0,
+        "luck": 0.50831,
         "remaininghealth": 0,
         "lines": [],
         "confusion": null,
@@ -181,115 +254,333 @@
         "Focus Energy": false,
         "semiinv": false,
         "moves": {
-          "Swords Dance": {
+          "Fake Out": {
+            "uses": 3,
+            "hits": 3,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Toxic": {
             "uses": 1,
             "hits": 1,
             "crits": 0,
             "posssecondaryeffects": 0,
             "secondaryeffects": 0
           },
-          "Mega Kick": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Gorebyss",
-        "startform": "Gorebyss",
-        "nickname": "Alfred Gorebyss",
-        "kills": 0,
-        "deaths": 1,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 44,
-        "hphealed": 0,
-        "luck": -0.2,
-        "remaininghealth": 0,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Shell Smash": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Ice Beam": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 1,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Combusken",
-        "startform": "Combusken",
-        "nickname": "Combusken",
-        "kills": 0,
-        "deaths": 1,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 100,
-        "hphealed": 24,
-        "luck": 0.54167,
-        "remaininghealth": 0,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": "Regigigas",
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Work Up": {
+          "Knock Off": {
             "uses": 4,
             "hits": 4,
             "crits": 0,
             "posssecondaryeffects": 0,
             "secondaryeffects": 0
           },
-          "Low Kick": {
+          "U-turn": {
+            "uses": 2,
+            "hits": 2,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      }
+    ],
+    "wins": 1,
+    "forfeit": 0,
+    "score": 3,
+    "megaevolved": false,
+    "usedzmove": false,
+    "timesswitched": 8,
+    "selfdeaths": 0,
+    "remaininghealth": 236,
+    "totalhealth": 600,
+    "kills": 6,
+    "deaths": 3,
+    "luck": 0.8833,
+    "damagedone": 634,
+    "hphealed": 36,
+    "support": 2,
+    "activemon": "RichardSimmons",
+    "Toxic Spikes": null,
+    "Spikes": null,
+    "Stealth Rock": null,
+    "G-Max Steelsurge": null,
+    "Future Sight": null,
+    "Doom Desire": null,
+    "Sandstorm": null,
+    "Hail": null,
+    "Leech Seed": null
+  },
+  "team2": {
+    "coach": "ParadoxicalRemedy",
+    "roster": [
+      {
+        "pokemon": "Falinks",
+        "startform": "Falinks",
+        "nickname": "Squad Up",
+        "kills": 1,
+        "deaths": 1,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 103,
+        "hphealed": 0,
+        "luck": -0.5333199999999999,
+        "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": "The WOAT",
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Bulk Up": {
+            "uses": 3,
+            "hits": 3,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Megahorn": {
+            "uses": 3,
+            "hits": 2,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Meganium",
+        "startform": "Meganium",
+        "nickname": "Grasstoise",
+        "kills": 0,
+        "deaths": 1,
+        "causeofdeath": null,
+        "support": 2,
+        "damagedone": 107,
+        "hphealed": 40,
+        "luck": -0.8749899999999999,
+        "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": "DefinitelyGood",
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Sunny Day": {
             "uses": 1,
             "hits": 1,
             "crits": 0,
             "posssecondaryeffects": 0,
             "secondaryeffects": 0
           },
-          "Overheat": {
+          "Leech Seed": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Seed Bomb": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Absol",
+        "startform": "Absol",
+        "nickname": "Dark Mantis",
+        "kills": 0,
+        "deaths": 1,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 36,
+        "hphealed": 0,
+        "luck": -0.08333,
+        "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Close Combat": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Emolga",
+        "startform": "Emolga",
+        "nickname": "Night Witch",
+        "kills": 1,
+        "deaths": 1,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 77,
+        "hphealed": 14,
+        "luck": -0.27501,
+        "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Air Slash": {
+            "uses": 3,
+            "hits": 3,
+            "crits": 0,
+            "posssecondaryeffects": 1,
+            "secondaryeffects": 0
+          },
+          "Knock Off": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          },
+          "Volt Switch": {
+            "uses": 1,
+            "hits": 1,
+            "crits": 0,
+            "posssecondaryeffects": 0,
+            "secondaryeffects": 0
+          }
+        }
+      },
+      {
+        "pokemon": "Typhlosion",
+        "startform": "Typhlosion",
+        "nickname": "Bad Entei",
+        "kills": 1,
+        "deaths": 1,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 44,
+        "hphealed": -20,
+        "luck": 0.8,
+        "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": -1,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Lava Plume": {
+            "uses": 2,
+            "hits": 2,
+            "crits": 1,
+            "posssecondaryeffects": 1,
+            "secondaryeffects": 1
+          }
+        }
+      },
+      {
+        "pokemon": "Ariados",
+        "startform": "Ariados",
+        "nickname": "The FEAR",
+        "kills": 0,
+        "deaths": 1,
+        "causeofdeath": null,
+        "support": 0,
+        "damagedone": 33,
+        "hphealed": 0,
+        "luck": 0.08334,
+        "remaininghealth": 0,
+        "lines": [],
+        "confusion": null,
+        "psn": null,
+        "brn": null,
+        "par": null,
+        "frz": null,
+        "tox": null,
+        "slp": null,
+        "Curse": null,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0,
+        "accuracy": 0,
+        "evasion": 0,
+        "Focus Energy": false,
+        "semiinv": false,
+        "moves": {
+          "Sucker Punch": {
             "uses": 1,
             "hits": 1,
             "crits": 0,
@@ -304,321 +595,17 @@
     "score": 0,
     "megaevolved": false,
     "usedzmove": false,
-    "timesswitched": 8,
+    "timesswitched": 10,
     "selfdeaths": 0,
     "remaininghealth": 0,
     "totalhealth": 600,
-    "kills": 0,
+    "kills": 3,
     "deaths": 6,
-    "luck": -0.4499,
-    "damagedone": 525,
-    "hphealed": 113,
-    "support": 0,
-    "activemon": "Sit on my Lapras",
-    "Toxic Spikes": null,
-    "Spikes": null,
-    "Stealth Rock": "Mudsdale",
-    "G-Max Steelsurge": null,
-    "Future Sight": null,
-    "Doom Desire": null,
-    "Sandstorm": null,
-    "Hail": null,
-    "Leech Seed": null
-  },
-  "team2": {
-    "coach": "spookd",
-    "roster": [
-      {
-        "pokemon": "Aurorus",
-        "startform": "Aurorus",
-        "nickname": "Aurorus",
-        "kills": 0,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 0,
-        "hphealed": 0,
-        "luck": 0.0,
-        "remaininghealth": 100,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {}
-      },
-      {
-        "pokemon": "Ninjask",
-        "startform": "Ninjask",
-        "nickname": "Ninjask",
-        "kills": 0,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 22,
-        "hphealed": 0,
-        "luck": -0.04167,
-        "remaininghealth": 100,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "U-turn": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Mudsdale",
-        "startform": "Mudsdale",
-        "nickname": "Mudsdale",
-        "kills": 2,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 1,
-        "damagedone": 241,
-        "hphealed": 100,
-        "luck": -0.6,
-        "remaininghealth": 55,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Stealth Rock": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Rest": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Body Press": {
-            "uses": 2,
-            "hits": 2,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Persian-Alola",
-        "startform": "Persian",
-        "nickname": "Persian",
-        "kills": 0,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 1,
-        "damagedone": 15,
-        "hphealed": 0,
-        "luck": -0.05833,
-        "remaininghealth": 18,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Knock Off": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Parting Shot": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Lurantis",
-        "startform": "Lurantis",
-        "nickname": "Lurantis",
-        "kills": 1,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 0,
-        "damagedone": 88,
-        "hphealed": 0,
-        "luck": 0.2,
-        "remaininghealth": 56,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Leaf Storm": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      },
-      {
-        "pokemon": "Regigigas",
-        "startform": "Regigigas",
-        "nickname": "Regigigas",
-        "kills": 3,
-        "deaths": 0,
-        "causeofdeath": null,
-        "support": 1,
-        "damagedone": 347,
-        "hphealed": 185,
-        "luck": 0.95,
-        "remaininghealth": 31,
-        "lines": [],
-        "confusion": null,
-        "psn": null,
-        "brn": null,
-        "par": null,
-        "frz": null,
-        "tox": null,
-        "slp": null,
-        "Curse": null,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0,
-        "accuracy": 0,
-        "evasion": 0,
-        "Focus Energy": false,
-        "semiinv": false,
-        "moves": {
-          "Knock Off": {
-            "uses": 3,
-            "hits": 3,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Thunder Wave": {
-            "uses": 1,
-            "hits": 1,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          },
-          "Body Slam": {
-            "uses": 7,
-            "hits": 7,
-            "crits": 0,
-            "posssecondaryeffects": 1,
-            "secondaryeffects": 1
-          },
-          "Rest": {
-            "uses": 2,
-            "hits": 2,
-            "crits": 0,
-            "posssecondaryeffects": 0,
-            "secondaryeffects": 0
-          }
-        }
-      }
-    ],
-    "wins": 1,
-    "forfeit": 0,
-    "score": 6,
-    "megaevolved": false,
-    "usedzmove": false,
-    "timesswitched": 7,
-    "selfdeaths": 0,
-    "remaininghealth": 360,
-    "totalhealth": 600,
-    "kills": 6,
-    "deaths": 0,
-    "luck": 0.45,
-    "damagedone": 713,
-    "hphealed": 285,
-    "support": 3,
-    "activemon": "Regigigas",
+    "luck": -0.8833,
+    "damagedone": 400,
+    "hphealed": 34,
+    "support": 2,
+    "activemon": "Bad Entei",
     "Toxic Spikes": null,
     "Spikes": null,
     "Stealth Rock": null,
@@ -633,927 +620,847 @@
   "Gravity": 1.0,
   "Rain": false,
   "Hail": false,
-  "numberofturns": 30,
+  "numberofturns": 28,
   "turns": [],
-  "replay": "https://replay.pokemonshowdown.com/sports-gen8nationaldexdraft-405036",
+  "replay": "https://replay.pokemonshowdown.com/sports-gen8nationaldexdraft-412607",
   "significantevents": [
     [
-      3,
-      "Regigigas provided support by using Thunder Wave"
+      2,
+      "Persian provided support by using Toxic"
     ],
     [
-      5,
-      "Mudsdale provided support by using Stealth Rock"
+      2,
+      "Meganium provided support by using Sunny Day"
     ],
     [
-      9,
-      "Mudsdale killed Combusken with Body Press"
+      6,
+      "Meganium provided support by using Leech Seed"
+    ],
+    [
+      11,
+      "Sliggoo killed Ariados with Outrage"
     ],
     [
       12,
-      "Regigigas killed Grookey with Body Slam"
+      "Sliggoo killed Absol with Outrage"
     ],
     [
-      15,
-      "Regigigas killed Pikachu with Body Slam"
+      13,
+      "Emolga killed Sliggoo with Air Slash"
     ],
     [
       17,
-      "Mudsdale killed Lycanroc-Midnight with Body Press"
-    ],
-    [
-      19,
-      "Lurantis killed Gorebyss with Leaf Storm"
+      "Sableye provided support by using Will-O-Wisp"
     ],
     [
       22,
-      "Persian-Alola provided support by using Parting Shot"
+      "Falinks killed Persian with Megahorn"
     ],
     [
-      30,
-      "Regigigas killed Lapras with Body Slam"
+      23,
+      "Kadabra killed Falinks with Psychic"
+    ],
+    [
+      24,
+      "Kadabra killed Emolga with Psychic"
+    ],
+    [
+      26,
+      "Kadabra killed Meganium with Psychic"
+    ],
+    [
+      27,
+      "Typhlosion killed Kadabra with Lava Plume"
+    ],
+    [
+      28,
+      "Hitmontop killed Typhlosion with Earthquake"
     ]
   ],
   "luckcatalog": [
     [
-      2,
-      "Combusken",
-      "Target of Move With Crit Chance (Knock Off)",
+      12,
+      "Absol",
+      "Super Luck Mon Used Move With Crit Chance (Close Combat)",
       0.0,
-      0.04167,
-      0.04167
-    ],
-    [
-      3,
-      "Combusken",
-      "Target of Move That Can Miss (Thunder Wave)",
-      0.04167,
-      -0.1,
-      -0.05833
-    ],
-    [
-      4,
-      "Combusken",
-      "Mon Broke Through Paralysis",
-      -0.05833,
-      0.25,
-      0.19167
-    ],
-    [
-      5,
-      "Combusken",
-      "Mon Broke Through Paralysis",
-      0.19167,
-      0.25,
-      0.44167
-    ],
-    [
-      5,
-      "Combusken",
-      "Mon Used a Move That Can Miss (Overheat)",
-      0.44167,
-      0.1,
-      0.54167
-    ],
-    [
-      5,
-      "Combusken",
-      "Mon Used Move With Crit Chance (Overheat)",
-      0.54167,
-      -0.04167,
-      0.5
-    ],
-    [
-      6,
-      "Combusken",
-      "Mon Broke Through Paralysis",
-      0.5,
-      0.25,
-      0.75
-    ],
-    [
-      7,
-      "Combusken",
-      "Mon Broke Through Paralysis",
-      0.75,
-      0.25,
-      1.0
-    ],
-    [
-      8,
-      "Combusken",
-      "Mon Broke Through Paralysis",
-      1.0,
-      0.25,
-      1.25
-    ],
-    [
-      9,
-      "Combusken",
-      "Mon Could Not Move Due to Paralysis",
-      1.25,
-      -0.75,
-      0.5
-    ],
-    [
-      9,
-      "Combusken",
-      "Target of Move With Crit Chance (Body Press)",
-      0.5,
-      0.04167,
-      0.54167
-    ],
-    [
-      19,
-      "Gorebyss",
-      "Mon Used Move With Crit Chance (Ice Beam)",
-      0.0,
-      -0.04167,
-      -0.04167
-    ],
-    [
-      19,
-      "Gorebyss",
-      "Mon Used Move With Secondary Effect Chance (Ice Beam)",
-      -0.04167,
-      -0.1,
-      -0.14167
-    ],
-    [
-      19,
-      "Gorebyss",
-      "Target of Move That Can Miss (Leaf Storm)",
-      -0.14167,
-      -0.1,
-      -0.24167000000000002
-    ],
-    [
-      19,
-      "Gorebyss",
-      "Target of Move With Crit Chance (Leaf Storm)",
-      -0.24167000000000002,
-      0.04167,
-      -0.2
-    ],
-    [
-      11,
-      "Grookey",
-      "Target of Move With Crit Chance (Knock Off)",
-      0.0,
-      0.04167,
-      0.04167
+      -0.125,
+      -0.125
     ],
     [
       12,
-      "Grookey",
-      "Mon Used Move With Crit Chance (Wood Hammer)",
+      "Absol",
+      "Target of Move With Crit Chance (Outrage)",
+      -0.125,
+      0.04167,
+      -0.08333
+    ],
+    [
+      3,
+      "Ariados",
+      "Target of Move With Crit Chance (Knock Off)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      4,
+      "Ariados",
+      "Mon Used Move With Crit Chance (Sucker Punch)",
       0.04167,
       -0.04167,
       0.0
     ],
     [
-      12,
-      "Grookey",
-      "Target of Move With Crit Chance (Body Slam)",
-      0.0,
-      0.04167,
-      0.04167
-    ],
-    [
-      1,
-      "Lapras",
+      4,
+      "Ariados",
       "Target of Move With Crit Chance (U-turn)",
       0.0,
       0.04167,
       0.04167
     ],
     [
-      10,
-      "Lapras",
-      "Mon Used a Move That Can Miss (Hydro Pump)",
+      11,
+      "Ariados",
+      "Target of Move With Crit Chance (Outrage)",
       0.04167,
-      0.2,
-      0.24167000000000002
+      0.04167,
+      0.08334
     ],
     [
-      10,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Hydro Pump)",
-      0.24167000000000002,
+      5,
+      "Drednaw",
+      "Mon Used a Move That Can Miss (Rock Slide)",
+      0.0,
+      0.1,
+      0.1
+    ],
+    [
+      5,
+      "Drednaw",
+      "Mon Used Move With Crit Chance (Rock Slide)",
+      0.1,
       -0.04167,
-      0.2
-    ],
-    [
-      20,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Freeze-Dry)",
-      0.2,
-      -0.04167,
-      0.15833
-    ],
-    [
-      20,
-      "Lapras",
-      "Mon Used Move With Secondary Effect Chance (Freeze-Dry)",
-      0.15833,
-      -0.1,
       0.05833
     ],
     [
-      21,
-      "Lapras",
-      "Target of Move With Crit Chance (Knock Off)",
-      0.05833,
-      0.04167,
-      0.1
-    ],
-    [
-      21,
-      "Lapras",
-      "Mon Used a Move That Can Miss (Hydro Pump)",
-      0.1,
-      0.2,
-      0.3
-    ],
-    [
-      21,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Hydro Pump)",
-      0.3,
-      -0.04167,
-      0.25833
-    ],
-    [
-      22,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Freeze-Dry)",
-      0.25833,
-      -0.04167,
-      0.21665999999999996
-    ],
-    [
-      22,
-      "Lapras",
-      "Mon Used Move With Secondary Effect Chance (Freeze-Dry)",
-      0.21665999999999996,
-      -0.1,
-      0.11665999999999997
-    ],
-    [
-      23,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Freeze-Dry)",
-      0.11665999999999997,
-      -0.04167,
-      0.07498999999999997
-    ],
-    [
-      23,
-      "Lapras",
-      "Mon Used Move With Secondary Effect Chance (Freeze-Dry)",
-      0.07498999999999997,
-      -0.1,
-      -0.02501000000000003
-    ],
-    [
-      24,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Freeze-Dry)",
-      -0.02501000000000003,
-      -0.04167,
-      -0.06668000000000003
-    ],
-    [
-      25,
-      "Lapras",
-      "Mon Used a Move That Can Miss (Hydro Pump)",
-      -0.06668000000000003,
-      0.2,
-      0.13331999999999997
-    ],
-    [
-      25,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Hydro Pump)",
-      0.13331999999999997,
-      -0.04167,
-      0.09164999999999997
-    ],
-    [
-      26,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Freeze-Dry)",
-      0.09164999999999997,
-      -0.04167,
-      0.049979999999999976
-    ],
-    [
-      26,
-      "Lapras",
-      "Mon Used Move With Secondary Effect Chance (Freeze-Dry)",
-      0.049979999999999976,
-      -0.1,
-      -0.05002000000000002
-    ],
-    [
-      26,
-      "Lapras",
-      "Target of Move With Crit Chance (Body Slam)",
-      -0.05002000000000002,
-      0.04167,
-      -0.008350000000000026
-    ],
-    [
-      26,
-      "Lapras",
-      "Target of Move With Secondary Effect Chance (Body Slam)",
-      -0.008350000000000026,
-      0.3,
-      0.29164999999999996
-    ],
-    [
-      26,
-      "Lapras",
-      "Mon harmed by secondary effect (Body Slam)",
-      0.29164999999999996,
-      -1.0,
-      -0.70835
-    ],
-    [
-      27,
-      "Lapras",
-      "Target of Move With Crit Chance (Body Slam)",
-      -0.70835,
-      0.04167,
-      -0.66668
-    ],
-    [
-      27,
-      "Lapras",
-      "Mon Broke Through Paralysis",
-      -0.66668,
-      0.25,
-      -0.41668000000000005
-    ],
-    [
-      28,
-      "Lapras",
-      "Target of Move With Crit Chance (Body Slam)",
-      -0.41668000000000005,
-      0.04167,
-      -0.37501000000000007
-    ],
-    [
-      28,
-      "Lapras",
-      "Mon Used a Move That Can Miss (Hydro Pump)",
-      -0.37501000000000007,
-      0.2,
-      -0.17501000000000005
-    ],
-    [
-      28,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Hydro Pump)",
-      -0.17501000000000005,
-      -0.04167,
-      -0.21668000000000007
-    ],
-    [
-      29,
-      "Lapras",
-      "Target of Move With Crit Chance (Body Slam)",
-      -0.21668000000000007,
-      0.04167,
-      -0.17501000000000005
-    ],
-    [
-      29,
-      "Lapras",
-      "Mon Used a Move That Can Miss (Hydro Pump)",
-      -0.17501000000000005,
-      0.2,
-      0.024989999999999953
-    ],
-    [
-      29,
-      "Lapras",
-      "Mon Used Move With Crit Chance (Hydro Pump)",
-      0.024989999999999953,
-      -0.04167,
-      -0.016680000000000045
-    ],
-    [
-      30,
-      "Lapras",
-      "Target of Move With Crit Chance (Body Slam)",
-      -0.016680000000000045,
-      0.04167,
-      0.024989999999999953
-    ],
-    [
-      19,
-      "Lurantis",
-      "Target of Move With Crit Chance (Ice Beam)",
-      0.0,
-      0.04167,
-      0.04167
-    ],
-    [
-      19,
-      "Lurantis",
-      "Target of Move With Secondary Effect Chance (Ice Beam)",
-      0.04167,
-      0.1,
-      0.14167
-    ],
-    [
-      19,
-      "Lurantis",
-      "Mon Used a Move That Can Miss (Leaf Storm)",
-      0.14167,
-      0.1,
-      0.24167000000000002
-    ],
-    [
-      19,
-      "Lurantis",
-      "Mon Used Move With Crit Chance (Leaf Storm)",
-      0.24167000000000002,
-      -0.04167,
-      0.2
-    ],
-    [
-      17,
-      "Lycanroc-Midnight",
-      "Mon Used Move With Crit Chance (Mega Kick)",
-      0.0,
-      -0.04167,
-      -0.04167
-    ],
-    [
-      17,
-      "Lycanroc-Midnight",
-      "Target of Move With Crit Chance (Body Press)",
-      -0.04167,
-      0.04167,
-      0.0
-    ],
-    [
-      4,
-      "Mudsdale",
-      "Opponent Broke Through Paralysis",
-      0.0,
-      -0.25,
-      -0.25
-    ],
-    [
-      5,
-      "Mudsdale",
-      "Opponent Broke Through Paralysis",
-      -0.25,
-      -0.25,
-      -0.5
-    ],
-    [
-      5,
-      "Mudsdale",
-      "Target of Move That Can Miss (Overheat)",
-      -0.5,
-      -0.1,
-      -0.6
-    ],
-    [
-      5,
-      "Mudsdale",
-      "Target of Move With Crit Chance (Overheat)",
-      -0.6,
-      0.04167,
-      -0.55833
-    ],
-    [
-      6,
-      "Mudsdale",
-      "Opponent Broke Through Paralysis",
-      -0.55833,
-      -0.25,
-      -0.80833
-    ],
-    [
-      7,
-      "Mudsdale",
-      "Opponent Broke Through Paralysis",
-      -0.80833,
-      -0.25,
-      -1.05833
-    ],
-    [
       8,
-      "Mudsdale",
-      "Opponent Broke Through Paralysis",
-      -1.05833,
-      -0.25,
-      -1.30833
-    ],
-    [
-      9,
-      "Mudsdale",
-      "Opponent Could Not Move Due to Paralysis",
-      -1.30833,
-      0.75,
-      -0.55833
-    ],
-    [
-      9,
-      "Mudsdale",
-      "Mon Used Move With Crit Chance (Body Press)",
-      -0.55833,
-      -0.04167,
-      -0.6
-    ],
-    [
-      17,
-      "Mudsdale",
-      "Target of Move With Crit Chance (Mega Kick)",
-      -0.6,
-      0.04167,
-      -0.55833
-    ],
-    [
-      17,
-      "Mudsdale",
-      "Mon Used Move With Crit Chance (Body Press)",
-      -0.55833,
-      -0.04167,
-      -0.6
-    ],
-    [
-      1,
-      "Ninjask",
-      "Mon Used Move With Crit Chance (U-turn)",
-      0.0,
-      -0.04167,
-      -0.04167
-    ],
-    [
-      20,
-      "Persian-Alola",
-      "Target of Move With Crit Chance (Freeze-Dry)",
-      0.0,
-      0.04167,
-      0.04167
-    ],
-    [
-      20,
-      "Persian-Alola",
-      "Target of Move With Secondary Effect Chance (Freeze-Dry)",
-      0.04167,
-      0.1,
-      0.14167
-    ],
-    [
-      21,
-      "Persian-Alola",
-      "Mon Used Move With Crit Chance (Knock Off)",
-      0.14167,
-      -0.04167,
-      0.1
-    ],
-    [
-      21,
-      "Persian-Alola",
-      "Target of Move That Can Miss (Hydro Pump)",
-      0.1,
-      -0.2,
-      -0.1
-    ],
-    [
-      21,
-      "Persian-Alola",
-      "Target of Move With Crit Chance (Hydro Pump)",
-      -0.1,
-      0.04167,
-      -0.05833
-    ],
-    [
-      14,
-      "Pikachu",
-      "Mon Used a Move That Can Miss (Flying Press)",
+      "Emolga",
+      "Mon Used a Move That Can Miss (Air Slash)",
       0.0,
       0.05,
       0.05
     ],
     [
-      14,
-      "Pikachu",
-      "Mon Used Move With Crit Chance (Flying Press)",
+      8,
+      "Emolga",
+      "Mon Used Move With Crit Chance (Air Slash)",
       0.05,
       -0.04167,
       0.008330000000000002
     ],
     [
-      14,
-      "Pikachu",
-      "Target of Move With Crit Chance (Knock Off)",
-      0.008330000000000002,
-      0.04167,
-      0.05
-    ],
-    [
-      15,
-      "Pikachu",
-      "Mon Used a Move That Can Miss (Flying Press)",
-      0.05,
-      0.05,
-      0.1
-    ],
-    [
-      15,
-      "Pikachu",
-      "Mon missed a move (Flying Press)",
-      0.1,
-      -1.0,
-      -0.9
-    ],
-    [
-      15,
-      "Pikachu",
-      "Target of Move With Crit Chance (Body Slam)",
-      -0.9,
-      0.04167,
-      -0.85833
-    ],
-    [
-      2,
-      "Regigigas",
+      9,
+      "Emolga",
       "Mon Used Move With Crit Chance (Knock Off)",
+      0.008330000000000002,
+      -0.04167,
+      -0.033339999999999995
+    ],
+    [
+      10,
+      "Emolga",
+      "Mon Used a Move That Can Miss (Air Slash)",
+      -0.033339999999999995,
+      0.05,
+      0.016660000000000005
+    ],
+    [
+      10,
+      "Emolga",
+      "Mon Used Move With Crit Chance (Air Slash)",
+      0.016660000000000005,
+      -0.04167,
+      -0.025009999999999994
+    ],
+    [
+      10,
+      "Emolga",
+      "Mon Used Move With Secondary Effect Chance (Air Slash)",
+      -0.025009999999999994,
+      -0.3,
+      -0.32500999999999997
+    ],
+    [
+      11,
+      "Emolga",
+      "Mon Used Move With Crit Chance (Volt Switch)",
+      -0.32500999999999997,
+      -0.04167,
+      -0.36668
+    ],
+    [
+      13,
+      "Emolga",
+      "Mon Used a Move That Can Miss (Air Slash)",
+      -0.36668,
+      0.05,
+      -0.31668
+    ],
+    [
+      13,
+      "Emolga",
+      "Mon Used Move With Crit Chance (Air Slash)",
+      -0.31668,
+      -0.04167,
+      -0.35835
+    ],
+    [
+      14,
+      "Emolga",
+      "Target of Move With Crit Chance (Fake Out)",
+      -0.35835,
+      0.04167,
+      -0.31668
+    ],
+    [
+      24,
+      "Emolga",
+      "Target of Move With Crit Chance (Psychic)",
+      -0.31668,
+      0.04167,
+      -0.27501
+    ],
+    [
+      15,
+      "Falinks",
+      "Target of Move With Crit Chance (Knock Off)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      16,
+      "Falinks",
+      "Target of Move With Crit Chance (U-turn)",
+      0.04167,
+      0.04167,
+      0.08334
+    ],
+    [
+      17,
+      "Falinks",
+      "Target of Move That Can Miss (Will-O-Wisp)",
+      0.08334,
+      -0.15,
+      -0.06666
+    ],
+    [
+      17,
+      "Falinks",
+      "Mon Used a Move That Can Miss (Megahorn)",
+      -0.06666,
+      0.15,
+      0.08334
+    ],
+    [
+      17,
+      "Falinks",
+      "Mon Used Move With Crit Chance (Megahorn)",
+      0.08334,
+      -0.04167,
+      0.04167
+    ],
+    [
+      20,
+      "Falinks",
+      "Target of Move With Crit Chance (Fake Out)",
+      0.04167,
+      0.04167,
+      0.08334
+    ],
+    [
+      21,
+      "Falinks",
+      "Target of Move With Crit Chance (Knock Off)",
+      0.08334,
+      0.04167,
+      0.12500999999999998
+    ],
+    [
+      21,
+      "Falinks",
+      "Mon Used a Move That Can Miss (Megahorn)",
+      0.12500999999999998,
+      0.15,
+      0.27501
+    ],
+    [
+      21,
+      "Falinks",
+      "Mon missed a move (Megahorn)",
+      0.27501,
+      -1.0,
+      -0.7249899999999999
+    ],
+    [
+      22,
+      "Falinks",
+      "Target of Move With Crit Chance (Knock Off)",
+      -0.7249899999999999,
+      0.04167,
+      -0.6833199999999999
+    ],
+    [
+      22,
+      "Falinks",
+      "Mon Used a Move That Can Miss (Megahorn)",
+      -0.6833199999999999,
+      0.15,
+      -0.5333199999999999
+    ],
+    [
+      22,
+      "Falinks",
+      "Mon Used Move With Crit Chance (Megahorn)",
+      -0.5333199999999999,
+      -0.04167,
+      -0.57499
+    ],
+    [
+      23,
+      "Falinks",
+      "Target of Move With Crit Chance (Psychic)",
+      -0.57499,
+      0.04167,
+      -0.5333199999999999
+    ],
+    [
+      6,
+      "Hitmontop",
+      "Target of Move That Can Miss (Leech Seed)",
+      0.0,
+      -0.1,
+      -0.1
+    ],
+    [
+      28,
+      "Hitmontop",
+      "Target of Move With Crit Chance (Lava Plume)",
+      -0.1,
+      0.04167,
+      -0.05833
+    ],
+    [
+      28,
+      "Hitmontop",
+      "Target of Move With Secondary Effect Chance (Lava Plume)",
+      -0.05833,
+      0.3,
+      0.24167000000000002
+    ],
+    [
+      28,
+      "Hitmontop",
+      "Mon harmed by secondary effect (Lava Plume)",
+      0.24167000000000002,
+      -1.0,
+      -0.75833
+    ],
+    [
+      28,
+      "Hitmontop",
+      "Mon was hit by a critical hit",
+      -0.75833,
+      -1.0,
+      -1.75833
+    ],
+    [
+      28,
+      "Hitmontop",
+      "Mon Used Move With Crit Chance (Earthquake)",
+      -1.75833,
+      -0.04167,
+      -1.8
+    ],
+    [
+      28,
+      "Hitmontop",
+      "Mon landed a critical hit",
+      -1.8,
+      1.0,
+      -0.8
+    ],
+    [
+      23,
+      "Kadabra",
+      "Mon Used Move With Crit Chance (Psychic)",
       0.0,
       -0.04167,
       -0.04167
     ],
     [
-      3,
-      "Regigigas",
-      "Mon Used a Move That Can Miss (Thunder Wave)",
+      24,
+      "Kadabra",
+      "Mon Used Move With Crit Chance (Psychic)",
+      -0.04167,
+      -0.04167,
+      -0.08334
+    ],
+    [
+      25,
+      "Kadabra",
+      "Mon Used Move With Crit Chance (Psychic)",
+      -0.08334,
+      -0.04167,
+      -0.12500999999999998
+    ],
+    [
+      25,
+      "Kadabra",
+      "Mon Used Move With Secondary Effect Chance (Psychic)",
+      -0.12500999999999998,
+      -0.1,
+      -0.22501
+    ],
+    [
+      25,
+      "Kadabra",
+      "Mon incurred secondary effect (Psychic)",
+      -0.22501,
+      1.0,
+      0.77499
+    ],
+    [
+      25,
+      "Kadabra",
+      "Target of Move With Crit Chance (Seed Bomb)",
+      0.77499,
+      0.04167,
+      0.8166599999999999
+    ],
+    [
+      26,
+      "Kadabra",
+      "Mon Used Move With Crit Chance (Psychic)",
+      0.8166599999999999,
+      -0.04167,
+      0.77499
+    ],
+    [
+      27,
+      "Kadabra",
+      "Mon Used Move With Crit Chance (Psychic)",
+      0.77499,
+      -0.04167,
+      0.73332
+    ],
+    [
+      27,
+      "Kadabra",
+      "Mon Used Move With Secondary Effect Chance (Psychic)",
+      0.73332,
+      -0.1,
+      0.6333199999999999
+    ],
+    [
+      27,
+      "Kadabra",
+      "Target of Move With Crit Chance (Lava Plume)",
+      0.6333199999999999,
+      0.04167,
+      0.67499
+    ],
+    [
+      1,
+      "Meganium",
+      "Target of Move With Crit Chance (Fake Out)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      2,
+      "Meganium",
+      "Target of Move That Can Miss (Toxic)",
+      0.04167,
+      -0.1,
+      -0.05833
+    ],
+    [
+      5,
+      "Meganium",
+      "Target of Move That Can Miss (Rock Slide)",
+      -0.05833,
+      -0.1,
+      -0.15833
+    ],
+    [
+      5,
+      "Meganium",
+      "Target of Move With Crit Chance (Rock Slide)",
+      -0.15833,
+      0.04167,
+      -0.11666
+    ],
+    [
+      6,
+      "Meganium",
+      "Mon Used a Move That Can Miss (Leech Seed)",
+      -0.11666,
+      0.1,
+      -0.016660000000000005
+    ],
+    [
+      25,
+      "Meganium",
+      "Target of Move With Crit Chance (Psychic)",
+      -0.016660000000000005,
+      0.04167,
+      0.025009999999999994
+    ],
+    [
+      25,
+      "Meganium",
+      "Target of Move With Secondary Effect Chance (Psychic)",
+      0.025009999999999994,
+      0.1,
+      0.12500999999999998
+    ],
+    [
+      25,
+      "Meganium",
+      "Mon harmed by secondary effect (Psychic)",
+      0.12500999999999998,
+      -1.0,
+      -0.8749899999999999
+    ],
+    [
+      25,
+      "Meganium",
+      "Mon Used Move With Crit Chance (Seed Bomb)",
+      -0.8749899999999999,
+      -0.04167,
+      -0.9166599999999999
+    ],
+    [
+      26,
+      "Meganium",
+      "Target of Move With Crit Chance (Psychic)",
+      -0.9166599999999999,
+      0.04167,
+      -0.8749899999999999
+    ],
+    [
+      1,
+      "Persian",
+      "Mon Used Move With Crit Chance (Fake Out)",
+      0.0,
+      -0.04167,
+      -0.04167
+    ],
+    [
+      2,
+      "Persian",
+      "Mon Used a Move That Can Miss (Toxic)",
       -0.04167,
       0.1,
       0.05833
     ],
     [
-      10,
-      "Regigigas",
-      "Target of Move That Can Miss (Hydro Pump)",
+      3,
+      "Persian",
+      "Mon Used Move With Crit Chance (Knock Off)",
       0.05833,
-      -0.2,
-      -0.14167
+      -0.04167,
+      0.016660000000000005
+    ],
+    [
+      4,
+      "Persian",
+      "Target of Move With Crit Chance (Sucker Punch)",
+      0.016660000000000005,
+      0.04167,
+      0.05833
+    ],
+    [
+      4,
+      "Persian",
+      "Mon Used Move With Crit Chance (U-turn)",
+      0.05833,
+      -0.04167,
+      0.016660000000000005
+    ],
+    [
+      14,
+      "Persian",
+      "Mon Used Move With Crit Chance (Fake Out)",
+      0.016660000000000005,
+      -0.04167,
+      -0.025009999999999994
+    ],
+    [
+      15,
+      "Persian",
+      "Mon Used Move With Crit Chance (Knock Off)",
+      -0.025009999999999994,
+      -0.04167,
+      -0.06667999999999999
+    ],
+    [
+      16,
+      "Persian",
+      "Mon Used Move With Crit Chance (U-turn)",
+      -0.06667999999999999,
+      -0.04167,
+      -0.10834999999999999
+    ],
+    [
+      20,
+      "Persian",
+      "Mon Used Move With Crit Chance (Fake Out)",
+      -0.10834999999999999,
+      -0.04167,
+      -0.15002
+    ],
+    [
+      21,
+      "Persian",
+      "Mon Used Move With Crit Chance (Knock Off)",
+      -0.15002,
+      -0.04167,
+      -0.19168999999999997
+    ],
+    [
+      21,
+      "Persian",
+      "Target of Move That Can Miss (Megahorn)",
+      -0.19168999999999997,
+      -0.15,
+      -0.34169
+    ],
+    [
+      21,
+      "Persian",
+      "Opponent missed a move (Megahorn)",
+      -0.34169,
+      1.0,
+      0.6583100000000001
+    ],
+    [
+      22,
+      "Persian",
+      "Mon Used Move With Crit Chance (Knock Off)",
+      0.6583100000000001,
+      -0.04167,
+      0.61664
+    ],
+    [
+      22,
+      "Persian",
+      "Target of Move That Can Miss (Megahorn)",
+      0.61664,
+      -0.15,
+      0.46664
+    ],
+    [
+      22,
+      "Persian",
+      "Target of Move With Crit Chance (Megahorn)",
+      0.46664,
+      0.04167,
+      0.50831
+    ],
+    [
+      17,
+      "Sableye",
+      "Mon Used a Move That Can Miss (Will-O-Wisp)",
+      0.0,
+      0.15,
+      0.15
+    ],
+    [
+      17,
+      "Sableye",
+      "Target of Move That Can Miss (Megahorn)",
+      0.15,
+      -0.15,
+      0.0
+    ],
+    [
+      17,
+      "Sableye",
+      "Target of Move With Crit Chance (Megahorn)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      8,
+      "Sliggoo",
+      "Target of Move That Can Miss (Air Slash)",
+      0.0,
+      -0.05,
+      -0.05
+    ],
+    [
+      8,
+      "Sliggoo",
+      "Target of Move With Crit Chance (Air Slash)",
+      -0.05,
+      0.04167,
+      -0.008330000000000002
+    ],
+    [
+      9,
+      "Sliggoo",
+      "Target of Move With Crit Chance (Knock Off)",
+      -0.008330000000000002,
+      0.04167,
+      0.033339999999999995
     ],
     [
       10,
-      "Regigigas",
-      "Target of Move With Crit Chance (Hydro Pump)",
-      -0.14167,
+      "Sliggoo",
+      "Target of Move That Can Miss (Air Slash)",
+      0.033339999999999995,
+      -0.05,
+      -0.016660000000000005
+    ],
+    [
+      10,
+      "Sliggoo",
+      "Target of Move With Crit Chance (Air Slash)",
+      -0.016660000000000005,
       0.04167,
-      -0.1
+      0.025009999999999994
+    ],
+    [
+      10,
+      "Sliggoo",
+      "Target of Move With Secondary Effect Chance (Air Slash)",
+      0.025009999999999994,
+      0.3,
+      0.32500999999999997
     ],
     [
       11,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Knock Off)",
-      -0.1,
+      "Sliggoo",
+      "Target of Move With Crit Chance (Volt Switch)",
+      0.32500999999999997,
+      0.04167,
+      0.36668
+    ],
+    [
+      11,
+      "Sliggoo",
+      "Mon Used Move With Crit Chance (Outrage)",
+      0.36668,
       -0.04167,
-      -0.14167
+      0.32500999999999997
     ],
     [
       12,
-      "Regigigas",
-      "Target of Move With Crit Chance (Wood Hammer)",
-      -0.14167,
-      0.04167,
-      -0.1
+      "Sliggoo",
+      "Target of Super Luck Mon Using Move With Crit Chance (Close Combat)",
+      0.32500999999999997,
+      0.125,
+      0.45000999999999997
     ],
     [
       12,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Body Slam)",
-      -0.1,
+      "Sliggoo",
+      "Mon Used Move With Crit Chance (Outrage)",
+      0.45000999999999997,
       -0.04167,
-      -0.14167
+      0.40834
     ],
     [
-      14,
-      "Regigigas",
-      "Target of Move That Can Miss (Flying Press)",
-      -0.14167,
+      13,
+      "Sliggoo",
+      "Target of Move That Can Miss (Air Slash)",
+      0.40834,
       -0.05,
-      -0.19167
+      0.35833999999999994
     ],
     [
-      14,
-      "Regigigas",
-      "Target of Move With Crit Chance (Flying Press)",
-      -0.19167,
+      13,
+      "Sliggoo",
+      "Target of Move With Crit Chance (Air Slash)",
+      0.35833999999999994,
       0.04167,
-      -0.15000000000000002
+      0.40001
     ],
     [
-      14,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Knock Off)",
-      -0.15000000000000002,
+      27,
+      "Typhlosion",
+      "Target of Move With Crit Chance (Psychic)",
+      0.0,
+      0.04167,
+      0.04167
+    ],
+    [
+      27,
+      "Typhlosion",
+      "Target of Move With Secondary Effect Chance (Psychic)",
+      0.04167,
+      0.1,
+      0.14167
+    ],
+    [
+      27,
+      "Typhlosion",
+      "Mon Used Move With Crit Chance (Lava Plume)",
+      0.14167,
       -0.04167,
-      -0.19167
+      0.1
     ],
     [
-      15,
-      "Regigigas",
-      "Target of Move That Can Miss (Flying Press)",
-      -0.19167,
-      -0.05,
+      28,
+      "Typhlosion",
+      "Mon Used Move With Crit Chance (Lava Plume)",
+      0.1,
+      -0.04167,
+      0.05833
+    ],
+    [
+      28,
+      "Typhlosion",
+      "Mon Used Move With Secondary Effect Chance (Lava Plume)",
+      0.05833,
+      -0.3,
       -0.24167000000000002
     ],
     [
-      15,
-      "Regigigas",
-      "Opponent missed a move (Flying Press)",
+      28,
+      "Typhlosion",
+      "Mon incurred secondary effect (Lava Plume)",
       -0.24167000000000002,
       1.0,
       0.75833
     ],
     [
-      15,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Body Slam)",
+      28,
+      "Typhlosion",
+      "Mon landed a critical hit",
       0.75833,
-      -0.04167,
-      0.71666
-    ],
-    [
-      22,
-      "Regigigas",
-      "Target of Move With Crit Chance (Freeze-Dry)",
-      0.71666,
-      0.04167,
-      0.75833
-    ],
-    [
-      22,
-      "Regigigas",
-      "Target of Move With Secondary Effect Chance (Freeze-Dry)",
-      0.75833,
-      0.1,
-      0.85833
-    ],
-    [
-      23,
-      "Regigigas",
-      "Target of Move With Crit Chance (Freeze-Dry)",
-      0.85833,
-      0.04167,
-      0.9
-    ],
-    [
-      23,
-      "Regigigas",
-      "Target of Move With Secondary Effect Chance (Freeze-Dry)",
-      0.9,
-      0.1,
-      1.0
-    ],
-    [
-      24,
-      "Regigigas",
-      "Target of Move With Crit Chance (Freeze-Dry)",
       1.0,
-      0.04167,
-      1.04167
-    ],
-    [
-      25,
-      "Regigigas",
-      "Target of Move That Can Miss (Hydro Pump)",
-      1.04167,
-      -0.2,
-      0.84167
-    ],
-    [
-      25,
-      "Regigigas",
-      "Target of Move With Crit Chance (Hydro Pump)",
-      0.84167,
-      0.04167,
-      0.88334
-    ],
-    [
-      26,
-      "Regigigas",
-      "Target of Move With Crit Chance (Freeze-Dry)",
-      0.88334,
-      0.04167,
-      0.92501
-    ],
-    [
-      26,
-      "Regigigas",
-      "Target of Move With Secondary Effect Chance (Freeze-Dry)",
-      0.92501,
-      0.1,
-      1.02501
-    ],
-    [
-      26,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Body Slam)",
-      1.02501,
-      -0.04167,
-      0.98334
-    ],
-    [
-      26,
-      "Regigigas",
-      "Mon Used Move With Secondary Effect Chance (Body Slam)",
-      0.98334,
-      -0.3,
-      0.6833400000000001
-    ],
-    [
-      26,
-      "Regigigas",
-      "Mon incurred secondary effect (Body Slam)",
-      0.6833400000000001,
-      1.0,
-      1.68334
-    ],
-    [
-      27,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Body Slam)",
-      1.68334,
-      -0.04167,
-      1.64167
-    ],
-    [
-      27,
-      "Regigigas",
-      "Opponent Broke Through Paralysis",
-      1.64167,
-      -0.25,
-      1.39167
+      1.75833
     ],
     [
       28,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Body Slam)",
-      1.39167,
-      -0.04167,
-      1.35
+      "Typhlosion",
+      "Target of Move With Crit Chance (Earthquake)",
+      1.75833,
+      0.04167,
+      1.8
     ],
     [
       28,
-      "Regigigas",
-      "Target of Move That Can Miss (Hydro Pump)",
-      1.35,
-      -0.2,
-      1.15
-    ],
-    [
-      28,
-      "Regigigas",
-      "Target of Move With Crit Chance (Hydro Pump)",
-      1.15,
-      0.04167,
-      1.19167
-    ],
-    [
-      29,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Body Slam)",
-      1.19167,
-      -0.04167,
-      1.15
-    ],
-    [
-      29,
-      "Regigigas",
-      "Target of Move That Can Miss (Hydro Pump)",
-      1.15,
-      -0.2,
-      0.95
-    ],
-    [
-      29,
-      "Regigigas",
-      "Target of Move With Crit Chance (Hydro Pump)",
-      0.95,
-      0.04167,
-      0.99167
-    ],
-    [
-      30,
-      "Regigigas",
-      "Mon Used Move With Crit Chance (Body Slam)",
-      0.99167,
-      -0.04167,
-      0.95
+      "Typhlosion",
+      "Mon was hit by a critical hit",
+      1.8,
+      -1.0,
+      0.8
     ]
   ],
   "errormessage": []

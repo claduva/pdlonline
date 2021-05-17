@@ -1,0 +1,862 @@
+"id","name","move_typing","move_category","move_power","move_accuracy","move_priority","secondary_effect_chance","secondary_effect","altname","crits","hits","posssecondaryeffects","secondaryeffects","uses","move_crit_rate"
+857,Eerie Spell,Psychic,Special,80,100,0,0,None,eeriespell,0,2,0,0,2,4.17
+177,Retaliate,Normal,Physical,70,100,0,0,None,retaliate,0,15,0,0,15,4.17
+183,Reversal,Fighting,Physical,0,100,0,0,None,reversal,0,12,0,0,12,0.00
+76,Gigavolt Havoc,Electric,Physical,1,1,0,0,None,gigavolthavoc,4,108,0,0,108,4.17
+75,Explosion,Normal,Physical,250,100,0,0,None,explosion,6,148,0,0,148,4.17
+172,Bind,Normal,Physical,15,85,0,0,None,bind,0,9,0,0,9,4.17
+24,Black Hole Eclipse,Dark,Physical,1,1,0,0,None,blackholeeclipse,1,43,0,0,43,4.17
+851,Jungle Healing,Grass,Status,0,1,0,0,None,junglehealing,0,3,0,0,3,0.00
+850,Shell Side Arm,Poison,Special,90,100,0,20,psn,shellsidearm,0,17,11,2,17,4.17
+652,Foul Play,Dark,Physical,95,100,0,0,None,foulplay,40,872,0,0,873,4.17
+534,Zap Cannon,Electric,Special,120,50,0,0,None,zapcannon,1,27,0,0,52,4.17
+85,Head Smash,Rock,Physical,150,80,0,0,None,headsmash,3,145,0,0,190,4.17
+576,Leech Life,Bug,Physical,80,100,0,0,None,leechlife,19,350,0,0,350,4.17
+236,Secret Power,Normal,Physical,70,100,0,30,par,secretpower,1,6,4,1,6,4.17
+71,Heart Stamp,Psychic,Physical,60,100,0,30,flinch,heartstamp,1,10,5,3,10,4.17
+106,Mud-Slap,Ground,Special,20,100,0,0,None,mudslap,0,27,0,0,27,4.17
+37,Hyper Beam,Normal,Special,150,90,0,0,None,hyperbeam,2,42,0,0,44,4.17
+733,Hidden Power Ground,Ground,Special,60,100,0,0,None,hiddenpowerground,0,0,0,0,0,4.17
+858,Dragon Energy,Dragon,Special,150,100,0,0,None,dragonenergy,1,6,0,0,6,4.17
+722,Drill Peck,Flying,Physical,80,100,0,0,None,drillpeck,4,59,0,0,59,4.17
+607,Bounce,Flying,Physical,85,85,0,30,par,bounce,1,27,4,0,27,4.17
+471,Hidden Power Steel,Steel,Special,60,100,0,0,None,hiddenpowersteel,0,0,0,0,0,4.17
+734,Rolling Kick,Fighting,Physical,60,85,0,30,flinch,rollingkick,0,0,0,0,0,4.17
+551,Spark,Electric,Physical,65,100,0,30,par,spark,0,0,0,0,0,4.17
+779,Eternabeam,Dragon,Special,160,90,0,0,None,eternabeam,0,0,0,0,0,4.17
+539,Hidden Power Fighting,Fighting,Special,60,100,0,0,None,hiddenpowerfighting,0,0,0,0,0,4.17
+582,Dragon Rush,Dragon,Physical,100,75,0,20,flinch,dragonrush,0,0,0,0,0,4.17
+489,Scary Face,Normal,Status,0,100,0,0,None,scaryface,0,0,0,0,0,0.00
+631,Odor Sleuth,Normal,Status,0,1,0,0,None,odorsleuth,0,0,0,0,0,0.00
+567,Crafty Shield,Fairy,Status,0,1,3,0,None,craftyshield,0,0,0,0,0,0.00
+509,Harden,Normal,Status,0,1,0,0,None,harden,0,0,0,0,0,0.00
+307,Fairy Lock,Fairy,Status,0,1,0,0,None,fairylock,0,0,0,0,0,0.00
+484,Electrify,Electric,Status,0,1,0,0,None,electrify,0,0,0,0,0,0.00
+600,Flame Wheel,Fire,Physical,60,100,0,10,brn,flamewheel,0,0,0,0,0,4.17
+602,Hidden Power Poison,Poison,Special,60,100,0,0,None,hiddenpowerpoison,0,0,0,0,0,4.17
+606,Fire Pledge,Fire,Special,80,100,0,0,None,firepledge,0,0,0,0,0,4.17
+475,Lucky Chant,Normal,Status,0,1,0,0,None,luckychant,0,0,0,0,0,0.00
+504,Present,Normal,Physical,0,90,0,0,None,present,0,0,0,0,0,0.00
+3,Eerie Impulse,Electric,Status,0,100,0,0,None,eerieimpulse,0,0,0,0,0,0.00
+854,Freezing Glare,Psychic,Special,90,100,0,10,frz,freezingglare,0,7,0,0,7,4.17
+852,Surging Strikes,Water,Physical,25,100,0,0,None,surgingstrikes,122,47,0,0,47,100.00
+410,Guardian of Alola,Fairy,Special,0,1,0,0,None,guardianofalola,0,6,0,0,6,0.00
+296,Bolt Strike,Electric,Physical,130,85,0,20,par,boltstrike,2,66,37,2,72,4.17
+59,Metal Claw,Steel,Physical,50,95,0,10,self boosts: atk: 1 ,metalclaw,0,3,3,0,4,4.17
+856,Fiery Wrath,Dark,Special,90,100,0,20,flinch,fierywrath,1,30,0,0,30,4.17
+853,Wicked Blow,Dark,Physical,80,100,0,0,None,wickedblow,67,71,0,0,71,100.00
+738,Sky Attack,Flying,Physical,140,90,0,30,flinch,skyattack,2,29,2,0,30,12.50
+152,Crabhammer,Water,Physical,100,90,0,0,None,crabhammer,0,15,0,0,16,12.50
+732,Grudge,Ghost,Status,0,1,0,0,None,grudge,0,2,0,0,2,0.00
+859,Glacial Lance,Ice,Physical,130,100,0,0,None,glaciallance,0,0,0,0,0,4.17
+860,Astral Barrage,Ghost,Special,120,100,0,0,None,astralbarrage,0,0,0,0,0,4.17
+861,Thunder Cage,Electric,Special,80,90,0,0,None,thundercage,0,0,0,0,0,4.17
+25,Bloom Doom,Grass,Physical,1,1,0,0,None,bloomdoom,2,50,0,0,50,4.17
+729,Strength Sap,Grass,Status,0,100,0,0,None,strengthsap,0,173,0,0,173,0.00
+645,Horn Leech,Grass,Physical,75,100,0,0,None,hornleech,10,292,0,0,292,4.17
+502,Draining Kiss,Fairy,Special,50,100,0,0,None,drainingkiss,17,380,0,0,380,4.17
+855,Thunderous Kick,Fighting,Physical,90,100,0,0,None,thunderouskick,0,5,0,0,5,4.17
+265,Core Enforcer,Dragon,Special,100,100,0,0,None,coreenforcer,0,12,0,0,12,4.17
+590,Sunny Day,Fire,Status,0,1,0,0,None,sunnyday,0,87,0,0,87,0.00
+31,Tail Slap,Normal,Physical,25,85,0,0,None,tailslap,8,32,0,0,35,4.17
+413,Bone Club,Ground,Physical,65,85,0,10,flinch,boneclub,0,0,0,0,0,4.17
+421,Gust,Flying,Special,40,100,0,0,None,gust,0,0,0,0,0,4.17
+105,Aqua Ring,Water,Status,0,1,0,0,None,aquaring,0,16,0,0,16,0.00
+549,Snarl,Dark,Special,55,95,0,0,None,snarl,1,38,0,0,39,4.17
+279,Defense Curl,Normal,Status,0,1,0,0,None,defensecurl,0,18,0,0,18,0.00
+641,Spike Cannon,Normal,Physical,20,100,0,0,None,spikecannon,0,0,0,0,0,4.17
+847,Lash Out,Dark,Physical,75,100,0,0,None,lashout,0,13,0,0,13,4.17
+488,Amnesia,Psychic,Status,0,1,0,0,None,amnesia,0,39,0,0,39,0.00
+848,Steel Roller,Steel,Physical,130,100,0,0,None,steelroller,1,1,0,0,1,4.17
+712,Spectral Thief,Ghost,Physical,90,100,0,0,None,spectralthief,1,27,0,0,27,4.17
+327,Dazzling Gleam,Fairy,Special,80,100,0,0,None,dazzlinggleam,54,951,0,0,951,4.17
+580,Fleur Cannon,Fairy,Special,130,90,0,0,None,fleurcannon,0,15,0,0,18,4.17
+583,Laser Focus,Normal,Status,0,1,0,0,None,laserfocus,0,6,0,0,6,0.00
+564,Needle Arm,Grass,Physical,60,100,0,30,flinch,needlearm,1,3,2,0,3,4.17
+555,Metal Burst,Steel,Physical,0,100,0,0,None,metalburst,0,14,0,0,14,0.00
+333,Lick,Ghost,Physical,30,100,0,30,par,lick,0,3,3,0,3,4.17
+259,Assurance,Dark,Physical,60,100,0,0,None,assurance,0,3,0,0,3,4.17
+19,Tickle,Normal,Status,0,100,0,0,None,tickle,0,16,0,0,16,0.00
+701,Entrainment,Normal,Status,0,100,0,0,None,entrainment,0,0,0,0,0,0.00
+758,Dragon Darts,Dragon,Physical,50,100,0,0,None,dragondarts,3,106,0,0,106,4.17
+1,Precipice Blades,Ground,Physical,120,85,0,0,None,precipiceblades,0,0,0,0,0,4.17
+544,Octazooka,Water,Special,65,85,0,50,boosts accuracy: -1 ,octazooka,0,0,0,0,0,4.17
+380,Karate Chop,Fighting,Physical,50,100,0,0,None,karatechop,0,0,0,0,0,12.50
+53,Crush Grip,Normal,Physical,0,100,0,0,None,crushgrip,0,0,0,0,0,0.00
+196,Flame Burst,Fire,Special,70,100,0,0,None,flameburst,0,0,0,0,0,4.17
+54,Tectonic Rage,Ground,Physical,1,1,0,0,None,tectonicrage,3,94,0,0,94,4.17
+8,Sand Tomb,Ground,Physical,35,85,0,0,None,sandtomb,0,11,0,0,11,4.17
+49,Crush Claw,Normal,Physical,75,95,0,50,boosts def: -1 ,crushclaw,3,33,27,15,35,4.17
+173,Counter,Fighting,Physical,0,100,-5,0,None,counter,0,176,0,0,176,0.00
+42,Iron Defense,Steel,Status,0,1,0,0,None,irondefense,0,227,0,0,227,0.00
+833,Burning Jealousy,Fire,Special,70,100,0,0,None,burningjealousy,1,7,0,0,7,4.17
+744,Steel Beam,Steel,Special,140,95,0,0,None,steelbeam,1,16,0,0,17,4.17
+623,Cross Chop,Fighting,Physical,100,80,0,0,None,crosschop,0,4,0,0,4,12.50
+546,Hyper Voice,Normal,Special,90,100,0,0,None,hypervoice,36,993,0,0,993,4.17
+690,Grass Pledge,Grass,Special,80,100,0,0,None,grasspledge,0,20,0,0,20,4.17
+827,G-Max Hydrosnipe,Water,Physical,1,1,0,0,None,gmaxhydrosnipe,0,12,0,0,12,4.17
+537,Assist,Normal,Status,0,1,0,0,None,assist,0,2,0,0,2,0.00
+640,Autotomize,Steel,Status,0,1,0,0,None,autotomize,0,134,0,0,134,0.00
+366,Charm,Fairy,Status,0,100,0,0,None,charm,0,9,0,0,9,0.00
+651,Shadow Punch,Ghost,Physical,60,1,0,0,None,shadowpunch,2,27,0,0,27,4.17
+316,Peck,Flying,Physical,35,100,0,0,None,peck,0,1,0,0,1,4.17
+610,Giga Impact,Normal,Physical,150,90,0,0,None,gigaimpact,1,11,0,0,11,4.17
+320,Sunsteel Strike,Steel,Physical,100,100,0,0,None,sunsteelstrike,0,3,0,0,3,4.17
+151,Bulk Up,Fighting,Status,0,1,0,0,None,bulkup,0,535,0,0,535,0.00
+849,Misty Explosion,Fairy,Special,100,100,0,0,None,mistyexplosion,0,4,0,0,4,4.17
+134,Natural Gift,Normal,Physical,0,100,0,0,None,naturalgift,2,18,0,0,18,0.00
+427,Leaf Blade,Grass,Physical,90,100,0,0,None,leafblade,46,379,0,0,379,12.50
+5,High Horsepower,Ground,Physical,95,95,0,0,None,highhorsepower,3,105,0,0,107,4.17
+262,Barrier,Psychic,Status,0,1,0,0,None,barrier,0,23,0,0,23,0.00
+832,Terrain Pulse,Normal,Special,50,100,0,0,None,terrainpulse,0,6,0,0,6,4.17
+367,Wonder Room,Psychic,Status,0,1,0,0,None,wonderroom,0,5,0,0,5,0.00
+603,Glare,Normal,Status,0,100,0,0,None,glare,0,178,0,0,178,0.00
+601,Magic Room,Psychic,Status,0,1,0,0,None,magicroom,0,1,0,0,1,0.00
+244,Teeter Dance,Normal,Status,0,100,0,0,None,teeterdance,0,1,0,0,1,0.00
+527,Poison Jab,Poison,Physical,80,100,0,30,psn,poisonjab,40,923,439,128,923,4.17
+686,Hail,Ice,Status,0,1,0,0,None,hail,0,38,0,0,38,0.00
+444,Continental Crush,Rock,Physical,1,1,0,0,None,continentalcrush,4,95,0,0,95,4.17
+346,Fusion Bolt,Electric,Physical,100,100,0,0,None,fusionbolt,6,136,0,0,136,4.17
+62,Vital Throw,Fighting,Physical,70,1,-1,0,None,vitalthrow,0,0,0,0,0,4.17
+167,Buzzy Buzz,Electric,Special,90,100,0,0,None,buzzybuzz,0,0,0,0,0,4.17
+66,Baddy Bad,Dark,Special,90,100,0,0,None,baddybad,0,0,0,0,0,4.17
+514,Screech,Normal,Status,0,85,0,0,None,screech,0,7,0,0,9,0.00
+445,Parting Shot,Dark,Status,0,100,0,0,None,partingshot,0,501,0,0,501,0.00
+630,Wild Charge,Electric,Physical,90,100,0,0,None,wildcharge,6,180,0,0,180,4.17
+561,Rest,Psychic,Status,0,1,0,0,None,rest,0,1130,0,0,1130,0.00
+823,G-Max Foam Burst,Water,Physical,1,1,0,0,None,gmaxfoamburst,0,0,0,0,0,4.17
+592,Vacuum Wave,Fighting,Special,40,100,1,0,None,vacuumwave,3,63,0,0,63,4.17
+824,G-Max Centiferno,Fire,Physical,1,1,0,0,None,gmaxcentiferno,0,0,0,0,0,4.17
+329,Hidden Power Rock,Rock,Special,60,100,0,0,None,hiddenpowerrock,0,0,0,0,0,4.17
+667,Hex,Ghost,Special,65,100,0,0,None,hex,11,286,0,0,286,4.17
+840,Scorching Sands,Ground,Special,70,100,0,30,brn,scorchingsands,2,62,29,9,62,4.17
+400,Acupressure,Normal,Status,0,1,0,0,None,acupressure,0,12,0,0,12,0.00
+270,Struggle,Normal,Physical,50,1,0,0,None,struggle,3,77,0,0,77,4.17
+351,Camouflage,Normal,Status,0,1,0,0,None,camouflage,0,3,0,0,3,0.00
+240,Corkscrew Crash,Steel,Physical,1,1,0,0,None,corkscrewcrash,2,71,0,0,71,4.17
+726,Mirror Coat,Psychic,Special,0,100,-5,0,None,mirrorcoat,0,59,0,0,59,0.00
+691,Sparkling Aria,Water,Special,90,100,0,0,None,sparklingaria,1,9,0,0,9,4.17
+789,Max Airstream,Flying,Physical,1,1,0,0,None,maxairstream,0,26,0,0,26,4.17
+102,Blast Burn,Fire,Special,150,90,0,0,None,blastburn,0,2,0,0,2,4.17
+80,Me First,Normal,Status,0,1,0,0,None,mefirst,0,3,0,0,3,0.00
+818,G-Max Tartness,Grass,Physical,1,1,0,0,None,gmaxtartness,0,3,0,0,3,4.17
+150,Sky Drop,Flying,Physical,60,100,0,0,None,skydrop,0,0,0,0,0,4.17
+115,Captivate,Normal,Status,0,100,0,0,None,captivate,0,4,0,0,4,0.00
+349,Diamond Storm,Rock,Physical,100,95,0,50,self boosts: def: 2 ,diamondstorm,11,229,224,105,238,4.17
+467,Sketch,Normal,Status,0,1,0,0,None,sketch,0,0,0,0,0,0.00
+247,Hidden Power Psychic,Psychic,Special,60,100,0,0,None,hiddenpowerpsychic,0,0,0,0,0,4.17
+615,Magical Leaf,Grass,Special,60,1,0,0,None,magicalleaf,0,0,0,0,0,4.17
+93,Glitzy Glow,Psychic,Special,90,100,0,0,None,glitzyglow,0,0,0,0,0,4.17
+46,Round,Normal,Special,60,100,0,0,None,round,0,3,0,0,3,4.17
+18,Flash,Normal,Status,0,100,0,0,None,flash,0,0,0,0,0,0.00
+118,Shift Gear,Steel,Status,0,1,0,0,None,shiftgear,0,41,0,0,41,0.00
+379,Hyperspace Fury,Dark,Physical,100,1,0,0,None,hyperspacefury,4,83,0,0,83,4.17
+491,Heal Bell,Normal,Status,0,1,0,0,None,healbell,0,722,0,0,722,0.00
+599,Imprison,Psychic,Status,0,1,0,0,None,imprison,0,2,0,0,2,0.00
+123,Flying Press,Fighting,Physical,100,95,0,0,None,flyingpress,2,7,0,0,7,4.17
+636,Blaze Kick,Fire,Physical,85,90,0,10,brn,blazekick,1,36,17,1,40,12.50
+110,Work Up,Normal,Status,0,1,0,0,None,workup,0,81,0,0,81,0.00
+595,Circle Throw,Fighting,Physical,60,90,-6,0,None,circlethrow,0,6,0,0,6,4.17
+689,Sharpen,Normal,Status,0,1,0,0,None,sharpen,0,2,0,0,2,0.00
+718,Thousand Waves,Ground,Physical,90,100,0,0,None,thousandwaves,1,37,0,0,37,4.17
+820,G-Max Smite,Fairy,Physical,1,1,0,0,None,gmaxsmite,0,1,0,0,1,4.17
+499,Power Trick,Psychic,Status,0,1,0,0,None,powertrick,0,3,0,0,3,0.00
+195,Fissure,Ground,Physical,0,30,0,0,None,fissure,0,1,0,0,1,0.00
+493,Horn Drill,Normal,Physical,0,30,0,0,None,horndrill,0,0,0,0,2,0.00
+434,Powder,Bug,Status,0,100,1,0,None,powder,0,1,0,0,1,0.00
+345,Soak,Water,Status,0,100,0,0,None,soak,0,12,0,0,12,0.00
+685,Oceanic Operetta,Water,Special,195,1,0,0,None,oceanicoperetta,0,0,0,0,0,4.17
+790,Max Starfall,Fairy,Physical,1,1,0,0,None,maxstarfall,1,9,0,0,9,4.17
+657,Rollout,Rock,Physical,30,90,0,0,None,rollout,1,18,0,0,19,4.17
+39,Poison Sting,Poison,Physical,15,100,0,30,psn,poisonsting,0,1,1,1,1,4.17
+189,Telekinesis,Psychic,Status,0,1,0,0,None,telekinesis,0,4,0,0,4,0.00
+405,Origin Pulse,Water,Special,110,85,0,0,None,originpulse,0,0,0,0,0,4.17
+176,Parabolic Charge,Electric,Special,65,100,0,0,None,paraboliccharge,0,0,0,0,0,4.17
+473,Hidden Power Water,Water,Special,60,100,0,0,None,hiddenpowerwater,0,0,0,0,0,4.17
+812,G-Max Finale,Fairy,Physical,1,1,0,0,None,gmaxfinale,0,1,0,0,1,4.17
+769,Behemoth Blade,Steel,Physical,100,100,0,0,None,behemothblade,0,0,0,0,0,4.17
+668,Transform,Normal,Status,0,1,0,0,None,transform,0,18,0,0,18,0.00
+220,Fusion Flare,Fire,Special,100,100,0,0,None,fusionflare,0,4,0,0,4,4.17
+781,Max Flutterby,Bug,Physical,1,1,0,0,None,maxflutterby,0,4,0,0,4,4.17
+312,Doom Desire,Steel,Special,140,100,0,0,None,doomdesire,0,6,0,0,6,4.17
+179,Steamroller,Bug,Physical,65,100,0,30,flinch,steamroller,1,11,11,3,11,4.17
+283,Seed Flare,Grass,Special,120,85,0,40,boosts spd: -2 ,seedflare,10,235,180,62,279,4.17
+412,Poison Tail,Poison,Physical,50,100,0,10,psn,poisontail,0,2,1,0,2,12.50
+82,Clear Smog,Poison,Special,50,1,0,0,None,clearsmog,3,77,0,0,77,4.17
+300,Sleep Talk,Normal,Status,0,1,0,0,None,sleeptalk,0,837,0,0,837,0.00
+710,Power-Up Punch,Fighting,Physical,40,100,0,0,None,poweruppunch,11,258,0,0,258,4.17
+724,Storm Throw,Fighting,Physical,60,100,0,0,None,stormthrow,15,15,0,0,15,4.17
+65,Curse,Ghost,Status,0,1,0,0,None,curse,0,604,0,0,604,0.00
+181,Bubble Beam,Water,Special,65,100,0,10,boosts spe: -1 ,bubblebeam,0,1,0,0,1,4.17
+348,Calm Mind,Psychic,Status,0,1,0,0,None,calmmind,0,2542,0,0,2542,0.00
+658,Icicle Spear,Ice,Physical,25,100,0,0,None,iciclespear,18,161,0,0,161,4.17
+573,Low Kick,Fighting,Physical,0,100,0,0,None,lowkick,6,161,0,0,161,0.00
+48,False Swipe,Normal,Physical,40,100,0,0,None,falseswipe,0,0,0,0,0,4.17
+714,Moonblast,Fairy,Special,95,100,0,30,boosts spa: -1 ,moonblast,181,3888,2767,802,3904,4.17
+360,Gear Grind,Steel,Physical,50,85,0,0,None,geargrind,3,20,0,0,23,4.17
+2,Thunder Punch,Electric,Physical,75,100,0,10,par,thunderpunch,18,388,191,18,388,4.17
+376,Leaf Tornado,Grass,Special,65,90,0,50,boosts accuracy: -1 ,leaftornado,0,0,0,0,0,4.17
+446,Mat Block,Fighting,Status,0,1,0,0,None,matblock,0,0,0,0,0,0.00
+751,Life Dew,Water,Status,0,1,0,0,None,lifedew,0,3,0,0,3,0.00
+331,Sweet Scent,Normal,Status,0,100,0,0,None,sweetscent,0,0,0,0,0,0.00
+678,Glaciate,Ice,Special,65,95,0,0,None,glaciate,1,12,0,0,12,4.17
+371,Cross Poison,Poison,Physical,70,100,0,10,psn,crosspoison,7,37,26,1,37,12.50
+613,Endeavor,Normal,Physical,0,100,0,0,None,endeavor,0,74,0,0,74,0.00
+192,Focus Energy,Normal,Status,0,1,0,0,None,focusenergy,0,17,0,0,17,0.00
+454,Shell Smash,Normal,Status,0,1,0,0,None,shellsmash,0,237,0,0,237,0.00
+330,Encore,Normal,Status,0,100,0,0,None,encore,0,196,0,0,196,0.00
+249,Psychic,Psychic,Special,90,100,0,10,boosts spd: -1 ,psychic,111,2670,1703,180,2670,4.17
+709,Hold Back,Normal,Physical,40,100,0,0,None,holdback,0,0,0,0,0,4.17
+441,Nightmare,Ghost,Status,0,100,0,0,None,nightmare,0,0,0,0,0,0.00
+587,Luster Purge,Psychic,Special,70,100,0,50,boosts spd: -1 ,lusterpurge,0,0,0,0,0,4.17
+653,Twister,Dragon,Special,40,100,0,20,flinch,twister,0,0,0,0,0,4.17
+674,Bubble,Water,Special,40,100,0,10,boosts spe: -1 ,bubble,0,0,0,0,0,4.17
+425,Mud Bomb,Ground,Special,65,85,0,30,boosts accuracy: -1 ,mudbomb,0,0,0,0,0,4.17
+697,Vine Whip,Grass,Physical,45,100,0,0,None,vinewhip,0,0,0,0,0,4.17
+741,Mimic,Normal,Status,0,1,0,0,None,mimic,0,1,0,0,1,0.00
+381,Fell Stinger,Bug,Physical,50,100,0,0,None,fellstinger,0,32,0,0,32,4.17
+40,Dig,Ground,Physical,80,100,0,0,None,dig,0,10,0,0,10,4.17
+391,Hammer Arm,Fighting,Physical,100,90,0,0,None,hammerarm,3,62,0,0,67,4.17
+284,Hydro Cannon,Water,Special,150,90,0,0,None,hydrocannon,0,2,0,0,3,4.17
+174,Memento,Dark,Status,0,100,0,0,None,memento,0,59,0,0,59,0.00
+759,Dynamax Cannon,Dragon,Special,100,100,0,0,None,dynamaxcannon,0,0,0,0,0,4.17
+768,Snap Trap,Grass,Physical,35,100,0,0,None,snaptrap,0,0,0,0,0,4.17
+266,Synchronoise,Psychic,Special,120,100,0,0,None,synchronoise,0,6,0,0,6,4.17
+661,Heart Swap,Psychic,Status,0,1,0,0,None,heartswap,0,2,0,0,2,0.00
+304,Confuse Ray,Ghost,Status,0,100,0,0,None,confuseray,0,7,0,0,7,0.00
+408,Stomp,Normal,Physical,65,100,0,30,flinch,stomp,0,0,0,0,0,4.17
+742,Stockpile,Normal,Status,0,1,0,0,None,stockpile,0,35,0,0,35,0.00
+15,Electro Ball,Electric,Special,0,100,0,0,None,electroball,0,9,0,0,9,0.00
+267,Zippy Zap,Electric,Physical,50,100,2,0,None,zippyzap,0,0,0,0,0,4.17
+743,Mega Drain,Grass,Special,40,100,0,0,None,megadrain,0,0,0,0,0,4.17
+569,Comet Punch,Normal,Physical,18,85,0,0,None,cometpunch,1,5,0,0,6,4.17
+322,Floral Healing,Fairy,Status,0,1,0,0,None,floralhealing,0,0,0,0,0,0.00
+468,Swallow,Normal,Status,0,1,0,0,None,swallow,0,0,0,0,0,0.00
+436,Twineedle,Bug,Physical,25,100,0,20,psn,twineedle,0,0,0,0,0,4.17
+142,Relic Song,Normal,Special,75,100,0,10,slp,relicsong,4,53,34,9,53,4.17
+664,Devastating Drake,Dragon,Physical,1,1,0,0,None,devastatingdrake,4,98,0,0,98,4.17
+149,Fake Out,Normal,Physical,40,100,3,0,None,fakeout,40,926,0,0,926,4.17
+490,Destiny Bond,Ghost,Status,0,1,0,0,None,destinybond,0,111,0,0,111,0.00
+87,Earthquake,Ground,Physical,100,100,0,0,None,earthquake,328,7672,0,0,7675,4.17
+442,Baton Pass,Normal,Status,0,1,0,0,None,batonpass,0,409,0,0,409,0.00
+343,Conversion,Normal,Status,0,1,0,0,None,conversion,0,5,0,0,5,0.00
+543,Knock Off,Dark,Physical,65,100,0,0,None,knockoff,277,6401,0,0,6403,4.17
+629,Copycat,Normal,Status,0,1,0,0,None,copycat,0,6,0,0,6,0.00
+362,Grassy Terrain,Grass,Status,0,1,0,0,None,grassyterrain,0,12,0,0,12,0.00
+698,Ember,Fire,Special,40,100,0,10,brn,ember,0,0,0,0,0,4.17
+288,Instruct,Psychic,Status,0,1,0,0,None,instruct,0,0,0,0,0,0.00
+620,Swords Dance,Normal,Status,0,1,0,0,None,swordsdance,0,1785,0,0,1785,0.00
+314,Dragon Ascent,Flying,Physical,120,100,0,0,None,dragonascent,2,20,0,0,20,4.17
+133,Sandstorm,Rock,Status,0,1,0,0,None,sandstorm,0,25,0,0,25,0.00
+510,Thrash,Normal,Physical,120,100,0,0,None,thrash,0,4,0,0,4,4.17
+681,Psycho Cut,Psychic,Physical,70,100,0,0,None,psychocut,10,56,0,0,56,12.50
+374,Low Sweep,Fighting,Physical,65,100,0,0,None,lowsweep,0,8,0,0,8,4.17
+274,Headbutt,Normal,Physical,70,100,0,30,flinch,headbutt,0,8,3,3,8,4.17
+214,Iron Tail,Steel,Physical,100,75,0,30,boosts def: -1 ,irontail,3,69,53,23,82,4.17
+498,Water Gun,Water,Special,40,100,0,0,None,watergun,0,10,0,0,10,4.17
+27,Night Slash,Dark,Physical,70,100,0,0,None,nightslash,18,63,0,0,63,12.50
+191,Bulldoze,Ground,Physical,60,100,0,0,None,bulldoze,4,58,0,0,58,4.17
+773,Overdrive,Electric,Special,80,100,0,0,None,overdrive,2,43,0,0,43,4.17
+74,Aeroblast,Flying,Special,100,95,0,0,None,aeroblast,1,12,0,0,14,12.50
+285,Magnetic Flux,Electric,Status,0,1,0,0,None,magneticflux,0,2,0,0,2,0.00
+825,G-Max Fire Ball,Fire,Physical,1,1,0,0,None,gmaxfireball,0,2,0,0,2,4.17
+253,Shattered Psyche,Psychic,Physical,1,1,0,0,None,shatteredpsyche,2,81,0,0,81,4.17
+716,Hydro Vortex,Water,Physical,1,1,0,0,None,hydrovortex,1,77,0,0,77,4.17
+452,Pluck,Flying,Physical,60,100,0,0,None,pluck,0,2,0,0,2,4.17
+429,Spore,Grass,Status,0,100,0,0,None,spore,0,178,0,0,178,0.00
+359,Taunt,Dark,Status,0,100,0,0,None,taunt,0,1240,0,0,1240,0.00
+91,Water Pulse,Water,Special,60,100,0,20,confusion,waterpulse,2,126,95,18,126,4.17
+735,Blue Flare,Fire,Special,130,85,0,20,brn,blueflare,4,82,36,5,88,4.17
+828,G-Max One Blow,Dark,Physical,1,1,0,0,None,gmaxoneblow,0,0,0,0,0,4.17
+281,Cotton Spore,Grass,Status,0,100,0,0,None,cottonspore,0,1,0,0,1,0.00
+713,Smokescreen,Normal,Status,0,100,0,0,None,smokescreen,0,0,0,0,0,0.00
+232,After You,Normal,Status,0,1,0,0,None,afteryou,0,0,0,0,0,0.00
+32,Double Slap,Normal,Physical,15,85,0,0,None,doubleslap,0,0,0,0,0,4.17
+394,Pulverizing Pancake,Normal,Physical,210,1,0,0,None,pulverizingpancake,0,0,0,0,0,4.17
+460,High Jump Kick,Fighting,Physical,130,90,0,0,None,highjumpkick,10,462,0,0,519,4.17
+377,Hyper Fang,Normal,Physical,80,90,0,10,flinch,hyperfang,0,0,0,0,0,4.17
+804,G-Max Terror,Ghost,Physical,1,1,0,0,None,gmaxterror,0,3,0,0,3,4.17
+336,Close Combat,Fighting,Physical,120,100,0,0,None,closecombat,104,2008,0,0,2008,4.17
+511,Volt Switch,Electric,Special,70,100,0,0,None,voltswitch,205,4480,0,0,4480,4.17
+169,Let's Snuggle Forever,Fairy,Physical,190,1,0,0,None,letssnuggleforever,2,9,0,0,9,4.17
+518,Ice Beam,Ice,Special,90,100,0,10,frz,icebeam,129,2940,1767,173,2940,4.17
+154,Darkest Lariat,Dark,Physical,85,100,0,0,None,darkestlariat,10,185,0,0,185,4.17
+255,Whirlpool,Water,Special,35,85,0,0,None,whirlpool,3,111,0,0,128,4.17
+355,Gyro Ball,Steel,Physical,0,100,0,0,None,gyroball,30,756,0,0,756,0.00
+157,Razor Leaf,Grass,Physical,55,95,0,0,None,razorleaf,0,0,0,0,0,12.50
+218,Egg Bomb,Normal,Physical,100,75,0,0,None,eggbomb,0,0,0,0,0,4.17
+806,G-Max Cuddle,Normal,Physical,1,1,0,0,None,gmaxcuddle,0,0,0,0,0,4.17
+180,Bullet Seed,Grass,Physical,25,100,0,0,None,bulletseed,19,119,0,0,119,4.17
+505,Clangorous Soulblaze,Dragon,Special,185,1,0,0,None,clangoroussoulblaze,0,1,0,0,1,4.17
+155,Electric Terrain,Electric,Status,0,1,0,0,None,electricterrain,0,2,0,0,2,0.00
+492,Dragon Tail,Dragon,Physical,60,90,-6,0,None,dragontail,9,229,0,0,253,4.17
+699,Spacial Rend,Dragon,Special,100,95,0,0,None,spacialrend,1,15,0,0,15,12.50
+67,Accelerock,Rock,Physical,40,100,1,0,None,accelerock,3,186,0,0,186,4.17
+257,Skill Swap,Psychic,Status,0,1,0,0,None,skillswap,0,6,0,0,6,0.00
+178,Final Gambit,Fighting,Special,0,100,0,0,None,finalgambit,0,39,0,0,39,0.00
+740,Power Gem,Rock,Special,80,100,0,0,None,powergem,9,227,0,0,227,4.17
+145,Teleport,Psychic,Status,0,1,0,0,None,teleport,0,443,0,0,443,0.00
+243,Sinister Arrow Raid,Ghost,Physical,180,1,0,0,None,sinisterarrowraid,0,1,0,0,1,4.17
+325,Poison Fang,Poison,Physical,50,100,0,50,tox,poisonfang,0,15,10,4,15,4.17
+16,Chatter,Flying,Special,65,100,0,0,None,chatter,0,2,0,0,2,4.17
+794,Max Quake,Ground,Physical,1,1,0,0,None,maxground,1,18,0,0,18,4.17
+223,Shadow Strike,Ghost,Physical,80,95,0,50,boosts def: -1 ,shadowstrike,0,0,0,0,0,4.17
+392,Last Resort,Normal,Physical,140,100,0,0,None,lastresort,3,49,0,0,49,4.17
+635,Noble Roar,Normal,Status,0,100,0,0,None,nobleroar,0,0,0,0,0,0.00
+647,Dark Void,Dark,Status,0,50,0,0,None,darkvoid,0,0,0,0,0,0.00
+669,Spit Up,Normal,Special,0,100,0,0,None,spitup,0,0,0,0,0,0.00
+670,Speed Swap,Psychic,Status,0,1,0,0,None,speedswap,0,0,0,0,0,0.00
+656,Slash,Normal,Physical,70,100,0,0,None,slash,0,0,0,0,0,12.50
+819,G-Max Sweetness,Grass,Physical,1,1,0,0,None,gmaxsweetness,0,0,0,0,0,4.17
+483,Mega Punch,Normal,Physical,80,85,0,0,None,megapunch,0,0,0,0,0,4.17
+344,Strength,Normal,Physical,80,100,0,0,None,strength,0,0,0,0,0,4.17
+365,Barrage,Normal,Physical,15,85,0,0,None,barrage,0,0,0,0,0,4.17
+166,Power Whip,Grass,Physical,120,85,0,0,None,powerwhip,15,324,0,0,382,4.17
+675,Follow Me,Normal,Status,0,1,2,0,None,followme,0,0,0,0,0,0.00
+547,Minimize,Normal,Status,0,1,0,0,None,minimize,0,0,0,0,0,0.00
+550,Withdraw,Water,Status,0,1,0,0,None,withdraw,0,0,0,0,0,0.00
+763,Magic Powder,Psychic,Status,0,100,0,0,None,magicpowder,0,0,0,0,0,0.00
+476,X-Scissor,Bug,Physical,80,100,0,0,None,xscissor,5,164,0,0,168,4.17
+808,G-Max Malodor,Poison,Physical,1,1,0,0,None,gmaxmalodor,0,1,0,0,1,4.17
+775,Spirit Break,Fairy,Physical,75,100,0,0,None,spiritbreak,2,24,0,0,24,4.17
+649,Arm Thrust,Fighting,Physical,15,100,0,0,None,armthrust,0,6,0,0,6,4.17
+271,Iron Head,Steel,Physical,80,100,0,30,flinch,ironhead,78,1838,674,263,1849,4.17
+286,Rock Polish,Rock,Status,0,1,0,0,None,rockpolish,0,195,0,0,195,0.00
+570,Shore Up,Ground,Status,0,1,0,0,None,shoreup,0,45,0,0,45,0.00
+324,Floaty Fall,Flying,Physical,90,95,0,30,flinch,floatyfall,0,0,0,0,0,4.17
+809,G-Max Stonesurge,Water,Physical,1,1,0,0,None,gmaxstonesurge,0,3,0,0,3,4.17
+581,Flower Shield,Fairy,Status,0,1,0,0,None,flowershield,0,0,0,0,0,0.00
+99,Forest's Curse,Grass,Status,0,100,0,0,None,forestscurse,0,0,0,0,0,0.00
+97,Wring Out,Normal,Special,0,100,0,0,None,wringout,0,1,0,0,1,0.00
+845,Poltergeist,Ghost,Physical,110,90,0,0,None,poltergeist,5,103,0,0,111,4.17
+494,String Shot,Bug,Status,0,95,0,0,None,stringshot,0,0,0,0,0,0.00
+352,Hidden Power Dark,Dark,Special,60,100,0,0,None,hiddenpowerdark,0,0,0,0,0,4.17
+843,Skitter Smack,Bug,Physical,70,90,0,0,None,skittersmack,0,8,0,0,9,4.17
+193,Slack Off,Normal,Status,0,1,0,0,None,slackoff,0,481,0,0,481,0.00
+363,Eruption,Fire,Special,150,100,0,0,None,eruption,4,97,0,0,97,4.17
+98,Punishment,Dark,Physical,0,100,0,0,None,punishment,0,4,0,0,4,0.00
+624,Psyshock,Psychic,Special,80,100,0,0,None,psyshock,49,1168,0,0,1168,4.17
+522,Magikarp's Revenge,Water,Physical,120,1,0,0,None,magikarpsrevenge,0,0,0,0,0,4.17
+480,Smack Down,Rock,Physical,50,100,0,0,None,smackdown,3,55,0,0,55,4.17
+9,Fire Punch,Fire,Physical,75,100,0,10,brn,firepunch,31,559,310,33,559,4.17
+846,Scale Shot,Dragon,Physical,25,90,0,0,None,scaleshot,4,46,0,0,52,4.17
+627,Techno Blast,Normal,Special,120,100,0,0,None,technoblast,0,4,0,0,4,4.17
+68,Dragon Dance,Dragon,Status,0,1,0,0,None,dragondance,0,1250,0,0,1250,0.00
+323,Flash Cannon,Steel,Special,80,100,0,10,boosts spd: -1 ,flashcannon,44,787,543,58,787,4.17
+841,Dual Wingbeat,Flying,Physical,40,90,0,0,None,dualwingbeat,11,99,0,0,114,4.17
+205,Helping Hand,Normal,Status,0,1,5,0,None,helpinghand,0,0,0,0,0,0.00
+523,Growl,Normal,Status,0,100,0,0,None,growl,0,0,0,0,0,0.00
+784,Max Knuckle,Fighting,Physical,1,1,0,0,None,maxknuckle,0,33,0,0,33,4.17
+202,Astonish,Ghost,Physical,30,100,0,30,flinch,astonish,0,1,1,0,1,4.17
+63,Substitute,Normal,Status,0,1,0,0,None,substitute,0,2831,0,0,2831,0.00
+495,Flare Blitz,Fire,Physical,120,100,0,10,brn,flareblitz,52,1246,473,37,1247,4.17
+292,Leaf Storm,Grass,Special,130,90,0,0,None,leafstorm,23,472,0,0,532,4.17
+766,Clangorous Soul,Dragon,Status,0,1,0,0,None,clangoroussoul,0,7,0,0,7,0.00
+121,Swagger,Normal,Status,0,85,0,0,None,swagger,0,13,0,0,13,0.00
+500,V-create,Fire,Physical,180,95,0,0,None,vcreate,5,206,0,0,207,4.17
+844,Meteor Beam,Rock,Special,120,90,0,0,None,meteorbeam,0,19,0,0,19,4.17
+632,Dragon Hammer,Dragon,Physical,90,100,0,0,None,dragonhammer,1,1,0,0,1,4.17
+433,Mind Reader,Normal,Status,0,1,0,0,None,mindreader,0,1,0,0,1,0.00
+822,G-Max Meltdown,Steel,Physical,1,1,0,0,None,gmaxmeltdown,0,0,0,0,0,4.17
+51,Soft-Boiled,Normal,Status,0,1,0,0,None,softboiled,0,694,0,0,694,0.00
+398,Brick Break,Fighting,Physical,75,100,0,0,None,brickbreak,8,137,0,0,137,4.17
+453,Frost Breath,Ice,Special,60,90,0,0,None,frostbreath,15,15,0,0,15,4.17
+199,Play Rough,Fairy,Physical,90,90,0,10,boosts atk: -1 ,playrough,35,751,461,45,825,4.17
+609,Growth,Normal,Status,0,1,0,0,None,growth,0,42,0,0,42,0.00
+275,Drain Punch,Fighting,Physical,75,100,0,0,None,drainpunch,57,1654,0,0,1654,4.17
+256,Smog,Poison,Special,30,70,0,40,psn,smog,0,0,0,0,0,4.17
+395,Bullet Punch,Steel,Physical,40,100,1,0,None,bulletpunch,44,1096,0,0,1096,4.17
+584,Solar Beam,Grass,Special,120,100,0,0,None,solarbeam,1,125,0,0,125,4.17
+659,Feint Attack,Dark,Physical,60,1,0,0,None,feintattack,0,0,0,0,0,4.17
+38,Dynamic Punch,Fighting,Physical,100,50,0,0,None,dynamicpunch,3,79,0,0,95,4.17
+370,Coil,Poison,Status,0,1,0,0,None,coil,0,105,0,0,105,0.00
+113,Baneful Bunker,Poison,Status,0,1,4,0,None,banefulbunker,0,81,0,0,81,0.00
+798,Max Guard,Normal,Status,0,1,4,0,None,maxguard,0,5,0,0,5,0.00
+817,G-Max Snooze,Dark,Physical,1,1,0,0,None,gmaxsnooze,0,8,0,0,8,4.17
+633,Horn Attack,Normal,Physical,65,100,0,0,None,hornattack,0,0,0,0,0,4.17
+485,Stun Spore,Grass,Status,0,75,0,0,None,stunspore,0,54,0,0,69,0.00
+206,Fury Swipes,Normal,Physical,18,80,0,0,None,furyswipes,0,1,0,0,2,4.17
+737,Rain Dance,Water,Status,0,1,0,0,None,raindance,0,139,0,0,139,0.00
+100,Blizzard,Ice,Special,110,70,0,10,frz,blizzard,11,248,151,11,279,4.17
+811,G-Max Stun Shock,Electric,Physical,1,1,0,0,None,gmaxstunshock,1,4,0,0,4,4.17
+156,Hidden Power,Normal,Special,60,100,0,0,None,hiddenpower,102,2435,0,0,2436,4.17
+83,Wake-Up Slap,Fighting,Physical,70,100,0,0,None,wakeupslap,0,1,0,0,1,4.17
+84,Pursuit,Dark,Physical,40,100,0,0,None,pursuit,15,335,0,0,335,4.17
+474,Confide,Normal,Status,0,1,0,0,None,confide,0,1,0,0,1,0.00
+162,Reflect,Psychic,Status,0,1,0,0,None,reflect,0,403,0,0,403,0.00
+456,Hydro Pump,Water,Special,110,80,0,0,None,hydropump,30,695,0,0,849,4.17
+252,Weather Ball,Normal,Special,50,100,0,0,None,weatherball,4,93,0,0,93,4.17
+114,Overheat,Fire,Special,130,90,0,0,None,overheat,20,484,0,0,534,4.17
+571,Aerial Ace,Flying,Physical,60,1,0,0,None,aerialace,6,238,0,0,238,4.17
+108,Morning Sun,Normal,Status,0,1,0,0,None,morningsun,0,347,0,0,347,0.00
+717,Leer,Normal,Status,0,100,0,0,None,leer,0,0,0,0,0,0.00
+401,Switcheroo,Dark,Status,0,100,0,0,None,switcheroo,0,38,0,0,38,0.00
+161,Signal Beam,Bug,Special,75,100,0,10,confusion,signalbeam,9,192,156,21,192,4.17
+469,Wing Attack,Flying,Physical,60,100,0,0,None,wingattack,1,29,0,0,29,4.17
+188,Aurora Veil,Ice,Status,0,1,0,0,None,auroraveil,0,175,0,0,175,0.00
+795,Max Darkness,Dark,Physical,1,1,0,0,None,maxdarkness,1,7,0,0,7,4.17
+383,Thunder,Electric,Special,110,70,0,30,par,thunder,18,345,151,52,385,4.17
+160,Dive,Water,Physical,80,100,0,0,None,dive,0,10,0,0,10,4.17
+785,Max Phantasm,Ghost,Physical,1,1,0,0,None,maxphantasm,0,4,0,0,4,4.17
+211,Power Trip,Dark,Physical,20,100,0,0,None,powertrip,2,17,0,0,17,4.17
+310,Feint,Normal,Physical,30,100,2,0,None,feint,2,17,0,0,17,4.17
+112,Pin Missile,Bug,Physical,25,95,0,0,None,pinmissile,3,32,0,0,33,4.17
+89,Gastro Acid,Poison,Status,0,100,0,0,None,gastroacid,0,2,0,0,2,0.00
+793,Max Rockfall,Rock,Physical,1,1,0,0,None,maxrockfall,0,11,0,0,11,4.17
+470,Smart Strike,Steel,Physical,70,1,0,0,None,smartstrike,4,59,0,0,59,4.17
+708,Powder Snow,Ice,Special,40,100,0,10,frz,powdersnow,0,0,0,0,0,4.17
+705,Happy Hour,Normal,Status,0,1,0,0,None,happyhour,0,0,0,0,0,0.00
+428,Sheer Cold,Ice,Special,0,30,0,0,None,sheercold,0,0,0,0,0,0.00
+548,Double Hit,Normal,Physical,35,90,0,0,None,doublehit,1,14,0,0,17,4.17
+683,Rock Smash,Fighting,Physical,40,100,0,50,boosts def: -1 ,rocksmash,0,1,1,0,1,4.17
+297,Bite,Dark,Physical,60,100,0,30,flinch,bite,0,11,7,0,11,4.17
+130,Future Sight,Psychic,Special,120,100,0,0,None,futuresight,0,166,0,0,166,4.17
+842,Expanding Force,Psychic,Special,80,100,0,0,None,expandingforce,3,49,0,0,49,4.17
+662,Extreme Evoboost,Normal,Status,0,1,0,0,None,extremeevoboost,0,1,0,0,1,0.00
+797,Max Overgrowth,Grass,Physical,1,1,0,0,None,maxovergrowth,0,4,0,0,4,4.17
+4,Scratch,Normal,Physical,40,100,0,0,None,scratch,0,0,0,0,0,4.17
+122,Dizzy Punch,Normal,Physical,70,100,0,20,confusion,dizzypunch,0,0,0,0,0,4.17
+291,Mist,Ice,Status,0,1,0,0,None,mist,0,0,0,0,0,0.00
+448,Conversion 2,Normal,Status,0,1,0,0,None,conversion2,0,0,0,0,0,0.00
+458,Veevee Volley,Normal,Physical,0,1,0,0,None,veeveevolley,0,0,0,0,0,0.00
+813,G-Max Depletion,Dragon,Physical,1,1,0,0,None,gmaxdepletion,0,0,0,0,0,4.17
+815,G-Max Volcalith,Rock,Physical,1,1,0,0,None,gmaxvolcalith,0,0,0,0,0,4.17
+816,G-Max Sandblast,Ground,Physical,1,1,0,0,None,gmaxsandblast,0,0,0,0,0,4.17
+449,Trick-or-Treat,Ghost,Status,0,100,0,0,None,trickortreat,0,0,0,0,0,0.00
+783,Max Strike,Normal,Physical,1,1,0,0,None,maxstrike,0,0,0,0,0,4.17
+138,Spiky Shield,Grass,Status,0,1,4,0,None,spikyshield,0,106,0,0,106,0.00
+821,G-Max Steelsurge,Steel,Physical,1,1,0,0,None,gmaxsteelsurge,0,13,0,0,13,4.17
+210,Belch,Poison,Special,120,90,0,0,None,belch,0,3,0,0,3,4.17
+432,Trick,Psychic,Status,0,100,0,0,None,trick,0,292,0,0,292,0.00
+530,Double Iron Bash,Steel,Physical,60,100,0,51,flinch,doubleironbash,15,221,16,5,221,4.17
+117,Splash,Normal,Status,0,1,0,0,None,splash,0,6,0,0,6,0.00
+124,Magnet Rise,Electric,Status,0,1,0,0,None,magnetrise,0,63,0,0,63,0.00
+782,Max Lightning,Electric,Physical,1,1,0,0,None,maxlightning,0,1,0,0,1,4.17
+464,Petal Blizzard,Grass,Physical,90,100,0,0,None,petalblizzard,0,2,0,0,2,4.17
+437,Solar Blade,Grass,Physical,125,100,0,0,None,solarblade,0,4,0,0,4,4.17
+516,Shadow Claw,Ghost,Physical,70,100,0,0,None,shadowclaw,41,332,0,0,332,12.50
+679,Toxic Spikes,Poison,Status,0,1,0,0,None,toxicspikes,0,682,0,0,682,0.00
+321,Dark Pulse,Dark,Special,80,100,0,20,flinch,darkpulse,54,1332,473,95,1332,4.17
+372,Draco Meteor,Dragon,Special,130,90,0,0,None,dracometeor,49,873,0,0,953,4.17
+219,Payback,Dark,Physical,50,100,0,0,None,payback,0,10,0,0,10,4.17
+503,Mud Shot,Ground,Special,55,95,0,0,None,mudshot,0,19,0,0,22,4.17
+618,Hurricane,Flying,Special,110,70,0,30,confusion,hurricane,47,1079,695,179,1284,4.17
+478,Fiery Dance,Fire,Special,80,100,0,50,self boosts: spa: 1 ,fierydance,6,95,92,48,95,4.17
+730,Ominous Wind,Ghost,Special,60,100,0,10,"self boosts: spa: 1, spd: 1, atk: 1, def: 1, spe: 1 ",ominouswind,0,13,13,1,13,4.17
+646,Searing Shot,Fire,Special,100,100,0,30,brn,searingshot,0,6,3,0,6,4.17
+702,Gear Up,Steel,Status,0,1,0,0,None,gearup,0,1,0,0,1,0.00
+419,Spikes,Ground,Status,0,1,0,0,None,spikes,0,893,0,0,893,0.00
+231,Skull Bash,Normal,Physical,130,100,0,0,None,skullbash,0,10,0,0,10,4.17
+786,Max Hailstorm,Ice,Physical,1,1,0,0,None,maxhailstorm,1,7,0,0,7,4.17
+225,Refresh,Normal,Status,0,1,0,0,None,refresh,0,34,0,0,34,0.00
+146,Hyperspace Hole,Psychic,Special,80,1,0,0,None,hyperspacehole,0,4,0,0,4,4.17
+417,Malicious Moonsault,Dark,Physical,180,1,0,0,None,maliciousmoonsault,0,12,0,0,12,4.17
+56,Seed Bomb,Grass,Physical,80,100,0,0,None,seedbomb,4,130,0,0,130,4.17
+60,Feather Dance,Flying,Status,0,100,0,0,None,featherdance,0,5,0,0,5,0.00
+692,Embargo,Dark,Status,0,100,0,0,None,embargo,0,0,0,0,0,0.00
+695,Ally Switch,Psychic,Status,0,1,2,0,None,allyswitch,0,0,0,0,0,0.00
+700,Foresight,Normal,Status,0,1,0,0,None,foresight,0,0,0,0,0,0.00
+479,Echoed Voice,Normal,Special,40,100,0,0,None,echoedvoice,0,0,0,0,0,4.17
+140,Poison Gas,Poison,Status,0,90,0,0,None,poisongas,0,0,0,0,0,0.00
+143,Shell Trap,Fire,Special,150,100,-3,0,None,shelltrap,0,0,0,0,0,4.17
+411,Meditate,Psychic,Status,0,1,0,0,None,meditate,0,0,0,0,0,0.00
+772,Branch Poke,Grass,Physical,40,100,0,0,None,branchpoke,0,0,0,0,0,4.17
+694,Attack Order,Bug,Physical,90,100,0,0,None,attackorder,0,0,0,0,0,12.50
+626,"10,000,000 Volt Thunderbolt",Electric,Special,195,1,0,0,None,"10,000,000voltthunderbolt",0,0,0,0,0,50.00
+465,Play Nice,Normal,Status,0,1,0,0,None,playnice,0,0,0,0,0,0.00
+830,G-Max Vine Lash,Grass,Physical,1,1,0,0,None,gmaxvinelash,0,5,0,0,5,4.17
+81,Revenge,Fighting,Physical,60,100,-4,0,None,revenge,0,1,0,0,1,4.17
+777,False Surrender,Dark,Physical,80,1,0,0,None,falsesurrender,0,0,0,0,0,4.17
+531,Nuzzle,Electric,Physical,20,100,0,0,None,nuzzle,1,38,0,0,38,4.17
+226,Thunder Fang,Electric,Physical,65,95,0,19,par or flinch,thunderfang,3,79,28,7,80,4.17
+831,G-Max Cannonade,Water,Physical,1,1,0,0,None,gmaxcannonade,0,0,0,0,0,4.17
+94,Acid Spray,Poison,Special,40,100,0,0,None,acidspray,2,74,0,0,74,4.17
+111,Heavy Slam,Steel,Physical,0,100,0,0,None,heavyslam,40,879,0,0,880,0.00
+230,Rapid Spin,Normal,Physical,20,100,0,0,None,rapidspin,50,1064,0,0,1064,4.17
+829,G-Max Rapid Flow,Water,Physical,1,1,0,0,None,gmaxrapidflow,0,1,0,0,1,4.17
+163,Disable,Normal,Status,0,100,0,0,None,disable,0,28,0,0,28,0.00
+597,Stealth Rock,Rock,Status,0,1,0,0,None,stealthrock,0,5291,0,0,5291,0.00
+278,Dragon Rage,Dragon,Special,0,100,0,0,None,dragonrage,0,0,0,0,0,0.00
+260,Icy Wind,Ice,Special,55,95,0,0,None,icywind,2,138,0,0,148,4.17
+506,Mirror Shot,Steel,Special,65,85,0,30,boosts accuracy: -1 ,mirrorshot,0,0,0,0,0,4.17
+299,Aromatherapy,Grass,Status,0,1,0,0,None,aromatherapy,0,114,0,0,114,0.00
+591,Submission,Fighting,Physical,80,80,0,0,None,submission,0,0,0,0,0,4.17
+224,Secret Sword,Fighting,Special,85,100,0,0,None,secretsword,5,128,0,0,128,4.17
+628,Gunk Shot,Poison,Physical,120,80,0,30,psn,gunkshot,7,200,84,22,250,4.17
+430,Sparkly Swirl,Fairy,Special,90,100,0,0,None,sparklyswirl,0,0,0,0,0,4.17
+455,Roar of Time,Dragon,Special,150,90,0,0,None,roaroftime,0,0,0,0,0,4.17
+280,Bug Buzz,Bug,Special,90,100,0,10,boosts spd: -1 ,bugbuzz,26,598,377,29,598,4.17
+457,Fury Attack,Normal,Physical,15,85,0,0,None,furyattack,0,0,0,0,0,4.17
+17,Perish Song,Normal,Status,0,1,0,0,None,perishsong,0,82,0,0,82,0.00
+621,Hold Hands,Normal,Status,0,1,0,0,None,holdhands,0,0,0,0,0,0.00
+198,Sweet Kiss,Fairy,Status,0,75,0,0,None,sweetkiss,0,2,0,0,2,0.00
+586,Mach Punch,Fighting,Physical,40,100,1,0,None,machpunch,11,347,0,0,347,4.17
+397,Spite,Ghost,Status,0,100,0,0,None,spite,0,8,0,0,8,0.00
+290,Water Spout,Water,Special,150,100,0,0,None,waterspout,1,24,0,0,24,4.17
+757,Tar Shot,Rock,Status,0,100,0,0,None,tarshot,0,2,0,0,2,0.00
+526,Extreme Speed,Normal,Physical,80,100,2,0,None,extremespeed,22,413,0,0,415,4.17
+715,Nature's Madness,Fairy,Special,0,90,0,0,None,naturesmadness,0,180,0,0,200,0.00
+545,Psych Up,Normal,Status,0,1,0,0,None,psychup,0,14,0,0,14,0.00
+634,Light Screen,Psychic,Status,0,1,0,0,None,lightscreen,0,361,0,0,361,0.00
+727,Tackle,Normal,Physical,40,100,0,0,None,tackle,0,1,0,0,1,4.17
+73,Crunch,Dark,Physical,80,100,0,20,boosts def: -1 ,crunch,28,676,422,84,676,4.17
+302,Mega Kick,Normal,Physical,120,75,0,0,None,megakick,0,5,0,0,9,4.17
+263,Steel Wing,Steel,Physical,70,90,0,10,self boosts: def: 1 ,steelwing,5,29,29,4,29,4.17
+414,Lunar Dance,Psychic,Status,0,1,0,0,None,lunardance,0,2,0,0,2,0.00
+529,Phantom Force,Ghost,Physical,90,100,0,0,None,phantomforce,2,49,0,0,49,4.17
+340,Torment,Dark,Status,0,100,0,0,None,torment,0,20,0,0,20,0.00
+234,Hidden Power Dragon,Dragon,Special,60,100,0,0,None,hiddenpowerdragon,0,0,0,0,0,4.17
+774,Grav Apple,Grass,Physical,80,100,0,0,None,gravapple,0,3,0,0,3,4.17
+228,Lovely Kiss,Normal,Status,0,75,0,0,None,lovelykiss,0,5,0,0,7,0.00
+96,Topsy-Turvy,Dark,Status,0,1,0,0,None,topsyturvy,0,0,0,0,0,0.00
+723,Role Play,Psychic,Status,0,1,0,0,None,roleplay,0,2,0,0,2,0.00
+194,Guard Swap,Psychic,Status,0,1,0,0,None,guardswap,0,0,0,0,0,0.00
+69,Aurora Beam,Ice,Special,65,100,0,10,boosts atk: -1 ,aurorabeam,0,0,0,0,0,4.17
+337,Bone Rush,Ground,Physical,25,90,0,0,None,bonerush,0,0,0,0,0,4.17
+251,Electroweb,Electric,Special,55,95,0,0,None,electroweb,0,2,0,0,2,4.17
+451,Confusion,Psychic,Special,50,100,0,10,confusion,confusion,0,4,3,0,4,4.17
+596,Spider Web,Bug,Status,0,1,0,0,None,spiderweb,0,11,0,0,11,0.00
+688,Safeguard,Normal,Status,0,1,0,0,None,safeguard,0,8,0,0,8,0.00
+28,Plasma Fists,Electric,Physical,100,100,0,0,None,plasmafists,9,283,0,0,283,4.17
+447,Endure,Normal,Status,0,1,4,0,None,endure,0,28,0,0,28,0.00
+120,Flame Charge,Fire,Physical,50,100,0,0,None,flamecharge,6,205,0,0,205,4.17
+524,Ingrain,Grass,Status,0,1,0,0,None,ingrain,0,8,0,0,8,0.00
+242,Self-Destruct,Normal,Physical,200,100,0,0,None,selfdestruct,0,6,0,0,6,4.17
+608,Photon Geyser,Psychic,Special,100,100,0,0,None,photongeyser,5,206,0,0,206,4.17
+254,Nature Power,Normal,Status,0,1,0,0,None,naturepower,0,15,0,0,15,0.00
+375,Sludge Wave,Poison,Special,95,100,0,10,psn,sludgewave,46,1018,513,20,1018,4.17
+221,Flail,Normal,Physical,0,100,0,0,None,flail,2,2,0,0,2,0.00
+186,Wide Guard,Rock,Status,0,1,3,0,None,wideguard,0,0,0,0,0,0.00
+268,Bestow,Normal,Status,0,1,0,0,None,bestow,0,0,0,0,0,0.00
+272,Sonic Boom,Normal,Special,0,90,0,0,None,sonicboom,0,0,0,0,0,0.00
+22,Venom Drench,Poison,Status,0,100,0,0,None,venomdrench,0,7,0,0,7,0.00
+721,Shadow Bone,Ghost,Physical,85,100,0,20,boosts def: -1 ,shadowbone,5,87,53,9,87,4.17
+611,Dragon Claw,Dragon,Physical,80,100,0,0,None,dragonclaw,19,655,0,0,656,4.17
+643,Meteor Mash,Steel,Physical,90,90,0,20,self boosts: atk: 1 ,meteormash,13,219,215,60,231,4.17
+838,Coaching,Fighting,Status,1,1,0,0,None,coaching,0,0,0,0,0,0.00
+313,Mirror Move,Flying,Status,0,1,0,0,None,mirrormove,0,7,0,0,7,0.00
+34,Splintered Stormshards,Rock,Physical,190,1,0,0,None,splinteredstormshards,1,16,0,0,16,4.17
+294,Earth Power,Ground,Special,90,100,0,10,boosts spd: -1 ,earthpower,48,1488,878,70,1488,4.17
+554,Howl,Normal,Status,0,1,0,0,None,howl,0,7,0,0,7,0.00
+666,Sacred Sword,Fighting,Physical,90,100,0,0,None,sacredsword,5,125,0,0,125,4.17
+209,Fling,Dark,Physical,0,100,0,0,None,fling,0,25,0,0,25,0.00
+736,Defog,Flying,Status,0,1,0,0,None,defog,0,1744,0,0,1744,0.00
+248,Tri Attack,Normal,Special,80,100,0,20,par frz or brn,triattack,15,292,210,28,292,4.17
+164,Milk Drink,Normal,Status,0,1,0,0,None,milkdrink,0,247,0,0,247,0.00
+665,Pollen Puff,Bug,Special,90,100,0,0,None,pollenpuff,0,11,0,0,11,4.17
+50,Leech Seed,Grass,Status,0,90,0,0,None,leechseed,0,1880,0,0,2075,0.00
+746,Apple Acid,Grass,Special,80,100,0,0,None,appleacid,0,40,0,0,40,4.17
+409,Grass Whistle,Grass,Status,0,55,0,0,None,grasswhistle,0,0,0,0,2,0.00
+837,Triple Axel,Ice,Physical,20,90,0,0,None,tripleaxel,7,51,0,0,56,4.17
+693,Metronome,Normal,Status,0,1,0,0,None,metronome,0,108,0,0,108,0.00
+144,Attract,Normal,Status,0,100,0,0,None,attract,0,14,0,0,14,0.00
+305,Flamethrower,Fire,Special,90,100,0,10,brn,flamethrower,88,2245,1109,108,2245,4.17
+72,Magma Storm,Fire,Special,100,75,0,0,None,magmastorm,6,72,0,0,90,4.17
+13,Seismic Toss,Fighting,Physical,0,100,0,0,None,seismictoss,0,1205,0,0,1205,0.00
+233,Clamp,Water,Physical,35,85,0,0,None,clamp,0,0,0,0,0,4.17
+354,Metal Sound,Steel,Status,0,85,0,0,None,metalsound,0,6,0,0,7,0.00
+153,Light That Burns the Sky,Psychic,Special,200,1,0,0,None,lightthatburnsthesky,0,0,0,0,0,4.17
+557,Healing Wish,Psychic,Status,0,1,0,0,None,healingwish,0,58,0,0,58,0.00
+420,Brave Bird,Flying,Physical,120,100,0,0,None,bravebird,47,1129,0,0,1134,4.17
+787,Max Ooze,Poison,Physical,1,1,0,0,None,maxooze,0,19,0,0,19,4.17
+326,Twinkle Tackle,Fairy,Physical,1,1,0,0,None,twinkletackle,1,35,0,0,35,4.17
+119,First Impression,Bug,Physical,90,100,2,0,None,firstimpression,6,142,0,0,145,4.17
+521,Vice Grip,Normal,Physical,55,100,0,0,None,vicegrip,0,0,0,0,0,4.17
+525,Hidden Power Ice,Ice,Special,60,100,0,0,None,hiddenpowerice,0,0,0,0,0,4.17
+528,Take Down,Normal,Physical,90,85,0,0,None,takedown,0,0,0,0,0,4.17
+532,Mind Blown,Fire,Special,150,100,0,0,None,mindblown,0,2,0,0,2,4.17
+70,Haze,Ice,Status,0,1,0,0,None,haze,0,237,0,0,237,0.00
+487,Night Daze,Dark,Special,85,95,0,40,boosts accuracy: -1 ,nightdaze,4,24,15,5,26,4.17
+353,Misty Terrain,Fairy,Status,0,1,0,0,None,mistyterrain,0,7,0,0,7,0.00
+439,Splishy Splash,Water,Special,90,100,0,30,par,splishysplash,0,0,0,0,0,4.17
+116,Savage Spin-Out,Bug,Physical,1,1,0,0,None,savagespinout,2,45,0,0,45,4.17
+440,Spirit Shackle,Ghost,Physical,80,100,0,0,None,spiritshackle,6,126,0,0,126,4.17
+86,Sing,Normal,Status,0,55,0,0,None,sing,0,10,0,0,12,0.00
+654,Focus Punch,Fighting,Physical,150,100,-3,0,None,focuspunch,1,65,0,0,65,4.17
+472,Wood Hammer,Grass,Physical,120,100,0,0,None,woodhammer,10,218,0,0,218,4.17
+309,Rock Blast,Rock,Physical,25,90,0,0,None,rockblast,32,186,0,0,204,4.17
+575,Air Slash,Flying,Special,75,95,0,30,flinch,airslash,60,1297,501,206,1357,4.17
+508,Psycho Shift,Psychic,Status,0,100,0,0,None,psychoshift,0,9,0,0,9,0.00
+719,Rock Slide,Rock,Physical,75,90,0,30,flinch,rockslide,41,806,248,67,878,4.17
+30,Ice Punch,Ice,Physical,75,100,0,10,frz,icepunch,51,1083,645,55,1083,4.17
+293,Ice Shard,Ice,Physical,40,100,1,0,None,iceshard,25,604,0,0,604,4.17
+418,Celebrate,Normal,Status,0,1,0,0,None,celebrate,0,4,0,0,4,0.00
+7,Avalanche,Ice,Physical,60,100,-4,0,None,avalanche,3,121,0,0,121,4.17
+128,Fly,Flying,Physical,90,95,0,0,None,fly,2,146,0,0,151,4.17
+107,Inferno Overdrive,Fire,Physical,1,1,0,0,None,infernooverdrive,8,84,0,0,84,4.17
+390,Sleep Powder,Grass,Status,0,75,0,0,None,sleeppowder,0,178,0,0,226,0.00
+273,Trop Kick,Grass,Physical,70,100,0,0,None,tropkick,5,107,0,0,107,4.17
+538,Waterfall,Water,Physical,80,100,0,20,flinch,waterfall,26,540,165,35,540,4.17
+295,Stomping Tantrum,Ground,Physical,75,100,0,0,None,stompingtantrum,2,101,0,0,101,4.17
+477,Quiver Dance,Bug,Status,0,1,0,0,None,quiverdance,0,241,0,0,241,0.00
+426,Beat Up,Dark,Physical,0,100,0,0,None,beatup,11,35,0,0,35,0.00
+125,Lunge,Bug,Physical,80,100,0,0,None,lunge,0,29,0,0,29,4.17
+334,Fire Spin,Fire,Special,35,85,0,0,None,firespin,2,26,0,0,29,4.17
+358,Never-Ending Nightmare,Ghost,Physical,1,1,0,0,None,neverendingnightmare,3,59,0,0,59,4.17
+762,No Retreat,Fighting,Status,0,1,0,0,None,noretreat,0,6,0,0,6,0.00
+778,Meteor Assault,Fighting,Physical,150,100,0,0,None,meteorassault,0,0,0,0,0,4.17
+507,Megahorn,Bug,Physical,120,85,0,0,None,megahorn,7,204,0,0,231,4.17
+593,Thunderbolt,Electric,Special,90,100,0,10,par,thunderbolt,134,3276,1473,121,3276,4.17
+463,Steam Eruption,Water,Special,110,95,0,30,brn,steameruption,6,154,81,22,162,4.17
+227,Charge Beam,Electric,Special,50,90,0,70,self boosts: spa: 1 ,chargebeam,3,81,78,55,90,4.17
+747,Body Press,Fighting,Physical,80,100,0,0,None,bodypress,32,731,0,0,731,4.17
+361,Shadow Ball,Ghost,Special,80,100,0,20,boosts spd: -1 ,shadowball,100,2357,1563,325,2357,4.17
+185,Aqua Jet,Water,Physical,40,100,1,0,None,aquajet,14,292,0,0,292,4.17
+373,Purify,Poison,Status,0,1,0,0,None,purify,0,0,0,0,0,0.00
+79,Moongeist Beam,Ghost,Special,100,100,0,0,None,moongeistbeam,0,0,0,0,0,4.17
+792,Max Mindstorm,Psychic,Physical,1,1,0,0,None,maxmindstorm,0,18,0,0,18,4.17
+482,Disarming Voice,Fairy,Special,40,1,0,0,None,disarmingvoice,0,5,0,0,5,4.17
+566,Searing Sunraze Smash,Steel,Physical,200,1,0,0,None,searingsunrazesmash,0,0,0,0,0,4.17
+562,Mud Sport,Ground,Status,0,1,0,0,None,mudsport,0,0,0,0,0,0.00
+190,Sludge,Poison,Special,65,100,0,30,psn,sludge,0,1,0,0,1,4.17
+655,Acid Armor,Poison,Status,0,1,0,0,None,acidarmor,0,94,0,0,94,0.00
+814,G-Max Gravitas,Psychic,Physical,1,1,0,0,None,gmaxgravitas,0,2,0,0,2,4.17
+20,Charge,Electric,Status,0,1,0,0,None,charge,0,12,0,0,12,0.00
+287,Mist Ball,Psychic,Special,70,100,0,50,boosts spa: -1 ,mistball,0,0,0,0,0,4.17
+388,Guard Split,Psychic,Status,0,1,0,0,None,guardsplit,0,0,0,0,0,0.00
+406,Heal Pulse,Psychic,Status,0,1,0,0,None,healpulse,0,0,0,0,0,0.00
+407,Kinesis,Psychic,Status,0,80,0,0,None,kinesis,0,0,0,0,0,0.00
+203,Dream Eater,Psychic,Special,100,100,0,0,None,dreameater,0,4,0,0,4,4.17
+103,Paleo Wave,Rock,Special,85,100,0,20,boosts atk: -1 ,paleowave,0,0,0,0,0,4.17
+55,Hidden Power Electric,Electric,Special,60,100,0,0,None,hiddenpowerelectric,0,0,0,0,0,4.17
+303,Inferno,Fire,Special,100,50,0,0,None,inferno,0,2,0,0,2,4.17
+382,Muddy Water,Water,Special,90,85,0,30,boosts accuracy: -1 ,muddywater,0,5,4,0,5,4.17
+57,Hidden Power Fire,Fire,Special,60,100,0,0,None,hiddenpowerfire,0,0,0,0,0,4.17
+393,Psychic Terrain,Psychic,Status,0,1,0,0,None,psychicterrain,0,15,0,0,15,0.00
+58,Chip Away,Normal,Physical,70,100,0,0,None,chipaway,0,0,0,0,0,4.17
+61,Acid,Poison,Special,40,100,0,10,boosts spd: -1 ,acid,0,0,0,0,0,4.17
+139,Bug Bite,Bug,Physical,60,100,0,0,None,bugbite,3,80,0,0,80,4.17
+644,Block,Normal,Status,0,1,0,0,None,block,0,31,0,0,31,0.00
+101,Ion Deluge,Electric,Status,0,1,1,0,None,iondeluge,0,0,0,0,0,0.00
+648,Supersonic Skystrike,Flying,Physical,1,1,0,0,None,supersonicskystrike,16,230,0,0,230,4.17
+88,Power Split,Psychic,Status,0,1,0,0,None,powersplit,0,2,0,0,2,0.00
+671,Cosmic Power,Psychic,Status,0,1,0,0,None,cosmicpower,0,200,0,0,200,0.00
+44,Double Kick,Fighting,Physical,30,100,0,0,None,doublekick,0,0,0,0,0,4.17
+338,Guillotine,Normal,Physical,0,30,0,0,None,guillotine,0,0,0,0,0,0.00
+739,Moonlight,Fairy,Status,0,1,0,0,None,moonlight,0,393,0,0,393,0.00
+200,Snatch,Dark,Status,0,1,4,0,None,snatch,0,8,0,0,8,0.00
+78,Thunder Wave,Electric,Status,0,90,0,0,None,thunderwave,0,901,0,0,982,0.00
+357,Surf,Water,Special,90,100,0,0,None,surf,45,922,0,0,922,4.17
+637,Lava Plume,Fire,Special,80,100,0,30,brn,lavaplume,8,276,153,41,276,4.17
+341,Aqua Tail,Water,Physical,90,90,0,0,None,aquatail,6,77,0,0,83,4.17
+748,Fishious Rend,Water,Physical,85,100,0,0,None,fishiousrend,6,131,0,0,131,4.17
+104,Toxic Thread,Poison,Status,0,100,0,0,None,toxicthread,0,4,0,0,4,0.00
+650,Dual Chop,Dragon,Physical,40,90,0,0,None,dualchop,0,3,0,0,3,4.17
+755,Court Change,Normal,Status,0,1,0,0,None,courtchange,0,9,0,0,9,0.00
+497,Ice Hammer,Ice,Physical,100,90,0,0,None,icehammer,0,5,0,0,6,4.17
+642,Lock-On,Normal,Status,0,1,0,0,None,lockon,0,2,0,0,2,0.00
+520,Worry Seed,Grass,Status,0,100,0,0,None,worryseed,0,2,0,0,2,0.00
+389,Brine,Water,Special,65,100,0,0,None,brine,0,2,0,0,2,4.17
+318,Drill Run,Ground,Physical,80,95,0,0,None,drillrun,19,95,0,0,101,12.50
+165,Rock Tomb,Rock,Physical,60,95,0,0,None,rocktomb,13,230,0,0,239,4.17
+535,Magnet Bomb,Steel,Physical,60,1,0,0,None,magnetbomb,0,0,0,0,0,4.17
+696,Wish,Normal,Status,0,1,0,0,None,wish,0,4662,0,0,4662,0.00
+745,Decorate,Fairy,Status,0,1,0,0,None,decorate,0,0,0,0,0,0.00
+396,Simple Beam,Normal,Status,0,100,0,0,None,simplebeam,0,1,0,0,1,0.00
+761,Stuff Cheeks,Normal,Status,0,1,0,0,None,stuffcheeks,0,0,0,0,0,0.00
+399,Pay Day,Normal,Physical,40,100,0,0,None,payday,0,0,0,0,0,4.17
+235,Rock Throw,Rock,Physical,50,90,0,0,None,rockthrow,0,0,0,0,0,4.17
+614,Scald,Water,Special,80,100,0,30,brn,scald,226,5595,3233,907,5595,4.17
+731,Razor Shell,Water,Physical,75,95,0,50,boosts def: -1 ,razorshell,0,1,1,1,2,4.17
+237,Fairy Wind,Fairy,Special,40,100,0,0,None,fairywind,0,0,0,0,0,4.17
+212,Roost,Flying,Status,0,1,0,0,None,roost,0,4313,0,0,4313,0.00
+6,Anchor Shot,Steel,Physical,80,100,0,0,None,anchorshot,3,145,0,0,145,4.17
+215,Toxic,Poison,Status,0,90,0,0,None,toxic,0,5030,0,0,5502,0.00
+135,Burn Up,Fire,Special,130,100,0,0,None,burnup,0,19,0,0,19,4.17
+435,Reflect Type,Normal,Status,0,1,0,0,None,reflecttype,0,8,0,0,8,0.00
+706,Light of Ruin,Fairy,Special,140,90,0,0,None,lightofruin,0,12,0,0,12,4.17
+536,Absorb,Grass,Special,20,100,0,0,None,absorb,0,0,0,0,0,4.17
+402,Oblivion Wing,Flying,Special,80,100,0,0,None,oblivionwing,4,50,0,0,50,4.17
+834,Flip Turn,Water,Physical,60,100,0,0,None,flipturn,11,276,0,0,276,4.17
+184,Double Team,Normal,Status,0,1,0,0,None,doubleteam,0,1,0,0,1,0.00
+356,Psycho Boost,Psychic,Special,140,90,0,0,None,psychoboost,0,3,0,0,3,4.17
+542,Psybeam,Psychic,Special,65,100,0,10,confusion,psybeam,1,2,2,0,2,4.17
+598,All-Out Pummeling,Fighting,Physical,1,1,0,0,None,alloutpummeling,8,137,0,0,137,4.17
+170,Supersonic,Normal,Status,0,55,0,0,None,supersonic,0,1,0,0,1,0.00
+11,Superpower,Fighting,Physical,120,100,0,0,None,superpower,20,470,0,0,474,4.17
+10,Infestation,Bug,Special,20,100,0,0,None,infestation,5,142,0,0,142,4.17
+616,Uproar,Normal,Special,90,100,0,0,None,uproar,0,0,0,0,0,4.17
+619,Ice Burn,Ice,Special,140,90,0,30,brn,iceburn,0,0,0,0,0,4.17
+687,Rage Powder,Bug,Status,0,1,2,0,None,ragepowder,0,0,0,0,0,0.00
+835,Rising Voltage,Electric,Special,70,100,0,0,None,risingvoltage,0,30,0,0,30,4.17
+222,Boomburst,Normal,Special,140,100,0,0,None,boomburst,8,309,0,0,309,4.17
+129,U-turn,Bug,Physical,70,100,0,0,None,uturn,328,8305,0,0,8308,4.17
+462,Protect,Normal,Status,0,1,4,0,None,protect,0,4278,0,0,4278,0.00
+836,Grassy Glide,Grass,Physical,70,100,0,0,None,grassyglide,1,100,0,0,100,4.17
+43,Liquidation,Water,Physical,85,100,0,20,boosts def: -1 ,liquidation,29,720,487,84,720,4.17
+559,Rock Wrecker,Rock,Physical,150,90,0,0,None,rockwrecker,0,1,0,0,1,4.17
+77,Miracle Eye,Psychic,Status,0,1,0,0,None,miracleeye,0,1,0,0,1,0.00
+350,Gravity,Psychic,Status,0,1,0,0,None,gravity,0,39,0,0,39,0.00
+826,G-Max Drum Solo,Grass,Physical,1,1,0,0,None,gmaxdrumsolo,0,3,0,0,3,4.17
+277,Body Slam,Normal,Physical,85,100,0,30,par,bodyslam,29,664,414,114,664,4.17
+578,Acrobatics,Flying,Physical,55,100,0,0,None,acrobatics,23,579,0,0,579,4.17
+131,Fire Lash,Fire,Physical,80,100,0,0,None,firelash,0,38,0,0,38,4.17
+677,Synthesis,Grass,Status,0,1,0,0,None,synthesis,0,828,0,0,828,0.00
+676,Quick Attack,Normal,Physical,40,100,1,0,None,quickattack,8,173,0,0,173,4.17
+369,Bonemerang,Ground,Physical,50,90,0,0,None,bonemerang,0,9,0,0,9,4.17
+201,Heal Order,Bug,Status,0,1,0,0,None,healorder,0,0,0,0,0,0.00
+512,Spotlight,Normal,Status,0,1,3,0,None,spotlight,0,0,0,0,0,0.00
+574,Aromatic Mist,Fairy,Status,0,1,0,0,None,aromaticmist,0,0,0,0,0,0.00
+301,Sappy Seed,Grass,Physical,90,100,0,0,None,sappyseed,0,0,0,0,0,4.17
+21,Quash,Dark,Status,0,100,0,0,None,quash,0,0,0,0,0,0.00
+137,Catastropika,Electric,Physical,210,1,0,0,None,catastropika,0,0,0,0,0,4.17
+481,Land's Wrath,Ground,Physical,90,100,0,0,None,landswrath,0,0,0,0,0,4.17
+45,Ice Ball,Ice,Physical,30,90,0,0,None,iceball,0,0,0,0,0,4.17
+141,Hidden Power Ghost,Ghost,Special,60,100,0,0,None,hiddenpowerghost,0,0,0,0,0,4.17
+23,Recycle,Normal,Status,0,1,0,0,None,recycle,0,134,0,0,134,0.00
+109,Freeze-Dry,Ice,Special,70,100,0,10,frz,freezedry,22,471,258,20,471,4.17
+216,Clanging Scales,Dragon,Special,110,100,0,0,None,clangingscales,1,54,0,0,54,4.17
+52,Shadow Sneak,Ghost,Physical,40,100,1,0,None,shadowsneak,22,537,0,0,537,4.17
+276,Hypnosis,Psychic,Status,0,60,0,0,None,hypnosis,0,36,0,0,60,0.00
+289,Jump Kick,Fighting,Physical,100,95,0,0,None,jumpkick,0,10,0,0,10,4.17
+92,Dragon Pulse,Dragon,Special,85,100,0,0,None,dragonpulse,18,547,0,0,547,4.17
+720,Aura Sphere,Fighting,Special,80,1,0,0,None,aurasphere,12,304,0,0,304,4.17
+378,Covet,Normal,Physical,60,100,0,0,None,covet,0,1,0,0,1,4.17
+501,Acid Downpour,Poison,Physical,1,1,0,0,None,aciddownpour,5,33,0,0,33,4.17
+625,Hidden Power Grass,Grass,Special,60,100,0,0,None,hiddenpowergrass,0,0,0,0,0,4.17
+594,Tail Glow,Bug,Status,0,1,0,0,None,tailglow,0,118,0,0,118,0.00
+36,Super Fang,Normal,Physical,0,90,0,0,None,superfang,0,258,0,0,288,0.00
+315,Freeze Shock,Ice,Physical,140,90,0,30,par,freezeshock,1,6,0,0,7,4.17
+788,Max Geyser,Water,Physical,1,1,0,0,None,maxgeyser,0,14,0,0,14,4.17
+213,Fury Cutter,Bug,Physical,40,95,0,0,None,furycutter,1,24,0,0,27,4.17
+466,Menacing Moonraze Maelstrom,Ghost,Special,200,1,0,0,None,menacingmoonrazemaelstrom,0,0,0,0,0,4.17
+182,Freezy Frost,Ice,Special,90,100,0,0,None,freezyfrost,0,0,0,0,0,4.17
+764,Teatime,Ghost,Status,0,1,0,0,None,teatime,0,0,0,0,0,0.00
+707,Stoked Sparksurfer,Electric,Special,175,1,0,0,None,stokedsparksurfer,1,4,0,0,4,4.17
+765,Octolock,Fighting,Status,0,100,0,0,None,octolock,0,0,0,0,0,0.00
+496,Heal Block,Psychic,Status,0,100,0,0,None,healblock,0,8,0,0,8,0.00
+126,Prismatic Laser,Psychic,Special,160,100,0,0,None,prismaticlaser,0,0,0,0,0,4.17
+386,Water Pledge,Water,Special,80,100,0,0,None,waterpledge,0,0,0,0,0,4.17
+298,Air Cutter,Flying,Special,60,95,0,0,None,aircutter,8,17,0,0,18,12.50
+403,Genesis Supernova,Psychic,Special,185,1,0,0,None,genesissupernova,0,2,0,0,2,4.17
+282,Fire Fang,Fire,Physical,65,95,0,19,brn or flinch,firefang,3,210,144,16,219,4.17
+579,King's Shield,Steel,Status,0,1,4,0,None,kingsshield,0,93,0,0,93,0.00
+207,Return,Normal,Physical,0,100,0,0,None,return,45,1030,0,0,1031,0.00
+517,Sacred Fire,Fire,Physical,100,95,0,50,brn,sacredfire,12,182,84,45,187,4.17
+776,Obstruct,Dark,Status,0,1,4,0,None,obstruct,0,15,0,0,15,0.00
+749,Bolt Beak,Electric,Physical,85,100,0,0,None,boltbeak,2,62,0,0,66,4.17
+577,Magic Coat,Psychic,Status,0,1,4,0,None,magiccoat,0,100,0,0,100,0.00
+638,Psystrike,Psychic,Special,100,100,0,0,None,psystrike,1,12,0,0,12,4.17
+533,Multi-Attack,Normal,Physical,90,100,0,0,None,multiattack,7,181,0,0,181,4.17
+756,Pyro Ball,Fire,Physical,120,90,0,10,brn,pyroball,7,213,81,2,233,4.17
+416,Fire Blast,Fire,Special,110,85,0,10,brn,fireblast,22,776,424,39,910,4.17
+208,Zen Headbutt,Psychic,Physical,80,90,0,20,flinch,zenheadbutt,27,653,228,36,702,4.17
+229,Mean Look,Normal,Status,0,1,0,0,None,meanlook,0,35,0,0,35,0.00
+187,Grass Knot,Grass,Special,0,100,0,0,None,grassknot,13,301,0,0,301,0.00
+796,Max Steelspike,Steel,Physical,1,1,0,0,None,maxsteelspike,0,8,0,0,8,4.17
+317,Psywave,Psychic,Special,0,100,0,0,None,psywave,0,22,0,0,22,0.00
+515,Defend Order,Bug,Status,0,1,0,0,None,defendorder,0,0,0,0,0,0.00
+604,Flatter,Dark,Status,0,100,0,0,None,flatter,0,0,0,0,0,0.00
+622,Magnitude,Ground,Physical,0,100,0,0,None,magnitude,0,0,0,0,0,0.00
+384,Constrict,Normal,Physical,10,100,0,10,boosts spe: -1 ,constrict,0,0,0,0,0,4.17
+423,Heat Crash,Fire,Physical,0,100,0,0,None,heatcrash,2,54,0,0,54,0.00
+684,Volt Tackle,Electric,Physical,120,100,0,10,par,volttackle,0,9,6,0,9,4.17
+513,Pound,Normal,Physical,40,100,0,0,None,pound,0,0,0,0,0,4.17
+339,Slam,Normal,Physical,80,75,0,0,None,slam,0,0,0,0,0,4.17
+245,Trick Room,Psychic,Status,0,1,-7,0,None,trickroom,0,570,0,0,570,0.00
+791,Max Wyrmwind,Dragon,Physical,1,1,0,0,None,maxwyrmwind,0,5,0,0,5,4.17
+760,Snipe Shot,Water,Special,80,100,0,0,None,snipeshot,9,24,0,0,24,12.50
+127,Water Sport,Water,Status,0,1,0,0,None,watersport,0,0,0,0,0,0.00
+136,Rototiller,Ground,Status,0,1,0,0,None,rototiller,0,0,0,0,0,0.00
+347,Rage,Normal,Physical,20,100,0,0,None,rage,0,0,0,0,0,4.17
+540,Judgment,Normal,Special,100,100,0,0,None,judgment,0,0,0,0,0,4.17
+541,Hidden Power Bug,Bug,Special,60,100,0,0,None,hiddenpowerbug,0,0,0,0,0,4.17
+568,Cut,Normal,Physical,50,95,0,0,None,cut,0,0,0,0,0,4.17
+461,Brutal Swing,Dark,Physical,60,100,0,0,None,brutalswing,0,4,0,0,4,4.17
+335,Frenzy Plant,Grass,Special,150,90,0,0,None,frenzyplant,0,0,0,0,0,4.17
+241,Ice Fang,Ice,Physical,65,95,0,19,frz or flinch,icefang,10,205,134,15,224,4.17
+704,Tail Whip,Normal,Status,0,100,0,0,None,tailwhip,0,0,0,0,0,0.00
+459,Swift,Normal,Special,60,1,0,0,None,swift,0,1,0,0,1,4.17
+35,Sky Uppercut,Fighting,Physical,85,90,0,0,None,skyuppercut,0,1,0,0,1,4.17
+250,Power Swap,Psychic,Status,0,1,0,0,None,powerswap,0,5,0,0,5,0.00
+486,Revelation Dance,Normal,Special,90,100,0,0,None,revelationdance,0,11,0,0,11,4.17
+246,Stored Power,Psychic,Special,20,100,0,0,None,storedpower,13,278,0,0,278,4.17
+663,Icicle Crash,Ice,Physical,85,90,0,30,flinch,iciclecrash,21,538,152,36,594,4.17
+311,Sucker Punch,Dark,Physical,70,100,1,0,None,suckerpunch,12,574,0,0,574,4.17
+171,Psychic Fangs,Psychic,Physical,85,100,0,0,None,psychicfangs,10,115,0,0,115,4.17
+725,Heat Wave,Fire,Special,95,90,0,10,brn,heatwave,19,465,273,20,508,4.17
+364,Yawn,Normal,Status,0,1,0,0,None,yawn,0,193,0,0,193,0.00
+168,Ancient Power,Rock,Special,60,100,0,10,"self boosts: spa: 1, spd: 1, atk: 1, def: 1, spe: 1 ",ancientpower,3,105,105,10,105,4.17
+519,Facade,Normal,Physical,70,100,0,0,None,facade,11,436,0,0,436,4.17
+261,Cotton Guard,Grass,Status,0,1,0,0,None,cottonguard,0,59,0,0,59,0.00
+269,Petal Dance,Grass,Special,120,100,0,0,None,petaldance,0,3,0,0,3,4.17
+660,Wrap,Normal,Physical,15,90,0,0,None,wrap,0,7,0,0,8,4.17
+258,Baby-Doll Eyes,Fairy,Status,0,100,1,0,None,babydolleyes,0,8,0,0,8,0.00
+771,Aura Wheel,Electric,Physical,110,100,0,0,None,aurawheel,1,51,0,0,51,4.17
+770,Behemoth Bash,Steel,Physical,100,100,0,0,None,behemothbash,0,1,0,0,1,4.17
+585,Silver Wind,Bug,Special,60,100,0,10,"self boosts: spa: 1, spd: 1, atk: 1, def: 1, spe: 1 ",silverwind,0,11,11,1,11,4.17
+328,Double-Edge,Normal,Physical,120,100,0,0,None,doubleedge,6,114,0,0,114,4.17
+90,Incinerate,Fire,Special,60,100,0,0,None,incinerate,1,6,0,0,6,4.17
+47,Whirlwind,Normal,Status,0,1,-6,0,None,whirlwind,0,227,0,0,227,0.00
+750,Breaking Swipe,Dragon,Physical,60,100,0,0,None,breakingswipe,1,7,0,0,7,4.17
+26,Triple Kick,Fighting,Physical,10,90,0,0,None,triplekick,0,2,0,0,3,4.17
+217,Hidden Power Flying,Flying,Special,60,100,0,0,None,hiddenpowerflying,0,0,0,0,0,4.17
+12,Zing Zap,Electric,Physical,80,100,0,30,flinch,zingzap,0,40,15,4,40,4.17
+95,Trump Card,Normal,Special,0,1,0,0,None,trumpcard,0,0,0,0,0,0.00
+438,Detect,Fighting,Status,0,1,4,0,None,detect,0,4,0,0,4,0.00
+703,Bide,Normal,Physical,0,1,1,0,None,bide,0,0,0,0,0,0.00
+799,G-Max Wildfire,Fire,Physical,1,1,0,0,None,gmaxwildfire,0,0,0,0,0,4.17
+560,Bouncy Bubble,Water,Special,90,100,0,0,None,bouncybubble,0,0,0,0,0,4.17
+319,Leafage,Grass,Physical,40,100,0,0,None,leafage,0,0,0,0,0,4.17
+239,Struggle Bug,Bug,Special,50,100,0,0,None,strugglebug,0,0,0,0,0,4.17
+33,Thunder Shock,Electric,Special,40,100,0,10,par,thundershock,0,0,0,0,0,4.17
+147,Tearful Look,Normal,Status,0,1,0,0,None,tearfullook,0,0,0,0,0,0.00
+158,Poison Powder,Poison,Status,0,75,0,0,None,poisonpowder,0,0,0,0,0,0.00
+753,Vise Grip,Normal,Physical,55,100,0,0,None,visegrip,0,0,0,0,0,4.17
+159,Head Charge,Normal,Physical,120,100,0,0,None,headcharge,0,0,0,0,0,4.17
+754,Jaw Lock,Dark,Physical,80,100,0,0,None,jawlock,0,0,0,0,0,4.17
+800,G-Max Befudle,Bug,Physical,1,1,0,0,None,gmaxbefuddle,0,0,0,0,0,4.17
+801,G-Max Volt Crash,Electric,Physical,1,1,0,0,None,gmaxvoltcrash,0,0,0,0,0,4.17
+802,G-Max Gold Rush,Normal,Physical,1,1,0,0,None,gmaxgoldrush,0,0,0,0,0,4.17
+803,G-Max Chi Strike,Fighting,Physical,1,1,0,0,None,gmaxchistrike,0,0,0,0,0,4.17
+368,Shadow Force,Ghost,Physical,120,100,0,0,None,shadowforce,0,0,0,0,0,4.17
+385,Razor Wind,Normal,Special,80,100,0,0,None,razorwind,0,1,0,0,1,12.50
+64,Shock Wave,Electric,Special,60,1,0,0,None,shockwave,1,26,0,0,26,4.17
+711,Hone Claws,Dark,Status,0,1,0,0,None,honeclaws,0,107,0,0,107,0.00
+672,Frustration,Normal,Physical,0,100,0,0,None,frustration,3,33,0,0,33,0.00
+780,Max Flare,Fire,Physical,1,1,0,0,None,maxflare,1,16,0,0,16,4.17
+572,Fake Tears,Dark,Status,0,100,0,0,None,faketears,0,7,0,0,7,0.00
+204,Energy Ball,Grass,Special,90,100,0,10,boosts spd: -1 ,energyball,22,548,378,40,548,4.17
+807,G-Max Replenish,Normal,Physical,1,1,0,0,None,gmaxreplenish,1,12,0,0,12,4.17
+839,Corrosive Gas,Poison,Status,1,100,0,0,None,corrosivegas,0,1,0,0,1,0.00
+387,Sticky Web,Bug,Status,0,1,0,0,None,stickyweb,0,539,0,0,539,0.00
+552,Pain Split,Normal,Status,0,1,0,0,None,painsplit,0,573,0,0,573,0.00
+443,Beak Blast,Flying,Physical,100,100,-3,0,None,beakblast,0,0,0,0,0,4.17
+612,Soul-Stealing 7-Star Strike,Ghost,Physical,195,1,0,0,None,soulstealing7starstrike,0,0,0,0,0,4.17
+556,Venoshock,Poison,Special,65,100,0,0,None,venoshock,1,65,0,0,65,4.17
+332,Sludge Bomb,Poison,Special,90,100,0,30,psn,sludgebomb,57,1583,864,210,1583,4.17
+558,Quick Guard,Fighting,Status,0,1,3,0,None,quickguard,0,0,0,0,0,0.00
+565,Dragon Breath,Dragon,Special,60,100,0,30,par,dragonbreath,0,0,0,0,0,4.17
+197,Thief,Dark,Physical,60,100,0,0,None,thief,1,30,0,0,30,4.17
+450,Mystical Fire,Fire,Special,75,100,0,0,None,mysticalfire,7,175,0,0,175,4.17
+563,Thousand Arrows,Ground,Physical,90,100,0,0,None,thousandarrows,36,640,0,0,640,4.17
+148,Tailwind,Flying,Status,0,1,0,0,None,tailwind,0,238,0,0,238,0.00
+264,Nasty Plot,Dark,Status,0,1,0,0,None,nastyplot,0,619,0,0,619,0.00
+422,Pika Papow,Electric,Special,0,1,0,0,None,pikapapow,0,0,0,0,0,0.00
+424,Sand Attack,Ground,Status,0,100,0,0,None,sandattack,0,0,0,0,0,0.00
+431,Geomancy,Fairy,Status,0,1,0,0,None,geomancy,0,0,0,0,0,0.00
+29,Extrasensory,Psychic,Special,80,100,0,10,flinch,extrasensory,7,85,33,4,85,4.17
+306,Agility,Psychic,Status,0,1,0,0,None,agility,0,201,0,0,201,0.00
+41,Focus Blast,Fighting,Special,120,70,0,10,boosts spd: -1 ,focusblast,23,444,265,20,617,4.17
+588,Breakneck Blitz,Normal,Physical,1,1,0,0,None,breakneckblitz,2,32,0,0,32,4.17
+553,Stone Edge,Rock,Physical,100,80,0,0,None,stoneedge,170,1395,0,0,1717,12.50
+767,Drum Beating,Grass,Physical,80,100,0,0,None,drumbeating,2,52,0,0,52,4.17
+14,Giga Drain,Grass,Special,75,100,0,0,None,gigadrain,60,1453,0,0,1454,4.17
+680,Night Shade,Ghost,Special,0,100,0,0,None,nightshade,0,165,0,0,165,0.00
+810,G-Max Wind Rage,Flying,Physical,1,1,0,0,None,gmaxwindrage,0,16,0,0,16,4.17
+752,Strange Steam,Fairy,Special,90,95,0,20,confusion,strangesteam,10,125,97,15,129,4.17
+404,Outrage,Dragon,Physical,120,100,0,0,None,outrage,22,610,0,0,612,4.17
+673,Will-O-Wisp,Fire,Status,0,85,0,0,None,willowisp,0,1246,0,0,1455,0.00
+238,Water Shuriken,Water,Special,15,100,1,0,None,watershuriken,6,58,0,0,58,4.17
+805,G-Max Resonance,Water,Physical,1,1,0,0,None,gmaxresonance,0,4,0,0,4,4.17
+132,Smelling Salts,Normal,Physical,70,100,0,0,None,smellingsalts,0,0,0,0,0,4.17
+682,Sizzly Slide,Fire,Physical,90,100,0,0,None,sizzlyslide,0,0,0,0,0,4.17
+617,Force Palm,Fighting,Physical,60,100,0,30,par,forcepalm,0,4,1,0,4,4.17
+589,Snore,Normal,Special,50,100,0,30,flinch,snore,1,21,16,4,21,4.17
+639,Roar,Normal,Status,0,1,-6,0,None,roar,0,375,0,0,375,0.00
+308,Rock Climb,Normal,Physical,90,85,0,20,confusion,rockclimb,0,0,0,0,0,4.17
+415,Belly Drum,Normal,Status,0,1,0,0,None,bellydrum,0,165,0,0,165,0.00
+342,Recover,Normal,Status,0,1,0,0,None,recover,0,2401,0,0,2401,0.00
+605,Subzero Slammer,Ice,Physical,1,1,0,0,None,subzeroslammer,2,61,0,0,61,4.17
+175,Throat Chop,Dark,Physical,80,100,0,0,None,throatchop,3,63,0,0,63,4.17
+728,Discharge,Electric,Special,80,100,0,30,par,discharge,12,430,215,56,430,4.17

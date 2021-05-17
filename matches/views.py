@@ -13,6 +13,14 @@ def replay_analyzer(request):
         return render(request,"replayanalysisresults.html",context)
     return  render(request,"replay_analyzer.html")
 
+def replay_analyzer_link(request,replay_link):
+    url="https://replay.pokemonshowdown.com/"+replay_link
+    results = replayparse(url)
+    context={
+            'results': results,
+    }
+    return render(request,"replayanalysisresults.html",context)
+
 def replay_analyzer_html(request):
     if request.method=="POST":
         html_file=request.FILES['replay_html']
