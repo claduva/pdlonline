@@ -1,3 +1,4 @@
+from os import name
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.db.models import Q
@@ -46,19 +47,21 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
-    """
-    with open('imports/users.csv') as csv_file:
+
+    with open('imports/leagues.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            un = UserModel.objects.filter(username=row[0]).count()
-            email = UserModel.objects.filter(email=row[1]).count()
-            try:
-                did = int(row[2])
-                discordid = UserModel.objects.filter(discordid=did).count()
-            except: 
-                discordid = 0
-                did = None
-            if (un+email+discordid)==0 and row[0] == "Nerf":
+            print(row)
+            """
+            nl = league.objects.get(name=row[0])
+            for user in eval(row[1]):
+                print(user)
+                try:
+                    host = UserModel.objects.get(email=eval(row[1])[0][1])
+                except:
+                    host = UserModel.objects.get(username=eval(row[1])[0][0])
+                nl.moderators.add(host)
+            nl.save()
     """
     return redirect('home')
 
