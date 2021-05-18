@@ -11,8 +11,8 @@ import psycopg2
 import requests
 
 from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_ability, move
-from league_configuration.models import league, league_pokemon, subleague, discord_settings
-from leagues.models import coach,match, roster
+from league_configuration.models import conference, league, league_configuration, league_pokemon, season, subleague, discord_settings
+from leagues.models import coach, draft,match, roster
 
 # Create your views here.
 def home(request):
@@ -21,13 +21,13 @@ def home(request):
         'all_leagues':all_leagues,
     }
     try:
-        coaching=request.user.coaching.all()
+        coaching=request.user.coaching.all().filter(season__archived=False)
         if coaching.count()>0:
             context['coaching']=coaching
             context['upcomingmatches']=match.objects.filter(Q(team1__user=request.user)|Q(team2__user=request.user)).order_by('duedate').exclude(replay__isnull=False)[0:5]
             return  render(request,"coach_landing_page.html",context)
-    except:
-        pass
+    except Exception as e:
+        print(e)
     return  render(request,"index.html",context)
 
 def league_list(request):
@@ -47,22 +47,22 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
-
-    with open('imports/leagues.csv') as csv_file:
+    with open('imports/draft.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
             print(row)
-            """
-            nl = league.objects.get(name=row[0])
-            for user in eval(row[1]):
-                print(user)
-                try:
-                    host = UserModel.objects.get(email=eval(row[1])[0][1])
-                except:
-                    host = UserModel.objects.get(username=eval(row[1])[0][0])
-                nl.moderators.add(host)
-            nl.save()
-    """
+            poi = pokemon.objects.get(name=row[5].replace("etchd","etch'd").replace("Mr.","Mr. "))
+            try:
+                szn = season.objects.filter(league__name=row[0],subleague_name=row[1]).get(name=row[2])
+            except:
+                szn = season.objects.filter(league__abbreviation=row[0],subleague_name=row[1]).get(name=row[2])
+            toi = coach.objects.filter(season=szn).get(teamname=row[3])
+            draft(
+                team = toi,
+                pokemon = poi,
+                picknumber = int(row[4]),
+                announced = True,
+            )
     return redirect('home')
 
 def update_all_pokemon(request):
