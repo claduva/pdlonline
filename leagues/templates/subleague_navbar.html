@@ -29,3 +29,16 @@
         <a class="dropdown-item" href="{% url 'rules' league_id=league.id subleague_id=subleague.id %}">Rules</a>
     </div>
 </div>
+{% if prior_seasons %}
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Previous Seasons
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {% for season in prior_seasons %}
+        <a class="dropdown-item" href="{% url 'prior_season' league_id=league.id season_name=season.name|replace_spaces %}">{{season.name}}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

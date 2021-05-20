@@ -1,5 +1,6 @@
 {% load extratags %}
 <a class="nav-item nav-link" href="{% url 'league_home' league_id=league.id %}">{{ league.abbreviation }} Home</a>
+<a class="nav-item nav-link" href="{% url 'prior_season' league_id=league.id season_name=seasonname|replace_spaces %}">{{ seasonname }} Home</a>
 <div class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -7,7 +8,7 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         {% for subleague in subleagues %}
-        <a class="dropdown-item" href="{% url 'subleague_home' league_id=league.id subleague_id=subleague.id %}">{{ subleague.name }}</a>
+        <a class="dropdown-item" href="{% url 'prior_subleague_home' league_id=league.id season_name=seasonname|replace_spaces season_id=subleague.id %}">{{ subleague.subleague_name }}</a>
         {% endfor %}
     </div>
 </div>
@@ -17,7 +18,7 @@
         League Resources
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="{% url 'total_league_leaders' league_id=league.id %}">League Leaders</a>
+        <a class="dropdown-item" href="{% url 'prior_total_league_leaders' league_id=league.id season_name=seasonname|replace_spaces %}">League Leaders</a>
     </div>
 </div>
 {% if prior_seasons %}
@@ -28,7 +29,7 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         {% for season in prior_seasons %}
-        <a class="dropdown-item" href="{% url 'prior_season' league_id=league.id season_name=season.name|replace_spaces %}">{{season.name}}</a>
+        <a class="dropdown-item" href="{% url 'prior_season' league_id=league.id season_id=season.id %}">{{season.name}}</a>
         {% endfor %}
     </div>
 </div>

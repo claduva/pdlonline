@@ -11,7 +11,7 @@ from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, Tra
 from .models import application,coach,draft,roster,left_pick, match, trade_request, free_agency, trading
 from pokemon.models import pokemon
 from main.models import bot_message
-from league_configuration.models import league, subleague,rules, league_pokemon,league_tier
+from league_configuration.models import league, season, subleague,rules, league_pokemon,league_tier
 from matches.parser.parser import *
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
@@ -57,11 +57,13 @@ def league_home(request,league_id):
         soi=subleagues.first()
         return redirect('subleague_home',league_id=league_id,subleague_id=soi.id)
     coaches=coach.objects.all().filter(season__archived=False,season__subleague__league=loi).order_by('season','conference','division','-wins','-differential')
+    prior_seasons=season.objects.filter(league=loi,archived=True).order_by('created','name').distinct('created','name')
     context={
         'league': loi,
         'subleagues':subleagues,
         'coaches':coaches,
         'leaguepage':True,
+        'prior_seasons':prior_seasons,
     }
     if loi.configuration.teambased:
         return render(request,"league_home_teambased.html",context)
@@ -79,6 +81,7 @@ def league_league_leaders(request,league_id):
 
 def subleague_home(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+    context['prior_seasons']=prior_seasons=season.objects.filter(league=loi,archived=True).order_by('created','name').distinct('created','name')
     return  render(request,"subleague_home.html",context)
 
 def subleague_teampage(request,league_id,subleague_id,coach_id):

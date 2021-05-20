@@ -1,0 +1,47 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+{% load extratags %}
+
+{% block title %}{{ league.abbreviation }}-{{season.subleague_name}} Teampage{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-none d-sm-flex justify-content-start"><img class="headerimage" src="{{team.logo}}"></div>
+    <div class="col justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{team.teamname}} ({{team.teamabbreviation}})</h4></div>
+            <div><h5>Coach(s):</h5></div>
+            {% for user in team.user.all %}
+            <div>{{ user.username }} ({{user.discord_tag}})</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-3 d-none d-sm-flex justify-content-end"><img class="headerimage" src="{{team.logo}}"></div>
+</div>
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    <div class="col-12">
+        <table class="table table-sm bg-lightcolor text-center">
+            <tr class="bg-intermediatecolor"><th>Pokemon</th><th>GP</th><th>GW</th><th>K</th><th>D</th><th>+/-</th><th class="d-none d-md-table-cell">HR</th><th class="d-none d-md-table-cell">DD</th><th class="d-none d-md-table-cell">HPH</th><th class="d-none d-md-table-cell">L</th><th class="d-none d-md-table-cell">SP</th></tr>
+            {% for pokemon in roster %}
+                <tr>
+                    <td><img class="smallimage" src="{{pokemon.pokemon.sprite}}">{{pokemon.pokemon.name}}</td>
+                    <td>{{pokemon.gp}}</td>
+                    <td>{{pokemon.gw}}</td>
+                    <td>{{pokemon.kills}}</td>
+                    <td>{{pokemon.deaths}}</td>
+                    <td>{{pokemon.differential}}</td>
+                    <td class="d-none d-md-table-cell">{{pokemon.remaininghealth}}</td>
+                    <td class="d-none d-md-table-cell">{{pokemon.damagedone}}</td>
+                    <td class="d-none d-md-table-cell">{{pokemon.hphealed}}</td>
+                    <td class="d-none d-md-table-cell">{{pokemon.luck|floatformat:2}}</td>
+                    <td class="d-none d-md-table-cell">{{pokemon.support}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

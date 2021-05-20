@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'matches.apps.MatchesConfig',
     'pokemon.apps.PokemonConfig',
+    'prior_seasons.apps.PriorSeasonsConfig',
     
     #third party apps
     'background_task',

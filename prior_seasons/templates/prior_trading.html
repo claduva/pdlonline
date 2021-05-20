@@ -1,0 +1,47 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}{{ league.abbreviation }}-{{subleague.name}} Trading{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-none d-md-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-12 col-md-6 justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><h5>Trading</h5></div>
+        </div>
+    </div>
+    <div class="col-3 d-none d-md-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+{% if pending_trades or executed_trades %}
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    <div class="col-12">
+        <table class="table table-sm bg-lightcolor text-center">
+            {% if executed_trades %}
+            <tr class="bg-intermediatecolor text-light"><th colspan="5">Completed Trades</th></tr>
+            <tr class="bg-intermediatecolor text-light">
+                <th>Traded Pokemon</th>
+                <th>From</th>
+                <th>To</th>
+                <th>For</th>
+            </tr>
+            {% for a,b in executed_trades %}
+            <tr>
+                <td><img class="smallimage" src="{{a.dropped_pokemon.sprite}}">{{a.dropped_pokemon.name}}</td>
+                <td><img class="smallimage" src="{{a.team.logo}}">{{a.team.teamname}} ({{a.team.teamabbreviation}})</td>
+                <td><img class="smallimage" src="{{b.team.logo}}">{{b.team.teamname}} ({{b.team.teamabbreviation}})</td>
+                <td><img class="smallimage" src="{{a.added_pokemon.sprite}}">{{a.added_pokemon.name}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block script %}
+{% endblock %}

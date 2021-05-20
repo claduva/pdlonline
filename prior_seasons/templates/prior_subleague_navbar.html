@@ -1,0 +1,30 @@
+{% load extratags %}
+<a class="nav-item nav-link" href="{% url 'league_home' league_id=league.id %}">{{ league.abbreviation }} Home</a>
+<a class="nav-item nav-link" href="{% url 'prior_season' league_id=league.id season_name=seasonname|replace_spaces %}">{{ seasonname }} Home</a>
+<a class="nav-item nav-link" href="{% url 'prior_subleague_home' league_id=league.id season_name=seasonname season_id=season.id %}">{{ season.subleague_name }} Home</a>
+{% if coaches %}
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Team Pages
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {% for team in coaches|order_by:"teamname" %}
+        <a class="dropdown-item" href="{% url 'prior_teampage' league_id=league.id season_name=seasonname season_id=season.id coach_id=team.id %}">{{ team.teamname }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        League Resources
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="{% url 'prior_schedule' league_id=league.id season_name=seasonname|replace_spaces season_id=season.id %}">Schedule</a>
+        <a class="dropdown-item" href="{% url 'prior_draft' league_id=league.id season_name=seasonname|replace_spaces season_id=season.id %}">Draft</a>
+        <a class="dropdown-item" href="{% url 'prior_free_agency' league_id=league.id season_name=seasonname|replace_spaces season_id=season.id %}">Free Agency</a>
+        <a class="dropdown-item" href="{% url 'prior_trading' league_id=league.id season_name=seasonname|replace_spaces season_id=season.id %}">Trading</a>
+        <a class="dropdown-item" href="{% url 'prior_league_leaders' league_id=league.id season_name=seasonname|replace_spaces season_id=season.id %}">League Leaders</a>
+    </div>
+</div>

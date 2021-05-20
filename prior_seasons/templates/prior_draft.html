@@ -1,0 +1,74 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+{% load extratags %}
+
+{% block title %}{{ league.abbreviation }}-{{subleague.name}} Draft{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-none d-sm-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><h5>Draft</h5></div>
+        </div>
+    </div>
+    <div class="col-3 d-none d-sm-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    <div class="col-md-3">
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">Draft</th></tr>
+            <tr class="bg-intermediatecolor text-light"><th>Pick</th><th>Team</th><th>Pokemon</th></tr>
+            {% for pick in fulldraft %}
+            <tr>
+                <td>{{ pick.picknumber }}</td>
+                <td>{{ pick.team__teamabbreviation }}</td>
+                <td>
+                    {% if pick.pokemon__name %}
+                    <img class="smallimage" src="{{pick.pokemon__sprite}}">{{pick.pokemon__name}}
+                    {% elif pick.skipped %}
+                    Skipped
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-9">
+        <div class="row d-flex justify-content-center">
+            {% for team in teamdraft %}
+            <div class="col-md-4">
+                <table class="table table-sm bg-lightcolor text-dark text-center">
+                    {% with team|first as team %}
+                    <tr class="bg-intermediatecolor text-light"><th colspan="100%">{{team.team__teamname}} ({{team.team__teamabbreviation}})</th></tr>
+                    {% endwith %}
+                    <tr class="bg-intermediatecolor text-light"><th>Pick</th><th>Pokemon</th></tr>
+                    {% for pick in team %}
+                    <tr>
+                        <td>{{ pick.picknumber }}</td>
+                        <td>
+                            {% if pick.pokemon__name %}
+                            <img class="smallimage" src="{{pick.pokemon__sprite}}">{{pick.pokemon__name}}
+                            {% elif pick.skipped %}
+                            Skipped
+                            {% else %}
+                            -
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

@@ -17,6 +17,12 @@
             {% if subleaguepage %}
                 {% include 'subleague_navbar.html' %}
             {% endif %}
+            {% if priorleaguepage %}
+                {% include 'prior_league_navbar.html' %}
+            {% endif %}
+            {% if priorsubleaguepage %}
+                {% include 'prior_subleague_navbar.html' %}
+            {% endif %}
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">

@@ -92,6 +92,7 @@ class rules(models.Model):
     subleague = models.OneToOneField(subleague, on_delete=models.CASCADE)
     rules = models.TextField(default="No rules entered")
 
+
 class season(models.Model):
     league = models.ForeignKey(league, on_delete=models.CASCADE)
     subleague = models.ForeignKey(subleague, on_delete=models.SET_NULL,related_name='seasons',null=True)
@@ -109,3 +110,6 @@ class season(models.Model):
     tradesallowed= models.IntegerField(default=4)
     created = models.DateTimeField(auto_now_add=True)
     archived = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created']

@@ -1,0 +1,44 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+
+{% block title %}{{ league.abbreviation }}-{{subleague.name}} Schedule{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-none d-md-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col-12 col-md-6 justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><h5>Schedule</h5></div>
+        </div>
+    </div>
+    <div class="col-3 d-none d-md-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    <div class="col-12">
+        {% if matches %}
+        {% regroup matches by week as weeks %}
+        <table class="table table-sm bg-lightcolor text-center">
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">Regular Season</th></tr>
+            {% for week in weeks %}
+            {% with week.list|first as match %}
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">Week {{week.grouper}} {% if match.duedate %}(Due: {{match.duedate}} UTC){% endif %}</th></tr>
+            {% endwith %}
+            {% for match in week.list %}
+            <tr> 
+                <td>{{match.team1.teamname}} ({{match.team1.teamabbreviation}}) vs {{match.team2.teamname}} ({{match.team2.teamabbreviation}})</td>
+                <td><a class="btn btn-sm btn-primary" href="{% url 'prior_matchup' league_id=league.id season_name=seasonname|replace_spaces season_id=season.id match_id=match.id %}">Matchup</a></td>
+                <td><a class="btn btn-sm btn-primary" href="{% url 'prior_replay' league_id=league.id season_name=seasonname|replace_spaces season_id=season.id match_id=match.id %}">Replay</a></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

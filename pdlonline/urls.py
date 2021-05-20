@@ -29,6 +29,7 @@ urlpatterns = [
     path('',include("main.urls")),
     path('',include("matches.urls")),
     path('',include("pokemon.urls")),
+    path('',include("prior_seasons.urls")),
 
     ##unused
     #path('', include('django.contrib.auth.urls')),
