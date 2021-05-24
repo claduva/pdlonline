@@ -47,6 +47,7 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
+    print(list(pokemon.objects.all().values_list('name',flat=True)))
     """
     with open('imports/replay.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
