@@ -39,7 +39,7 @@ class CoachSerializer(serializers.ModelSerializer):
 class PokemonSerializer(serializers.ModelSerializer):
     class Meta:
         model = pokemon
-        fields = ['id','name','sprite']
+        fields = ['id','name','sprite','data']
 
 class RosterSerializer(serializers.ModelSerializer):
     pokemon=PokemonSerializer(read_only = True)
