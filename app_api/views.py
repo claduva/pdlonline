@@ -1,13 +1,15 @@
 from django.shortcuts import render
+from django.db.models import Q
+
 from rest_framework import status, permissions, viewsets, mixins,generics
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .serializers import LeagueSerializer, CoachSerializer, RosterSerializer
+from .serializers import LeagueSerializer, CoachSerializer, RosterSerializer, MatchSerializer
 
 from league_configuration.models import league
-from leagues.models import coach, roster
+from leagues.models import coach, roster, match
 
 # Create your views here.
 class LeagueList(generics.ListAPIView):
@@ -25,3 +27,9 @@ class TeamRosterList(generics.ListAPIView):
     def get_queryset(self):
         team_id = self.kwargs['team_id']
         return roster.objects.filter(team__id=team_id)
+
+class UpcomingMatchList(generics.ListAPIView):
+    serializer_class = MatchSerializer
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return match.objects.filter(team1__season__archived=False,replay__isnull=True).filter(Q(team1__user__discordid=user_id)|Q(team2__user__discordid=user_id))

@@ -13,6 +13,7 @@ import requests
 from pokemon.models import pokemon, pokemon_basestats, pokemon_type, pokemon_ability, move
 from league_configuration.models import conference, league, league_configuration, league_pokemon, season, subleague, discord_settings
 from leagues.models import coach, draft, free_agency,match, roster, trading
+from draft_planner.models import draft_plan
 
 # Create your views here.
 def home(request):
@@ -47,51 +48,6 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
-    print(list(pokemon.objects.all().values_list('name',flat=True)))
-    """
-    with open('imports/replay.csv') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        for row in csv_reader:
-            if row[9] != "Link":
-                print(row)
-                szn = list(season.objects.filter(league__name=row[0],name=row[2]).values_list('id',flat=True))
-                #szn = season.objects.filter(league__name=row[0],subleague_name=row[1]).get(name=row[2])
-                if len(szn)==0:
-                    szn = list(season.objects.filter(league__abbreviation=row[0],name=row[2]).values_list('id',flat=True))
-                    #szn = season.objects.filter(league__abbreviation=row[0],subleague_name=row[1]).get(name=row[2])
-                try:
-                    toi1 = coach.objects.filter(season__id__in=szn).get(teamname=row[4])
-                    toi2 = coach.objects.filter(season__id__in=szn).get(teamname=row[5])
-                    if row[6] != "":
-                        toiw = coach.objects.filter(season__id__in=szn).get(teamname=row[6])
-                except:
-                    toi1 = coach.objects.filter(season__id__in=szn,season__subleague_name=row[1]).get(teamname=row[4])
-                    toi2 = coach.objects.filter(season__id__in=szn,season__subleague_name=row[1]).get(teamname=row[5])
-                    if row[6] != "":
-                        toiw = coach.objects.filter(season__id__in=szn,season__subleague_name=row[1]).get(teamname=row[6])
-                else:
-                    toiw=None
-                if "Playoffs" in row[3]:
-                    week=None
-                    playoff_week=row[3].replace("Playoffs ","")
-                else:
-                    week=int(row[3])
-                    playoff_week=None
-                t1s=int(row[7])
-                t2s=int(row[8])
-                replay=row[9]
-                match.objects.create(
-                    week=week,
-                    playoff_week=playoff_week,
-                    team1 = toi1,
-                    team2 = toi2,
-                    winner = toiw,
-                    team1score = t1s,
-                    team2score = t2s,
-                    replay = replay,
-                    announced = True,
-                )
-    """
     return redirect('home')
 
 def update_all_pokemon(request):
