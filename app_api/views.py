@@ -32,4 +32,4 @@ class UpcomingMatchList(generics.ListAPIView):
     serializer_class = MatchSerializer
     def get_queryset(self):
         user_id = self.kwargs['user_id']
-        return match.objects.filter(team1__season__archived=False,replay__isnull=True).filter(Q(team1__user__discordid=user_id)|Q(team2__user__discordid=user_id))
+        return match.objects.filter(team1__season__archived=False,replay__isnull=True).filter(Q(team1__user__discordid=user_id)|Q(team2__user__discordid=user_id)).order_by('duedate')

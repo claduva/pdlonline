@@ -54,4 +54,4 @@ class MatchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = match
-        fields = ['id','team1','team2']
+        fields = ['id','team1','team2','duedate']
