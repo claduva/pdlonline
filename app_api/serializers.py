@@ -46,7 +46,7 @@ class RosterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = roster
-        fields = ['id','pokemon']
+        fields = ['id','pokemon','gp','gw','kills','deaths','differential']
 
 class MatchSerializer(serializers.ModelSerializer):
     team1 = CoachSerializer(read_only = True)
