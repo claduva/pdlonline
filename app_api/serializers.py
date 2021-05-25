@@ -14,10 +14,27 @@ class LeagueSerializer(serializers.ModelSerializer):
         model = league
         fields = ['id','name','abbreviation','logo','discordurl']
 
+
+class SubleagueSerializer(serializers.ModelSerializer):
+    league=LeagueSerializer(read_only = True)
+
+    class Meta:
+        model = subleague
+        fields = ['id','name','league']
+
+class SeasonSerializer(serializers.ModelSerializer):
+    subleague=SubleagueSerializer(read_only = True)
+    
+    class Meta:
+        model = season
+        fields = ['id','name','subleague']
+
 class CoachSerializer(serializers.ModelSerializer):
+    season=SeasonSerializer(read_only = True)
+
     class Meta:
         model = coach
-        fields = ['id','teamname','teamabbreviation','logo']
+        fields = ['id','teamname','teamabbreviation','logo','season']
 
 class PokemonSerializer(serializers.ModelSerializer):
     class Meta:
