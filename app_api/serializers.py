@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 
 from draft_planner.models import draft_plan
-from league_configuration.models import league_pokemon,league,discord_settings,season,subleague
+from league_configuration.models import league_pokemon,league,discord_settings, league_tier,season,subleague
 from leagues.models import draft, free_agency, trading,coach,match,roster
 from pokemon.models import pokemon
 from main.models import bot_message
@@ -55,3 +55,18 @@ class MatchSerializer(serializers.ModelSerializer):
     class Meta:
         model = match
         fields = ['id','team1','team2','duedate']
+
+class TierInfoSerializer(serializers.ModelSerializer):
+    tier = CoachSerializer(read_only = True)
+
+    class Meta:
+        model = league_tier
+        fields = ['tier','points']
+
+class TierSerializer(serializers.ModelSerializer):
+    tier = TierInfoSerializer(read_only = True)
+    pokemon=PokemonSerializer(read_only = True)
+
+    class Meta:
+        model = league_pokemon
+        fields = ['id','pokemon','tier','team']
