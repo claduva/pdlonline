@@ -44,4 +44,4 @@ class LeagueTierSet(generics.ListAPIView):
     serializer_class = TierSerializer
     def get_queryset(self):
         subleague_id = self.kwargs['subleague_id']
-        return league_pokemon.objects.filter(subleague__id=subleague_id).exclude(tier__tier="Banned")
+        return league_pokemon.objects.filter(subleague__id=subleague_id).exclude(tier__tier="Banned").order_by('tier__points','pokemon__name')
