@@ -44,4 +44,4 @@ class LeagueTierSet(generics.ListAPIView):
     serializer_class = MatchSerializer
     def get_queryset(self):
         subleague_id = self.kwargs['subleague_id']
-        return league_pokemon.objects.filter(tsubleague__id=subleague_id)
+        return league_pokemon.objects.filter(subleague__id=subleague_id)
