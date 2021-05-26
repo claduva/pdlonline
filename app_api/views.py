@@ -28,6 +28,12 @@ class TeamRosterList(generics.ListAPIView):
         team_id = self.kwargs['team_id']
         return roster.objects.filter(team__id=team_id)
 
+class UserTeamList(generics.ListAPIView):
+    serializer_class = CoachSerializer
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return coach.objects.filter(user__id=user_id)
+
 class UpcomingMatchList(generics.ListAPIView):
     serializer_class = MatchSerializer
     def get_queryset(self):
