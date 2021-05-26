@@ -57,7 +57,6 @@ class MatchSerializer(serializers.ModelSerializer):
         fields = ['id','team1','team2','duedate']
 
 class TierInfoSerializer(serializers.ModelSerializer):
-    tier = CoachSerializer(read_only = True)
 
     class Meta:
         model = league_tier
