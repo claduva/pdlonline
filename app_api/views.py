@@ -32,7 +32,7 @@ class UserTeamList(generics.ListAPIView):
     serializer_class = CoachSerializer
     def get_queryset(self):
         user_id = self.kwargs['user_id']
-        return coach.objects.filter(user__discordid=user_id)
+        return coach.objects.filter(user__discordid=user_id)[0:5]
 
 class UpcomingMatchList(generics.ListAPIView):
     serializer_class = MatchSerializer
