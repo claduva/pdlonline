@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .serializers import LeagueSerializer, CoachSerializer, RosterSerializer, MatchSerializer
+from .serializers import LeagueSerializer, CoachSerializer, RosterSerializer, MatchSerializer, TierSerializer
 
 from league_configuration.models import league, season,league_pokemon
 from leagues.models import coach, roster, match
@@ -41,7 +41,7 @@ class UpcomingMatchList(generics.ListAPIView):
         return match.objects.filter(team1__season__archived=False,replay__isnull=True).filter(Q(team1__user__discordid=user_id)|Q(team2__user__discordid=user_id)).order_by('duedate')
 
 class LeagueTierSet(generics.ListAPIView):
-    serializer_class = MatchSerializer
+    serializer_class = TierSerializer
     def get_queryset(self):
         subleague_id = self.kwargs['subleague_id']
         return league_pokemon.objects.filter(subleague__id=subleague_id)
