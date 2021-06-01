@@ -430,12 +430,13 @@ def heal_function(line,parsedlogfile,results):
         pokemon['hphealed']+=healthhealed
     elif line[3].find("[from] move: Lunar Dance")>-1 or line[3].find("[from] move: Healing Wish")>-1:   
         pokemon['brn']=None;pokemon['psn']=None;pokemon['tox']=None;pokemon['par']=None;pokemon['frz']=None;pokemon['slp']=None;
-        turndata=list(filter(lambda x: x[1] == line[1] and x[0] < line[0], parsedlogfile))[::-1]
+        turndata=list(filter(lambda x: x[1] <= line[1] and x[0] < line[0], parsedlogfile))[::-1]
         for line_ in turndata:
             if line_[2]=="move" and line_[3].split("|")[1] in ['Healing Wish','Lunar Dance']:
                 healer=line_[3].split("|")[0].split(": ",1)[1]
                 healer=roster_search(team,healer,results)
                 healer['hphealed']+=healthhealed
+                break
     else:
         wisher=line[3].split("|[wisher] ")[1]
         wisher=roster_search(team,wisher,results)

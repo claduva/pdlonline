@@ -404,7 +404,6 @@ def replay(request,league_id,subleague_id,match_id):
     moi=match.objects.get(id=match_id)
     context['match']= moi
     context['results']= moi.data
-    print(moi.data)
     return render(request,"replayanalysisresults.html",context)
 
 def subleague_freeagency(request,league_id,subleague_id):

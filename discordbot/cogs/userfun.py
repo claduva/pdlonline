@@ -22,7 +22,7 @@ class Userfun(commands.Cog):
         sleepy = await self.bot.fetch_user("248633879529783296")
         channel = await sleepy.create_dm()
         await channel.send(f"{ctx.author.mention} wants you to know that you suck.")
-        await ctx.send(f"I've let Sleepy know he sucks for you. No thanks needed. It was my pleasure (Just a friendly reminder his username used to be SoggyWaffle, so he had it coming). {sleepy.mention}, in case you blocked me...You suck.")
+        await ctx.send(f"I've let Sleepy know he sucks for you. No thanks needed. It was my pleasure (Just a friendly reminder his username used to be SoggyWaffles, so he had it coming). {sleepy.mention}, in case you blocked me...You suck.")
     
     @commands.command(aliases=[])
     async def sleepycringe(self,ctx):
@@ -50,6 +50,14 @@ class Userfun(commands.Cog):
                 await ctx.send(f"I'm heartbroken.")
         except:
             pass
+
+    @commands.command(aliases=["jigglypigs",'johning'])
+    async def jiggly(self,ctx):
+        await ctx.send(f"all jokes aside you definitely improved this game and I think if you focus on just a couple leagues ||you can get as good as me|| you can be a really good player. I hope we fight again sometime this was loads of fun")
+
+    @commands.command(aliases=["datoneman",'datone'])
+    async def datonefan(self,ctx):
+        await ctx.send(f"if world against the datoneman, i am against the world ❌ 🌍 ☄️. i love #dantoneman till my last breath.. 😍 .. Die Hard fan of datoneman 🤓 🌹. Hit Like If you Think datoneman Best player & Smart In the world 🤠")
 
 def setup(bot):
     bot.add_cog(Userfun(bot))
