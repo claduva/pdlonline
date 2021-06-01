@@ -59,5 +59,9 @@ class Userfun(commands.Cog):
     async def datonefan(self,ctx):
         await ctx.send(f"if world against the datoneman, i am against the world ❌ 🌍 ☄️. i love #dantoneman till my last breath.. 😍 .. Die Hard fan of datoneman 🤓 🌹. Hit Like If you Think datoneman Best player & Smart In the world 🤠")
 
+    @commands.command(aliases=["g()ld",'yens'])
+    async def gold(self,ctx):
+        await ctx.send(f"https://media.discordapp.net/attachments/821585145961644062/849387682589310986/Screen_Shot_2021-06-01_at_1.43.02_PM.png")
+
 def setup(bot):
     bot.add_cog(Userfun(bot))
