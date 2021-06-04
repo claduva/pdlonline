@@ -57,7 +57,8 @@ class Userfun(commands.Cog):
 
     @commands.command(aliases=["datoneman",'datone'])
     async def datonefan(self,ctx):
-        await ctx.send(f"if world against the datoneman, i am against the world ❌ 🌍 ☄️. i love #dantoneman till my last breath.. 😍 .. Die Hard fan of datoneman 🤓 🌹. Hit Like If you Think datoneman Best player & Smart In the world 🤠")
+        msg = await ctx.send(f"if world against the datoneman, i am against the world ❌ 🌍 ☄️. i love #dantoneman till my last breath.. 😍 .. Die Hard fan of datoneman 🤓 🌹. Hit Like If you Think datoneman Best player & Smart In the world 🤠")
+        await msg.add_reaction("👍")
 
     @commands.command(aliases=["g()ld",'yens'])
     async def gold(self,ctx):
