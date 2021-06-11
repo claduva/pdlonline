@@ -109,56 +109,59 @@ def prepare_parsedlogfile(logfile,replay):
     return results,parsedlogfile
 
 def replayparse(replay):
-    #initialize variables
-    if len(replay.splitlines())>1:
-        logfile = replay.splitlines()
-    else:
-        logfile = requests.get(replay+".log").text.splitlines()   
-    #iterate through parsed logfile
-    try:
-        results,parsedlogfile=prepare_parsedlogfile(logfile,replay)
-        for line in parsedlogfile:
-            line,parsedlogfile,results=alternate_replay_parse_switch(line,parsedlogfile,results)
+    try: 
+        #initialize variables
+        if len(replay.splitlines())>1:
+            logfile = replay.splitlines()
+        else:
+            logfile = requests.get(replay+".log").text.splitlines()   
+        #iterate through parsed logfile
+        try:
+            results,parsedlogfile=prepare_parsedlogfile(logfile,replay)
+            for line in parsedlogfile:
+                line,parsedlogfile,results=alternate_replay_parse_switch(line,parsedlogfile,results)
+        except:
+            results,parsedlogfile=prepare_parsedlogfile(logfile,replay)
+            for line in parsedlogfile:
+                line,parsedlogfile,results=replay_parse_switch(line,parsedlogfile,results)
+        #sort significant events
+        results['significantevents']=sorted( results['significantevents'],key=lambda tup: tup[0])
+        #sort luckcatalog
+        results['luckcatalog']=sorted( results['luckcatalog'],key=lambda tup: tup[1])
+        #update result totals
+        teams=['team1','team2']
+        categories=['kills','deaths','luck','support','hphealed','damagedone','remaininghealth']
+        for team in teams:
+            for mon in results[team]['roster']:
+                results[team]['score']+=1-mon['deaths']
+                for category in categories:
+                    results[team][category]+=mon[category]
+                    results[team][category]=round(results[team][category],2)
+                mon['luck']= mon['luck']/100
+                results[team]['totalhealth']+=100
+            results[team]['luck']=results[team]['luck']/100
+        #output results to json file
+        with open('matches/parser/results.json', 'w') as f:
+            json.dump(results,f,indent=2)
+        #team1
+        damagedone=results['team1']['damagedone']
+        damagedonetest=results['team2']['totalhealth']-results['team2']['remaininghealth']+results['team2']['hphealed']
+        score=results['team1']['score']
+        scoretest=len(results['team1']['roster'])-results['team2']['kills']-results['team1']['selfdeaths']
+        if damagedonetest!=damagedone: results['errormessage'].append("This replay's Team 1 damage numbers do not add up. Please contact claduva and do not submit the replay.")
+        if scoretest!=score: results['errormessage'].append("This replay's Team 1 score numbers do not add up. Please contact claduva and do not submit the replay.")
+        if score!=0 and results['team2']['wins']==1: results['errormessage'].append("The losing team's score should be 0. Please contact claduva and do not submit the replay.")
+        #team2
+        damagedone=results['team2']['damagedone']
+        damagedonetest=results['team1']['totalhealth']-results['team1']['remaininghealth']+results['team1']['hphealed']
+        score=results['team2']['score']
+        scoretest=len(results['team2']['roster'])-results['team1']['kills']-results['team2']['selfdeaths']
+        if damagedonetest!=damagedone: results['errormessage'].append("This replay's Team 2 damage numbers do not add up. Please contact claduva and do not submit the replay.")
+        if scoretest!=score: results['errormessage'].append("This replay's Team 2 score numbers do not add up. Please contact claduva and do not submit the replay.")
+        if score!=0 and results['team1']['wins']==1: results['errormessage'].append("The losing team's score should be 0. Please contact claduva and do not submit the replay.")
+        if len(results['errormessage'])>0:
+            results=alternativereplayparse(replay)
     except:
-        results,parsedlogfile=prepare_parsedlogfile(logfile,replay)
-        for line in parsedlogfile:
-            line,parsedlogfile,results=replay_parse_switch(line,parsedlogfile,results)
-    #sort significant events
-    results['significantevents']=sorted( results['significantevents'],key=lambda tup: tup[0])
-    #sort luckcatalog
-    results['luckcatalog']=sorted( results['luckcatalog'],key=lambda tup: tup[1])
-    #update result totals
-    teams=['team1','team2']
-    categories=['kills','deaths','luck','support','hphealed','damagedone','remaininghealth']
-    for team in teams:
-        for mon in results[team]['roster']:
-            results[team]['score']+=1-mon['deaths']
-            for category in categories:
-                results[team][category]+=mon[category]
-                results[team][category]=round(results[team][category],2)
-            mon['luck']= mon['luck']/100
-            results[team]['totalhealth']+=100
-        results[team]['luck']=results[team]['luck']/100
-    #output results to json file
-    with open('matches/parser/results.json', 'w') as f:
-        json.dump(results,f,indent=2)
-    #team1
-    damagedone=results['team1']['damagedone']
-    damagedonetest=results['team2']['totalhealth']-results['team2']['remaininghealth']+results['team2']['hphealed']
-    score=results['team1']['score']
-    scoretest=len(results['team1']['roster'])-results['team2']['kills']-results['team1']['selfdeaths']
-    if damagedonetest!=damagedone: results['errormessage'].append("This replay's Team 1 damage numbers do not add up. Please contact claduva and do not submit the replay.")
-    if scoretest!=score: results['errormessage'].append("This replay's Team 1 score numbers do not add up. Please contact claduva and do not submit the replay.")
-    if score!=0 and results['team2']['wins']==1: results['errormessage'].append("The losing team's score should be 0. Please contact claduva and do not submit the replay.")
-    #team2
-    damagedone=results['team2']['damagedone']
-    damagedonetest=results['team1']['totalhealth']-results['team1']['remaininghealth']+results['team1']['hphealed']
-    score=results['team2']['score']
-    scoretest=len(results['team2']['roster'])-results['team1']['kills']-results['team2']['selfdeaths']
-    if damagedonetest!=damagedone: results['errormessage'].append("This replay's Team 2 damage numbers do not add up. Please contact claduva and do not submit the replay.")
-    if scoretest!=score: results['errormessage'].append("This replay's Team 2 score numbers do not add up. Please contact claduva and do not submit the replay.")
-    if score!=0 and results['team1']['wins']==1: results['errormessage'].append("The losing team's score should be 0. Please contact claduva and do not submit the replay.")
-    if len(results['errormessage'])>0:
         results=alternativereplayparse(replay)
     return results
 
@@ -1243,6 +1246,8 @@ def alternativereplayparse(replay):
             if pokemon.find(nickname)==-1:
                 matchdata=list(filter(lambda x: x[0]>=line[0], parsedlogfile))
                 for line_ in matchdata:
+                    if line_[2] in ["switch","drag"] and line_[3].split(": ",)[0]==team:
+                        break
                     line_[3]=line_[3].replace(nickname,pokemon)
         for line in parsedlogfile:
             line,parsedlogfile,results=alternate_replay_parse_switch(line,parsedlogfile,results)
