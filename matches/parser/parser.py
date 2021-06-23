@@ -1246,7 +1246,7 @@ def alternativereplayparse(replay):
             if pokemon.find(nickname)==-1:
                 matchdata=list(filter(lambda x: x[0]>=line[0], parsedlogfile))
                 for line_ in matchdata:
-                    if line_[2] in ["switch","drag"] and line_[3].split(": ",)[0]==team:
+                    if line_[2] in ["switch","drag"] and line_[3].split(": ",)[0]==team and line[0]!=line_[0]:
                         break
                     line_[3]=line_[3].replace(nickname,pokemon)
         for line in parsedlogfile:
