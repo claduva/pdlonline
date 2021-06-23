@@ -680,7 +680,11 @@ def set_draft_order(request,league_id,subleague_id):
 def scheduling(request,league_id,subleague_id):
     loi=league.objects.get(id=league_id)
     soi=subleague.objects.get(id=subleague_id)
-    coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference','division','wins','differential')
+    config = loi.configuration
+    if config.allows_cross_subleague_matches:
+        coaches=coach.objects.all().filter(season__archived=False,season__subleague__league=loi).order_by('conference','division','wins','differential')
+    else: 
+        coaches=coach.objects.all().filter(season__archived=False,season__subleague=soi).order_by('conference','division','wins','differential')
     try:
         szn=soi.seasons.all().get(archived=False)
     except:
