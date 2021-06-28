@@ -19,6 +19,43 @@
 </div>
 <div class="row bg-darkcolor text-light rounded mt-2 pt-3">
     <div class="col-12">
+        {% if playoff_matches %}
+        {% regroup playoff_matches by playoff_week as weeks %}
+        <table class="table table-sm bg-lightcolor text-center">
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">Regular Season</th></tr>
+            {% for week in weeks %}
+            {% with week.list|first as match %}
+            <tr class="bg-intermediatecolor text-light"><th colspan="100%">Week {{week.grouper}} {% if match.duedate %}(Due: {{match.duedate}} UTC){% endif %}</th></tr>
+            {% endwith %}
+            {% for match in week.list %}
+            <tr> 
+                <td>{{match.team1.teamname}} ({{match.team1.teamabbreviation}}) vs {{match.team2.teamname}} ({{match.team2.teamabbreviation}})</td>
+                <td><a class="btn btn-sm btn-primary" href="{% url 'matchup' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Matchup</a></td>
+                {% if match.replay %}
+                <td><a class="btn btn-sm btn-primary" href="{% url 'replay' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Replay</a></td>
+                {% else %}
+                {% if request.user in match.team1.user.all or request.user in match.team2.user.all or request.user in match.team1.season.subleague.league.moderators.all %}
+                <td><a class="btn btn-sm btn-primary" href="{% url 'upload_replay' league_id=league.id subleague_id=subleague.id match_id=match.id %}">Upload Replay</a></td>
+                {% endif %}
+                {% if request.user in match.team1.season.subleague.league.moderators.all %}
+                <td class="d-flex justify-content-around">
+                    <form action="{% url 'handle_forfeits' league_id=league.id subleague_id=subleague.id match_id=match.id %}" method="post" >{% csrf_token %}
+                        <input class="btn btn-sm btn-primary" type="submit" name="team1ff" value="{{ match.team1.teamabbreviation }} Forfeits">
+                    </form>
+                    <form action="{% url 'handle_forfeits' league_id=league.id subleague_id=subleague.id match_id=match.id %}" method="post" >{% csrf_token %}
+                        <input class="btn btn-sm btn-primary" type="submit" name="team2ff" value="{{ match.team2.teamabbreviation }} Forfeits">
+                    </form>
+                    <form action="{% url 'handle_forfeits' league_id=league.id subleague_id=subleague.id match_id=match.id %}" method="post" >{% csrf_token %}
+                        <input class="btn btn-sm btn-primary" type="submit" name="bothteamsff" value="Both Teams Forfeit">
+                    </form>
+                </td>
+                {% endif %}
+                {% endif %}
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </table>
+        {% endif %}
         {% if matches %}
         {% regroup matches by week as weeks %}
         <table class="table table-sm bg-lightcolor text-center">
