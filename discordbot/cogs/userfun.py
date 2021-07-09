@@ -65,7 +65,7 @@ class Userfun(commands.Cog):
         await ctx.send(f"https://media.discordapp.net/attachments/821585145961644062/849387682589310986/Screen_Shot_2021-06-01_at_1.43.02_PM.png")
 
     @commands.command(aliases=[])
-    async def collin(self,ctx):
+    async def ketch(self,ctx):
         await ctx.send(f"considering I'm better than all of you by a very large margin w/ the potential exception of Ketch, no")
 
 def setup(bot):
