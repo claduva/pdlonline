@@ -23,6 +23,7 @@
             <tr><th>Season Activities</th></tr>
             <tr><td><a href="{% url 'set_draft_order' league_id=league.id subleague_id=subleague.id %}">Draft Order</a></td></tr>
             <tr><td><a href="{% url 'manage_matches' league_id=league.id subleague_id=subleague.id %}">Matches</a></td></tr>
+            <tr><td><a id="deletebutton" href="{% url 'archive_season' league_id=league.id subleague_id=subleague.id %}" class="btn btn-danger form-control">Archive Season</a></td></tr>
         </table>
     </div>
     <div class="col-md-9">
@@ -39,7 +40,7 @@
 <script>
 $(document).ready(function() {
     $('#deletebutton').click(function() {
-    var c = confirm("Are you sure you want to do this? This subleagues data will be lost. Data including drafts, rosters, and matches will be archived.");
+    var c = confirm("Are you sure you want to do this? This season data will not be able to be modified without contacting the site administrator.");
     return c;
     })
 })

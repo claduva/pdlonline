@@ -37,6 +37,7 @@
         </table>
     </div>
 </div>
+{% if upcomingmatches|length > 0 %}
 <div class="row align-items-center bg-darkcolor text-light text-center mt-2 rounded">
     <div class="col-12 mt-2">
         <h4>Upcoming Matches</h4>
@@ -66,4 +67,5 @@
         </table>
     </div>
 </div>
+{% endif %}
 {% endblock %}

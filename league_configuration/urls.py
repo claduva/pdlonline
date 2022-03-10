@@ -22,6 +22,7 @@ urlpatterns = [
     path("settings/leagues_moderating/<int:league_id>/configuration/applications/<int:application_id>/delete/", views.delete_application, name="delete_application"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/", views.subleague_configuration, name="subleague_configuration"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/", views.season_configuration, name="season_configuration"),
+    path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/archive", views.archive_season, name="archive_season"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/set_draft_order/", views.set_draft_order, name="set_draft_order"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/manage_matches/", views.scheduling, name="manage_matches"),
     path("settings/leagues_moderating/<int:league_id>/configuration/<int:subleague_id>/season/manage_matches/edit/<int:match_id>/", views.edit_match, name="edit_match"),

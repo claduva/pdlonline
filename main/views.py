@@ -48,6 +48,27 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
+    for l in league.objects.all():
+        try:
+            l.configuration
+        except:
+            l.delete()
+    for l in league.objects.all():
+        if (datetime.datetime.now()-l.created.replace(tzinfo=None)).days>7:
+            if season.objects.all().filter(league=l).count()==0:
+                l.delete()
+            elif coach.objects.all().filter(season__league=l).count()==0:
+                l.delete()
+    for l in league.objects.all():
+        if (datetime.datetime.now()-l.created.replace(tzinfo=None)).days>30:
+            if roster.objects.all().filter(team__season__league=l).count()==0:
+                l.delete()    
+    for l in league.objects.all():
+        if (datetime.datetime.now()-l.created.replace(tzinfo=None)).days>60:
+            if match.objects.all().filter(team1__season__league=l).count()<20:
+                l.delete()   
+            else: 
+                print(l,match.objects.all().filter(team1__season__league=l).count())
     return redirect('home')
 
 def update_all_pokemon(request):

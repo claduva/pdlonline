@@ -454,6 +454,16 @@ def season_configuration(request,league_id,subleague_id):
 
 @login_required
 @check_if_moderator
+def archive_season(request,league_id,subleague_id):
+    loi=league.objects.get(id=league_id)
+    soi=subleague.objects.get(id=subleague_id)
+    seasonoi=season.objects.get(subleague=soi,archived=False)
+    seasonoi.archived=True
+    seasonoi.save()
+    return redirect('league_configuration',league_id=loi.id)
+
+@login_required
+@check_if_moderator
 def manage_coaches(request,league_id):
     loi=league.objects.get(id=league_id)
     coaches = coach.objects.filter(season__subleague__league=loi).order_by('season__subleague__name')
