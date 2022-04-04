@@ -270,7 +270,7 @@ def place_bid(request,league_id,subleague_id):
             if bidamount<=currentbid.amount:
                 messages.error(request,f'You cannot bid less than or equal to the current bid!',flags="danger")
                 return redirect('draft',league_id=league_id,subleague_id=subleague_id)
-            elapsedtime = datetime.datetime.now()-item.picktime.replace(tzinfo=None)
+            elapsedtime = datetime.datetime.now()-currentbid.picktime.replace(tzinfo=None)
             if elapsedtime / datetime.timedelta(hours=1) >= timer:
                 messages.error(request,f'You cannot bid on this pokemon because the timer has expired!',flags="danger")
                 return redirect('draft',league_id=league_id,subleague_id=subleague_id)
