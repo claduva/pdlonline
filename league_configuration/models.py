@@ -102,7 +102,7 @@ class season(models.Model):
     drafttimer=models.IntegerField(default=12)
     draftbudget = models.IntegerField(default=1000)
     picksperteam = models.IntegerField(default=11)
-    drafttype = models.CharField(max_length=25, choices=(("Snake","Snake"),),default="Snake")
+    drafttype = models.CharField(max_length=25, choices=(("Snake","Snake"),("Auction","Auction")),default="Snake")
     seasonstart=models.DateTimeField(null=True,blank=True)
     seasonlength = models.IntegerField(default=7)
     playoffslength = models.IntegerField(default=3)

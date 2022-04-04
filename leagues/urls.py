@@ -10,6 +10,7 @@ urlpatterns = [
     path("league/<int:league_id>/subleague/<int:subleague_id>/teams/<int:coach_id>/", views.subleague_teampage, name="teampage"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/tiers/", views.subleague_tierset, name="tiers"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/draft/", views.subleague_draft, name="draft"),
+    path("league/<int:league_id>/subleague/<int:subleague_id>/draft/place_bid/", views.place_bid, name="place_bid"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/draft/execute_draft/", views.execute_draft, name="execute_draft"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/draft/make_up_pick/", views.make_up_pick, name="make_up_pick"),
     path("league/<int:league_id>/subleague/<int:subleague_id>/draft/skip/", views.skip_pick, name="skip_pick"),

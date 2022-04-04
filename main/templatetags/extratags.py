@@ -92,3 +92,20 @@ def sprite(string):
     except:
         sprite="/static/images/pdllogo.png"
     return sprite
+
+@register.filter(name="timeremaining")
+def timeremaining(value,arg):
+    spl=value.split(",")
+    if len(spl)==1:
+        hours=0
+        minutes=int(spl[0].split("\xa0")[0])
+    else:
+        hours=int(spl[0].split("\xa0")[0])
+        minutes=int(spl[1].split("\xa0")[0])
+    if minutes==0:
+        hours_rem=int(arg)-hours
+        minutes_rem=0
+    else:
+        hours_rem=int(arg)-hours-1
+        minutes_rem=60-minutes
+    return f'{hours_rem}h {minutes_rem}m'

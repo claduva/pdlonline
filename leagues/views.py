@@ -1,3 +1,4 @@
+from sys import flags
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
@@ -8,7 +9,7 @@ import datetime, pytz
 utc=pytz.UTC
 
 from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, TradeRequestForm, ReplayForm
-from .models import application,coach,draft,roster,left_pick, match, trade_request, free_agency, trading
+from .models import application,coach,draft,roster,left_pick, match, trade_request, free_agency, trading, bid
 from pokemon.models import pokemon
 from main.models import bot_message
 from league_configuration.models import league, season, subleague,rules, league_pokemon,league_tier
@@ -105,79 +106,185 @@ def subleague_draft(request,league_id,subleague_id):
     except:
         messages.error(request,'Subleague does not have season configured! League administrators need to do this in settings!',extra_tags="danger")
         return redirect('subleague_home', league_id=league_id,subleague_id=subleague_id)
-    #generaldata
-    subleague_draft=draft.objects.filter(team__season=szn)
-    fulldraft=subleague_draft.order_by('picknumber').values('id','picknumber','pokemon__id','pokemon__name','pokemon__sprite','team__id','team__teamname','team__teamabbreviation','points','skipped')
-    takenpokemon=fulldraft.filter(pokemon__id__isnull=False).values_list('pokemon__id',flat=True)
-    banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
-    availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon)).exclude(id__in=list(banned))
-    availablepokemontiers=league_pokemon.objects.filter(subleague=soi,pokemon__in=availablepokemon).order_by('tier__points','pokemon__name').values('pokemon__name','pokemon__sprite','pokemon__data','tier__tier','tier__points')
-    distinct_teams=fulldraft[0:coaches.count()]
-    teamdraft=[fulldraft.filter(team__teamname=team['team__teamname']) for team in distinct_teams]
-    try:
-        currentpick=fulldraft.filter(skipped=False, pokemon__id__isnull=True).first()
-        try: timerstart=draft.objects.filter(team__season=szn).get(picknumber=(currentpick['picknumber']-1)).picktime+datetime.timedelta(hours=szn.drafttimer)
-        except: timerstart=szn.draftstart + datetime.timedelta(hours=szn.drafttimer)
-        currentroster=fulldraft.filter(team__teamname=currentpick['team__teamname'])
-        #check for left picks
-        availablepicks=left_pick.objects.filter(team__id=currentpick['team__id']).order_by('id')
-        for item in availablepicks:
-            availablepick=item.pokemon
-            if availablepick in availablepokemon:
-                currentpick_=draft.objects.get(id=currentpick['id'])
-                currentpick_.pokemon=availablepick
-                lpoi=league_pokemon.objects.filter(subleague=soi).get(pokemon=availablepick)
-                currentpick_.points=lpoi.tier.points
-                lpoi.team=currentpick_.team.teamabbreviation
-                lpoi.save()
-                currentpick_.save()
-                roster.objects.create(team=currentpick_.team,pokemon=currentpick_.pokemon)
-                item.delete()
-                return redirect('draft',league_id=league_id,subleague_id=subleague_id)
-            else:
-                item.delete()
-        #user specific data
-        leftpicks=left_pick.objects.filter(team__season=szn,team__user=request.user).order_by('id')
-        currentteam=coach.objects.get(id=currentpick['team__id'])
-        if request.user in loi.moderators.all() or request.user in currentteam.user.all():
-            candraft=True
-        else:
-            candraft=False
+    if szn.drafttype=="Snake":
+        #generaldata
+        subleague_draft=draft.objects.filter(team__season=szn)
+        fulldraft=subleague_draft.order_by('picknumber').values('id','picknumber','pokemon__id','pokemon__name','pokemon__sprite','team__id','team__teamname','team__teamabbreviation','points','skipped')
+        takenpokemon=fulldraft.filter(pokemon__id__isnull=False).values_list('pokemon__id',flat=True)
+        banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
+        availablepokemon=pokemon.objects.exclude(id__in=list(takenpokemon)).exclude(id__in=list(banned))
+        availablepokemontiers=league_pokemon.objects.filter(subleague=soi,pokemon__in=availablepokemon).order_by('tier__points','pokemon__name').values('pokemon__name','pokemon__sprite','pokemon__data','tier__tier','tier__points')
+        distinct_teams=fulldraft[0:coaches.count()]
+        teamdraft=[fulldraft.filter(team__teamname=team['team__teamname']) for team in distinct_teams]
         try:
-            usersteam=coaches.filter(user=request.user).first()
-            canleavepick=True
-            skipped=fulldraft.filter(skipped=True,team__id=usersteam.id).first()
-            if skipped:
-                skippedpick=True
+            currentpick=fulldraft.filter(skipped=False, pokemon__id__isnull=True).first()
+            try: timerstart=draft.objects.filter(team__season=szn).get(picknumber=(currentpick['picknumber']-1)).picktime+datetime.timedelta(hours=szn.drafttimer)
+            except: timerstart=szn.draftstart + datetime.timedelta(hours=szn.drafttimer)
+            currentroster=fulldraft.filter(team__teamname=currentpick['team__teamname'])
+            #check for left picks
+            availablepicks=left_pick.objects.filter(team__id=currentpick['team__id']).order_by('id')
+            for item in availablepicks:
+                availablepick=item.pokemon
+                if availablepick in availablepokemon:
+                    currentpick_=draft.objects.get(id=currentpick['id'])
+                    currentpick_.pokemon=availablepick
+                    lpoi=league_pokemon.objects.filter(subleague=soi).get(pokemon=availablepick)
+                    currentpick_.points=lpoi.tier.points
+                    lpoi.team=currentpick_.team.teamabbreviation
+                    lpoi.save()
+                    currentpick_.save()
+                    roster.objects.create(team=currentpick_.team,pokemon=currentpick_.pokemon)
+                    item.delete()
+                    return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+                else:
+                    item.delete()
+            #user specific data
+            leftpicks=left_pick.objects.filter(team__season=szn,team__user=request.user).order_by('id')
+            currentteam=coach.objects.get(id=currentpick['team__id'])
+            if request.user in loi.moderators.all() or request.user in currentteam.user.all():
+                candraft=True
             else:
+                candraft=False
+            try:
+                usersteam=coaches.filter(user=request.user).first()
+                canleavepick=True
+                skipped=fulldraft.filter(skipped=True,team__id=usersteam.id).first()
+                if skipped:
+                    skippedpick=True
+                else:
+                    skippedpick=False
+            except:
+                canleavepick=False
                 skippedpick=False
         except:
+            currentpick=None
+            currentroster=None
+            leftpicks=None
+            candraft=False
             canleavepick=False
             skippedpick=False
-    except:
-        currentpick=None
-        currentroster=None
-        leftpicks=None
-        candraft=False
-        canleavepick=False
-        skippedpick=False
-        timerstart=None
-    #add to context
-    context['fulldraft']=fulldraft
-    context['teamdraft']=teamdraft
-    context['season']=szn
-    context['draftform']=DraftForm(availablepokemon=availablepokemon)
-    context['leftpickform']=LeftPickForm(availablepokemon=availablepokemon)
-    context['currentpick']=currentpick
-    context['currentroster']=currentroster
-    context['availablepokemon']=availablepokemon
-    context['availablepokemontiers']=availablepokemontiers
-    context['leftpicks']=leftpicks
-    context['candraft']=candraft
-    context['canleavepick']=canleavepick
-    context['skippedpick']=skippedpick
-    context['timerstart']=timerstart
-    return  render(request,"draft.html",context)
+            timerstart=None
+        #add to context
+        context['fulldraft']=fulldraft
+        context['teamdraft']=teamdraft
+        context['season']=szn
+        context['draftform']=DraftForm(availablepokemon=availablepokemon)
+        context['leftpickform']=LeftPickForm(availablepokemon=availablepokemon)
+        context['currentpick']=currentpick
+        context['currentroster']=currentroster
+        context['availablepokemon']=availablepokemon
+        context['availablepokemontiers']=availablepokemontiers
+        context['leftpicks']=leftpicks
+        context['candraft']=candraft
+        context['canleavepick']=canleavepick
+        context['skippedpick']=skippedpick
+        context['timerstart']=timerstart
+        return  render(request,"draft.html",context)
+    elif szn.drafttype=="Auction":
+        #finalize bids older than timer
+        timer=szn.drafttimer
+        takenpokemon=draft.objects.all().filter(team__season=szn)
+        withbids=bid.objects.all().filter(team__season=szn)
+        for item in withbids:
+            elapsedtime = datetime.datetime.now()-item.picktime.replace(tzinfo=None)
+            if elapsedtime / datetime.timedelta(hours=1) >= timer:
+                draft.objects.create(
+                    team=item.team,
+                    pokemon=item.pokemon,
+                    picknumber=takenpokemon.count()+1,
+                    points=item.amount,
+                    announced=True,
+                )
+                item.delete()
+        #get page data
+        try:
+            coach.objects.filter(season=szn).get(user=request.user)
+            currentbids=bid.objects.all().filter(team__season=szn,team__user=request.user)
+            currentpicks=draft.objects.all().filter(team__season=szn,team__user=request.user)
+            candraft=True
+        except:
+            currentbids=bid.objects.none()
+            currentpicks=draft.objects.none()
+            candraft=False
+        withbids=bid.objects.all().filter(team__season=szn)
+        takenpokemon=draft.objects.all().filter(team__season=szn)
+        banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
+        nobids=pokemon.objects.exclude(id__in=list(takenpokemon.values_list("pokemon__id",flat=True))).exclude(id__in=list(withbids.values_list("pokemon__id",flat=True))).exclude(id__in=list(banned))
+        slotsused=0
+        pointsused=0
+        for item in currentbids:
+            pointsused+=item.amount
+            slotsused+=1
+        for item in currentpicks:
+            pointsused+=item.points
+            slotsused+=1
+        pointsavailable=szn.draftbudget-pointsused
+        slotsavailable=szn.picksperteam-slotsused
+        context['season']=szn
+        context['unavailablepokemon']=takenpokemon
+        context['withbids']=withbids
+        context['nobids']=nobids
+        context['candraft']=candraft
+        context['pointsused']=pointsused
+        context['pointsavailable']=pointsavailable
+        context['slotsused']=slotsused
+        context['slotsavailable']=slotsavailable
+        context['currentbids']=currentbids
+        context['currentpicks']=currentpicks
+        context['drafttimer']=timer
+        context['maxbid']=pointsavailable-slotsavailable+1
+        return  render(request,"draft_auction.html",context)
+
+@login_required
+def place_bid(request,league_id,subleague_id):
+    if request.method=="POST":
+        loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
+        szn=soi.seasons.all().get(archived=False)
+        #get data
+        timer=szn.drafttimer
+        withbids=bid.objects.all().filter(team__season=szn)
+        takenpokemon=draft.objects.all().filter(team__season=szn)
+        banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
+        nobids=pokemon.objects.exclude(id__in=list(takenpokemon.values_list("pokemon__id",flat=True))).exclude(id__in=list(withbids.values_list("pokemon__id",flat=True))).exclude(id__in=list(banned))
+        currentbids=bid.objects.all().filter(team__season=szn,team__user=request.user)
+        currentpicks=draft.objects.all().filter(team__season=szn,team__user=request.user)
+        slotsused=0
+        pointsused=0
+        for item in currentbids:
+            pointsused+=item.amount
+            slotsused+=1
+        for item in currentpicks:
+            pointsused+=item.points
+            slotsused+=1
+        pointsavailable=szn.draftbudget-pointsused
+        slotsavailable=szn.picksperteam-slotsused
+        maxbid=pointsavailable-slotsavailable+1
+        bidamount=int(request.POST['bidamount'])
+        ##check if bid can execute
+        if bidamount>maxbid:
+            messages.error(request,f'You do not have enough points to place this bid!',flags="danger")
+            return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+        #check for existing bid 
+        try:
+            currentbid=withbids.get(pokemon__id=request.POST['pokemon'])
+            if bidamount<=currentbid.amount:
+                messages.error(request,f'You cannot bid less than or equal to the current bid!',flags="danger")
+                return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+            elapsedtime = datetime.datetime.now()-item.picktime.replace(tzinfo=None)
+            if elapsedtime / datetime.timedelta(hours=1) >= timer:
+                messages.error(request,f'You cannot bid on this pokemon because the timer has expired!',flags="danger")
+                return redirect('draft',league_id=league_id,subleague_id=subleague_id)
+            currentbid.team=coach.objects.filter(season=szn).get(user=request.user)
+            currentbid.amount=bidamount
+            currentbid.save()
+        except:
+            bid.objects.create(
+                team=coach.objects.filter(season=szn).get(user=request.user),
+                pokemon=pokemon.objects.get(id=request.POST['pokemon']),
+                amount=bidamount,
+            )
+        messages.success(request,f'Your bid has been placed!')
+    return redirect('draft',league_id=league_id,subleague_id=subleague_id)
 
 @login_required
 def execute_draft(request,league_id,subleague_id):

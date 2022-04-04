@@ -1,0 +1,178 @@
+{% extends "template.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
+{% load static %}
+{% load extratags %}
+
+{% block title %}{{ league.abbreviation }}-{{subleague.name}} Draft{% endblock %}
+
+{% block body %}
+<div class="row bg-darkcolor text-light rounded mt-2">
+    <div class="col-3 d-none d-sm-flex justify-content-start"><img class="headerimage" src="{{league.logo}}"></div>
+    <div class="col justify-content-center d-flex align-items-center">
+        <div class="text-center">
+            <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
+            <div><h5>{{ subleague.name }}</h5></div>
+            <div><h5>Auction Draft</h5></div>
+        </div>
+    </div>
+    <div class="col-3 d-none d-sm-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
+</div>
+{% if candraft %}
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    <div class="col-md">
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <tr>
+                <th>Points Used</th>
+                <td>{{ pointsused }}</td>
+            </tr>
+            <tr>
+                <th>Points Available</th>
+                <td>{{ pointsavailable }}</td>
+            </tr>
+            <tr>
+                <th>Slots Used</th>
+                <td>{{ slotsused }}</td>
+            </tr>
+            <tr>
+                <th>Slots Remaining</th>
+                <td>{{ slotsavailable }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md">
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <tr>
+                <th colspan="2">Current Bids</th>
+            </tr>
+            <tr>
+                <th>Pokemon</th>
+                <th>Amount</th>
+            </tr>
+            {% for bid in currentbids %}
+            <tr>
+                <td>{{ bid.pokemon.name }}</td>
+                <td>{{ bid.amount }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md">
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <tr>
+                <th colspan="2">Current Draft</th>
+            </tr>
+            <tr>
+                <th>Pokemon</th>
+                <th>Amount</th>
+            </tr>
+            {% for pokemon in currentpicks %}
+            <tr>
+                <td>{{ pokemon.pokemon.name }}</td>
+                <td>{{ pokemon.points }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endif %}
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+    {% if withbids or unavailablepokemon %}
+    <div class="col-md">
+        {% if withbids %}
+        <h4>Pokemon Under Active Bidding</h4>
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <thead>
+                <tr>
+                    <th>Pokemon</th>
+                    <th>Current Bid</th>
+                    <th>Time Remaining</th>
+                    {% if candraft %}
+                    <th>Bid</th>
+                    <th>Action</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for pokemon in withbids %}
+                <form method="post" action="{% url 'place_bid' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+                <tr>
+                    <td>{{ pokemon.pokemon.name }}</td>
+                    <td>{{ pokemon.amount }}</td>
+                    <td>{{ pokemon.picktime|timesince|timeremaining:drafttimer }}</td>
+                    {% if candraft %} 
+                    <td>
+                        <input hidden name="pokemon" class="form-control" value="{{ pokemon.pokemon.id }}">
+                        <input name="bidamount" class="form-control" type="number" value="{{ pokemon.amount|add:1 }}" min="{{ pokemon.amount|add:1 }}" max="{{ maxbid }}">
+                    </td>
+                    <td><input type="submit" class="btn btn-primary" value="Place Bid"></td>
+                    {% endif %}
+                </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        {% if unavailablepokemon %}
+        <h4>Pokemon With Completed Bidding</h4>
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <thead>
+                <tr>
+                    <th>Pokemon</th>
+                    <th>Winning Bid</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pokemon in unavailablepokemon %}
+                <form method="post" action="{% url 'place_bid' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+                <tr>
+                    <td>{{ pokemon.pokemon.name }}</td>
+                    <td>{{ pokemon.points }}</td>
+                </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% if nobids %}
+    <div class="col-md">
+        <h4>Pokemon With No Bids</h4>
+        <table class="table table-sm bg-lightcolor text-dark text-center">
+            <thead>
+                <tr>
+                    <th>Pokemon</th>
+                    {% if candraft %}
+                    <th>Bid</th>
+                    <th>Action</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for pokemon in nobids %}
+                <form method="post" action="{% url 'place_bid' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
+                <tr>
+                    <td>{{ pokemon.name }}</td>
+                    {% if candraft %}
+                    <td>
+                        <input hidden name="pokemon" class="form-control" value="{{ pokemon.id }}">
+                        <input name="bidamount" class="form-control" type="number" value="1" min="1" max="{{ maxbid }}">
+                    </td>
+                    <td><input type="submit" class="btn btn-primary" value="Place Bid"></td>
+                    {% endif %}
+                </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% for pokemon in nobids %}
+        <div>{{ pokemon.name }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block script %}
+<script src="{% static 'scripts/draft_auction.js' %}"></script>
+{% endblock %}

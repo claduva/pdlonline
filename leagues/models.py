@@ -64,6 +64,13 @@ class draft(models.Model):
     skipped=models.BooleanField(default=False)
     announced=models.BooleanField(default=False)
 
+class bid(models.Model):
+    team=models.ForeignKey(coach, on_delete=models.CASCADE,related_name="bids")
+    pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True)
+    amount=models.IntegerField(null=True)
+    picktime=models.DateTimeField(auto_now=True, null=True)
+    announced=models.BooleanField(default=False)
+
 class left_pick(models.Model):
     team=models.ForeignKey(coach, on_delete=models.CASCADE)
     pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True)
