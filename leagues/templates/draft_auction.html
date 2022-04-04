@@ -99,7 +99,7 @@
                 <tr>
                     <td>{{ pokemon.pokemon.name }}</td>
                     <td>{{ pokemon.amount }}</td>
-                    <td><span class="timeleft">{{ pokemon.picktime|timesince|timeremaining:drafttimer }}</span><span class="picktime">{{ pokemon.picktime }}</span></td>
+                    <td><span class="timeleft">{{ pokemon.picktime|timesince|timeremaining:drafttimer }}</span><span hidden class="picktime">{{ pokemon.picktime }}</span></td>
                     {% if candraft %} 
                     <td>
                         <input hidden name="pokemon" class="form-control" value="{{ pokemon.pokemon.id }}">
