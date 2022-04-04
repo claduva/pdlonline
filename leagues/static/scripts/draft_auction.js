@@ -1,7 +1,7 @@
 $(document).ready(function() {
     console.log("draft_auction.js loaded");
     $( "#search" ).keyup(function() {
-        st=$( "#search" ).val();
+        st=$( "#search" ).val().toLowerCase();
         if (st==""){
             $(".nobidrow").removeClass("d-none");
         } else{
