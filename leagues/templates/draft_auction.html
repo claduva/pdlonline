@@ -14,6 +14,7 @@
             <div><h4>{{ league.name }} ({{ league.abbreviation }})</h4></div>
             <div><h5>{{ subleague.name }}</h5></div>
             <div><h5>Auction Draft</h5></div>
+            <div hidden id="timer">{{ drafttimer }}</div>
         </div>
     </div>
     <div class="col-3 d-none d-sm-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
@@ -99,7 +100,7 @@
                 <tr>
                     <td>{{ pokemon.pokemon.name }}</td>
                     <td>{{ pokemon.amount }}</td>
-                    <td><span class="timeleft">{{ pokemon.picktime|timesince|timeremaining:drafttimer }}</span><span hidden class="picktime">{{ pokemon.picktime }}</span></td>
+                    <td class="timerem"><span class="timeleft"></span><span hidden class="picktime">{{ pokemon.picktime|date:"U" }}</span></td>
                     {% if candraft %} 
                     <td>
                         <input hidden name="pokemon" class="form-control" value="{{ pokemon.pokemon.id }}">
