@@ -226,6 +226,8 @@ def subleague_draft(request,league_id,subleague_id):
             slotsused+=1
         pointsavailable=szn.draftbudget-pointsused
         slotsavailable=szn.picksperteam-slotsused
+        if slotsavailable == 0 or pointsavailable == 0:
+            candraft=False
         #add to rosters if draft complete
         if draftcomplete:
             for item in takenpokemon:
