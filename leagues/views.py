@@ -181,7 +181,9 @@ def subleague_draft(request,league_id,subleague_id):
         context['timerstart']=timerstart
         return  render(request,"draft.html",context)
     elif szn.drafttype=="Auction":
+        draftcomplete=False
         #finalize bids older than timer
+        n_coaches=coach.objects.filter(season=szn).count()
         timer=szn.drafttimer
         takenpokemon=draft.objects.all().filter(team__season=szn)
         withbids=bid.objects.all().filter(team__season=szn)
@@ -208,6 +210,10 @@ def subleague_draft(request,league_id,subleague_id):
             candraft=False
         withbids=bid.objects.all().filter(team__season=szn)
         takenpokemon=draft.objects.all().filter(team__season=szn)
+        #check if draft complete
+        if takenpokemon.count()==n_coaches*szn.pickperteam:
+            draftcomplete=True
+            candraft=False
         banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
         nobids=pokemon.objects.exclude(id__in=list(takenpokemon.values_list("pokemon__id",flat=True))).exclude(id__in=list(withbids.values_list("pokemon__id",flat=True))).exclude(id__in=list(banned))
         slotsused=0
@@ -220,6 +226,10 @@ def subleague_draft(request,league_id,subleague_id):
             slotsused+=1
         pointsavailable=szn.draftbudget-pointsused
         slotsavailable=szn.picksperteam-slotsused
+        #add to rosters if draft complete
+        if draftcomplete:
+            for item in takenpokemon:
+                roster.objects.create(team=item.team,pokemon=item.pokemon)
         context['season']=szn
         context['unavailablepokemon']=takenpokemon
         context['withbids']=withbids

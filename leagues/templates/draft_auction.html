@@ -20,7 +20,7 @@
     <div class="col-3 d-none d-sm-flex justify-content-end"><img class="headerimage" src="{{league.logo}}"></div>
 </div>
 {% if candraft %}
-<div class="row bg-darkcolor text-light rounded mt-2 pt-3">
+<div class="row bg-darkcolor text-light rounded mt-2 pt-3 align-items-center">
     <div class="col-md">
         <table class="table table-sm bg-lightcolor text-dark text-center">
             <tr>
@@ -52,7 +52,7 @@
             </tr>
             {% for bid in currentbids %}
             <tr>
-                <td>{{ bid.pokemon.name }}</td>
+                <td><img class="smallimage" src="{{ bid.pokemon.sprite }}">{{ bid.pokemon.name }}</td>
                 <td>{{ bid.amount }}</td>
             </tr>
             {% endfor %}
@@ -69,7 +69,7 @@
             </tr>
             {% for pokemon in currentpicks %}
             <tr>
-                <td>{{ pokemon.pokemon.name }}</td>
+                <td><img class="smallimage" src="{{ pokemon.pokemon.sprite }}">{{ pokemon.pokemon.name }}</td>
                 <td>{{ pokemon.points }}</td>
             </tr>
             {% endfor %}
@@ -98,8 +98,12 @@
                 {% for pokemon in withbids %}
                 <form method="post" action="{% url 'place_bid' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
                 <tr>
-                    <td>{{ pokemon.pokemon.name }}</td>
-                    <td>{{ pokemon.amount }}</td>
+                    <td>
+                        <div><img class="smallimage" src="{{ pokemon.pokemon.sprite }}"></div>
+                        <div>{{ pokemon.pokemon.name }}</div>
+                        
+                    </td>
+                    <td><div>{{ pokemon.amount }}</div></td>
                     <td class="timerem"><span class="timeleft"></span><span hidden class="picktime">{{ pokemon.picktime|date:"U" }}</span></td>
                     {% if candraft %} 
                     <td>
@@ -127,8 +131,11 @@
                 {% for pokemon in unavailablepokemon %}
                 <form method="post" action="{% url 'place_bid' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
                 <tr>
-                    <td>{{ pokemon.pokemon.name }}</td>
-                    <td>{{ pokemon.points }}</td>
+                    <td>
+                        <div><img class="smallimage" src="{{ pokemon.pokemon.sprite }}"></div>
+                        <div>{{ pokemon.pokemon.name }}</div>
+                    </td>
+                    <td><div>{{ pokemon.points }}</div></td>
                 </tr>
                 </form>
                 {% endfor %}
@@ -159,7 +166,10 @@
                 {% for pokemon in nobids %}
                 <form method="post" action="{% url 'place_bid' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
                 <tr class="nobidrow">
-                    <td class="nobidname">{{ pokemon.name }}</td>
+                    <td>
+                        <div><img class="smallimage" src="{{ pokemon.sprite }}"></div>
+                        <div class="nobidname">{{ pokemon.name }}</div>
+                    </td>
                     {% if candraft %}
                     <td>
                         <input hidden name="pokemon" class="form-control" value="{{ pokemon.id }}">
