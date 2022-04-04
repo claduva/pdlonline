@@ -108,4 +108,4 @@ def timeremaining(value,arg):
     else:
         hours_rem=int(arg)-hours-1
         minutes_rem=60-minutes
-    return f'{hours_rem}h {minutes_rem}m'
+    return f'{hours_rem}h\n{minutes_rem}m'

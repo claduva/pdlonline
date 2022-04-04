@@ -81,12 +81,12 @@
     <div class="col-md">
         {% if withbids %}
         <h4>Pokemon Under Active Bidding</h4>
-        <table class="table table-sm bg-lightcolor text-dark text-center">
+        <table class="table table-sm bg-lightcolor text-dark text-center text-small">
             <thead>
                 <tr>
                     <th>Pokemon</th>
                     <th>Current Bid</th>
-                    <th>Time Remaining</th>
+                    <th>Time Left</th>
                     {% if candraft %}
                     <th>Bid</th>
                     <th>Action</th>
@@ -103,9 +103,9 @@
                     {% if candraft %} 
                     <td>
                         <input hidden name="pokemon" class="form-control" value="{{ pokemon.pokemon.id }}">
-                        <input name="bidamount" class="form-control" type="number" value="{{ pokemon.amount|add:1 }}" min="{{ pokemon.amount|add:1 }}" max="{{ maxbid }}">
+                        <input name="bidamount" class="form-control" type="number" value="{{ pokemon.amount|add:1 }}" min="{{ pokemon.amount|add:1 }}" max="{{ maxbid }}" size="20">
                     </td>
-                    <td><input type="submit" class="btn btn-primary" value="Place Bid"></td>
+                    <td><input type="submit" class="btn btn-primary" value="Bid"></td>
                     {% endif %}
                 </tr>
                 </form>
@@ -115,7 +115,7 @@
         {% endif %}
         {% if unavailablepokemon %}
         <h4>Pokemon With Completed Bidding</h4>
-        <table class="table table-sm bg-lightcolor text-dark text-center">
+        <table class="table table-sm bg-lightcolor text-dark text-center text-small">
             <thead>
                 <tr>
                     <th>Pokemon</th>
@@ -139,7 +139,7 @@
     {% if nobids %}
     <div class="col-md">
         <h4>Pokemon With No Bids</h4>
-        <table class="table table-sm bg-lightcolor text-dark text-center">
+        <table class="table table-sm bg-lightcolor text-dark text-center text-small">
             <thead>
                 <tr>
                     <th>Pokemon</th>
@@ -159,16 +159,13 @@
                         <input hidden name="pokemon" class="form-control" value="{{ pokemon.id }}">
                         <input name="bidamount" class="form-control" type="number" value="1" min="1" max="{{ maxbid }}">
                     </td>
-                    <td><input type="submit" class="btn btn-primary" value="Place Bid"></td>
+                    <td><input type="submit " class="btn btn-primary" value="Bid"></td>
                     {% endif %}
                 </tr>
                 </form>
                 {% endfor %}
             </tbody>
         </table>
-        {% for pokemon in nobids %}
-        <div>{{ pokemon.name }}</div>
-        {% endfor %}
     </div>
     {% endif %}
 </div>
