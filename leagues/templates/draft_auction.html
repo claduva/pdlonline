@@ -150,10 +150,13 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td colspan="100%"><form><input id="search" class="form-control" placeholder="Search"></form></td>
+                </tr>
                 {% for pokemon in nobids %}
                 <form method="post" action="{% url 'place_bid' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
-                <tr>
-                    <td>{{ pokemon.name }}</td>
+                <tr class="nobidrow">
+                    <td class="nobidname">{{ pokemon.name }}</td>
                     {% if candraft %}
                     <td>
                         <input hidden name="pokemon" class="form-control" value="{{ pokemon.id }}">
