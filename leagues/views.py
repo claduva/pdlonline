@@ -274,17 +274,17 @@ def place_bid(request,league_id,subleague_id):
         bidamount=int(request.POST['bidamount'])
         ##check if bid can execute
         if bidamount>maxbid:
-            messages.error(request,f'You do not have enough points to place this bid!',flags="danger")
+            messages.error(request,f'You do not have enough points to place this bid!',extra_tags="danger")
             return redirect('draft',league_id=league_id,subleague_id=subleague_id)
         #check for existing bid 
         try:
             currentbid=withbids.get(pokemon__id=request.POST['pokemon'])
             if bidamount<=currentbid.amount:
-                messages.error(request,f'You cannot bid less than or equal to the current bid!',flags="danger")
+                messages.error(request,f'You cannot bid less than or equal to the current bid!',extra_tags="danger")
                 return redirect('draft',league_id=league_id,subleague_id=subleague_id)
             elapsedtime = datetime.datetime.now()-currentbid.picktime.replace(tzinfo=None)
             if elapsedtime / datetime.timedelta(hours=1) >= timer:
-                messages.error(request,f'You cannot bid on this pokemon because the timer has expired!',flags="danger")
+                messages.error(request,f'You cannot bid on this pokemon because the timer has expired!',extra_tags="danger")
                 return redirect('draft',league_id=league_id,subleague_id=subleague_id)
             currentbid.team=coach.objects.filter(season=szn).get(user=request.user)
             currentbid.amount=bidamount
