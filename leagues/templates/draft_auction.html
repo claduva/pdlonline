@@ -99,7 +99,7 @@
                 <tr>
                     <td>{{ pokemon.pokemon.name }}</td>
                     <td>{{ pokemon.amount }}</td>
-                    <td>{{ pokemon.picktime|timesince|timeremaining:drafttimer }}</td>
+                    <td><span class="timeleft">{{ pokemon.picktime|timesince|timeremaining:drafttimer }}</span><span class="picktime">{{ pokemon.picktime }}</span></td>
                     {% if candraft %} 
                     <td>
                         <input hidden name="pokemon" class="form-control" value="{{ pokemon.pokemon.id }}">
@@ -151,7 +151,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="100%"><input id="search" class="form-control" placeholder="Search"></</td>
+                    <td colspan="100%">
+                        <input id="search" class="form-control" placeholder="Search">
+                    </td>
                 </tr>
                 {% for pokemon in nobids %}
                 <form method="post" action="{% url 'place_bid' league_id=league.id subleague_id=subleague.id %}">{% csrf_token %}
@@ -162,7 +164,7 @@
                         <input hidden name="pokemon" class="form-control" value="{{ pokemon.id }}">
                         <input name="bidamount" class="form-control" type="number" value="1" min="1" max="{{ maxbid }}">
                     </td>
-                    <td><input type="submit " class="btn btn-primary" value="Bid"></td>
+                    <td><input type="submit" class="btn btn-primary" value="Bid"></td>
                     {% endif %}
                 </tr>
                 </form>
