@@ -211,7 +211,7 @@ def subleague_draft(request,league_id,subleague_id):
         withbids=bid.objects.all().filter(team__season=szn)
         takenpokemon=draft.objects.all().filter(team__season=szn)
         #check if draft complete
-        if takenpokemon.count()==n_coaches*szn.pickperteam:
+        if takenpokemon.count()==n_coaches*szn.picksperteam:
             draftcomplete=True
             candraft=False
         banned=soi.pokemon_list.all().filter(tier__tier="Banned").values_list('pokemon__id',flat=True)
