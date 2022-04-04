@@ -1,6 +1,6 @@
 $(document).ready(function() {
     console.log("draft_auction.js loaded");
-    $( "#search" ).change(function() {
+    $( "#search" ).keyup(function() {
         st=$( "#search" ).val();
         if (st==""){
             $(".nobidrow").removeClass("d-none");
