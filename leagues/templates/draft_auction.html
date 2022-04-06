@@ -79,7 +79,7 @@
     {% if withbids or unavailablepokemon %}
     <div class="col-md">
         {% if withbids %}
-        <h4>Pokemon Under Active Bidding</h4>
+        <h4>Pokemon Under Active Bidding ({{ withbids|length }})</h4>
         <table class="table table-sm bg-lightcolor text-dark text-center text-small">
             <thead>
                 <tr>
@@ -117,7 +117,7 @@
         </table>
         {% endif %}
         {% if unavailablepokemon %}
-        <h4>Pokemon With Completed Bidding</h4>
+        <h4>Pokemon With Completed Bidding ({{ unavailablepokemon|length }})</h4>
         <table class="table table-sm bg-lightcolor text-dark text-center text-small">
             <thead>
                 <tr>
