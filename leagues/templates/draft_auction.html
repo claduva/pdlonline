@@ -140,6 +140,22 @@
             </tbody>
         </table>
         {% endif %}
+        <table class="table table-sm bg-lightcolor text-dark text-center text-small">
+            <thead>
+                <tr>
+                    <th>Coach</th>
+                    <th>Slots Used</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for un, team, slots in coachslots%}
+                <tr>
+                    <td>{{ team }} ({{ un }})</td>
+                    <td>{{ slots }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
     {% endif %}
     {% if nobids %}

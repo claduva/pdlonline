@@ -228,6 +228,7 @@ def subleague_draft(request,league_id,subleague_id):
         slotsavailable=szn.picksperteam-slotsused
         if slotsavailable == 0 or pointsavailable == 0:
             candraft=False
+        coachslots=[[c.user.all()[0].username,c.teamname,takenpokemon.filter(team=c).count()+withbids.filter(team=c).count()] for c in coach.objects.filter(season=szn)]
         #add to rosters if draft complete
         if draftcomplete:
             for item in takenpokemon:
@@ -245,6 +246,7 @@ def subleague_draft(request,league_id,subleague_id):
         context['currentpicks']=currentpicks
         context['drafttimer']=timer
         context['maxbid']=pointsavailable-slotsavailable+1
+        context['coachslots']=coachslots
         return  render(request,"draft_auction.html",context)
 
 @login_required
