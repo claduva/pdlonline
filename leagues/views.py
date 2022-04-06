@@ -208,7 +208,7 @@ def subleague_draft(request,league_id,subleague_id):
             currentbids=bid.objects.none()
             currentpicks=draft.objects.none()
             candraft=False
-        withbids=bid.objects.all().filter(team__season=szn)
+        withbids=bid.objects.all().filter(team__season=szn).order_by('picktime')
         takenpokemon=draft.objects.all().filter(team__season=szn)
         #check if draft complete
         if takenpokemon.count()==n_coaches*szn.picksperteam:
