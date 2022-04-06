@@ -71,6 +71,11 @@ class bid(models.Model):
     picktime=models.DateTimeField(auto_now=True, null=True)
     announced=models.BooleanField(default=False)
 
+class outbid(models.Model):
+    user=models.BigIntegerField()
+    text=models.CharField(max_length=200)
+    announced=models.BooleanField(default=False)
+
 class left_pick(models.Model):
     team=models.ForeignKey(coach, on_delete=models.CASCADE)
     pokemon=models.ForeignKey(pokemon, on_delete=models.CASCADE, null=True)

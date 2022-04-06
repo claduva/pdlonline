@@ -13,6 +13,28 @@ class Draft(commands.Cog):
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
             await asyncio.sleep(30)
+            #run on outbids
+            outbid_data=requests.get(f'{baseurl}outbid/').json()
+            for bid in outbid_data:
+                try:
+                    #pickdata
+                    bidid=bid['id']
+                    userid=bid['user']
+                    text=bid['text']
+                    discorduser = await self.bot.fetch_user(userid)
+                    channel = await discorduser.create_dm()
+                    await channel.send(f"You have been outbid for {text}. If you would like to bid again, please visit the draftsite before the timer expires.")
+                    url=f'{baseurl}outbid/{bidid}/'
+                    data={'announced':True}
+                    update=requests.put(url,data = data)
+                    if update.status_code == 200:
+                       print("updated")
+                    else:
+                        print("error")
+                except Exception as e:
+                    print(e)
+            # run on draft
+            """
             draft_data=requests.get(f'{baseurl}draft/').json()
             for pick in draft_data:
                 try:
@@ -60,6 +82,7 @@ class Draft(commands.Cog):
                         print("error")
                 except Exception as e:
                     print(e)
+        """
 
 def setup(bot):
     bot.add_cog(Draft(bot))

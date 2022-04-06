@@ -8,9 +8,9 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from api.serializers import PokemonSerializer, LeaguePokemonSerializer, LeagueSerializer, DiscordSettingsSerializer, BotMessageSerializer,DraftSerializer,TradingSerializer,FreeAgencySerializer,DraftDetailSerializer,FreeAgencyDetailSerializer,TradingDetailSerializer, DraftPlanSerializer, MatchSerializer, MatchAnnouncedSerializer
+from api.serializers import OutbidDetailSerializer, OutbidSerializer, PokemonSerializer, LeaguePokemonSerializer, LeagueSerializer, DiscordSettingsSerializer, BotMessageSerializer,DraftSerializer,TradingSerializer,FreeAgencySerializer,DraftDetailSerializer,FreeAgencyDetailSerializer,TradingDetailSerializer, DraftPlanSerializer, MatchSerializer, MatchAnnouncedSerializer
 from league_configuration.models import league_pokemon, league,discord_settings
-from leagues.models import draft, free_agency, trading,match
+from leagues.models import draft, free_agency, trading,match, outbid
 from main.models import bot_message
 from pokemon.models import move, pokemon, pokemon_ability, pokemon_type
 from draft_planner.models import *
@@ -139,6 +139,14 @@ def nextpick(request,subleague_id,picknumber):
     except:
         data=None
     return JsonResponse(data, safe=False)
+
+class OutbidList(generics.ListCreateAPIView):
+    queryset = outbid.objects.filter(announced=False)
+    serializer_class = OutbidSerializer
+
+class OutbidDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = outbid.objects.all()
+    serializer_class = OutbidDetailSerializer
 
 class FreeAgencyList(generics.ListCreateAPIView):
     queryset = free_agency.objects.filter(announced=False)

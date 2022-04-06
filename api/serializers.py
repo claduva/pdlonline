@@ -5,7 +5,7 @@ UserModel = get_user_model()
 
 from draft_planner.models import draft_plan
 from league_configuration.models import league_pokemon,league,discord_settings,season,subleague
-from leagues.models import draft, free_agency, trading,coach,match
+from leagues.models import draft, free_agency, outbid, trading,coach,match
 from pokemon.models import pokemon
 from main.models import bot_message
 
@@ -96,6 +96,18 @@ class FreeAgencyDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = free_agency
+        fields = ['announced']
+
+class OutbidSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = outbid
+        fields = ['id','user','text']
+
+class OutbidDetailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = outbid
         fields = ['announced']
 
 class TradingSerializer(serializers.ModelSerializer):

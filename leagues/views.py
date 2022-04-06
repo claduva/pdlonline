@@ -9,7 +9,7 @@ import datetime, pytz
 utc=pytz.UTC
 
 from .forms import ApplicationForm, DraftForm, LeftPickForm, FreeAgencyForm, TradeRequestForm, ReplayForm
-from .models import application,coach,draft,roster,left_pick, match, trade_request, free_agency, trading, bid
+from .models import application,coach,draft,roster,left_pick, match, trade_request, free_agency, trading, bid, outbid
 from pokemon.models import pokemon
 from main.models import bot_message
 from league_configuration.models import league, season, subleague,rules, league_pokemon,league_tier
@@ -286,10 +286,22 @@ def place_bid(request,league_id,subleague_id):
             if elapsedtime / datetime.timedelta(hours=1) >= timer:
                 messages.error(request,f'You cannot bid on this pokemon because the timer has expired!',extra_tags="danger")
                 return redirect('draft',league_id=league_id,subleague_id=subleague_id)
-            currentbid.team=coach.objects.filter(season=szn).get(user=request.user)
+            biddingteam=coach.objects.filter(season=szn).get(user=request.user)
+            #if biddingteam.team.id!=currentbid.team.id:
+            #    outbid.objects.create(
+            #        user=currentbid.team.user.all()[0].discordid,
+            #        text=currentbid.pokemon.name,
+            #    )
+            outbid.objects.create(
+                    user=currentbid.team.user.all()[0].discordid,
+                    text=currentbid.pokemon.name,
+                )
+            print(outbid.objects.all())
+            currentbid.team=biddingteam
             currentbid.amount=bidamount
             currentbid.save()
-        except:
+        except Exception as e:
+            print(e)
             bid.objects.create(
                 team=coach.objects.filter(season=szn).get(user=request.user),
                 pokemon=pokemon.objects.get(id=request.POST['pokemon']),

@@ -22,6 +22,8 @@ urlpatterns = [
     path('api/draft/', views.DraftList.as_view()),
     path('api/draft/<int:pk>/', views.DraftDetail.as_view()),
     path('api/draft/nextpick/<int:subleague_id>/<int:picknumber>/', views.nextpick),
+    path('api/outbid/', views.OutbidList.as_view()),
+    path('api/outbid/<int:pk>/', views.OutbidDetail.as_view()),
     path('api/free_agency/', views.FreeAgencyList.as_view()),
     path('api/free_agency/<int:pk>/', views.FreeAgencyDetail.as_view()),
     path('api/trading/', views.TradingList.as_view()),
