@@ -296,12 +296,12 @@ def place_bid(request,league_id,subleague_id):
             currentbid.amount=bidamount
             currentbid.save()
         except Exception as e:
-            print(e)
-            bid.objects.create(
-                team=coach.objects.filter(season=szn).get(user=request.user),
-                pokemon=pokemon.objects.get(id=request.POST['pokemon']),
-                amount=bidamount,
-            )
+            if int(request.POST['pokemon']) not in withbids.values_list("pokemon__id",flat=True):
+                bid.objects.create(
+                    team=coach.objects.filter(season=szn).get(user=request.user),
+                    pokemon=pokemon.objects.get(id=request.POST['pokemon']),
+                    amount=bidamount,
+                )
         messages.success(request,f'Your bid has been placed!')
     return redirect('draft',league_id=league_id,subleague_id=subleague_id)
 
