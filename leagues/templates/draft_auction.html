@@ -140,6 +140,7 @@
             </tbody>
         </table>
         {% endif %}
+        {% if request.user in season.league.moderators.all %}
         <table class="table table-sm bg-lightcolor text-dark text-center text-small">
             <thead>
                 <tr>
@@ -156,6 +157,7 @@
             {% endfor %}
             </tbody>
         </table>
+        {% endif %} 
     </div>
     {% endif %}
     {% if nobids %}
