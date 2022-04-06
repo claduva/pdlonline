@@ -287,16 +287,11 @@ def place_bid(request,league_id,subleague_id):
                 messages.error(request,f'You cannot bid on this pokemon because the timer has expired!',extra_tags="danger")
                 return redirect('draft',league_id=league_id,subleague_id=subleague_id)
             biddingteam=coach.objects.filter(season=szn).get(user=request.user)
-            #if biddingteam.team.id!=currentbid.team.id:
-            #    outbid.objects.create(
-            #        user=currentbid.team.user.all()[0].discordid,
-            #        text=currentbid.pokemon.name,
-            #    )
-            outbid.objects.create(
-                    user=currentbid.team.user.all()[0].discordid,
-                    text=currentbid.pokemon.name,
-                )
-            print(outbid.objects.all())
+            if biddingteam.team.id!=currentbid.team.id:
+                outbid.objects.create(
+                        user=currentbid.team.user.all()[0].discordid,
+                        text=currentbid.pokemon.name,
+                    )
             currentbid.team=biddingteam
             currentbid.amount=bidamount
             currentbid.save()
