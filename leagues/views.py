@@ -197,6 +197,7 @@ def subleague_draft(request,league_id,subleague_id):
         withbids=bid.objects.all().filter(team__season=szn)
         for item in withbids:
             elapsedtime = datetime.datetime.now()-item.picktime.replace(tzinfo=None)
+            """
             if elapsedtime / datetime.timedelta(hours=1) >= timer:
                 draft.objects.create(
                     team=item.team,
@@ -206,6 +207,7 @@ def subleague_draft(request,league_id,subleague_id):
                     announced=True,
                 )
                 item.delete()
+            """
         #get page data
         try:
             coach.objects.filter(season=szn).get(user=request.user)
