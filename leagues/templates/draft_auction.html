@@ -48,11 +48,13 @@
             <tr>
                 <th>Pokemon</th>
                 <th>Amount</th>
+                <th>Time Left</th>
             </tr>
             {% for bid in currentbids %}
             <tr>
                 <td><img class="smallimage" src="{{ bid.pokemon.sprite }}">{{ bid.pokemon.name }}</td>
                 <td>{{ bid.amount }}</td>
+                <td class="timerem"><span class="timeleft"></span><span hidden class="picktime">{{ bid.picktime|date:"U" }}</span></td>
             </tr>
             {% endfor %}
         </table>
