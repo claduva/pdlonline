@@ -70,7 +70,7 @@
         {% for item in tiers %}
         <tr class="tieritem row tier-{{item.tier__tier|converttoclass}} {% if item.team %}bg-lightred available-unavailable{% else %}bg-lightgreen available-available{% endif %} {{item.pokemon__data|classfromdata}}" 
         data-tier="{{ item.tier__points }}" data-pokemon="{{ item.pokemon__data.pokemon}}" data-bst="{{ item.pokemon__data.basestats.bst}}" data-hp="{{ item.pokemon__data.basestats.hp}}" data-atk="{{ item.pokemon__data.basestats.attack}}" data-def="{{ item.pokemon__data.basestats.defense}}" data-spa="{{ item.pokemon__data.basestats.special_attack}}" data-spd="{{ item.pokemon__data.basestats.special_defense}}" data-speed="{{ item.pokemon__data.basestats.speed}}">
-            <td class="col-4 col-md-2 d-flex align-items-center justify-content-center">{% if item.team %}Signed by {{ item.team }}{% else %}FREE{% endif %}</td>
+            <td class="col-4 col-md-2 d-flex align-items-center justify-content-center">{% if item.team and auction %}Signed{% elif item.team %}Signed by {{ item.team }}{% else %}FREE{% endif %}</td>
             <td class="col-3 col-md-2 d-flex align-items-center justify-content-center">
                 <div>{{ item.tier__tier }} ({{ item.tier__points }} pts)</div>
             </td>

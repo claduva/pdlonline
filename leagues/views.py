@@ -97,6 +97,14 @@ def subleague_tierset(request,league_id,subleague_id):
     loi,soi,coaches,context=get_subleague_data(league_id,subleague_id)
     context['tiers']=soi.pokemon_list.all().exclude(tier__tier="Banned").order_by('-tier__points','pokemon__name').values('team','pokemon__data','pokemon__sprite','tier__tier','tier__points')
     context['tieroptions']=list(league_tier.objects.filter(subleague=soi).exclude(tier="Banned").values_list('tier',flat=True))
+    try:
+        szn=soi.seasons.all().get(archived=False)
+        if szn.drafttype=="Auction":
+            context['auction']=True
+        else:
+            context['auction']=False
+    except:
+        context['auction']=False
     return  render(request,"tiers.html",context)
 
 def subleague_draft(request,league_id,subleague_id):
@@ -230,9 +238,9 @@ def subleague_draft(request,league_id,subleague_id):
             candraft=False
         coachslots=[[c.user.all()[0].username,c.teamname,takenpokemon.filter(team=c).count()+withbids.filter(team=c).count()] for c in coach.objects.filter(season=szn)]
         #add to rosters if draft complete
-        if draftcomplete:
-            for item in takenpokemon:
-                roster.objects.create(team=item.team,pokemon=item.pokemon)
+        #if draftcomplete:
+        #    for item in takenpokemon:
+        #        roster.objects.create(team=item.team,pokemon=item.pokemon)
         context['season']=szn
         context['unavailablepokemon']=takenpokemon
         context['withbids']=withbids
