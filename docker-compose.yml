@@ -1,0 +1,28 @@
+version: "3"
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    environment:
+      NAME: "pdlonline"
+      USER: "pdlonline"
+      PASSWORD: "pdlonline"
+      HOST: "postgres"
+    command: "gunicorn --bind :8000 --reload pdlonline.wsgi"
+
+  postgres:
+    ports:
+      - "5432:5432"
+    image: "postgres:12"
+    volumes:
+      - ./postgresql_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=pdlonline
+      - POSTGRES_PASSWORD=pdlonline
+      - POSTGRES_DB=pdlonline
+

@@ -17,7 +17,10 @@ from matches.parser.parser import *
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 
-claduva=UserModel.objects.get(username='claduva')
+try:
+    claduva = UserModel.objects.get(username='claduva')
+except:
+    claduva = None
 
 # Create your views here.
 @login_required
