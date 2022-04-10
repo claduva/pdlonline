@@ -138,9 +138,10 @@ function appendPokemon(item,gen){
 }
 
 function classify(prefix,suffix){
-    let newsuffix=suffix.toLowerCase()
-    return prefix+"-"+suffix.replace(/ /g,"").replace(/:/g,"").replace(/%/g,"").replace(".","").toLowerCase()
+    let newsuffix = suffix.toLowerCase()
+    return prefix + "-" + suffix.replace(/ /g,"").replace(/:/g,"").replace(/%/g,"").replace(".","").replace("'","").toLowerCase()
 }
+
 function add_filter(filter){
     var filtertext, filterid
     clickedtext=filter.text()
