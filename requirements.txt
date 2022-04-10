@@ -17,6 +17,7 @@ django-timezone-field
 django-widget-tweaks==1.4.8
 djangorestframework
 gunicorn
+jsonnet==0.18.0
 imgurpython==1.1.7
 pandas==1.1.5
 pinax-messages
