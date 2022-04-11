@@ -15,6 +15,7 @@ class Match(commands.Cog):
             await asyncio.sleep(30)
             match_data=requests.get(f'{baseurl}match/').json()
             for item in match_data:
+                print("-----------------")
                 try:
                     matchid=item['id']
                     week=item['week']
@@ -26,13 +27,30 @@ class Match(commands.Cog):
                     team2=item['team2']['teamname']
                     team2a=item['team2']['teamabbreviation']
                     team2score=item['team2score']
-                    winner=item['winner']['teamname']
-                    winnera=item['winner']['teamabbreviation']
+                    try:
+                        winner=item['winner']['teamname']
+                        winnera=item['winner']['teamabbreviation']
+                    except:
+                        winner=None
+                        winnera="None"
                     replay=item['replay']
-                    subleagueid=item['team1']['season']['subleague']['id']
-                    leagueid=item['team1']['season']['subleague']['league']['id']
+                    try:
+                        subleagueid=item['team1']['season']['subleague']['id']
+                        leagueid=item['team1']['season']['subleague']['league']['id']
+                    except:
+                        archive(matchid)
                     #get channel data
                     matchdata=requests.get(f'{baseurl}discord_settings/{subleagueid}/').json()
+                    try:
+                        if matchdata['server'] is None:
+                            archive(matchid)
+                    except:
+                        pass
+                    try:
+                        if matchdata['detail'] == 'Not found.':
+                            archive(matchid)
+                    except:
+                        pass
                     server=matchdata['server']
                     fachannel=matchdata['replaychannel']
                     #get guild
@@ -51,15 +69,18 @@ class Match(commands.Cog):
                     embed.add_field(name="Score", value=f"||{team1score}-{team2score}||", inline=True)
                     #embed.timestamp = datetime.datetime.utcnow()
                     await channel.send(embed=embed)
-                    url=f'{baseurl}match/{matchid}/'
-                    data={'announced':True}
-                    update=requests.put(url,data = data)
-                    if update.status_code == 200:
-                        print("updated")
-                    else:
-                        print("error")
+                    archive(matchid)
                 except Exception as e:
                     print(e)
 
 def setup(bot):
     bot.add_cog(Match(bot))
+
+def archive(matchid):
+    url=f'{baseurl}match/{matchid}/'
+    data={'announced':True}
+    update=requests.put(url,data = data)
+    if update.status_code == 200:
+        print("updated")
+    else:
+        print("error")
