@@ -238,7 +238,7 @@ def subleague_draft(request,league_id,subleague_id):
             candraft=False
         coachslots=[[c.user.all()[0].username,c.teamname,takenpokemon.filter(team=c).count()+withbids.filter(team=c).count()] for c in coach.objects.filter(season=szn)]
         #add to rosters if draft complete
-        if draftcomplete:
+        if draftcomplete and roster.objects.filter(team__season=szn).count()==0:
             for item in takenpokemon:
                 roster.objects.create(team=item.team,pokemon=item.pokemon)
         context['season']=szn
