@@ -35,7 +35,7 @@ def execute_transaction(item):
     szn=item.team.season
     seasonstart=szn.seasonstart
     completedmatches=True
-    if item.timeeffective>seasonstart:
+    if (seasonstart and item.timeeffective>seasonstart) or (not seasonstart):
         matchestocheck=match.objects.filter(Q(team1=item.team)|Q(team2=item.team)).filter(duedate__lte=item.timeeffective).exclude(replay__isnull=False)
         if matchestocheck.count()>0: 
             completedmatches=False
@@ -47,7 +47,6 @@ def execute_transaction(item):
             prior_poke=league_pokemon.objects.filter(subleague=coi.season.subleague).get(pokemon=item.dropped_pokemon)
             prior_poke.team = None
             prior_poke.save()
-
             montoupdate.kills=droppedpokemon.kills
             droppedpokemon.kills=0
             montoupdate.deaths=droppedpokemon.deaths
