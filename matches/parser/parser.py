@@ -29,7 +29,6 @@ def replay_parse_switch(argument,parsedlogfile,results):
         'weather': weather_function,
         'win': win_function,
         'zpower': zpower_function,
-        #gen,turn,start,tie,detailschange,transform,formechange,switchout,faint,swap,move,cant,message,start,end,ability,endability,item,enditem,status,curestatus,cureteam,singleturn,singlemove,sidestart,sideend,weather,fieldstart,fieldend,sethp,message,hint,activate,heal,boost,unboost,setboost,swapboost,copyboost,clearboost,clearpositiveboost,clearnegativeboost,invertboost,clearallboost,crit,supereffective,resisted,block,fail,immune,miss,center,notarget,mega,primal,zpower,burst,zbroken,hitcount,waiting,anim
     }
     # Get the function from switcher dictionary
     func = switcher.get(argument[2], lambda argument,parsedlogfile,results: (argument,parsedlogfile,results))
@@ -62,7 +61,6 @@ def alternate_replay_parse_switch(argument,parsedlogfile,results):
         'weather': weather_function,
         'win': win_function,
         'zpower': zpower_function,
-        #gen,turn,start,tie,detailschange,transform,formechange,switchout,faint,swap,move,cant,message,start,end,ability,endability,item,enditem,status,curestatus,cureteam,singleturn,singlemove,sidestart,sideend,weather,fieldstart,fieldend,sethp,message,hint,activate,heal,boost,unboost,setboost,swapboost,copyboost,clearboost,clearpositiveboost,clearnegativeboost,invertboost,clearallboost,crit,supereffective,resisted,block,fail,immune,miss,center,notarget,mega,primal,zpower,burst,zbroken,hitcount,waiting,anim
     }
     # Get the function from switcher dictionary
     func = switcher.get(argument[2], lambda argument,parsedlogfile,results: (argument,parsedlogfile,results))
@@ -1085,8 +1083,20 @@ def win_function(line,parsedlogfile,results):
     winner=line[3]
     if winner==results['team1']['coach']:
         results['team1']['wins']=1
+        for mon in results['team2']['roster']:
+            if mon['deaths']==0:
+                lastmon = roster_search("p1a",results['team1']['activemon'],results)
+                mon['deaths']=1
+                lastmon['damagedone']+=mon['remaininghealth']
+                mon['remaininghealth']=0
     elif winner==results['team2']['coach']:
         results['team2']['wins']=1
+        for mon in results['team1']['roster']:
+            if mon['deaths']==0:
+                lastmon = roster_search("p2a",results['team2']['activemon'],results)
+                mon['deaths']=1
+                lastmon['damagedone']+=mon['remaininghealth']
+                mon['remaininghealth']=0
     return line,parsedlogfile,results
 
 def zpower_function(line,parsedlogfile,results):
@@ -1096,7 +1106,7 @@ def zpower_function(line,parsedlogfile,results):
         results['team2']['usedzmove']=True
     return line,parsedlogfile,results
 
-def namecheck(results,line,teamnumber):
+def namecheck(results,line,teamnumber,alt=False):
     nicknamesearch=line[3].split(" ",1)[1].split("|")
     healthremaining=int(line[3].split("|")[2].split("/",1)[0])
     if nicknamesearch[0]!=nicknamesearch[1] and nicknamesearch[1].find(f"{nicknamesearch[0]}-")==-1:
@@ -1124,7 +1134,10 @@ def namecheck(results,line,teamnumber):
                 priorhealth=item['remaininghealth']
                 item['hphealed']+=healthremaining-priorhealth
                 item['remaininghealth']=healthremaining
-    results[f'team{teamnumber}']['activemon']=nicknamesearch[0]
+    if not alt:
+        results[f'team{teamnumber}']['activemon']=nicknamesearch[0]
+    else:
+        results[f'team{teamnumber}']['activemon']=nicknamesearch[1]
     if line[2]=="switch":    
         results[f'team{teamnumber}']['timesswitched']+=1
     return results,line
@@ -1232,6 +1245,7 @@ def roster_search(team,pokemon,results):
     return pokemon
 
 def alternativereplayparse(replay):
+    print("There was an Error so trying Alternative Parser")
     #initialize variables
     logfile = requests.get(replay+".log").text.splitlines()
     #initialize output json
