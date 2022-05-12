@@ -6,6 +6,7 @@ Django==3.1.7
 django-admin-autoregister
 django-background-tasks
 django-bootstrap-breadcrumbs
+django-cors-headers
 django-crispy-forms
 django-debug-toolbar-template-timings
 django-multiselectfield==0.1.12
