@@ -32,7 +32,7 @@ class LeaguePokemonSerializer(serializers.ModelSerializer):
 class LeagueSerializer(serializers.ModelSerializer):
     class Meta:
         model = league
-        fields = ['id','discordurl']
+        fields = ['id','name','abbreviation','discordurl','logo','status']
 
 class DiscordSettingsSerializer(serializers.ModelSerializer):
     class Meta:

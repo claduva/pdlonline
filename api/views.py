@@ -33,6 +33,12 @@ def AllAbilities(request):
     data=list(pokemon_ability.objects.all().order_by('ability').distinct('ability').values_list('ability',flat=True))
     return JsonResponse(data, safe=False)
 
+
+class LeagueViewSet(viewsets.ModelViewSet):
+    queryset = league.objects.all().exclude(name__icontains='test')
+    serializer_class = LeagueSerializer
+    permission_classes = [permissions.AllowAny]
+
 def UserLeagues(request,discordid):
     try:
         uoi=UserModel.objects.get(discordid=discordid)
