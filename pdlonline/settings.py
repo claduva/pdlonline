@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     
     #third party apps
     'background_task',
+    'corsheaders',
     'crispy_forms',
     'django_bootstrap_breadcrumbs',
     'rest_framework',
@@ -77,6 +78,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -90,6 +92,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pdlonline.urls'
+
+CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
