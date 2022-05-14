@@ -19,7 +19,7 @@ class application(models.Model):
 
 class coach(models.Model):
     user = models.ManyToManyField(UserModel,related_name="coaching")
-    season = models.ForeignKey(season, on_delete=models.CASCADE)
+    season = models.ForeignKey(season, on_delete=models.CASCADE,related_name="coaches")
     teamname = models.CharField(max_length=50)
     teamabbreviation = models.CharField(max_length=4)
     logo = models.URLField(default="https://media.discordapp.net/attachments/821585145961644062/821585437163782154/genericteam.png",max_length=400,blank=True)

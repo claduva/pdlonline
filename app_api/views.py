@@ -13,7 +13,7 @@ from leagues.models import coach, roster, match
 
 # Create your views here.
 class LeagueList(generics.ListAPIView):
-    queryset = league.objects.all()
+    queryset = league.objects.all().filter(abbreviation="ALPH")
     serializer_class = LeagueSerializer
 
 class LeagueTeamsList(generics.ListAPIView):
