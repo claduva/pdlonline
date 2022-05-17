@@ -42,8 +42,8 @@ class RosterSerializer(serializers.ModelSerializer):
 
 class CoachSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True,many=True)
-    draft = DraftSerializer(read_only=True,many=True)
-    roster = RosterSerializer(read_only=True,many=True)
+    #draft = DraftSerializer(read_only=True,many=True)
+    #roster = RosterSerializer(read_only=True,many=True)
     class Meta:
         model = coach
         fields = ['id','user','teamname','teamabbreviation','logo','conference','division','wins','losses','forfeits','differential','streak','support','damagedone','hphealed','luck','remaininghealth','draft','roster']
