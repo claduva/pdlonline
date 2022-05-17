@@ -10,10 +10,13 @@ from pokemon.models import pokemon, pokemon_basestats
 from main.models import bot_message
 
 class UserSerializer(serializers.ModelSerializer):
+    #disordid_ = serializers.CharField(source='discordid', read_only=True)
+
     class Meta:
         model = UserModel
         fields = ['id','discordid','username']
 
+"""
     def to_internal_value(self, data):
         discordid_val = data.get('discordid')
         output = super(UserSerializer, self).to_internal_value(data)
@@ -25,6 +28,7 @@ class UserSerializer(serializers.ModelSerializer):
         output = super(UserSerializer, self).to_representation(instance)
         output['discordid'] = discordid_val
         return output
+        """
 
 class BasestatsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -52,20 +56,44 @@ class RosterSerializer(serializers.ModelSerializer):
         model = roster
         fields = ['id','pokemon','gp','gw','kills','deaths']
 
-class CoachSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True,many=True)
-    #draft = DraftSerializer(read_only=True,many=True)
-    #roster = RosterSerializer(read_only=True,many=True)
+
+#----------------------------------Team Serializer----------------------------------#
+class LeagueSerializer(serializers.ModelSerializer):
+
     class Meta:
-        model = coach
-        fields = ['id','user','teamname','teamabbreviation','logo','conference','division','wins','losses','forfeits','differential','streak','support','damagedone','hphealed','luck','remaininghealth','draft','roster']
+        model = league
+        fields = ['id','name','abbreviation','logo','discordurl','status']
+
+class SubleagueSerializer(serializers.ModelSerializer):
+    league = LeagueSerializer(read_only=True,many=False)
+
+    class Meta:
+        model = subleague
+        fields = ['id','name','league']
 
 class SeasonSerializer(serializers.ModelSerializer):
-    coaches = CoachSerializer(read_only=True,many=True)
+    subleague = SubleagueSerializer(read_only=True,many=False)
 
     class Meta:
         model = season
-        fields = ['id','name','coaches']
+        fields = ['id','name','subleague']#'coaches']
+
+class CoachSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True,many=True)
+    season = SeasonSerializer(read_only=True,many=False)
+    draft = DraftSerializer(read_only=True,many=True)
+    roster = RosterSerializer(read_only=True,many=True)
+    class Meta:
+        model = coach
+        fields = ['id','user','season','teamname','teamabbreviation','logo','conference','division','wins','losses','forfeits','differential','streak','support','damagedone','hphealed','luck','remaininghealth','draft','roster']
+
+#----------------------------------League Serializer----------------------------------#
+class SeasonSerializer(serializers.ModelSerializer):
+    #coaches = CoachSerializer(read_only=True,many=True)
+
+    class Meta:
+        model = season
+        fields = ['id','name',]#'coaches']
 
 class SubleagueSerializer(serializers.ModelSerializer):
     seasons = SeasonSerializer(read_only=True,many=True)
@@ -80,20 +108,6 @@ class LeagueSerializer(serializers.ModelSerializer):
     class Meta:
         model = league
         fields = ['id','name','abbreviation','logo','discordurl','status','subleagues']
-
-
-class SubleagueSerializer(serializers.ModelSerializer):
-    league=LeagueSerializer(read_only = True)
-
-    class Meta:
-        model = subleague
-        fields = ['id','name','league']
-
-
-
-
-
-
 
 class MatchSerializer(serializers.ModelSerializer):
     team1 = CoachSerializer(read_only = True)
