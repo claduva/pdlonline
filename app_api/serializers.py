@@ -20,6 +20,8 @@ class BasestatsSerializer(serializers.ModelSerializer):
         fields = ['id','hp','attack','defense','special_attack','special_defense','speed']
 
 class PokemonSerializer(serializers.ModelSerializer):
+    basestats = BasestatsSerializer(many=False, read_only=True)
+
     class Meta:
         model = pokemon
         fields = ['id','name','sprite','basestats']
