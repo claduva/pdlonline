@@ -14,6 +14,18 @@ class UserSerializer(serializers.ModelSerializer):
         model = UserModel
         fields = ['id','discordid','username']
 
+    def to_internal_value(self, data):
+        discordid_val = data.get('discordid')
+        output = super(UserSerializer, self).to_internal_value(data)
+        output['discordid'] = str(discordid_val)
+        return output
+
+    def to_representation(self, instance):
+        discordid_val = str(instance.discordid)
+        output = super(UserSerializer, self).to_representation(instance)
+        output['discordid'] = discordid_val
+        return output
+
 class BasestatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = pokemon_basestats
