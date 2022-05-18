@@ -22,11 +22,11 @@ class BasestatsSerializer(serializers.ModelSerializer):
         fields = ['id','hp','attack','defense','special_attack','special_defense','speed']
 
 class PokemonSerializer(serializers.ModelSerializer):
-    basestats = BasestatsSerializer(many=False, read_only=True)
+    #basestats = BasestatsSerializer(many=False, read_only=True)
 
     class Meta:
         model = pokemon
-        fields = ['id','name','sprite','basestats']
+        fields = ['id','name','sprite','data']
 
 class DraftSerializer(serializers.ModelSerializer):
     pokemon=PokemonSerializer(read_only = True)
