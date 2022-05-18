@@ -40,6 +40,12 @@ class UpcomingMatchList(generics.ListAPIView):
         user_id = self.kwargs['user_id']
         return match.objects.filter(team1__season__archived=False,replay__isnull=True).filter(Q(team1__user__discordid=user_id)|Q(team2__user__discordid=user_id)).order_by('duedate')
 
+class UpcomingMatch(generics.RetrieveAPIView):
+    serializer_class = MatchSerializer
+    def get_object(self):
+        match_id = self.kwargs['match_id']
+        return match.objects.get(id=match_id)
+
 class LeagueTierSet(generics.ListAPIView):
     serializer_class = TierSerializer
     def get_queryset(self):
