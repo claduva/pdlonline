@@ -46,6 +46,13 @@ class UpcomingMatch(generics.RetrieveAPIView):
         match_id = self.kwargs['match_id']
         return match.objects.get(id=match_id)
 
+class TeamData(generics.RetrieveAPIView):
+    serializer_class = CoachSerializer
+    def get_object(self):
+        team_id = self.kwargs['team_id']
+        return coach.objects.get(id=team_id)
+
+
 class LeagueTierSet(generics.ListAPIView):
     serializer_class = TierSerializer
     def get_queryset(self):
