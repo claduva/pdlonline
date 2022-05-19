@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserModel
-        fields = ['id','discordid','username']
+        fields = ['id','discordid','username','discord_tag']
 
 class BasestatsSerializer(serializers.ModelSerializer):
     class Meta:
