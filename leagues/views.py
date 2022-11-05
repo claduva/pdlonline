@@ -32,7 +32,7 @@ def apply(request,league_id):
     if request.user.id in list(loi.applications.all().values_list('user',flat=True)):
         messages.error(request,"You have already applied!",extra_tags='danger')
         return redirect('home')
-    existing=coach.objects.filter(season__subleague__league=loi,user=request.user).count()
+    existing=coach.objects.filter(season__subleague__league=loi,season__archived=False,user=request.user).count()
     if existing>0:
         messages.error(request,"You are already in the league!",extra_tags='danger')
         return redirect('home')

@@ -48,6 +48,8 @@ def settings(request):
     return  render(request,"settings.html")
 
 def runscript(request):
+    #coi = coach.objects.filter
+    """
     print("**************************************************")
     print("TASK: Running execute free agency and trades")
     print("**************************************************")
@@ -61,6 +63,7 @@ def runscript(request):
     print(f'Unexecuted Trades: {unexecutedtrades.count()}')
     for item in unexecutedtrades:
         execute_transaction(item)
+    """    
     """
     #Delete Unused Leagues
     for l in league.objects.all():
